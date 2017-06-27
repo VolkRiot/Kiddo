@@ -4,7 +4,7 @@ const express = require('express'),
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.sendFile('index.html');
+  res.sendFile(path.join(__dirname, '../../../public'));
 });
 
 module.exports = router;

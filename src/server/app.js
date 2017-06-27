@@ -11,7 +11,7 @@ const app = express();
 // initialize DB
 require('./db/mongodb');
 
-app.set('view engine', 'html');
+/*app.set('view engine', 'html');*/
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-app.use(express.static(path.join(__dirname, '../../dist')));
+app.use(express.static(path.join(__dirname, '../../public')));
 
 
 // importing routes
@@ -41,7 +41,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.sendStatus(500);
 });
 
 

@@ -7,8 +7,8 @@
   "license": "",
   "scripts": {
     "start": "node ./src/server/bin/www",
-    "react": " rm -rf | webpack -w",
-    "build": " rm -rf | webpack -p"
+    "react": "webpack-dev-server",
+    "build": "NODE_ENV=production webpack -p"
   },
   "babel": {
     "presets": [
@@ -24,7 +24,6 @@
     "express": "~4.15.2",
     "mongoose": "^4.10.8",
     "morgan": "~1.8.1",
-    "nodemon": "^1.11.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "serve-favicon": "~2.4.2"
@@ -35,8 +34,11 @@
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.2",
     "html-webpack-plugin": "^2.29.0",
+    "nodemon": "^1.11.0",
     "style-loader": "^0.18.2",
-    "webpack": "^3.0.0"
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.5.0"
   }
 }
