@@ -6,8 +6,8 @@
   "author": "",
   "license": "",
   "scripts": {
-    "start": "node ./src/server/bin/www",
-    "react": "webpack-dev-server",
+    "start": "nodemon ./src/server/bin/www",
+    "start:wds": "webpack -w",
     "build": "NODE_ENV=production webpack -p"
   },
   "babel": {
