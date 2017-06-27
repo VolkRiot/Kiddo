@@ -6,7 +6,7 @@ const path              = require('path'),
 let config = {
   entry: './src/client/index.jsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
     filename: 'js/bundle.js'
   },
   module: {
@@ -16,7 +16,7 @@ let config = {
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: "css-loader",
-          publicPath: "/dist"
+          publicPath: "/public"
         })
       }
     ]
@@ -26,7 +26,7 @@ let config = {
     extensions: ['.js', '.jsx']
   },
   devServer: {
-    contentBase: [path.join(__dirname, 'dist'), path.join(__dirname, 'public')],
+    contentBase: path.join(__dirname, 'public'),
     compress: true,
     port: 3000,
     stats: 'minimal'
@@ -52,5 +52,6 @@ let config = {
   ]
 };
 
+//(TODO) IMPLEMENT HOT RELOAD
 
 module.exports = config;
