@@ -1,9 +1,20 @@
 {
-  "name": "server",
-  "version": "0.0.0",
-  "private": true,
+  "name": "Kiddo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/VolkRiot/Kiddo.git",
+  "author": "",
+  "license": "",
   "scripts": {
-    "start": "node ./server/bin/www"
+    "start": "node ./src/server/bin/www",
+    "react": "webpack-dev-server",
+    "build": "NODE_ENV=production webpack -p"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -13,6 +24,21 @@
     "express": "~4.15.2",
     "mongoose": "^4.10.8",
     "morgan": "~1.8.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "html-webpack-plugin": "^2.29.0",
+    "nodemon": "^1.11.0",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.5.0"
   }
 }

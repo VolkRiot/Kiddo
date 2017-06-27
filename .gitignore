@@ -63,3 +63,4 @@ dist
 *.xml
 .DS_Store
 /.env
+.idea/
