@@ -17,15 +17,18 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "dotenv": "^4.0.0",
     "express": "~4.15.2",
+    "googleapis": "^20.0.0",
     "mongoose": "^4.10.8",
     "morgan": "~1.8.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-modal": "^2.1.0",
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {

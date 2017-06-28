@@ -4,8 +4,12 @@ const express       = require('express'),
       logger        = require('morgan'),
       cookieParser  = require('cookie-parser'),
       bodyParser    = require('body-parser');
+<<<<<<< HEAD
 
 
+=======
+      passport      = require('passport')
+>>>>>>> Working on google calendar list api
 const app = express();
 
 // initialize DB
