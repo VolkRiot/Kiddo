@@ -3,15 +3,10 @@ const express = require('express'),
       path    = require('path');
       passport = require('passport');
       google   = require('googleapis');
-      CalendarList = require('../calendar/calendar.js');
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../../../public'));
-});
-
-
-router.get('/calendars', function(req,res){
-  console.log(CalendarList);
 });
 
 //route to signin for google and set scopes

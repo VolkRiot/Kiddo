@@ -12,9 +12,9 @@ var gcal = require('google-calendar');
 module.exports = function(){
 
 passport.use(new GoogleStrategy({
-  clientID: '161301570635-fv4tliniaqa4atpj2ldelicb7qlo7of4.apps.googleusercontent.com',
-  clientSecret: 'aLp3Uh7OOs_E6aw8ulayB5jX',
-  callbackURL: 'http://localhost:3000/auth/google/callback',
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: process.env.CALLBACKURL,
   accessType: 'offline'
 }, (accessToken, refreshToken, profile, cb) => {
   // Extract the minimal profile information we need from the profile object
@@ -23,6 +23,7 @@ passport.use(new GoogleStrategy({
   console.log(accessToken);
   console.log(refreshToken);
   console.log(profile.displayName);
+  console.log(profile.email);
   var google_calendar = new gcal.GoogleCalendar(accessToken);
   google_calendar.calendarList.list(function(err, calendarList) {
       console.log(calendarList);
