@@ -20,8 +20,9 @@ lib-cov
 coverage
 
 # Webpack bundle.js
-bundle.js*
-
+dist
+bundle.*
+public/index.html
 # nyc test coverage
 .nyc_output
 
@@ -60,8 +61,6 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-dist
-.env
 .idea/*
 *.xml
 .DS_Store

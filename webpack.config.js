@@ -33,9 +33,9 @@ let config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      minify: {
+      /*minify: {
         collapseWhitespace: true
-      },
+      },*/
       hash: true,
       template: 'src/client/index.html',
     }),
