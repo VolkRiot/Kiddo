@@ -3,17 +3,18 @@ const express       = require('express'),
       favicon       = require('serve-favicon'),
       logger        = require('morgan'),
       cookieParser  = require('cookie-parser'),
-      bodyParser    = require('body-parser');
-<<<<<<< HEAD
-
-
-=======
-      passport      = require('passport')
->>>>>>> Working on google calendar list api
+      bodyParser    = require('body-parser'),
+      passport      = require('passport');
 const app = express();
 
 // initialize DB
 require('./db/mongodb');
+
+//initialize passport
+require('./passport/googleoauth.js')(passport); //pass passport for configuration
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 
 /*app.set('view engine', 'html');*/
 // uncomment after placing your favicon in /public
@@ -38,15 +39,15 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+//app.use((err, req, res, next) => {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  //res.locals.message = err.message;
+  //res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.sendStatus(500);
-});
+  //res.status(err.status || 500);
+  //res.sendStatus(500);
+//});
 
 
 
