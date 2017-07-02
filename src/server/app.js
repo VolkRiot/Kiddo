@@ -24,27 +24,35 @@ app.use(express.static(path.join(__dirname, '../../public')));
 
 // importing routes
 app.use('/', require('./routes/index'));
-
+app.use('/api', require('./routes/api'));
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
+app.use((req, res, next)=> {
   let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// error handler
-app.use((err, req, res, next) => {
-  let status;
+// error handlers
 
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500).json({
+      message: 'Server Error',
+      error: err
+    });
+  });
+}
 
-  // sending the error page
-  console.error(err);
-  status = err.status || 500;
-  res.status(status).json({status: status, message: err.message});
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500).json({
+    message: err.message,
+    error: {}
+  });
 });
 
 
