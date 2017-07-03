@@ -31,10 +31,7 @@
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
     "react": "^15.6.1",
-<<<<<<< HEAD
-=======
     "react-bootstrap": "^0.31.0",
->>>>>>> Merged with Master on Remote Branch and recommiting my changes from original commit
     "react-dom": "^15.6.1",
     "react-modal": "^2.2.1",
     "serve-favicon": "~2.4.2"

@@ -1,28 +1,11 @@
 import React from 'react'
-<<<<<<< HEAD
-class Home extends React.Component {
-  render(){
-    return(
-=======
-<<<<<<< HEAD
-=======
 import HomeFooter from './HomeFooter'
 
->>>>>>> origin
 class Home extends React.Component {
   render(){
     
 
     return(
-<<<<<<< HEAD
->>>>>>> Merged with Master on Remote Branch and recommiting my changes from original commit
-        <div>
-          <h1>Home Component!</h1>
-
-        </div>
-<<<<<<< HEAD
-=======
-=======
       <div className="container">
 		    <div className="row">
   				<div className="col-sm-6 col-md-4">
@@ -59,8 +42,6 @@ class Home extends React.Component {
      
     </div>
 
->>>>>>> origin
->>>>>>> Merged with Master on Remote Branch and recommiting my changes from original commit
     )
   }
 }
