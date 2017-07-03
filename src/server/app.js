@@ -29,15 +29,23 @@ app.use(express.static(path.join(__dirname, '../../public')));
 
 // importing routes
 app.use('/', require('./routes/index'));
+<<<<<<< HEAD
 
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
+=======
+app.use('/api', require('./routes/api'));
+
+// catch 404 and forward to error handler
+app.use((req, res, next)=> {
+>>>>>>> Merged with Master on Remote Branch and recommiting my changes from original commit
   let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
+<<<<<<< HEAD
 // error handler
 app.use((err, req, res, next) => {
   let status;
@@ -50,6 +58,28 @@ app.use((err, req, res, next) => {
   console.error(err);
   status = err.status || 500;
   res.status(status).json({status: status, message: err.message});
+=======
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500).json({
+      message: 'Server Error',
+      error: err
+    });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500).json({
+    message: err.message,
+    error: {}
+  });
+>>>>>>> Merged with Master on Remote Branch and recommiting my changes from original commit
 });
 
 
