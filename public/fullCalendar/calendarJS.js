@@ -1,11 +1,19 @@
 $(document).ready(function() {
     var allCalendars = [];
+    //Array for Calendar Titles
+    var calendarTitleArray = [];
     //Define Random Color for Each Calendar
     var colorArray = ['red','blue','orange','green','purple']
     $.get('/calendar/getevents', function(response){
         console.log(response);
+        //Push Calendar Titles to Its Own Array
+        $.each(response.calendarList.items, function(i,val){
+            console.log(val.summary);
+            calendarTitleArray.push(val.summary);
+        });
+        console.log(response);
         //Breakdown of each calendar
-        $.each(response, function(i,calendar){
+        $.each(response.eventsForCalendars, function(i,calendar){
             console.log(calendar);
             var eventArray = [];
             //Breakdown each event
@@ -55,12 +63,15 @@ $(document).ready(function() {
                         //SurveyJS Code
                         Survey.Survey.cssType = "bootstrap";
                         //Survey JSON
-                        var surveyJSON = {pages:[{elements:[{type:"text",isRequired:true,name:"title",title:"Title"},{type:"text",inputType:"datetime-local",isRequired:true,name:"startDate",title:"Start Date & Time"},{type:"text",inputType:"datetime-local",isRequired:true,name:"endDate",title:"End Date & Time"}],name:"page1"}]};
+                        var surveyJSON = {pages:[{name:"page1",elements:[{type:"text",isRequired:true,name:"title",title:"Title"},{type:"text",inputType:"datetime-local",isRequired:true,name:"startDate",title:"Start Date & Time"},{type:"text",inputType:"datetime-local",isRequired:true,name:"endDate",title:"End Date & Time"},{type:"dropdown",choices:calendarTitleArray,choicesOrder:"desc",commentText:"Choose...",isRequired:true,name:"calendar",title:"Calendar Name"}]}]};
                         //Function to Send Data to Server **Needs Work
                         function sendDataToServer(survey) {
                             $('.vex-dialog-message').html('');
                             var resultAsString = JSON.stringify(survey.data);
-                            $.post('/addevent', resultAsString).done(function (response) {
+                            var calendarEventInfo = {
+                                eventInfo: resultAsString
+                            }
+                            $.post('/addevent', calendarEventInfo).done(function (response) {
                                 console.log(response);
                             });
                         }

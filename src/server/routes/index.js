@@ -3,6 +3,9 @@ const express = require('express'),
       path    = require('path');
       passport = require('passport');
       gcal    = require('google-calendar');
+ 
+//Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
+var google_calendar = new gcal.GoogleCalendar('ya29.Glt8BJIqbV_A9GEXtvLDrVmg--v6fiZrOmSfgOSZjG1ZsqCTNjJ6N9eOQZ0DbqDweQXBhJhU4Y0DtR1gz6_kgPTy-FxzKE9AzVa_mW-nD-aJhGLyzIWnOnrzzELT');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -13,9 +16,6 @@ router.get('/', (req, res, next) => {
 router.get('/calendar/getevents', function(req,res){
   //Array to Hold Events of Multiple Calendars (ie: Children's calendars)
   var calendarListEventArray = [];
-  //Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
-  var google_calendar = new gcal.GoogleCalendar('ya29.GmB7BCq43oW_gbx7Fg-rHmm2jOZ6P-C7_6uw5Md96gmUwCed7SQmd7TpWuEB-uF-9W2UvDvbDRs3udArT74X2ar0qMh12NQ5s9JcX-gDRJJzK3gnwg1BcAureWMKoNy9x74');
-  
   //Retrieve Users's List
   google_calendar.calendarList.list(function(err, calendarList) {
     for(var d = 0; d < calendarList.items.length; d++){
@@ -25,7 +25,12 @@ router.get('/calendar/getevents', function(req,res){
         calendarListEventArray.push(eventList);
         //Send when the length of the array for events of each calendar equals the original amount of calendar Ids gathered from the API response
         if(calendarListEventArray.length == calendarList.items.length){
-          res.send(calendarListEventArray);
+          //Send Calendar List Array
+          var objectCalendars = {
+            eventsForCalendars: calendarListEventArray,
+            calendarList: calendarList
+          }
+          res.json(objectCalendars);
         } 
       });
     }
@@ -39,8 +44,25 @@ router.get('/calendar', function(req,res){
 
 //Route to Retrieve Event Data to Add to Google
 router.post('/addevent', function(req,res){
-  console.log(req.body);
-  res.send('event received');
+    //Parse JSON
+    var eventJSON = JSON.parse(req.body.eventInfo);
+    console.log(eventJSON.calendar);
+    //Logic to Associate Calendar Summary with ID
+    google_calendar.calendarList.list(function(err, calendarList) {
+    for(var i = 0; i < calendarList.items.length; i++){
+        if(eventJSON.calendar === calendarList.items[i].summary){
+        console.log(calendarList.items[i].id);
+        var calendarId = calendarList.items[i].id;
+        google_calendar.events.insert(calendarId, {summary: eventJSON.title, start:{dateTime: eventJSON.startDate.concat(':00Z')}, end:{dateTime: eventJSON.endDate.concat(':00Z')}}, function(err,response){
+          if(err){
+            console.log(err);
+          }
+          console.log("event inserted");
+        })
+      }
+    
+  }
+    });
 });
 
 //route to signin for google and set scopes
