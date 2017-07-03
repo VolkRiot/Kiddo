@@ -1,6 +1,5 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
-var gcal = require('google-calendar');
 
 // Configure the Google strategy for use by Passport.js.
 //
@@ -17,18 +16,10 @@ passport.use(new GoogleStrategy({
   callbackURL: process.env.CALLBACKURL,
   accessType: 'offline'
 }, (accessToken, refreshToken, profile, cb) => {
-  // Extract the minimal profile information we need from the profile object
-  // provided by Google
-  //Find out token expiration/how to refresh
-  console.log(accessToken);
-  console.log(refreshToken);
-  console.log(profile.displayName);
-  console.log(profile.email);
-  var google_calendar = new gcal.GoogleCalendar(accessToken);
-  google_calendar.calendarList.list(function(err, calendarList) {
-      console.log(calendarList);
-  });
+  //Send Access Token and Profile Information to Database
+  console.log('Access Token: ' + accessToken);
   cb(null, null);
+
 }));
 // used to serialize the user for the session
 passport.serializeUser((user, cb) => {
