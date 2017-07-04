@@ -3,9 +3,12 @@ const express = require('express'),
       path    = require('path');
       passport = require('passport');
       gcal    = require('google-calendar');
- 
+      //automatically detect timezone and initialize
+      jstz    = require('jstz');
+      var timezone = jstz.determine();
+
 //Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
-var google_calendar = new gcal.GoogleCalendar('ya29.Glt8BJIqbV_A9GEXtvLDrVmg--v6fiZrOmSfgOSZjG1ZsqCTNjJ6N9eOQZ0DbqDweQXBhJhU4Y0DtR1gz6_kgPTy-FxzKE9AzVa_mW-nD-aJhGLyzIWnOnrzzELT');
+var google_calendar = new gcal.GoogleCalendar('ya29.Glx9BEvRYnu1ZbmaVOWVPEqNpJ7rgzzrtjBbV4KpjB7dt56N_oKv33-Sht-Un1JR1Vg-9Jo9SHSMgKjeqmAy2i4VnKsQTYnvhNKg-9VEV-oVlCAdN1SXbu9BEXYqpw');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -44,25 +47,24 @@ router.get('/calendar', function(req,res){
 
 //Route to Retrieve Event Data to Add to Google
 router.post('/addevent', function(req,res){
-    //Parse JSON
-    var eventJSON = JSON.parse(req.body.eventInfo);
-    console.log(eventJSON.calendar);
-    //Logic to Associate Calendar Summary with ID
-    google_calendar.calendarList.list(function(err, calendarList) {
+  //Parse JSON
+  var eventJSON = JSON.parse(req.body.eventInfo);
+  console.log(eventJSON.calendar);
+  //Logic to Associate Calendar Summary with ID
+  google_calendar.calendarList.list(function(err, calendarList) {
     for(var i = 0; i < calendarList.items.length; i++){
-        if(eventJSON.calendar === calendarList.items[i].summary){
+      if(eventJSON.calendar === calendarList.items[i].summary){
         console.log(calendarList.items[i].id);
         var calendarId = calendarList.items[i].id;
-        google_calendar.events.insert(calendarId, {summary: eventJSON.title, start:{dateTime: eventJSON.startDate.concat(':00Z')}, end:{dateTime: eventJSON.endDate.concat(':00Z')}}, function(err,response){
+        google_calendar.events.insert(calendarId, {summary: eventJSON.title, start:{dateTime: eventJSON.startDate.concat(':00'), timeZone: timezone.name()}, end:{dateTime: eventJSON.endDate.concat(':00'), timeZone: timezone.name() }}, function(err,response){
           if(err){
             console.log(err);
           }
-          console.log("event inserted");
-        })
+          console.log("Event Inserted");
+        });
       }
-    
-  }
-    });
+    }
+  });
 });
 
 //route to signin for google and set scopes
