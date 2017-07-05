@@ -9,7 +9,7 @@ const controllers = require('../controllers');
 /*
   Example : http://.../api/user?_id=5958... = to id matching doc
   or      : http://.../api/user             = to all docs
- */
+*/
 
 router.get('/:collection', (req, res, next) => {
   let collection   = req.params.collection,
@@ -136,7 +136,7 @@ router.put('/:collection', (req, res, next) => {
 /* DELETE */
 /*
  Example: http://.../api/user?method=delete&_id=59589...
- */
+*/
 
 router.delete('/:collection', (req, res, next) => {
   let collection = req.params.collection,

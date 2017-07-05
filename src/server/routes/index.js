@@ -2,15 +2,17 @@
 
 const express  = require('express'),
       router   = express.Router(),
+      auth     = require('./auth'),
       path     = require('path'),
       passport = require('passport'),
       gcal     = require('google-calendar'),
-      //automatically detect timezone and initialize
-      jstz     = require('jstz'),
+      jstz     = require('jstz'), //automatically detect timezone and initialize
       timezone = jstz.determine();
 
 //Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
 var google_calendar = new gcal.GoogleCalendar('ya29.Glx9BEvRYnu1ZbmaVOWVPEqNpJ7rgzzrtjBbV4KpjB7dt56N_oKv33-Sht-Un1JR1Vg-9Jo9SHSMgKjeqmAy2i4VnKsQTYnvhNKg-9VEV-oVlCAdN1SXbu9BEXYqpw');
+
+router.use('/auth', auth);
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -58,28 +60,18 @@ router.post('/addevent', function(req,res){
       if(eventJSON.calendar === calendarList.items[i].summary){
         console.log(calendarList.items[i].id);
         var calendarId = calendarList.items[i].id;
-        google_calendar.events.insert(calendarId, {summary: eventJSON.title, start:{dateTime: eventJSON.startDate.concat(':00'), timeZone: timezone.name()}, end:{dateTime: eventJSON.endDate.concat(':00'), timeZone: timezone.name() }}, function(err,response){
-          if(err){
-            console.log(err);
-          }
-          console.log("Event Inserted");
-        });
+        google_calendar.events.insert(calendarId, {summary: eventJSON.title,
+          start:{dateTime: eventJSON.startDate.concat(':00'), timeZone: timezone.name()},
+          end:{dateTime: eventJSON.endDate.concat(':00'), timeZone: timezone.name() }},
+          function(err,response){
+            if(err){
+              console.log(err);
+            }
+            console.log("Event Inserted");
+          });
       }
     }
   });
 });
-
-//route to signin for google and set scopes
-router.get('/auth/google', passport.authenticate('google',
-  { scope :
-    ['profile', 'email', 'https://www.googleapis.com/auth/calendar']
-}));
-
-// the callback after google has authenticated the user
-router.get('/auth/google/callback',
-  passport.authenticate('google', {
-    successRedirect : '/',
-    failureRedirect : '/'
-}));
 
 module.exports = router;
