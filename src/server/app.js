@@ -7,6 +7,7 @@ const express       = require('express'),
       cookieParser  = require('cookie-parser'),
       bodyParser    = require('body-parser'),
       passport      = require('passport');
+      
 const app = express();
 
 // initialize DB

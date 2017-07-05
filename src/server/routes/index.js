@@ -4,7 +4,7 @@ const express  = require('express'),
       path     = require('path'),
       auth     = require('./auth'),
       calndr   = require('./calendar'),
-      all     = require('./api');
+      all      = require('./api');
 
 // Express router defined
 const router = express.Router();
