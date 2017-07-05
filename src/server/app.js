@@ -1,3 +1,5 @@
+'use strict';
+
 const express       = require('express'),
       path          = require('path'),
       favicon       = require('serve-favicon'),
@@ -38,8 +40,6 @@ app.use((req, res, next)=> {
   next(err);
 });
 
-// error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -59,7 +59,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
-
 
 module.exports = app;

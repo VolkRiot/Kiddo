@@ -1,11 +1,13 @@
-const express = require('express'),
-      router  = express.Router(),
-      path    = require('path');
-      passport = require('passport');
-      gcal    = require('google-calendar');
+'use strict'
+
+const express  = require('express'),
+      router   = express.Router(),
+      path     = require('path'),
+      passport = require('passport'),
+      gcal     = require('google-calendar'),
       //automatically detect timezone and initialize
-      jstz    = require('jstz');
-      var timezone = jstz.determine();
+      jstz     = require('jstz'),
+      timezone = jstz.determine();
 
 //Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
 var google_calendar = new gcal.GoogleCalendar('ya29.Glx9BEvRYnu1ZbmaVOWVPEqNpJ7rgzzrtjBbV4KpjB7dt56N_oKv33-Sht-Un1JR1Vg-9Jo9SHSMgKjeqmAy2i4VnKsQTYnvhNKg-9VEV-oVlCAdN1SXbu9BEXYqpw');
@@ -34,7 +36,7 @@ router.get('/calendar/getevents', function(req,res){
             calendarList: calendarList
           }
           res.json(objectCalendars);
-        } 
+        }
       });
     }
   });
@@ -68,9 +70,9 @@ router.post('/addevent', function(req,res){
 });
 
 //route to signin for google and set scopes
-router.get('/auth/google', passport.authenticate('google', 
-  { scope : 
-    ['profile', 'email', 'https://www.googleapis.com/auth/calendar'] 
+router.get('/auth/google', passport.authenticate('google',
+  { scope :
+    ['profile', 'email', 'https://www.googleapis.com/auth/calendar']
 }));
 
 // the callback after google has authenticated the user
