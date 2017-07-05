@@ -7,7 +7,7 @@ const express       = require('express'),
       cookieParser  = require('cookie-parser'),
       bodyParser    = require('body-parser'),
       passport      = require('passport');
-      
+
 const app = express();
 
 // initialize DB
@@ -18,8 +18,6 @@ require('./passport/googleoauth.js')(passport); //pass passport for configuratio
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-
-/*app.set('view engine', 'html');*/
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -29,13 +27,11 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static(path.join(__dirname, '../../public')));
 
-
 // importing routes
 app.use('/', require('./routes/index'));
-app.use('/api', require('./routes/api'));
 
 // catch 404 and forward to error handler
-app.use((req, res, next)=> {
+app.use((req, res, next) => {
   let err = new Error('Not Found');
   err.status = 404;
   next(err);
