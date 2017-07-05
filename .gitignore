@@ -8,6 +8,10 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 
+# IDE Specific files
+.DS_Store/
+.vscode/*
+
 # Runtime data
 pids
 *.pid

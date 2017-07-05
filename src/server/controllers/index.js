@@ -1,6 +1,7 @@
+'use strict';
+
 const User = require('./userController');
 
-
-module.exports =  {
-  user: User,
+module.exports = {
+  user: User
 };

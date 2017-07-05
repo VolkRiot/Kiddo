@@ -1,3 +1,5 @@
+'use strict';
+
 $(document).ready(function() {
     var allCalendars = [];
     //Array for Calendar Titles
@@ -81,7 +83,7 @@ $(document).ready(function() {
                             model: survey,
                             onComplete: sendDataToServer
                         });
-                        
+
                     }
                 }
             },
