@@ -13,13 +13,12 @@ const controllers = require('../controllers');
 
 router.get('/:collection', (req, res, next) => {
   let collection   = req.params.collection,
-      controller = controllers[collection],
-      id         = req.query._id;
+      controller   = controllers[collection],
+      id           = req.query._id;
 
   if (controller === undefined) {
     return next({message: 'Invalid Query' , err: `Param : ${collection}`});
   }
-
 
   if (id !== undefined) {
     controller.findById( id, (err, results) => {
@@ -33,7 +32,6 @@ router.get('/:collection', (req, res, next) => {
         return res.status(200).json({message: 'Success', body: results});
       }
     });
-
 
   } else {
     controller.find({}, (err, results) => {
@@ -157,9 +155,10 @@ router.delete('/:collection', (req, res, next) => {
         if (err) {
           return next({message: 'Fail on delete', err: `${collection} not found!`});
         } else {
-          return res.status(200).json({message: (results?'Success':'Not Found'), body: results});
+          return res.status(200).json({message: (results ? 'Success' : 'Not Found'), body: results});
         }
       });
+
     } else {
       return res.status(500).json({message: 'fail', err: 'missing id'});
     }

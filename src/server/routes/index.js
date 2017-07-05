@@ -1,12 +1,15 @@
 'use strict'
 
 const express  = require('express'),
-      router   = express.Router(),
+      path     = require('path'),
       auth     = require('./auth'),
       calndr   = require('./calendar'),
-      path     = require('path');
+      user     = require('./api');
 
-/* GET home page. */
+// Express router defined
+const router = express.Router();
+
+// GET home page.
 router.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../../../public'));
 });
@@ -14,5 +17,6 @@ router.get('/', (req, res, next) => {
 // Consildated routes from individual files.
 router.use('/auth', auth);
 router.use('/calendar', calndr);
+router.use('/user', user);
 
 module.exports = router;
