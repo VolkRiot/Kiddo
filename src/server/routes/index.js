@@ -4,7 +4,7 @@ const express  = require('express'),
       path     = require('path'),
       auth     = require('./auth'),
       calndr   = require('./calendar'),
-      user     = require('./api');
+      all     = require('./api');
 
 // Express router defined
 const router = express.Router();
@@ -17,6 +17,6 @@ router.get('/', (req, res, next) => {
 // Consildated routes from individual files.
 router.use('/auth', auth);
 router.use('/calendar', calndr);
-router.use('/', user);
+router.use('/api', all);
 
 module.exports = router;
