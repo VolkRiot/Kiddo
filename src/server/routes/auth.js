@@ -1,14 +1,10 @@
 const express  = require('express'),
       router   = express.Router(),
-      path     = require('path'),
-      passport = require('passport'),
-      gcal     = require('google-calendar'),
-      jstz     = require('jstz'), //automatically detect timezone and initialize
-      timezone = jstz.determine();
+      passport = require('passport');
 
 router.get('/google/callback',
   passport.authenticate('google', {
-    successRedirect : '/',
+    successRedirect : '/calendar',
     failureRedirect : '/'
 }));
 
