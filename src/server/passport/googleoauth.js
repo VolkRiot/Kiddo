@@ -35,7 +35,6 @@ module.exports = function() {
                 if (err) {
                   return cb(err);
                 } else {
-                  console.log('User is ', updatedUser);
                   return cb(null, updatedUser);
                 }
               });
