@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI, {useMongoClient: false});
+mongoose.connect(process.env.MONGODB_URI, { useMongoClient: false });
 mongoose.Promise = Promise;
 
 const db = mongoose;

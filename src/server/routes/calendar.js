@@ -16,6 +16,7 @@ router.get('/', function(req,res){
 });
 
 router.get('/getevents', function(req, res) {
+  console.log("Req object is ", req.user);
   // Array to Hold Events of Multiple Calendars (ie: Children's calendars)
   var calendarListEventArray = [];
   // Retrieve Users's List
