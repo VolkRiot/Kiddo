@@ -14,26 +14,15 @@ const controllers = require('../controllers');
 router.get('/:collection', (req, res, next) => {
   let collection   = req.params.collection,
       controller   = controllers[collection],
+      query        = req.query,
       id           = req.query._id;
 
   if (controller === undefined) {
     return next({message: 'Invalid Query' , err: `Param : ${collection}`});
   }
 
-  if (id !== undefined) {
-    controller.findById( id, (err, results) => {
-      if (err) {
-        return next({message: 'Invalid Query' , err: `Invalid ${collection} ID`});
 
-      } else if (results === null){
-        return res.status(200).json({message: 'Not Found!', body: null});
-
-      } else {
-        return res.status(200).json({message: 'Success', body: results});
-      }
-    });
-
-  } else {
+  if (Object.keys(query).length === 0 && query.constructor === Object) {
     controller.find({}, (err, results) => {
       if (err) {
         return next({message: 'Invalid Query', err: err});
@@ -45,7 +34,22 @@ router.get('/:collection', (req, res, next) => {
         return res.status(200).json({message: 'Success', body: results});
       }
     });
+  } else if (id !== undefined && query.constructor === Object && Object.keys(query).length === 1) {
+    controller.findById( id, (err, results) => {
+      if (err) {
+        return next({message: 'Invalid Query' , err: `Invalid ${collection} ID`});
+
+      } else if (results === null){
+        return res.status(200).json({message: 'Not Found!', body: null});
+
+      } else {
+        return res.status(200).json({message: 'Success', body: results});
+      }
+    });
+  } else {
+    return next({message: 'Invalid Query', err: 'To many arguments'});
   }
+
 });
 
 /* POST */
@@ -59,6 +63,7 @@ router.post('/:collection', (req, res, next) => {
       method     = req.query.method,
       controller = controllers[collection],
       body       = req.body;
+
 
   if (controller === undefined) {
     return next({message: 'Invalid Query' , err: `Param : ${collection}`});
