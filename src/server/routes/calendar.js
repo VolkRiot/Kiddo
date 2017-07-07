@@ -1,3 +1,5 @@
+'use strict';
+
 const express   = require('express'),
       router    = express.Router(),
       path      = require('path'),
@@ -5,7 +7,7 @@ const express   = require('express'),
       gcal      = require('google-calendar'),
       jstz      = require('jstz'), // Automatically detect timezone and initialize
       timezone  = jstz.determine();
-      Event     = require('../models/event');
+      Event     = require('../models/event'),
       User      = require('../models/user');
 
 // Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
@@ -17,7 +19,7 @@ router.get('/', function(req,res){
 });
 
 router.get('/getevents', function(req, res) {
-  //Initiate google_calendar with token
+  // Initiate google_calendar with token
   if(!google_calendar) {
     var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
 }
@@ -60,7 +62,7 @@ router.post('/addevent', function(req,res){
 
   // Parse JSON
   var eventJSON = JSON.parse(req.body.eventInfo);
-  //Insert Event into Google Database
+  // Insert Event into Google Database
   // Logic to Associate Calendar Summary with ID
   google_calendar.calendarList.list(function(err, calendarList) {
 
@@ -74,8 +76,7 @@ router.post('/addevent', function(req,res){
           function(err,response){
             if(err){
               console.log(err);
-            }
-            else{
+            } else{
               console.log("Event Inserted Into Google Database");
             }
         });
@@ -83,7 +84,7 @@ router.post('/addevent', function(req,res){
     }
   });
 
-  //Event Inserted into Kiddo Database
+  // Event Inserted into Kiddo Database
   const newEvent = Event();
 
   newEvent.title = eventJSON.title;
@@ -95,15 +96,13 @@ router.post('/addevent', function(req,res){
   newEvent.save(function(err, data){
     if(err){
       console.log(err);
-    }
-    else{
+    } else{
       console.log("Event Inserted into Kiddo DB");
-      //Insert Event ID into Users Table for User that Created Event
+      // Insert Event ID into Users Table for User that Created Event
       User.findOneAndUpdate({email: data.email}, {$push:{events:data._id}}, function(err, response){
         if(err){
           console.log(err);
-        }
-        else{
+        } else{
           console.log("User Updated With New Event");
         }
       });
