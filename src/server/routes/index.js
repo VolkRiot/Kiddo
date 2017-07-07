@@ -8,7 +8,7 @@ const express = require('express'),
       var timezone = jstz.determine();
 
 //Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
-var google_calendar = new gcal.GoogleCalendar('ya29.Glx9BEvRYnu1ZbmaVOWVPEqNpJ7rgzzrtjBbV4KpjB7dt56N_oKv33-Sht-Un1JR1Vg-9Jo9SHSMgKjeqmAy2i4VnKsQTYnvhNKg-9VEV-oVlCAdN1SXbu9BEXYqpw');
+var google_calendar = new gcal.GoogleCalendar('ya29.Glt-BHmwV_ia9F5KTCKPiqJ9jL_OoCG8a8G_84XHCjkP4wtTwSwS7UNP4OV-2CwrItPFDj2PlyjkHmGyjXB2thXIZeZv8J1JSnMIvASMV3psLT2G0cOA9JFbmkqd');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
