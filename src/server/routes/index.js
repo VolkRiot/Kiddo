@@ -15,8 +15,8 @@ router.get('/', (req, res, next) => {
 });
 
 // Consildated routes from individual files.
-router.use('/auth', auth);
 router.use('/calendar', calndr);
 router.use('/api', all);
+router.use('/auth', auth);
 
 module.exports = router;

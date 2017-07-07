@@ -8,7 +8,7 @@ const express   = require('express'),
 
 
 // Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
-var google_calendar = new gcal.GoogleCalendar('ya29.Glx9BEvRYnu1ZbmaVOWVPEqNpJ7rgzzrtjBbV4KpjB7dt56N_oKv33-Sht-Un1JR1Vg-9Jo9SHSMgKjeqmAy2i4VnKsQTYnvhNKg-9VEV-oVlCAdN1SXbu9BEXYqpw');
+var google_calendar = undefined;
 
 // Base Calendar HTML
 router.get('/', function(req,res){
@@ -16,11 +16,16 @@ router.get('/', function(req,res){
 });
 
 router.get('/getevents', function(req, res) {
-  console.log("Req object is ", req.user);
+
+  if(!google_calendar) {
+    var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
+  }
+
   // Array to Hold Events of Multiple Calendars (ie: Children's calendars)
   var calendarListEventArray = [];
   // Retrieve Users's List
   google_calendar.calendarList.list(function(err, calendarList) {
+
     for (var d = 0; d < calendarList.items.length; d++) {
       var calendarId = calendarList.items[d].id;
       // Retrieve Events from Specific Calendar List
@@ -48,12 +53,13 @@ router.get('/getevents', function(req, res) {
 router.post('/addevent', function(req,res){
   // Parse JSON
   var eventJSON = JSON.parse(req.body.eventInfo);
-  console.log(eventJSON.calendar);
+
   // Logic to Associate Calendar Summary with ID
   google_calendar.calendarList.list(function(err, calendarList) {
+
     for(var i = 0; i < calendarList.items.length; i++){
       if(eventJSON.calendar === calendarList.items[i].summary){
-        console.log(calendarList.items[i].id);
+
         var calendarId = calendarList.items[i].id;
         google_calendar.events.insert(calendarId, {summary: eventJSON.title,
           start:{dateTime: eventJSON.startDate.concat(':00'), timeZone: timezone.name()},

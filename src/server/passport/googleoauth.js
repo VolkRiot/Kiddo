@@ -1,7 +1,7 @@
 'use strict';
 
 var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth20').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = require('../models/user');
 
 // Configure the Google strategy for use by Passport.js.
@@ -19,23 +19,22 @@ module.exports = function() {
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
         callbackURL: process.env.CALLBACKURL,
-        accessType: 'offline'
       },
-      (accessToken, refreshToken, profile, cb) => {
+      (accessToken, refreshToken, profile, done) => {
         // Send Access Token and Profile Information to Database
 
         process.nextTick(() => {
           User.findOne({ googleId: profile.id }, (err, user) => {
             if (err) {
-              return cb(err);
+              return done(err);
             }
             if (user) {
               // Update Access Token for existing User
               User.findOneAndUpdate({ googleId: profile.id }, {$set: { calAccessToken: accessToken }}, { new: true }, (err, updatedUser) => {
                 if (err) {
-                  return cb(err);
+                  return done(err);
                 } else {
-                  return cb(null, updatedUser);
+                  return done(null, updatedUser);
                 }
               });
             } else {
@@ -49,9 +48,9 @@ module.exports = function() {
 
               newUser.save(err => {
                 if (err) {
-                  return cb(err);
+                  return done(err);
                 }
-                return cb(null, newUser);
+                return done(null, newUser);
               });
             }
           });
@@ -61,11 +60,11 @@ module.exports = function() {
   );
 
   // used to serialize the user for the session
-  passport.serializeUser((user, cb) => {
-    cb(null, user);
+  passport.serializeUser((user, done) => {
+    done(null, user);
   });
   // used to deserialize the user
-  passport.deserializeUser((obj, cb) => {
-    cb(null, obj);
+  passport.deserializeUser((user, done) => {
+    done(null, user);
   });
 };
