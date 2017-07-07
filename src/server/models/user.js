@@ -15,10 +15,16 @@ const UserSchema = new mongoose.Schema({
   calAccessToken: {
     type: String
   },
+  events:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Events'
+    }
+  ],
   timestamp: {
     type: Date,
     default: Date.now
-  }
+  },
 });
 
 module.exports = mongoose.model('Users', UserSchema);
