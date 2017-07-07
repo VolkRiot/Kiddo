@@ -73,7 +73,7 @@ $(document).ready(function() {
                             var calendarEventInfo = {
                                 eventInfo: resultAsString
                             }
-                            $.post('/addevent', calendarEventInfo).done(function (response) {
+                            $.post('/calendar/addevent', calendarEventInfo).done(function (response) {
                                 console.log(response);
                             });
                         }
