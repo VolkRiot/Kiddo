@@ -6,7 +6,7 @@ const express   = require('express'),
       passport  = require('passport'),
       gcal      = require('google-calendar'),
       jstz      = require('jstz'), // Automatically detect timezone and initialize
-      timezone  = jstz.determine();
+      timezone  = jstz.determine(),
       Event     = require('../models/event'),
       User      = require('../models/user');
 
