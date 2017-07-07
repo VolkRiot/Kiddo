@@ -48,3 +48,72 @@ body {
 	font-size: 18px;
 	padding: 20px;
 }
+
+#row1 {
+		padding-top: 5%;
+		margin-left: 15%;
+		margin-right: 15%;
+		height: 200px;
+		font-size: 21px;
+		font-family: 'Raleway', sans-serif;
+		text-align: center;
+
+}
+#row2 {
+		padding-top: 15%;
+		margin-left: 15%;
+		margin-right: 15%;
+		height: 200px;
+		font-size: 22px;
+		text-decoration-style: none;
+		font-family: 'Raleway', sans-serif;
+		text-align: center;
+
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+a:hover {
+	color: red;
+	text-decoration: none;
+}
+#view1 { 
+		width: 40%;
+		text-anchor: middle;
+
+
+
+
+}
+#view2 { 
+		width: 40%;
+
+
+}
+#view3 { 
+		width: 40%;
+
+
+}
+#view4 { 
+		width: 40%;
+
+
+}
+#parentTitle {
+	text-align: center;
+	font-family: 'Pacifico', cursive;
+	font-size: 50px;
+		
+
+}
+#icon {
+	padding-top: 5px;
+	margin-left: 0;
+	font-size: 30px;
+	font-family: 'Raleway', sans-serif; 
+	border: solid 1px black;
+	width: 86px;
+	border-radius: 5px;
+}
