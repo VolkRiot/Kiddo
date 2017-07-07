@@ -1,15 +1,10 @@
 'use strict'
 
-<<<<<<< HEAD
-//Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
-var google_calendar = new gcal.GoogleCalendar('ya29.Glt-BHmwV_ia9F5KTCKPiqJ9jL_OoCG8a8G_84XHCjkP4wtTwSwS7UNP4OV-2CwrItPFDj2PlyjkHmGyjXB2thXIZeZv8J1JSnMIvASMV3psLT2G0cOA9JFbmkqd');
-=======
 const express  = require('express'),
       path     = require('path'),
       auth     = require('./auth'),
       calndr   = require('./calendar'),
       all      = require('./api');
->>>>>>> origin
 
 // Express router defined
 const router = express.Router();
