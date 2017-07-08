@@ -17,8 +17,14 @@ class HomeFooter extends React.Component {
             Sign In With Google >>
           </button>
         </a>
+        <div className="aboutFaq"> 
+          <a href="#">About </a> 
+          <a href="#"> FAQ </a> 
+          <a href="#">Terms</a>
+        </div>
       </div>
     );
   }
 }
 export default HomeFooter;
+

@@ -4,7 +4,7 @@ body {
 }
 .main {
 	text-align: center;
-	padding-top: 100px;
+	padding-top: 50px;
 	padding-bottom: 30px;
 	width: 100%;
 
@@ -13,24 +13,156 @@ body {
 	font-size: 100px;
 	margin-bottom: 60px;
 	font-family: 'Pacifico', cursive;
+	
 }
 #footer {
 	background-color: #FF4500;
 	margin-top: 200px;
-	height: 300px;
+	height: 200px;
 
 	
 }
 .thumbnail {
-	border-radius: 40px;
+	border: none;
 	font-family: 'Raleway', sans-serif;
+	height: 200px;
+	width: 200px;
+	margin-left: 25%;
+	margin-right: 20%;
+	
+
+}
+.caption h3 {
+	font-size: 20px;
 }
 #signIn {
 	font-family: 'Raleway', sans-serif;
-	margin-top: 120px;
+	margin-top: 80px;
 	margin-left:65%; 
-	font-size: 30px;
+	font-size: 24px;
 	color: black;
-	
 	border: 2px solid #FAEBD7;
 }
+.aboutFaq {
+	text-decoration: none;
+	font-size: 18px;
+	padding: 20px;
+}
+
+#row1 {
+		padding-top: 5%;
+		margin-left: 15%;
+		margin-right: 15%;
+		height: 200px;
+		font-size: 21px;
+		font-family: 'Raleway', sans-serif;
+		text-align: center;
+
+}
+#row2 {
+		padding-top: 15%;
+		margin-left: 15%;
+		margin-right: 15%;
+		height: 200px;
+		font-size: 22px;
+		text-decoration-style: none;
+		font-family: 'Raleway', sans-serif;
+		text-align: center;
+
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+a:hover {
+	color: red;
+	text-decoration: none;
+}
+#view1 { 
+		width: 40%;
+		text-anchor: middle;
+
+
+
+
+}
+#view2 { 
+		width: 40%;
+
+
+}
+#view3 { 
+		width: 40%;
+
+
+}
+#view4 { 
+		width: 40%;
+
+
+}
+#parentTitle {
+	text-align: center;
+	font-family: 'Pacifico', cursive;
+	font-size: 50px;
+		
+
+}
+#icon {
+	padding-top: 5px;
+	margin-left: 0;
+	font-size: 30px;
+	font-family: 'Raleway', sans-serif; 
+	border: solid 1px black;
+	width: 86px;
+	border-radius: 5px;
+}
+<<<<<<< HEAD
+.addChild{
+
+	font-family: 'Raleway', sans-serif; 
+	text-align: center;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.addChild > h3 {
+	color: black;
+	margin-top: 8%;
+	margin-bottom: 8%;
+	font-size: 50px;
+	
+}
+#childInputText {
+	float: left;
+	width: 50%;
+
+}
+.form-group {
+	margin-bottom: 30px;
+
+}
+.uploadPic {
+	margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
