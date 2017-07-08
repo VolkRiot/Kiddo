@@ -13,14 +13,7 @@ import '../index.css';
 class App extends React.Component {
   render() {
     return (
-       <HashRouter>
-        <Switch>
-          <Route exact path="/" component={ Home }/>
-          <Route path="/profile" component={ Profile }/>
-          <Route path="/add" component={Add }/>
-          <Route component={ NotFound } />
-        </Switch>
-      </HashRouter> 
+       <Home />
     );
   }
 }
