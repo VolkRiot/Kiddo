@@ -41,16 +41,9 @@
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.6.1",
     "react-modal": "^2.2.1",
-<<<<<<< HEAD
-    "serve-favicon": "~2.4.2",
-    "survey-jquery": "^0.12.19",
-    "vex-dialog": "^1.0.7",
-    "vex-js": "^4.0.0"
-=======
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "serve-favicon": "~2.4.2"
->>>>>>> origin
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
