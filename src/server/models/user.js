@@ -1,23 +1,30 @@
 const mongoose = require('../db/mongodb');
 
 const UserSchema = new mongoose.Schema({
+  googleId: {
+    type: String,
+    unique: true,
+    required: true
+  },
   email: {
     type: String,
     lowercase: true,
     unique: true,
     required: true
   },
-  password: {
-    type: String,
-    required: true
-  },
-  accessToken: {
+  calAccessToken: {
     type: String
   },
+  events:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Events'
+    }
+  ],
   timestamp: {
     type: Date,
     default: Date.now
-  }
+  },
 });
 
 module.exports = mongoose.model('Users', UserSchema);

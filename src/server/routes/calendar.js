@@ -1,14 +1,17 @@
+'use strict';
+
 const express   = require('express'),
       router    = express.Router(),
       path      = require('path'),
       passport  = require('passport'),
       gcal      = require('google-calendar'),
       jstz      = require('jstz'), // Automatically detect timezone and initialize
-      timezone  = jstz.determine();
-
+      timezone  = jstz.determine(),
+      Event     = require('../models/event'),
+      User      = require('../models/user');
 
 // Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
-var google_calendar = new gcal.GoogleCalendar('ya29.Glx9BEvRYnu1ZbmaVOWVPEqNpJ7rgzzrtjBbV4KpjB7dt56N_oKv33-Sht-Un1JR1Vg-9Jo9SHSMgKjeqmAy2i4VnKsQTYnvhNKg-9VEV-oVlCAdN1SXbu9BEXYqpw');
+var google_calendar = undefined;
 
 // Base Calendar HTML
 router.get('/', function(req,res){
@@ -16,10 +19,16 @@ router.get('/', function(req,res){
 });
 
 router.get('/getevents', function(req, res) {
+  // Initiate google_calendar with token
+  if(!google_calendar) {
+    var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
+}
+
   // Array to Hold Events of Multiple Calendars (ie: Children's calendars)
   var calendarListEventArray = [];
   // Retrieve Users's List
   google_calendar.calendarList.list(function(err, calendarList) {
+
     for (var d = 0; d < calendarList.items.length; d++) {
       var calendarId = calendarList.items[d].id;
       // Retrieve Events from Specific Calendar List
@@ -45,14 +54,21 @@ router.get('/getevents', function(req, res) {
 
 // Route to Retrieve Event Data to Add to Google
 router.post('/addevent', function(req,res){
+
+  //Initiate google_calendar with token
+  if(!google_calendar) {
+    var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
+  }
+
   // Parse JSON
   var eventJSON = JSON.parse(req.body.eventInfo);
-  console.log(eventJSON.calendar);
+  // Insert Event into Google Database
   // Logic to Associate Calendar Summary with ID
   google_calendar.calendarList.list(function(err, calendarList) {
+
     for(var i = 0; i < calendarList.items.length; i++){
       if(eventJSON.calendar === calendarList.items[i].summary){
-        console.log(calendarList.items[i].id);
+
         var calendarId = calendarList.items[i].id;
         google_calendar.events.insert(calendarId, {summary: eventJSON.title,
           start:{dateTime: eventJSON.startDate.concat(':00'), timeZone: timezone.name()},
@@ -60,10 +76,36 @@ router.post('/addevent', function(req,res){
           function(err,response){
             if(err){
               console.log(err);
+            } else{
+              console.log("Event Inserted Into Google Database");
             }
-            console.log("Event Inserted");
-          });
+        });
       }
+    }
+  });
+
+  // Event Inserted into Kiddo Database
+  const newEvent = Event();
+
+  newEvent.title = eventJSON.title;
+  newEvent.startDateTime = eventJSON.startDate.concat(':00');
+  newEvent.endDateTime = eventJSON.endDate.concat(':00');
+  newEvent.calendarName = eventJSON.calendar;
+  newEvent.email = req.user.email;
+  
+  newEvent.save(function(err, data){
+    if(err){
+      console.log(err);
+    } else{
+      console.log("Event Inserted into Kiddo DB");
+      // Insert Event ID into Users Table for User that Created Event
+      User.findOneAndUpdate({email: data.email}, {$push:{events:data._id}}, function(err, response){
+        if(err){
+          console.log(err);
+        } else{
+          console.log("User Updated With New Event");
+        }
+      });
     }
   });
 });

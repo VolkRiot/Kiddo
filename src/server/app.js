@@ -6,6 +6,7 @@ const express       = require('express'),
       logger        = require('morgan'),
       cookieParser  = require('cookie-parser'),
       bodyParser    = require('body-parser'),
+      session       = require('express-session'),
       passport      = require('passport');
 
 const app = express();
@@ -13,10 +14,7 @@ const app = express();
 // initialize DB
 require('./db/mongodb');
 
-//initialize passport
-require('./passport/googleoauth.js')(passport); //pass passport for configuration
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+app.use(cookieParser());
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -27,8 +25,24 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static(path.join(__dirname, '../../public')));
 
+app.use(session({
+  secret: 'trixareforkids',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 // importing routes
+require('./passport/googleoauth.js')(passport); // pass passport for configuration
 app.use('/', require('./routes/index'));
+
+app.get('/test', (req, res) => {
+  console.log("Req user is defined as ",req.user);
+  res.json(req.user);
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

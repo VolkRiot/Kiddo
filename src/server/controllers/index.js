@@ -1,7 +1,12 @@
-'use strict';
+'use strict'
 
-const User = require('./userController');
+const UserController     = require('./userController'),
+      CalendarController = require('./calendarController'),
+      EventController    = require('./eventController');
 
 module.exports = {
-  user: User
+  user    : UserController,
+  calendar: CalendarController,
+  event   : EventController
 };
+
