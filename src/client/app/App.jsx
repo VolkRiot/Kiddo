@@ -12,8 +12,7 @@ import '../index.css';
 class App extends React.Component {
   render() {
     return (
-      <Home />
-            
+      <Home />  
     );
   }
 }
