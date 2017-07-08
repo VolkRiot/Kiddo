@@ -117,3 +117,50 @@ a:hover {
 	width: 86px;
 	border-radius: 5px;
 }
+.addChild{
+
+	font-family: 'Raleway', sans-serif; 
+	text-align: center;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.addChild > h3 {
+	color: black;
+	margin-top: 8%;
+	margin-bottom: 8%;
+	font-size: 50px;
+	
+}
+#childInputText {
+	float: left;
+	width: 50%;
+
+}
+.form-group {
+	margin-bottom: 30px;
+
+}
+.uploadPic {
+	margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
