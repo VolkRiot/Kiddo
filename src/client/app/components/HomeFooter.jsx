@@ -27,3 +27,4 @@ class HomeFooter extends React.Component {
   }
 }
 export default HomeFooter;
+
