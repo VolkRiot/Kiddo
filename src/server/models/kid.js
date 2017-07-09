@@ -3,17 +3,19 @@
 const mongoose = require('../db/mongodb'),
       Schema   = mongoose.Schema;
 
-const CalendarSchema = new Schema({
-  calendar: {
+const UserSchema = new Schema({
+  firstName: {
     type: String,
-    lowercase: true,
-    unique: true,
+    required: true
+  },
+  lastName: {
+    type: String,
     required: true
   },
   timestamp: {
     type: Date,
     default: Date.now
-  }
+  },
 });
 
-module.exports = mongoose.model('Calendar', CalendarSchema);
+module.exports = mongoose.model('Kids', UserSchema);

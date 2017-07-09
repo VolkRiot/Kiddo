@@ -1,20 +1,21 @@
 'use strict'
 
-const mongoose = require('../db/mongodb');
+const mongoose = require('../db/mongodb'),
+      Schema   = mongoose.Schema;
 
-const EventSchema = new mongoose.Schema({
+const EventSchema = new Schema({
   title: {
     type: String,
     required: true
   },
-  startDateTime:{
+  /*startDateTime:{
     type: Date,
     required:true
   },
   endDateTime:{
     type: Date,
     required: true
-  },
+  },*/
   calendarName:{
     type: String,
     required: true
