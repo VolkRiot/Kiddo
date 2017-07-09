@@ -13,16 +13,13 @@ class CRUD {
       this.errorHandler(err, docs, cb);
     });
   }
-
+  //(TODO) make populate more dynamic avoid hard codding
   findById(id, cb) {
 
-    this.Model.find(query).populate(['kids','events']).exec((err, docs) => {
+    this.Model.find({ _id: id }).populate(['kids','events']).exec((err, docs) => {
       this.errorHandler(err, docs, cb);
     });
 
-    this.Model.findById({ _id: id }, (err, docs) => {
-      this.errorHandler(err, docs, cb);
-    });
   }
 
   update(id, update, cb) {
