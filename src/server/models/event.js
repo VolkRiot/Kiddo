@@ -7,14 +7,14 @@ const EventSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  startDateTime:{
+  /*startDateTime:{
     type: Date,
     required:true
   },
   endDateTime:{
     type: Date,
     required: true
-  },
+  },*/
   calendarName:{
     type: String,
     required: true
