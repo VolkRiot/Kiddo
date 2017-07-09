@@ -3,7 +3,7 @@
 const mongoose = require('../db/mongodb'),
       Schema   = mongoose.Schema;
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   firstName: {
     type: String,
     required: true
@@ -12,12 +12,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  created_by:[
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Users'
-    }
-  ],
   timestamp: {
     type: Date,
     default: Date.now

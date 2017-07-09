@@ -13,14 +13,12 @@ class CRUD {
       this.errorHandler(err, docs, cb);
     });
   }
-  //(TODO) make populate more dynamic avoid hard codding
-  findById(id, cb) {
 
+  findById(id, cb) {
     this.Model.find({ _id: id }).populate(['kids','events']).exec((err, docs) => {
       this.errorHandler(err, docs, cb);
     });
-
-  }
+  }  //(TODO) make populate more dynamic avoid hard codding
 
   update(id, update, cb) {
     this.Model.findByIdAndUpdate(

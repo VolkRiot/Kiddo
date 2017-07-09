@@ -3,7 +3,7 @@
 const mongoose = require('../db/mongodb'),
       Schema   = mongoose.Schema;
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   googleId: {
     type: String,
     unique: true,
@@ -18,22 +18,22 @@ const UserSchema = new mongoose.Schema({
   calAccessToken: {
     type: String
   },
-  events:[
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Events'
-    }
-  ],
   kids:[
     {
       type: Schema.Types.ObjectId,
       ref: 'Kids'
     }
   ],
+  events:[
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Events'
+    }
+  ],
   timestamp: {
     type: Date,
     default: Date.now
-  },
+  }
 });
 
 module.exports = mongoose.model('Users', UserSchema);

@@ -1,8 +1,9 @@
 'use strict'
 
-const mongoose = require('../db/mongodb');
+const mongoose = require('../db/mongodb'),
+      Schema   = mongoose.Schema;
 
-const CalendarSchema = new mongoose.Schema({
+const CalendarSchema = new Schema({
   calendar: {
     type: String,
     lowercase: true,

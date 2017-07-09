@@ -6,9 +6,9 @@ const UserController     = require('./userController'),
       EventController    = require('./eventController');
 
 module.exports = {
-  user    : UserController,
-  calendar: CalendarController,
-  event   : EventController,
-  kid     : KidController
+  user     : UserController,
+  calendar : CalendarController,
+  event    : EventController,
+  kid      : KidController
 };
 
