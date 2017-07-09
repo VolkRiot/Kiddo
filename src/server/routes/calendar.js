@@ -59,27 +59,30 @@ router.post('/addevent', function(req,res){
   if(!google_calendar) {
     var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
   }
-  console.log(req.body);
-  // Parse JSON
-  
+ 
   // Insert Event into Google Database
-  // Logic to Associate Calendar Summary with ID
+  //API call to retrieve calendarList again to match calendar Name with the specific CalendarId
   google_calendar.calendarList.list(function(err, calendarList) {
-
-    for(var i = 0; i < calendarList.items.length; i++){
-      if(req.body.calendar === calendarList.items[i].summary){
-
-        var calendarId = calendarList.items[i].id;
-        google_calendar.events.insert(calendarId, {summary: req.body.title,
-          start:{dateTime: req.body.startDate.concat(':00'), timeZone: timezone.name()},
-          end:{dateTime: req.body.endDate.concat(':00'), timeZone: timezone.name() }},
+    if(err){
+      console.log(err);
+    } else{
+      // Logic to Associate Calendar Name with ID
+      for(var i = 0; i < calendarList.items.length; i++){
+        if(req.body.calendar === calendarList.items[i].summary){
+          var calendarId = calendarList.items[i].id;
+          google_calendar.events.insert(calendarId, {
+            summary: req.body.title,
+            start:{dateTime: req.body.startDate.concat(':00'), timeZone: timezone.name()},
+            end:{dateTime: req.body.endDate.concat(':00'), timeZone: timezone.name() }
+          },
           function(err,response){
             if(err){
               console.log(err);
             } else{
               console.log("Event Inserted Into Google Database");
             }
-        });
+          });
+        }
       }
     }
   });

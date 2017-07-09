@@ -21,16 +21,14 @@ class Calendar extends React.Component{
         // Define Random Color for Each Calendar
         var colorArray = ['red','blue','orange','green','purple']
         $.get('/calendar/getevents', function(response){
-            console.log(response);
+            
             // Push Calendar Titles to Its Own Array
             $.each(response.calendarList.items, function(i,val){
-                console.log(val.summary);
                 calendarTitleArray.push(val.summary);
             });
-            console.log(response);
+            
             // Breakdown of each calendar
             $.each(response.eventsForCalendars, function(i,calendar){
-                console.log(calendar);
                 var eventArray = [];
                 // Breakdown each event
                 $.each(calendar.items, function(i,event){
@@ -44,7 +42,6 @@ class Calendar extends React.Component{
                         startDate = event.start.date
                         endDate = event.end.date
                     }
-                    console.log(startDate);
                     var eventObject = {
                         title: event.summary,
                         start: startDate,
@@ -59,7 +56,7 @@ class Calendar extends React.Component{
                 allCalendars.push(eventsObject);
             });
         }).done(function(){
-            console.log(allCalendars);
+        
             //Initialize and Create Calendar
             vex.registerPlugin(vex_dialog);
             $('#calendar').fullCalendar({
@@ -96,9 +93,7 @@ class Calendar extends React.Component{
                                     endDate: $("#calendar-endDate").val().trim(),
                                     calendar: $('#calendar-dropdown option:selected').text().trim()
                                 }
-                                $.post('/calendar/addevent', eventInfo).done(function (response) {
-                                    console.log(response);
-                                });
+                                $.post('/calendar/addevent', eventInfo);
                             });
                         }
                     }
