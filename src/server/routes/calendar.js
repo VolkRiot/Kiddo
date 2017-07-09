@@ -59,30 +59,27 @@ router.post('/addevent', function(req,res){
   if(!google_calendar) {
     var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
   }
- 
+
+  // Parse JSON
+  var eventJSON = JSON.parse(req.body.eventInfo);
   // Insert Event into Google Database
-  //API call to retrieve calendarList again to match calendar Name with the specific CalendarId
+  // Logic to Associate Calendar Summary with ID
   google_calendar.calendarList.list(function(err, calendarList) {
-    if(err){
-      console.log(err);
-    } else{
-      // Logic to Associate Calendar Name with ID
-      for(var i = 0; i < calendarList.items.length; i++){
-        if(req.body.calendar === calendarList.items[i].summary){
-          var calendarId = calendarList.items[i].id;
-          google_calendar.events.insert(calendarId, {
-            summary: req.body.title,
-            start:{dateTime: req.body.startDate.concat(':00'), timeZone: timezone.name()},
-            end:{dateTime: req.body.endDate.concat(':00'), timeZone: timezone.name() }
-          },
+
+    for(var i = 0; i < calendarList.items.length; i++){
+      if(eventJSON.calendar === calendarList.items[i].summary){
+
+        var calendarId = calendarList.items[i].id;
+        google_calendar.events.insert(calendarId, {summary: eventJSON.title,
+          start:{dateTime: eventJSON.startDate.concat(':00'), timeZone: timezone.name()},
+          end:{dateTime: eventJSON.endDate.concat(':00'), timeZone: timezone.name() }},
           function(err,response){
             if(err){
               console.log(err);
             } else{
               console.log("Event Inserted Into Google Database");
             }
-          });
-        }
+        });
       }
     }
   });
@@ -90,10 +87,10 @@ router.post('/addevent', function(req,res){
   // Event Inserted into Kiddo Database
   const newEvent = Event();
 
-  newEvent.title = req.body.title;
-  newEvent.startDateTime = req.body.startDate.concat(':00');
-  newEvent.endDateTime = req.body.endDate.concat(':00');
-  newEvent.calendarName = req.body.calendar;
+  newEvent.title = eventJSON.title;
+  newEvent.startDateTime = eventJSON.startDate.concat(':00');
+  newEvent.endDateTime = eventJSON.endDate.concat(':00');
+  newEvent.calendarName = eventJSON.calendar;
   newEvent.email = req.user.email;
   
   newEvent.save(function(err, data){
