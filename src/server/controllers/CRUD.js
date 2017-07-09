@@ -1,27 +1,24 @@
-'use strict';
+'use strict'
 
 class CRUD {
   constructor(Model) {
     this.Model = Model;
+
+    this.errorHandler = this.errorHandler.bind(this);
   }
 
   find(query, cb) {
-    this.Model.find(query, (err, docs) => {
-      this.errorHandler(err, docs, cb);
-    });
-  }
-
-  findOne(query, cb) {
-    this.Model.findOne(query, (err, docs) => {
+    //(TODO) make populate more dynamic avoid hard codding
+    this.Model.find(query).populate(['kids','events']).exec((err, docs) => {
       this.errorHandler(err, docs, cb);
     });
   }
 
   findById(id, cb) {
-    this.Model.findById({ _id: id }, (err, docs) => {
+    this.Model.find({ _id: id }).populate(['kids','events']).exec((err, docs) => {
       this.errorHandler(err, docs, cb);
     });
-  }
+  }  //(TODO) make populate more dynamic avoid hard codding
 
   update(id, update, cb) {
     this.Model.findByIdAndUpdate(

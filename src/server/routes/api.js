@@ -56,6 +56,13 @@ router.get('/:collection', (req, res, next) => {
 /*
   Example: http://.../api/user?method=create
   body : { obj to be saved }
+
+  -- to add Kids and Events the body request must follow the example:
+
+ {
+    "user_id":"595fe...",
+    "body": { obj to be saved }
+ }
 */
 
 router.post('/:collection', (req, res, next) => {
@@ -64,8 +71,25 @@ router.post('/:collection', (req, res, next) => {
       controller = controllers[collection],
       body       = req.body;
 
+  if (method === 'create') {
+    controller.create(body, (err, results) => {
+      if (err) {
+        //11000 is MongoDB code for duplicate
+        if (err.code === 11000) {
+          return next('User already Exist\'s! ');
+        } else {
+          return next(err);
+        }
+      } else {
+        return res.status(200).json({message: 'Success', body: results});
+      }
+    });
+  } else {
+    return next({message: 'Invalid Query', err: `Invalid param for POST Request: ${method}`});
+  }
 
-  if (controller === undefined) {
+
+/*  if (controller === undefined) {
     return next({message: 'Invalid Query' , err: `Param : ${collection}`});
 
   } else if (controller[method] === undefined) {
@@ -90,7 +114,7 @@ router.post('/:collection', (req, res, next) => {
     });
   } else {
     return next({message: 'Invalid Query', err: `Invalid param for POST Request: ${method}`});
-  }
+  }*/
 });
 
 /* PUT */
