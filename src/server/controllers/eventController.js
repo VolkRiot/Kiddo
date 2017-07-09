@@ -1,6 +1,6 @@
 'use strict'
 
-const Crud            = require('./CRUD'),
+const Crud         = require('./CRUD'),
       EventModel   = require('./../models/event.js');
 
 const EventController = new Crud(EventModel);

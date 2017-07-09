@@ -1,4 +1,7 @@
-const mongoose = require('../db/mongodb');
+'use strict'
+
+const mongoose = require('../db/mongodb'),
+      Schema   = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
   googleId: {
@@ -17,8 +20,14 @@ const UserSchema = new mongoose.Schema({
   },
   events:[
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Events'
+    }
+  ],
+  kids:[
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Kids'
     }
   ],
   timestamp: {
