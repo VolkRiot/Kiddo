@@ -1,8 +1,9 @@
 'use strict'
 
-const mongoose = require('../db/mongodb');
+const mongoose = require('../db/mongodb'),
+      Schema   = mongoose.Schema;
 
-const EventSchema = new mongoose.Schema({
+const EventSchema = new Schema({
   title: {
     type: String,
     required: true

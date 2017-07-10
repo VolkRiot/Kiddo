@@ -1,7 +1,7 @@
 'use strict';
 
-import React from 'react';
-import {HashRouter, Route, Switch} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import Home from './components/landing/Home';
 import  NotFound from './components/NotFound';
@@ -9,24 +9,20 @@ import Profile from './components/dashboard/Profile';
 import Add from './components/add-child/Add';
 import Kid from './components/kid-view/Kid';
 
+import Home from './components/Home';
+import NotFound from './components/NotFound';
+import Profile from './components/Profile';
+import Add from './components/Add';
+
+
 import '../index.css';
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
-       <HashRouter>
-        <Switch>
-          <Route exact path="/" component={ Home }/>
-          <Route path="/profile" component={ Profile }/>
-          <Route path="/add" component={Add }/>
-          <Route path="/kid" component={Kid }/>
-          <Route component={ NotFound } />
-        </Switch>
-      </HashRouter> 
+        <Home />
     );
   }
 }
 
 export default App;
-
-

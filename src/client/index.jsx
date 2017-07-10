@@ -1,12 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { HashRouter, browserHistory } from 'react-router-dom';
 
 // components
 import App from './app/App'
 
-
 ReactDOM.render(
-    <App/>,
-    document.getElementById('app')
+  (<HashRouter history={browserHistory}>
+    <App/>
+  </HashRouter>),
+  document.getElementById('app')
 );
