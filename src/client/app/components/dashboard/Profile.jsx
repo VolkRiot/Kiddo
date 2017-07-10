@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Nav from './Nav';
+
 
 class Profile extends React.Component {
 	render() {
@@ -20,7 +20,6 @@ class Profile extends React.Component {
 						<div className="thumbnail">
               				<img src={'./img/map.png'} />
 								<a href="#">View Map</a>
-
 						</div>
 					</div>
 				</div>
