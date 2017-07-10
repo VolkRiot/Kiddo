@@ -7,7 +7,6 @@ body {
 	padding-top: 50px;
 	padding-bottom: 30px;
 	width: 100%;
-
 }
 .title {
 	font-size: 100px;
@@ -18,9 +17,7 @@ body {
 #footer {
 	background-color: #FF4500;
 	margin-top: 200px;
-	height: 200px;
-
-	
+	height: 200px;	
 }
 .thumbnail {
 	border: none;
@@ -81,10 +78,6 @@ a:hover {
 #view1 { 
 		width: 40%;
 		text-anchor: middle;
-
-
-
-
 }
 #view2 { 
 		width: 40%;
@@ -117,7 +110,6 @@ a:hover {
 	width: 86px;
 	border-radius: 5px;
 }
-<<<<<<< HEAD
 .addChild{
 
 	font-family: 'Raleway', sans-serif; 
@@ -145,11 +137,85 @@ a:hover {
 .uploadPic {
 	margin-bottom: 30px;
 }
+.kid {
+	text-align: center;
+	font-size: 15px;
+	margin-top: 20px;
+}
+.kidNote {
 
+	float: left;
+	margin-left: 8%;
+	margin-top: 3%;
+	width: 25%;
+}
+#noteBox {
+	border: 3px solid lightgrey;
+	border-radius: 20px;
+	height: 400px;
+	margin-bottom: 15px;
+	font-size: 20px;
 
+}
+#noteForm {
+	margin-bottom: 10px;
+}	
+.kidShop {
 
+	float: left;
+	margin-left: 3%;
+	margin-top: 5%;
+	width: 25%;
+	font-family: 'Poppins', sans-serif;
 
+}
 
+#shopBox {
+	border: 3px solid lightgrey;
+	border-radius: 20px;
+	height: 400px;
+	margin-bottom: 10px;
+	font-size: 20px;
+}	
+#shopForm {
+	margin-bottom: 10px;
+}
+.kidReminder {
+
+	float: left;
+	margin-left: 3%;
+	margin-top: 3%;
+	width: 25%;
+	font-family: 'Poppins', sans-serif;
+}
+#reminderBox {
+	border: 3px solid lightgrey;
+	border-radius: 20px;
+	height: 400px;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+#reminderForm {
+	margin-bottom: 10px;
+}
+
+#kidTitle {
+	font-size: 55px;
+	font-family: 'Pacifico', cursive;
+	margin-top: 15px;
+}
+#noteTitle {
+	font-size: 40px;
+	font-family: 'Bad Script', cursive;	
+}
+#shopTitle {
+	font-size: 40px;
+	font-family: 'Sacramento', cursive;
+}
+#reminderTitle{
+	font-size: 40px;
+	font-family: 'Life Savers', cursive
+}
 
 
 
