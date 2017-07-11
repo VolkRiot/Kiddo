@@ -6,7 +6,7 @@ class AddPic extends React.Component {
 	render(){
 		return(
 			<div className="uploadPic">
-				<h4>Upload Child Photo Below</h4>
+				<h4>Upload Child Photo</h4>
 				<label className="custom-file">
 		  			<input type="file" id="file" className="custom-file-input"/>
 		  				<span className="custom-file-control"></span>
