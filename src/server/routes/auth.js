@@ -14,7 +14,7 @@ router.get('/google', passport.authenticate('google',
     session: true,
 }));
 
-router.get('/currentuser', (req, res) => {
+router.get('/currentuser', isLoggedIn, (req, res) => {
   res.status(500).json(req.user);
 });
 
@@ -23,7 +23,7 @@ function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
-        return next();
+        next();
 
     // if they aren't redirect them to the home page
     res.redirect('/');
