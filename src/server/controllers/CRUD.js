@@ -7,27 +7,23 @@ class CRUD {
     this.errorHandler = this.errorHandler.bind(this);
   }
 
-  find(query, cb) {
-    //(TODO) make populate more dynamic avoid hard codding
-    this.Model.find(query).populate(['kids','events']).exec((err, docs) => {
-      this.errorHandler(err, docs, cb);
-    });
-  }
+  findById(query, cb) {
+    let totalModels = Object.keys(this.Model.base.models).join('|').toLowerCase().split('|');
 
-  findById(id, cb) {
-    this.Model.find({ _id: id }).populate(['kids','events']).exec((err, docs) => {
+    this.Model.find(query).populate(totalModels).exec((err, docs) => {
       this.errorHandler(err, docs, cb);
     });
-  }  //(TODO) make populate more dynamic avoid hard codding
+
+  }
 
   update(id, update, cb) {
     this.Model.findByIdAndUpdate(
-      { _id: id },
-      update,
-      { new: true },
-      (err, docs) => {
-        this.errorHandler(err, docs, cb);
-      }
+        { _id: id },
+        update,
+        { new: true },
+        (err, docs) => {
+          this.errorHandler(err, docs, cb);
+        }
     );
   }
 
