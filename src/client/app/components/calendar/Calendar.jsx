@@ -8,8 +8,8 @@ import vex_dialog from 'vex-dialog';
 
 
 // CSS Files for Calendar
+
 import './calendarStyles/fullcalendar.min.css';
-import './calendarStyles/fullcalendar.print.min.css';
 import './calendarStyles/vex.css';
 import './calendarStyles/vex-theme-os.css';
 
@@ -60,6 +60,7 @@ class Calendar extends React.Component{
             //Initialize and Create Calendar
             vex.registerPlugin(vex_dialog);
             $('#calendar').fullCalendar({
+                aspectRatio: 2.25,
                 // Add Event Button
                 customButtons: {
                     AddEvent: {
