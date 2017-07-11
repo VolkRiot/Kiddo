@@ -1,12 +1,18 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const ApiHelper() {
+const ApiHelper = () => {
   const api = axios;
+  const userRoute = '/auth/currentuser'
+  const isAuthRoute = '/authenticate'
 
   return {
-    getCurrentUser: function() {
-      
+    getCurrentUser: () => {
+      return api.get(userRoute)
+    },
+    isUserAuthenticated: () => {
+      return api.get(isAuthRoute)
     }
   }
-
 }
+
+export default ApiHelper;
