@@ -14,6 +14,10 @@ router.get('/google', passport.authenticate('google',
     session: true,
 }));
 
+router.get('/currentuser', (req, res) => {
+  res.status(500).json(req.user);
+});
+
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
