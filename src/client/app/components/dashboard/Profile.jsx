@@ -27,7 +27,7 @@ class Profile extends React.Component {
 					<div className="col-lg-6" id="view3">
 						<div className="thumbnail">
               				<img src={'./img/calendar-icon.png'} />
-								<a href="#">View Calendar</a>
+								<a href="/#/calendar">View Calendar</a>
 						</div>
 					</div>
 					<div className="col-lg-6" id="view4">
