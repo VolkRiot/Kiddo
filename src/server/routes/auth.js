@@ -16,7 +16,7 @@ router.get('/google', passport.authenticate('google',
 }));
 
 router.get('/currentuser', isLoggedIn, (req, res) => {
-  res.status(500).json(req.user);
+  res.status(200).json(req.user);
 });
 
 module.exports = router;
