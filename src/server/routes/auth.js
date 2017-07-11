@@ -1,10 +1,11 @@
-const express  = require('express'),
-      router   = express.Router(),
-      passport = require('passport');
+const express     = require('express'),
+      router      = express.Router(),
+      passport    = require('passport'),
+      isLoggedIn  = require('./helpers/isLoggedInCheck');
 
 router.get('/google/callback',
   passport.authenticate('google', {
-    successRedirect : '/calendar', // (TODO): This will eventually be main profile page!
+    successRedirect : '/#/profile',
     failureRedirect : '/'
 }));
 
@@ -17,16 +18,5 @@ router.get('/google', passport.authenticate('google',
 router.get('/currentuser', isLoggedIn, (req, res) => {
   res.status(500).json(req.user);
 });
-
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-}
 
 module.exports = router;
