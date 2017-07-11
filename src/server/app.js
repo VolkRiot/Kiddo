@@ -17,7 +17,7 @@ require('./db/mongodb');
 app.use(cookieParser());
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,18 +31,13 @@ app.use(session({
   saveUninitialized: false,
 }));
 
-//initialize passport
+// initialize passport
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 // importing routes
 require('./passport/googleoauth.js')(passport); // pass passport for configuration
 app.use('/', require('./routes/index'));
-
-app.get('/test', (req, res) => {
-  console.log("Req user is defined as ",req.user);
-  res.json(req.user);
-});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
