@@ -1,21 +1,31 @@
 'use strict'
 
-const mongoose = require('../db/mongodb'),
-      Schema   = mongoose.Schema;
+const mongoose  = require('../db/mongodb'),
+      Schema    = mongoose.Schema;
 
 const EventSchema = new Schema({
+  kid_id:{
+    type: Schema.Types.ObjectId,
+    ref: 'Kids',
+    required: true
+  },
+  user_id:{
+    type: Schema.Types.ObjectId,
+    ref: 'Users',
+    required: true
+  },
   title: {
     type: String,
     required: true
   },
   /*startDateTime:{
-    type: Date,
-    required:true
-  },
-  endDateTime:{
-    type: Date,
-    required: true
-  },*/
+   type: Date,
+   required:true
+   },
+   endDateTime:{
+   type: Date,
+   required: true
+   },*/
   calendarName:{
     type: String,
     required: true

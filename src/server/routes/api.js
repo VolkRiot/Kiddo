@@ -7,47 +7,33 @@ const controllers = require('../controllers');
 
 /* GET */
 /*
-  Example : http://.../api/user?_id=5958... = to id matching doc
-  or      : http://.../api/user             = to all docs
+  Example : http://.../api/user?_id=5958...                = to id matching doc
+  or      : http://.../api/user?_id=5958...&kid_id=4356... = to specific kid from specific user
 */
 
 router.get('/:collection', (req, res, next) => {
   let collection   = req.params.collection,
       controller   = controllers[collection],
-      query        = req.query,
-      id           = req.query._id;
+      query        = req.query;
 
   if (controller === undefined) {
     return next({message: 'Invalid Query' , err: `Param : ${collection}`});
   }
 
-
-  if (Object.keys(query).length === 0 && query.constructor === Object) {
-    controller.find({}, (err, results) => {
-      if (err) {
-        return next({message: 'Invalid Query', err: err});
-
-      } else if (results === null){
-        return res.status(200).json({message: 'Not Found!', body: null});
-
-      } else {
-        return res.status(200).json({message: 'Success', body: results});
-      }
-    });
-  } else if (id !== undefined && query.constructor === Object && Object.keys(query).length === 1) {
-    controller.findById( id, (err, results) => {
-      if (err) {
-        return next({message: 'Invalid Query' , err: `Invalid ${collection} ID`});
-
-      } else if (results === null){
-        return res.status(200).json({message: 'Not Found!', body: null});
-
-      } else {
-        return res.status(200).json({message: 'Success', body: results});
-      }
-    });
+  if (query.constructor === Object && Object.keys(query).length <= 0) {
+    return next({message: 'Invalid Query', err: 'Missing one or more arguments'});
   } else {
-    return next({message: 'Invalid Query', err: 'To many arguments'});
+    controller.findById( query, (err, results) => {
+      if (err) {
+        return next({message: 'Invalid Query' , err: err.message});
+
+      } else if (results === null){
+        return res.status(200).json({message: 'Not Found!', body: null});
+
+      } else {
+        return res.status(200).json({message: 'Success', body: results});
+      }
+    });
   }
 
 });
@@ -71,25 +57,7 @@ router.post('/:collection', (req, res, next) => {
       controller = controllers[collection],
       body       = req.body;
 
-  if (method === 'create') {
-    controller.create(body, (err, results) => {
-      if (err) {
-        //11000 is MongoDB code for duplicate
-        if (err.code === 11000) {
-          return next('User already Exist\'s! ');
-        } else {
-          return next(err);
-        }
-      } else {
-        return res.status(200).json({message: 'Success', body: results});
-      }
-    });
-  } else {
-    return next({message: 'Invalid Query', err: `Invalid param for POST Request: ${method}`});
-  }
-
-
-/*  if (controller === undefined) {
+  if (controller === undefined) {
     return next({message: 'Invalid Query' , err: `Param : ${collection}`});
 
   } else if (controller[method] === undefined) {
@@ -114,7 +82,7 @@ router.post('/:collection', (req, res, next) => {
     });
   } else {
     return next({message: 'Invalid Query', err: `Invalid param for POST Request: ${method}`});
-  }*/
+  }
 });
 
 /* PUT */
@@ -182,7 +150,7 @@ router.delete('/:collection', (req, res, next) => {
     if (id !== undefined) {
       controller.destroy(id, (err, results) => {
         if (err) {
-          return next({message: 'Fail on delete', err: `${collection} not found!`});
+          return next({message: err.message, err: `${collection} not found!`});
         } else {
           return res.status(200).json({message: (results ? 'Success' : 'Not Found'), body: results});
         }
