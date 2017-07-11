@@ -4,7 +4,7 @@ const express  = require('express'),
 
 router.get('/google/callback',
   passport.authenticate('google', {
-    successRedirect : '/calendar', // (TODO): This will eventually be main profile page!
+    successRedirect : '/#/profile', // (TODO): This will eventually be main profile page!
     failureRedirect : '/'
 }));
 

@@ -7,6 +7,7 @@ import Home from './components/landing/Home';
 import NotFound from './components/NotFound';
 import Profile from './components/dashboard/Profile';
 import Add from './components/add-child/Add';
+import Calendar from './components/calendar/Calendar';
 
 import '../index.css';
 
@@ -16,6 +17,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route exact path='/profile' component={Profile}/>
+          <Route exact path='/calendar' component={Calendar}/>
         </Switch>
     );
   }
