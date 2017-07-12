@@ -23,6 +23,6 @@ router.get('/currentuser', isUser, (req, res) => {
 
 router.get('/authenticate', isAuthenticated, (req, res) => {
   res.status(200).send({ authenticated: !!req.user })
-})
+});
 
 module.exports = router;
