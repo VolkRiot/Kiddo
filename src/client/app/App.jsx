@@ -16,35 +16,39 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
-      newKiddo: null
+      user: null
     };
-    this.fetchNewKiddo = this.fetchNewKiddo.bind(this);
+    this.saveNewKiddo = this.saveNewKiddo.bind(this);
+    this.checkForUser = this.checkForUser.bind(this);
   }
-  componentDidMount () {
-    let getUser = ApiHelper().getCurrentUser();
+  checkForUser () {
+    let getUser = ApiHelper().isUserAuthenticated();
     getUser.then(result => {
       this.setState({user: result.data});
     });
   }
 
-  fetchNewKiddo (newKiddo) {
-   let addKido = ApiHelper().addKiddo(newKiddo);
-    addKido.then(result => {
-      console.log(result);
+  saveNewKiddo (newKiddo) {
+   let addKiddo = ApiHelper().addKiddo(newKiddo);
+    addKiddo.then(result => {
+      console.log(result.data);
     })
   }
+
+
 
   render() {
     return (
         <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route exact path='/profile' component={Profile}/>
-          <Route path='/profile/addkiddo' render={(props) => (
-              <AddKiddo user={ this.state.user } fetchNewKiddo={ this.fetchNewKiddo } {...props}/>
+          <Route exact path='/' render={(props) => (
+              < Home checkForUser={ this.checkForUser } { ...props }/>
           )}/>
-          <Route  path='/calendar' component={Calendar}/>
-          <Route component={NotFound}/>
+          <Route exact path='/profile' component={ Profile }/>
+          <Route path='/profile/addkiddo' render={(props) => (
+              <AddKiddo user={ this.state.user } saveNewKiddo={ this.saveNewKiddo } { ...props }/>
+          )}/>
+          <Route  path='/calendar' component={ Calendar }/>
+          <Route component={ NotFound }/>
         </Switch>
     );
   }

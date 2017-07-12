@@ -15,10 +15,17 @@ class Add extends React.Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onValidateForm = this.onValidateForm.bind(this);
 	}
 
   onInputChange(event) {
     this.setState({[event.target.name]: event.target.value});
+  }
+
+  onValidateForm() {
+
+		this.onFormSubmit(event);
+
   }
 
   onFormSubmit(event) {
@@ -26,7 +33,7 @@ class Add extends React.Component {
     let newKiddoData = this.state;
     newKiddoData.user_id = this.props.user._id;
 
-    this.props.fetchNewKiddo(newKiddoData);
+    this.props.saveNewKiddo(newKiddoData);
     this.setState({
 	    firstName: '',
       lastName: '',
@@ -40,7 +47,7 @@ class Add extends React.Component {
 		return (
 			<div className="addChild">
 				<h3>Register Your Kiddo Below!</h3>
-					<form id="childInputText" onSubmit={ this.onFormSubmit }>
+					<form id="childInputText" onSubmit={ this.onValidateForm }>
 		  				<div className="form-group">
 		    				<input
 								    onChange={ this.onInputChange }
@@ -89,7 +96,7 @@ class Add extends React.Component {
 							</div>
 
 					</form>
-						<AddPic />
+					{/*	<AddPic />*/}
 			</div>
 		)
 	}
