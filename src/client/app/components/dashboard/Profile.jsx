@@ -1,10 +1,15 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
+//(TODO) create Avater component to render each of the for elements
 class Profile extends React.Component {
 	render() {
+		const path = this.props.match.path;
+
+		console.log()
 		return (
 			<div className="container">
 				<h1 id="icon">Kiddo</h1>
@@ -33,7 +38,7 @@ class Profile extends React.Component {
 					<div className="col-lg-6" id="view4">
 						<div className="thumbnail">
               				<img src={'./img/pencil.png'} />
-						<a href="#">Add New Kiddo</a>
+							<Link to={ `${ path }/addkiddo` }>Add New Kiddo</Link>
 						</div>
 					</div>
 				</div>

@@ -18,6 +18,10 @@ const KidSchema = new Schema({
     ref: 'Users',
     required: true
   },
+  password:{
+    type: String,
+    required: true
+  },
   events:[
     {
       type: Schema.Types.ObjectId,
