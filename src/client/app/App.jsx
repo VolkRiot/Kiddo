@@ -44,10 +44,11 @@ class App extends Component {
     return (
         <Switch>
           <Route exact path='/' component={ Home }/>
-          <Route exact path='/dashboard' component={ Dashboard }/>
+          <Route path='/dashboard' render={(props) => (
+              <Dashboard user={ this.state.user } { ...props }/>
+          )}/>
           <Route path='/dashboard/addkiddo' render={(props) => (
-              <AddKiddo user={ this.state.user }
-                        saveNewKiddo={ this.saveNewKiddo } { ...props }/>
+              <AddKiddo user={ this.state.user } saveNewKiddo={ this.saveNewKiddo } { ...props }/>
           )}/>
           <Route path='/calendar' component={ Calendar }/>
           <Route component={ NotFound }/>
