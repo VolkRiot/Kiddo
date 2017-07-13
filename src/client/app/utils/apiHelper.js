@@ -24,25 +24,3 @@ const ApiHelper = () => {
 };
 
 export default ApiHelper;
-
-
-/*
-  Examples of Body Request for each helper function
-
-  addKiddo:
-       {
-        firstName: 'Theo',
-        lastName: 'Martins',
-         userName: 'Bigodoro',
-         password: 'asdf',
-         user_id: '5965cf48ee59d3754830318c'
-       }
-  addEvent:
-       {
-         kid_id:'5964c0f69ef70c5f14b13e3b',
-         user_id:'5965cf48ee59d3754830318c',
-         title:'park',
-         calendarName:'test',
-         email:'flavio@gmail.com'
-       }
-*/

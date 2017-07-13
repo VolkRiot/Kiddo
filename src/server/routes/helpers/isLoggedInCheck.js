@@ -22,9 +22,6 @@ module.exports = {
   // Use this if redirect is not preferable like for front-end api calls to verify auth.
   isAuthenticated: function (req, res, next) {
     let user = req.isAuthenticated();
-
-    console.log(user)
-
     if (user) {
       next();
     } else {

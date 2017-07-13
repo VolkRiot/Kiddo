@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Home from './components/landing/Home';
 import NotFound from './components/NotFound';
@@ -9,6 +9,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
 import ApiHelper from './utils/apiHelper';
+const Api = ApiHelper();
+
 
 import '../index.css';
 
@@ -27,14 +29,14 @@ class App extends Component {
   }
 
   getUser () {
-    let user = ApiHelper().getCurrentUser();
-    user.then(result => {
+    const getUser = Api.getCurrentUser();
+    getUser.then(result => {
       this.setState({user: result.data});
     });
   }
 
   saveNewKiddo (newKiddo) {
-   let addKiddo = ApiHelper().addKiddo(newKiddo);
+   let addKiddo = Api.addKiddo(newKiddo);
     addKiddo.then(result => {
       console.log(result.data);
     })

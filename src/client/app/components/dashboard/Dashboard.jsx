@@ -9,7 +9,6 @@ class Profile extends React.Component {
 	render() {
 		const path = this.props.match.path;
 
-		console.log()
 		return (
 			<div className="container">
 				<h1 id="icon">Kiddo</h1>
