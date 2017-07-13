@@ -44,7 +44,7 @@ class App extends Component {
     return (
         <Switch>
           <Route exact path='/' component={ Home }/>
-          <Route path='/dashboard' render={(props) => (
+          <Route exact path='/dashboard' render={(props) => (
               <Dashboard user={ this.state.user } { ...props }/>
           )}/>
           <Route path='/dashboard/addkiddo' render={(props) => (
