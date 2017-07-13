@@ -4,6 +4,9 @@ import React from 'react';
 import HomeFooter from './HomeFooter';
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div className="container">
@@ -38,7 +41,7 @@ class Home extends React.Component {
             </div>
           </div>
           <div className="row">
-            <HomeFooter />
+            <HomeFooter checkForUser={ this.props.checkForUser } />
           </div>
         </div>
         </div>

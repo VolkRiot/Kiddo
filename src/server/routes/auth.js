@@ -1,11 +1,13 @@
-const express     = require('express'),
-      router      = express.Router(),
-      passport    = require('passport'),
-      isLoggedIn  = require('./helpers/isLoggedInCheck');
+const express              = require('express'),
+      router               = express.Router(),
+      passport             = require('passport'),
+    { isLoggedIn,
+      isUser,
+      isAuthenticated }    = require('./helpers/isLoggedInCheck');
 
 router.get('/google/callback',
   passport.authenticate('google', {
-    successRedirect : '/#/profile',
+    successRedirect : '/#/dashboard',
     failureRedirect : '/'
 }));
 
@@ -15,8 +17,12 @@ router.get('/google', passport.authenticate('google',
     session: true,
 }));
 
-router.get('/currentuser', isLoggedIn, (req, res) => {
+router.get('/currentuser', isUser, (req, res) => {
   res.status(200).json(req.user);
+});
+
+router.get('/authenticate', isAuthenticated, (req, res) => {
+  res.status(200).json({ authenticated: !!req.user })
 });
 
 module.exports = router;
