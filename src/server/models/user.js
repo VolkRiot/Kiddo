@@ -1,7 +1,9 @@
 'use strict'
 
-const mongoose = require('../db/mongodb'),
-      Schema   = mongoose.Schema;
+const mongoose   = require('../db/mongodb'),
+      Schema     = mongoose.Schema,
+      KidModel   = require('./../models/kid'),
+      EventModel = require('./../models/event');
 
 const UserSchema = new Schema({
   googleId: {
@@ -34,6 +36,30 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   }
+});
+
+UserSchema.pre('remove', function(next) {
+
+  KidModel.remove({_id: {$in: this.kids}}).exec( err => {
+    if (err) {
+      console.log('Fail on delete User Kids');
+      let err = new Error('Fail on Delete Kids');
+      next(err);
+    } else {
+      next();
+    }
+  });
+
+  EventModel.remove({_id: {$in: this.events}}).exec( err => {
+    if (err) {
+      console.log('Fail on delete User Kids');
+      let err = new Error('Fail on Delete Kids');
+      next(err);
+    } else {
+      next();
+    }
+  });
+
 });
 
 module.exports = mongoose.model('Users', UserSchema);
