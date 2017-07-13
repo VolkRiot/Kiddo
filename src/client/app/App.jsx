@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {Route, Switch } from 'react-router-dom';
+import {HashRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './components/landing/Home';
 import  NotFound from './components/NotFound';
@@ -14,7 +14,7 @@ import '../index.css';
 class App extends Component {
   render() {
     return (
-     <Home />
+        <Home />
     );
   }
 }

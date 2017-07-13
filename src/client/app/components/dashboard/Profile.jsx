@@ -1,7 +1,10 @@
 'use strict';
 
 import React from 'react';
-
+import ProfileKid from './ProfileKid';
+import ProfileMap from './ProfileMap';
+import ProfileCalendar from './ProfileCalendar';
+import ProfileAdd from './ProfileAdd';
 
 class Profile extends React.Component {
 	render() {
@@ -11,30 +14,18 @@ class Profile extends React.Component {
 					<h1 id="parentTitle">Hello, Organized!</h1>
 				<div className="row" id="row1">
 					<div className="col-lg-6" id="view1">
-						<div className="thumbnail">
-              				<img src={'./img/girl.png'} />
-						<a href="#">View Kiddo Profiles</a>
-						</div>
+						<ProfileKid />
 					</div>
 					<div className="col-lg-6" id="view2">
-						<div className="thumbnail">
-              				<img src={'./img/map.png'} />
-								<a href="#">View Map</a>
-						</div>
+						<ProfileMap />
 					</div>
 				</div>
 				<div className="row" id="row2">
 					<div className="col-lg-6" id="view3">
-						<div className="thumbnail">
-              				<img src={'./img/calendar-icon.png'} />
-								<a href="#">View Calendar</a>
-						</div>
+						<ProfileCalendar />
 					</div>
 					<div className="col-lg-6" id="view4">
-						<div className="thumbnail">
-              				<img src={'./img/pencil.png'} />
-						<a href="#">Add New Kiddo</a>
-						</div>
+						<ProfileAdd />
 					</div>
 				</div>
 			</div>
