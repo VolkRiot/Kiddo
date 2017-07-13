@@ -5,9 +5,11 @@ import React from 'react';
 class ProfileMap extends React.Component {
 	render(){
 		return(
-			<div className="thumbnail">
-              	<img src={'./img/map.png'} />
-					<a href="#">View Map</a>
+			<div className="thumbnail shake-slow">
+              	<a href="#">
+              		<img src={'./img/map.png'} />
+						View Map
+				</a>
 			</div>
 		)
 	}

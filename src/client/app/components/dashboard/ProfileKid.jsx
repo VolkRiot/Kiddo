@@ -5,9 +5,11 @@ import React from 'react';
 class ProfileKid extends React.Component {
 	render(){
 		return(
-			<div className="thumbnail">
-              	<img src={'./img/girl.png'} />
-					<a href="#">View Kiddo Profiles</a>
+			<div className="thumbnail shake-slow">
+				<a href="#">
+	              	<img src={'./img/girl.png'} />
+						View Kiddo Profiles
+				</a>
 			</div>
 		)
 	}

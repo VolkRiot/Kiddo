@@ -5,9 +5,11 @@ import React from 'react';
 class ProfileCalendar extends React.Component {
 	render(){
 		return(
-			<div className="thumbnail">
-              	<img src={'./img/calendar-icon.png'} />
-					<a href="#">View Calendar</a>
+			<div className="thumbnail shake-slow">
+				<a href="#">
+	              	<img src={'./img/calendar-icon.png'} />
+						View Calendar
+				</a>
 			</div>
 		)
 	}
