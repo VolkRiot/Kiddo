@@ -7,26 +7,39 @@ import vex from 'vex-js';
 import vex_dialog from 'vex-dialog';
 
 
+
 // CSS Files for Calendar
 
 import './calendarStyles/fullcalendar.min.css';
 import './calendarStyles/vex.css';
 import './calendarStyles/vex-theme-os.css';
 
+// Vex Plugin
+vex.registerPlugin(vex_dialog);
+
+
+
 class Calendar extends React.Component{
-    componentDidMount() {
-        var allCalendars = [];
+    getInitialState() {
+        return {didSubmit: false}
+    }
+
+    renderCalendar() {
         // Array for Calendar Titles
+        var allCalendars = [];
         var calendarTitleArray = [];
         // Define Random Color for Each Calendar
-        var colorArray = ['red','blue','orange','green','purple']
-        $.get('/calendar/getevents', function(response){
+        var colorArray = ['red','blue','orange','green','purple'];
+        $.get('/calendar/getevents', function(response){    
             
             // Push Calendar Titles to Its Own Array
             $.each(response.calendarList.items, function(i,val){
                 calendarTitleArray.push(val.summary);
             });
-            
+
+            // Remove Existing Events for Rerender
+            $('#calendar').fullCalendar('removeEvents');
+
             // Breakdown of each calendar
             $.each(response.eventsForCalendars, function(i,calendar){
                 var eventArray = [];
@@ -48,17 +61,25 @@ class Calendar extends React.Component{
                         end: endDate
                     }
                     eventArray.push(eventObject);
+                    return eventArray
                 });
                 var eventsObject = {
                     events: eventArray,
                     color: colorArray[i]
                 }
+                console.log("eventObject", i);
+                
+                //For rerendering. Add Each Source again and rerender Calendar
+                
+                $('#calendar').fullCalendar('addEventSource', eventsObject);
+                $('#calendar').fullCalendar( 'rerenderEvents');
+                
                 allCalendars.push(eventsObject);
-            });
-        }).done(function(){
-        
+            }.bind(this));
+
+
+        }.bind(this)).done(function(){
             //Initialize and Create Calendar
-            vex.registerPlugin(vex_dialog);
             $('#calendar').fullCalendar({
                 aspectRatio: 2.25,
                 // Add Event Button
@@ -94,9 +115,13 @@ class Calendar extends React.Component{
                                     endDate: $("#calendar-endDate").val().trim(),
                                     calendar: $('#calendar-dropdown option:selected').text().trim()
                                 }
-                                $.post('/calendar/addevent', eventInfo);
-                            });
-                        }
+                                
+                                $.post('/calendar/addevent', eventInfo).done(function(response){
+                                    this.setState({didSubmit: true});
+                                    console.log(response);
+                                }.bind(this));
+                            }.bind(this));
+                        }.bind(this)
                     }
                 },
                 header: {
@@ -108,11 +133,14 @@ class Calendar extends React.Component{
             });
 
             // Allow Buttons to Show
+
             $('.fc button, .fc-button-group, .fc-time-grid .fc-event .fc-time span').css('display','inherit');
-        });
+            
+        }.bind(this));
     }
 
     render() {
+        this.renderCalendar();
         return <div id="calendar"></div>;
     }
 }
