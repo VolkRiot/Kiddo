@@ -1,11 +1,11 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Home from './components/landing/Home';
 import NotFound from './components/NotFound';
-import Profile from './components/dashboard/Profile';
+import Dashboard from './components/dashboard/Dashboard';
 import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
 import ApiHelper from './utils/apiHelper';
@@ -19,11 +19,16 @@ class App extends Component {
       user: null
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
-    this.checkForUser = this.checkForUser.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
-  checkForUser () {
-    let getUser = ApiHelper().isUserAuthenticated();
-    getUser.then(result => {
+
+  componentDidMount () {
+    this.getUser();
+  }
+
+  getUser () {
+    let user = ApiHelper().getCurrentUser();
+    user.then(result => {
       this.setState({user: result.data});
     });
   }
@@ -35,23 +40,22 @@ class App extends Component {
     })
   }
 
-
-
   render() {
     return (
         <Switch>
-          <Route exact path='/' render={(props) => (
-              < Home checkForUser={ this.checkForUser } { ...props }/>
+          <Route exact path='/' component={ Home }/>
+          <Route exact path='/dashboard' component={ Dashboard }/>
+          <Route path='/dashboard/addkiddo' render={(props) => (
+              <AddKiddo user={ this.state.user }
+                        saveNewKiddo={ this.saveNewKiddo } { ...props }/>
           )}/>
-          <Route exact path='/profile' component={ Profile }/>
-          <Route path='/profile/addkiddo' render={(props) => (
-              <AddKiddo user={ this.state.user } saveNewKiddo={ this.saveNewKiddo } { ...props }/>
-          )}/>
-          <Route  path='/calendar' component={ Calendar }/>
+          <Route path='/calendar' component={ Calendar }/>
           <Route component={ NotFound }/>
         </Switch>
     );
   }
 }
 
+
 export default App;
+

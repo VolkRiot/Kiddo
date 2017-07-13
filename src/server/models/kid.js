@@ -13,6 +13,10 @@ const KidSchema = new Schema({
     type: String,
     required: true
   },
+  userName:{
+    type: String,
+    required: true
+  },
   user_id:{
     type: Schema.Types.ObjectId,
     ref: 'Users',

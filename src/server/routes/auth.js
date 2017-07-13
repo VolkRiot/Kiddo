@@ -7,7 +7,7 @@ const express              = require('express'),
 
 router.get('/google/callback',
   passport.authenticate('google', {
-    successRedirect : '/#/profile',
+    successRedirect : '/#/dashboard',
     failureRedirect : '/'
 }));
 
@@ -22,7 +22,7 @@ router.get('/currentuser', isUser, (req, res) => {
 });
 
 router.get('/authenticate', isAuthenticated, (req, res) => {
-  res.status(200).send({ authenticated: !!req.user })
+  res.status(200).json({ authenticated: !!req.user })
 });
 
 module.exports = router;
