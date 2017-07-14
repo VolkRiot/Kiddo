@@ -41,7 +41,8 @@ class AddKiddo extends React.Component {
 	  firstName: '',
       lastName: '',
       userName: '',
-      password: ''
+      password: '',
+	    avatar:{url:'./img/girl.png'}
     });
   }
 
