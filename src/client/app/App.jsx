@@ -38,7 +38,6 @@ class App extends Component {
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
     addKiddo.then(result => {
-      console.log(result.data);
     })
   }
 
@@ -61,4 +60,3 @@ class App extends Component {
 
 
 export default App;
-
