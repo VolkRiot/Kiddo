@@ -3,7 +3,6 @@ module.exports = {
 
   // Used when want to hit an express route but redirect if user is not logged in
   isLoggedIn: function (req, res, next) {
-
       // if user is authenticated in the session, carry on
       if (req.isAuthenticated())
           next();
@@ -13,21 +12,20 @@ module.exports = {
   },
   // Used to verify that the user exists or otherwise send error
   isUser: function (req, res, next) {
-
     if(!req.user) {
-      res.status(500).send({ user: false })
+      res.status(204).json({ user: false })
 
     } else {
       next();
     }
   },
   // Use this if redirect is not preferable like for front-end api calls to verify auth.
-  isAuthenticated: function () {
-
-    if (req.isAuthenticated()) {
+  isAuthenticated: function (req, res, next) {
+    let user = req.isAuthenticated();
+    if (user) {
       next();
     } else {
-      res.status(500).send({ authenticated: false})
+      res.status(401).json({ authenticated: false})
     }
   }
 
