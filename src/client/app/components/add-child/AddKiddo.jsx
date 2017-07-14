@@ -3,19 +3,20 @@
 import React from 'react';
 import AddPic from './AddPic';
 
-class Add extends React.Component {
+class AddKiddo extends React.Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-
 			firstName: '',
 			lastName: '',
 			userName: '',
-			password: ''
+			password: '',
+			avatar:{url:'./img/girl.png'}
 		};
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.saveImgHandler = this.saveImgHandler.bind(this);
 	}
 
   onInputChange(event) {
@@ -44,7 +45,22 @@ class Add extends React.Component {
     });
   }
 
+  saveImgHandler() {
+		const ImgHelper = this.props.ImgHelper();
+	  const fileName = (this.props.user._id || 'user').concat(this.state.firstName || 'kiddo') ;
+
+	  ImgHelper.saveImage(fileName).then(res => {
+		  if (res.filesUploaded[0]) {
+			  this.setState({avatar: res.filesUploaded[0]});
+		  } else {
+		  	this.setState({avatar: res.filesFailed[0]}); //(TODO) TEST FAIL CASE
+		  }
+
+	  });
+  }
+
 	render(){
+
 		return (
 			<div className="addChild row">
 				<h3>Register Your Kiddo Below!</h3>
@@ -101,13 +117,13 @@ class Add extends React.Component {
 						</form>
 					</div>
 					<div className="col-md-6">
-						<AddPic />
+						<AddPic imgSrc={ this.state.avatar.url } user={ this.props.user } saveImgHandler={ this.saveImgHandler } />
 					</div>
 			</div>
 		)
 	}
 }
 
-export default Add;
+export default AddKiddo;
 
 //(TODO) validate form data preventing from submit unexpected data

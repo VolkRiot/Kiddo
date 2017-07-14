@@ -10,6 +10,8 @@ import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
 import ApiHelper from './utils/apiHelper';
 const Api = ApiHelper();
+import FileStackHelper from './utils/fileStackHelper';
+const ImgHelper = FileStackHelper();
 
 
 import '../index.css';
@@ -22,6 +24,7 @@ class App extends Component {
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
+    this.ImgHelper = this.ImgHelper.bind(this);
   }
 
   componentDidMount () {
@@ -42,6 +45,10 @@ class App extends Component {
     })
   }
 
+  ImgHelper () {
+    return ImgHelper;
+  }
+
   render() {
     return (
         <Switch>
@@ -50,7 +57,11 @@ class App extends Component {
               <Dashboard user={ this.state.user } { ...props }/>
           )}/>
           <Route path='/dashboard/addkiddo' render={(props) => (
-              <AddKiddo user={ this.state.user } saveNewKiddo={ this.saveNewKiddo } { ...props }/>
+              <AddKiddo
+                  user={ this.state.user }
+                  saveNewKiddo={ this.saveNewKiddo }
+                  ImgHelper={ this.ImgHelper }
+                  { ...props }/>
           )}/>
           <Route path='/calendar' component={ Calendar }/>
           <Route component={ NotFound }/>
