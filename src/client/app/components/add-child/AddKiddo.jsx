@@ -37,7 +37,7 @@ class Add extends React.Component {
 
     this.props.saveNewKiddo(newKiddoData);
     this.setState({
-	    firstName: '',
+	  firstName: '',
       lastName: '',
       userName: '',
       password: ''
@@ -46,58 +46,63 @@ class Add extends React.Component {
 
 	render(){
 		return (
-			<div className="addChild">
+			<div className="addChild row">
 				<h3>Register Your Kiddo Below!</h3>
-					<form id="childInputText" onSubmit={ this.onFormSubmit }>
-		  				<div className="form-group">
-		    				<input
-								    onChange={ this.onInputChange }
-								    name="firstName"
-								    value={ this.state.firstName }
-								    type="text"
-								    className="form-control"
-								    placeholder="First Name"
-						    />
-		 				</div>
-		 				 <div className="form-group">
-		    				 <input
-								     onChange={ this.onInputChange }
-								     name ="lastName"
-								     value={ this.state.lastName }
-								     type="text"
-								     className="form-control"
-								     placeholder="Last Name"
-						     />
-		  				</div>
-		  				<div className="form-group">
-		    				<input
-								    onChange={ this.onInputChange }
-								    name ="userName"
-								    value={ this.state.userName }
-								    type="text"
-								    className="form-control"
-								    placeholder="User Name"
-						    />
-		 				</div>
-		 				 <div className="form-group">
-		    				 <input
-								     onChange={ this.onInputChange }
-								     name ="password"
-								     value={ this.state.password }
-								     type="password"
-								     className="form-control"
-								     placeholder="Password (can be the same as yours)"
-						     />
-		  				</div>
 
-							<div>
-								<span className="input-group-btn">
-			            <button type="submit" className="btn btn-secondary">Submit</button>
-			          </span>
+					<div className="col-md-6">
+						<form  onSubmit={ this.onFormSubmit }>
+							<div className="form-group">
+								<input
+									onChange={ this.onInputChange }
+									name="firstName"
+									value={ this.state.firstName }
+									type="text"
+									className="form-control"
+									placeholder="First Name"
+								/>
+							</div>
+							<div className="form-group">
+								<input
+									onChange={ this.onInputChange }
+									name ="lastName"
+									value={ this.state.lastName }
+									type="text"
+									className="form-control"
+									placeholder="Last Name"
+								/>
+							</div>
+							<div className="form-group">
+								<input
+									onChange={ this.onInputChange }
+									name ="userName"
+									value={ this.state.userName }
+									type="text"
+									className="form-control"
+									placeholder="User Name"
+								/>
+							</div>
+							<div className="form-group">
+								<input
+									onChange={ this.onInputChange }
+									name ="password"
+									value={ this.state.password }
+									type="password"
+									className="form-control"
+									placeholder="Password (can be the same as yours)"
+								/>
 							</div>
 
-					</form>
+							<div>
+							<span className="input-group-btn">
+								<button type="submit" className="btn btn-secondary">Submit</button>
+							 </span>
+							</div>
+
+						</form>
+					</div>
+					<div className="col-md-6">
 						<AddPic />
+					</div>
 			</div>
 		)
 	}

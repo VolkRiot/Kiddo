@@ -7,6 +7,7 @@ const ApiHelper = () => {
   const addKiddoRoute = '/api/kid?method=create'
   const addEventRoute = '/api/event?method=create'
 
+
   return {
     getCurrentUser: () => {
       return api.get(userRoute)
@@ -19,8 +20,24 @@ const ApiHelper = () => {
     },
     addEvent: (event) => {
       return api.post(addEventRoute, event)
+    },
+    saveImg: (data) => {
+
+        const url = '/api/img/save';
+        const config = {
+
+        };
+
+        api.post(url, data)
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     }
   }
+
 };
 
 export default ApiHelper;

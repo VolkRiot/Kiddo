@@ -20,6 +20,7 @@
     "axios": "^0.16.2",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
+    "crypto": "^0.0.3",
     "debug": "~2.6.3",
     "dotenv": "^4.0.0",
     "express": "~4.15.2",
@@ -43,6 +44,7 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "serve-favicon": "~2.4.2",
+    "urlsafe-base64": "^1.0.0",
     "vex-dialog": "^1.0.7",
     "vex-js": "^4.0.0"
   },

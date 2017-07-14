@@ -3,13 +3,21 @@
 const express = require('express'),
       router  = express.Router();
 
-const controllers = require('../controllers');
+const controllers = require('./../controllers');
 
 /* GET */
 /*
   Example : http://.../api/user?_id=5958...                = to id matching doc
   or      : http://.../api/user?_id=5958...&kid_id=4356... = to specific kid from specific user
 */
+
+router.post('/img/save', (req, res, next) => {
+  console.log('============ from server ========');
+  console.log(req.body);
+  console.log(req.file);
+  console.log(req.query);
+
+});
 
 router.get('/:collection', (req, res, next) => {
   let collection   = req.params.collection,
@@ -164,4 +172,11 @@ router.delete('/:collection', (req, res, next) => {
   }
 });
 
+
+
+
+
 module.exports = router;
+
+
+
