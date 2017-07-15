@@ -11,12 +11,10 @@ import Dashboard from './components/dashboard/Dashboard';
 import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
 import ApiHelper from './utils/apiHelper';
-const Api = ApiHelper();
 import FileStackHelper from './utils/fileStackHelper';
+
+const Api = ApiHelper();
 const ImgHelper = FileStackHelper();
-
-
-
 
 import '../index.css';
 
@@ -78,6 +76,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
