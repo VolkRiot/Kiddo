@@ -76,7 +76,7 @@ class Calendar extends React.Component{
         // Define Random Color for Each Calendar
         var colorArray = ['red','blue','orange','green','purple'];
 
-        //GetRequest for Googlr Calendar Events
+        //GetRequest for Google Calendar Events
         $.get('/calendar/getevents', function(response){    
             
             // Push Calendar Titles to Its Own Array
@@ -144,4 +144,3 @@ class Calendar extends React.Component{
 }
 
 export default Calendar;
-
