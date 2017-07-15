@@ -12,10 +12,11 @@ class Home extends React.Component {
       <div className="container">
       <div className="main">
         <h1 className="title">Kiddo</h1>
+          <h4 className="titleSmall">A Parent's Best Friend.</h4>
         <div className="row">
           <div className="col-sm-6 col-md-4">
             <div className="thumbnail">
-              <img src={'./img/track.png'} />
+              <img src={'./img/track2.png'} />
               <div className="caption">
                 <h3>Track Events and Location of Children</h3>
                 <p></p>
@@ -24,7 +25,7 @@ class Home extends React.Component {
           </div>
           <div className="col-sm-6 col-md-4">
             <div className="thumbnail">
-              <img src={'./img/list.png'} />
+              <img src={'./img/note2.png'} />
               <div className="caption">
                 <h3>Manage To-do's and Shopping Lists</h3>
                 <p></p>
@@ -33,9 +34,9 @@ class Home extends React.Component {
           </div>
           <div className="col-sm-6 col-md-4">
             <div className="thumbnail">
-              <img src={'./img/notify.png'} />
+              <img src={'./img/notify2.png'} />
               <div className="caption">
-                <h3>Update Directly to Child's Devices</h3>
+                <h3>Updates Sent Directly to Child's Devices</h3>
                 <p></p>
               </div>
             </div>

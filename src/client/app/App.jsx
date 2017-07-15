@@ -1,7 +1,9 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+
+import {Route, Switch } from 'react-router-dom';
+
 
 import Home from './components/landing/Home';
 import NotFound from './components/NotFound';
@@ -10,6 +12,7 @@ import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
 import ApiHelper from './utils/apiHelper';
 const Api = ApiHelper();
+
 
 
 import '../index.css';
@@ -38,12 +41,12 @@ class App extends Component {
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
     addKiddo.then(result => {
-      console.log(result.data);
     })
   }
 
   render() {
     return (
+
         <Switch>
           <Route exact path='/' component={ Home }/>
           <Route exact path='/dashboard' render={(props) => (
@@ -55,10 +58,10 @@ class App extends Component {
           <Route path='/calendar' component={ Calendar }/>
           <Route component={ NotFound }/>
         </Switch>
+
     );
   }
 }
 
 
 export default App;
-
