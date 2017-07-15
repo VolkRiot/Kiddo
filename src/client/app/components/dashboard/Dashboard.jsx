@@ -5,20 +5,34 @@ import React from 'react';
 import ProfileKid from './ProfileKid';
 import ProfileMap from './ProfileMap';
 import ProfileCalendar from './ProfileCalendar';
+
 //import ProfileAdd from './ProfileAdd';
 
 import { Link } from 'react-router-dom';
-
+import {DropdownButton, MenuItem, ButtonToolbar} from 'react-bootstrap';
 
 
 //(TODO) create Avater component to render each of the for elements
 class Profile extends React.Component {
 	render() {
 		const path = this.props.match.path;
-
+		const BUTTONS = ['Success'];
+			function renderDropdownButton(title, i) {
+			  return (
+			    <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i} id={`dropdown-basic-${i}`}>
+			      <MenuItem eventKey="1">Calendar</MenuItem>
+			      <MenuItem eventKey="2">Map</MenuItem>
+			      <MenuItem divider />
+			      <MenuItem eventKey="4">Log Out</MenuItem>
+			    </DropdownButton>
+			  );
+			}
+		const buttonsInstance = (
+		  <ButtonToolbar>{BUTTONS.map(renderDropdownButton)}</ButtonToolbar>
+		);
 		return (
 			<div className="container">
-				<h1 id="icon">Kiddo</h1>
+				<div className="drop">{buttonsInstance}</div>
 					<h1 id="parentTitle">Hello, Organized!</h1>
 				<div className="row" id="row1">
 					<div className="col-lg-6" id="view1">
