@@ -41,7 +41,7 @@ class AddKiddo extends React.Component {
 			this.props.saveNewKiddo(newKiddoData);
 
 			this.setState({
-				firstName: 'none',
+				firstName: '',
 				lastName: '',
 				userName: '',
 				password: '',
