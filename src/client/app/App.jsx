@@ -23,7 +23,7 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-	    kiddosList:[]
+      kiddosList:[]
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
