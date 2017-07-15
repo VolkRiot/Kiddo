@@ -12,8 +12,9 @@ export default class RegisterApp extends Component {
   render() {
     return (
     <View style={styles.container}>
-      <TextInput style={styles.input}
-        placeholder="Enter an email",
+      <TextInput
+        style={styles.input}
+        placeholder={"Enter an email"}
         onChangeText={input => this.setState({input})}
       />
     </View>);
