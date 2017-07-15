@@ -6,7 +6,7 @@ class ProfileCalendar extends React.Component {
 	render(){
 		return(
 			<div className="thumbnail shake-slow">
-				<a href="#">
+				<a href="/#/calendar">
 	              	<img src={'./img/calendar-icon.png'} />
 						View Calendar
 				</a>
@@ -16,4 +16,3 @@ class ProfileCalendar extends React.Component {
 }
 
 export default ProfileCalendar;
-
