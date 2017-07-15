@@ -122,7 +122,7 @@ class AddKiddo extends React.Component {
 						</form>
 					</div>
 					<div className="col-md-6">
-						<AddPic check={ this.check } imgSrc={ this.state.avatar.url } user={ this.props.user } saveImgHandler={ this.saveImgHandler } />
+						<AddPic imgSrc={ this.state.avatar.url } user={ this.props.user } saveImgHandler={ this.saveImgHandler } />
 					</div>
 			</div>
 		)
