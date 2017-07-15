@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TextInput } from 'react-native';
 
 export default class RegisterApp extends Component {
 
   render() {
     return (
     <View style={styles.container}>
-        <Text style={styles.text}>Input an email</Text>
-      <View style={styles.input} />
+      <TextInput style={styles.input}
+        placeholder="Enter an email"
+      />
     </View>);
   }
 }
@@ -19,9 +20,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   input: {
-    width: 200,
+    width: 250,
     height: 50,
     backgroundColor: 'skyblue',
+    textAlign: 'center',
     borderRadius: 30
   },
   text: {
