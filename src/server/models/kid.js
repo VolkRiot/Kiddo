@@ -26,6 +26,9 @@ const KidSchema = new Schema({
     type: String,
     required: true
   },
+  calendarId:{
+    type: String
+  },
   events:[
     {
       type: Schema.Types.ObjectId,
