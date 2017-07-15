@@ -10,8 +10,7 @@ var google_calendar = undefined;
 // Route to Create Calendar
 
 router.post('/addcalendar', function(req, res) {
-    console.log(req.body);
-    console.log(req.user);
+
     // Initiate google_calendar with token
     if(!google_calendar) {
         var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
