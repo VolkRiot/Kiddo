@@ -11,9 +11,10 @@ import Dashboard from './components/dashboard/Dashboard';
 import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
 import ApiHelper from './utils/apiHelper';
+import FileStackHelper from './utils/fileStackHelper';
+
 const Api = ApiHelper();
-
-
+const ImgHelper = FileStackHelper();
 
 import '../index.css';
 
@@ -21,11 +22,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      kiddosList:[]
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
     this.addNewCalendar = this.addNewCalendar.bind(this);
+    this.ImgHelper = this.ImgHelper.bind(this);
   }
 
   componentDidMount () {
@@ -42,6 +45,9 @@ class App extends Component {
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
     addKiddo.then(result => {
+    	let kiddosList = this.state.kiddosList;
+    	kiddosList.push(result.data.body);
+      this.setState({ kiddosList });
     })
   }  
   
@@ -50,6 +56,10 @@ class App extends Component {
     addCalendar.then(result => {
     })
   }  
+
+  ImgHelper () {
+    return ImgHelper;
+  }
 
   render() {
     return (
@@ -60,7 +70,12 @@ class App extends Component {
               <Dashboard user={ this.state.user } { ...props }/>
           )}/>
           <Route path='/dashboard/addkiddo' render={(props) => (
-              <AddKiddo user={ this.state.user } saveNewKiddo={ this.saveNewKiddo } addNewCalendar={ this.addNewCalendar } { ...props }/>
+              <AddKiddo
+                  user={ this.state.user }
+                  saveNewKiddo={ this.saveNewKiddo }
+                  ImgHelper={ this.ImgHelper }
+                  addNewCalendar={ this.addNewCalendar }
+                  { ...props }/>
           )}/>
           <Route path='/calendar' component={ Calendar }/>
           <Route component={ NotFound }/>
@@ -69,6 +84,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;

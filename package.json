@@ -30,6 +30,7 @@
     "dotenv": "^4.0.0",
     "express": "~4.15.2",
     "express-session": "^1.15.3",
+    "filestack-js": "^0.7.1",
     "find-cache-dir": "^1.0.0",
     "fullcalendar": "^3.4.0",
     "google-auth-library": "^0.10.0",
