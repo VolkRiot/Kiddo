@@ -18,7 +18,7 @@ const fileStackHelper = () => {
 
 			return client.pick({
 				maxFiles: 1,
-				fromSources: ['local_file_system', 'facebook'],
+				fromSources: ['local_file_system'/*, 'facebook'*/],
 				onFileSelected(file) {
 					file.name = fileName;
 					return file;
