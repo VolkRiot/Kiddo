@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
 
 export default class RegisterApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: null
+    }
+  }
 
   render() {
     return (
     <View style={styles.container}>
       <TextInput style={styles.input}
-        placeholder="Enter an email"
+        placeholder="Enter an email",
+        onChangeText={input => this.setState({input})}
       />
     </View>);
   }
