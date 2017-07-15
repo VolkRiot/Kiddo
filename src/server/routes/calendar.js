@@ -76,8 +76,7 @@ router.post('/addevent', function(req,res){
           function(err,response){
             if(err){
               console.log(err);
-            } else{
-              console.log("Event Inserted Into Google Database");
+            } else {
               res.send("All Good from Google");
               const newEvent = Event();
 
