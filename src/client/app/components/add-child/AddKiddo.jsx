@@ -35,7 +35,9 @@ class Add extends React.Component {
 
     newKiddoData.user_id = this.props.user._id;
 
-    this.props.saveNewKiddo(newKiddoData);
+		this.props.saveNewKiddo(newKiddoData);
+		this.props.addNewCalendar(newKiddoData); 
+
     this.setState({
 	    firstName: '',
       lastName: '',

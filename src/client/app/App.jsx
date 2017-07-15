@@ -25,6 +25,7 @@ class App extends Component {
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
+    this.addNewCalendar = this.addNewCalendar.bind(this);
   }
 
   componentDidMount () {
@@ -42,7 +43,13 @@ class App extends Component {
    let addKiddo = Api.addKiddo(newKiddo);
     addKiddo.then(result => {
     })
-  }
+  }  
+  
+  addNewCalendar (newKidName) {
+   let addCalendar = Api.addCalendar(newKidName);
+    addCalendar.then(result => {
+    })
+  }  
 
   render() {
     return (
@@ -53,7 +60,7 @@ class App extends Component {
               <Dashboard user={ this.state.user } { ...props }/>
           )}/>
           <Route path='/dashboard/addkiddo' render={(props) => (
-              <AddKiddo user={ this.state.user } saveNewKiddo={ this.saveNewKiddo } { ...props }/>
+              <AddKiddo user={ this.state.user } saveNewKiddo={ this.saveNewKiddo } addNewCalendar={ this.addNewCalendar } { ...props }/>
           )}/>
           <Route path='/calendar' component={ Calendar }/>
           <Route component={ NotFound }/>
