@@ -76,12 +76,12 @@ class Calendar extends React.Component{
             //Initialize and Create Calendar
             $('#calendar').fullCalendar({
                 aspectRatio: 2.25,
-                // Add Event Button
+                // AddKiddo Event Button
                 customButtons: {
                     AddEvent: {
                         text: 'add event',
                         click: function() {
-                            // Modal for Add Event
+                            // Modal for AddKiddo Event
                             vex.defaultOptions.className = 'vex-theme-os';
                             vex.dialog.open({
                                 message: "Comments",

@@ -2,10 +2,10 @@ import axios from 'axios'
 
 const ApiHelper = () => {
   const api = axios;
-  const userRoute = '/auth/currentuser'
-  const isAuthRoute = '/auth/authenticate'
-  const addKiddoRoute = '/api/kid?method=create'
-  const addEventRoute = '/api/event?method=create'
+  const userRoute = '/auth/currentuser';
+  const isAuthRoute = '/auth/authenticate';
+  const addKiddoRoute = '/api/kid?method=create';
+  const addEventRoute = '/api/event?method=create';
 
   return {
     getCurrentUser: () => {
@@ -21,6 +21,7 @@ const ApiHelper = () => {
       return api.post(addEventRoute, event)
     }
   }
+
 };
 
 export default ApiHelper;

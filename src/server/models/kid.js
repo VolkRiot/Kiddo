@@ -22,6 +22,9 @@ const KidSchema = new Schema({
     ref: 'Users',
     required: true
   },
+  avatar:{
+    type: Object,
+  },
   password:{
     type: String,
     required: true

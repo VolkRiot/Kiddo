@@ -49,7 +49,7 @@ router.get('/getevents', function(req, res) {
   });
 });
 
-// Route to Retrieve Event Data to Add to Google
+// Route to Retrieve Event Data to AddKiddo to Google
 router.post('/addevent', function(req,res){
 
   //Initiate google_calendar with token
