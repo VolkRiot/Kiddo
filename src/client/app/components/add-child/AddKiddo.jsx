@@ -26,25 +26,29 @@ class AddKiddo extends React.Component {
   onFormSubmit(event) {
 		event.preventDefault();
     let newKiddoData = this.state;
+    let okToSubmit = true;
+    let user_id =  this.props.user._id;
 
 		Object.keys(newKiddoData).map(item => {
 			const input = newKiddoData[item];
 			if (input === '') {
-				console.log(item)
+				okToSubmit = false;
 			}
 		});
 
-    newKiddoData.user_id = this.props.user._id;
+		if (okToSubmit) {
+			newKiddoData.user_id = user_id;
+			this.props.saveNewKiddo(newKiddoData);
 
-    this.props.saveNewKiddo(newKiddoData);
-    this.setState({
-	  firstName: '',
-      lastName: '',
-      userName: '',
-      password: '',
-	    avatar:{url:'./img/girl.png'}
-    });
-  }
+			this.setState({
+				firstName: 'none',
+				lastName: '',
+				userName: '',
+				password: '',
+				avatar:{url:'./img/girl.png'}
+			});
+		}
+	}
 
   saveImgHandler() {
 		const ImgHelper = this.props.ImgHelper();
@@ -68,7 +72,7 @@ class AddKiddo extends React.Component {
 
 					<div className="col-md-6">
 						<form  onSubmit={ this.onFormSubmit }>
-							<div className="form-group">
+							<div className='form-group'>
 								<input
 									onChange={ this.onInputChange }
 									name="firstName"
@@ -118,7 +122,7 @@ class AddKiddo extends React.Component {
 						</form>
 					</div>
 					<div className="col-md-6">
-						<AddPic imgSrc={ this.state.avatar.url } user={ this.props.user } saveImgHandler={ this.saveImgHandler } />
+						<AddPic check={ this.check } imgSrc={ this.state.avatar.url } user={ this.props.user } saveImgHandler={ this.saveImgHandler } />
 					</div>
 			</div>
 		)
