@@ -4,7 +4,8 @@ const express  = require('express'),
       path     = require('path'),
       auth     = require('./auth'),
       calndr   = require('./calendar'),
-      all      = require('./api');
+      all      = require('./api'),
+      mobile   = require('./mobileHelpers');
 
 // Express router defined
 const router = express.Router();
@@ -18,5 +19,6 @@ router.get('/', (req, res, next) => {
 router.use('/calendar', calndr);
 router.use('/api', all);
 router.use('/auth', auth);
+router.use('/mobile', mobile);
 
 module.exports = router;
