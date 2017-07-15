@@ -20,7 +20,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+	    kiddosList:[]
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
@@ -41,7 +42,9 @@ class App extends Component {
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
     addKiddo.then(result => {
-      console.log(result.data);
+    	let kiddosList = this.state.kiddosList;
+    	kiddosList.push(result.data.body);
+      this.setState({ kiddosList });
     })
   }
 
