@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import * as style from './homefooter.css';
 
 class HomeFooter extends React.Component {
   render() {

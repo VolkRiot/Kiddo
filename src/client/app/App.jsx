@@ -10,6 +10,8 @@ import NotFound from './components/NotFound';
 import Dashboard from './components/dashboard/Dashboard';
 import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
+import KiddoProfile from './components/kiddo-profile/KiddoProfile';
+import Map from './components/map/Map';
 import ApiHelper from './utils/apiHelper';
 import FileStackHelper from './utils/fileStackHelper';
 
@@ -69,7 +71,9 @@ class App extends Component {
                   ImgHelper={ this.ImgHelper }
                   { ...props }/>
           )}/>
-          <Route path='/calendar' component={ Calendar }/>
+          <Route path='/dashboard/calendar' component={ Calendar }/>
+	        <Route path='/dashboard/profile' component={ KiddoProfile }/>
+	        <Route path='/dashboard/map' component={ KiddoProfile }/>
           <Route component={ NotFound }/>
         </Switch>
 

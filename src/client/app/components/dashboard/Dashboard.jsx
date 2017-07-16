@@ -1,50 +1,60 @@
 'use strict';
 
 import React from 'react';
+import DashAvatar from './DashAvatar';
+import * as style from './dashboard.css';
 
-import ProfileKid from './ProfileKid';
-import ProfileMap from './ProfileMap';
-import ProfileCalendar from './ProfileCalendar';
-//import ProfileAdd from './ProfileAdd';
-
-import { Link } from 'react-router-dom';
+class Dashboard extends React.Component {
+	constructor(props) {
+		super(props);
+	}
 
 
-
-//(TODO) create Avater component to render each of the for elements
-class Profile extends React.Component {
 	render() {
 		const path = this.props.match.path;
 
 		return (
-			<div className="container">
+			<div className="dashboard container">
 				<h1 id="icon">Kiddo</h1>
-					<h1 id="parentTitle">Hello, Organized!</h1>
+				<h1 id="parentTitle">Hello, Organized!</h1>
+
 				<div className="row" id="row1">
 					<div className="col-lg-6" id="view1">
-						<ProfileKid />
+						<DashAvatar
+							title={ 'Kiddo Profiles' }
+					    imgSrc={ './img/girl.png' }
+					    to={ `${ path }/profile` }
+						/>
 					</div>
 					<div className="col-lg-6" id="view2">
-						<ProfileMap />
+						<DashAvatar
+							title={ 'Map' }
+							imgSrc={ './img/map.png' }
+							to={ `${ path }/map` }
+						/>
 					</div>
 				</div>
+
 				<div className="row" id="row2">
 					<div className="col-lg-6" id="view3">
-						<ProfileCalendar />
+						<DashAvatar
+							title={ 'Calendar' }
+							imgSrc={ './img/calendar-icon.png' }
+							to={ `${ path }/calendar` }   /*(TODO) change the path to /dashboard/calendar === { `${ path }/calendar` } */
+						/>
 					</div>
-				<div className="col-lg-6" id="view4">
-					<div className="thumbnail shake-slow">
-              			<Link to={ `${ path }/addkiddo` }>		
-              				<img src={'./img/pencil.png'} />
-							Add New Kiddo
-						</Link>
+					<div className="col-lg-6" id="view4">
+						<DashAvatar
+								title={ 'New Kiddo' }
+								imgSrc={ './img/pencil.png' }
+								to={ `${ path }/addkiddo` }
+						/>
 					</div>
-				</div>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default Profile;
+export default Dashboard;
 

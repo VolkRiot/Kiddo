@@ -2,6 +2,7 @@
 
 import React from 'react';
 import HomeFooter from './HomeFooter';
+import * as style from './home.css';
 
 class Home extends React.Component {
   constructor(props) {

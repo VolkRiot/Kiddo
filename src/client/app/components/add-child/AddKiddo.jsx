@@ -2,6 +2,7 @@
 
 import React from 'react';
 import AddPic from './AddPic';
+import * as style from './addkiddo.css';
 
 class AddKiddo extends React.Component {
 	constructor (props) {
@@ -65,7 +66,6 @@ class AddKiddo extends React.Component {
   }
 
 	render(){
-
 		return (
 			<div className="addChild row">
 				<h3>Register Your Kiddo Below!</h3>
