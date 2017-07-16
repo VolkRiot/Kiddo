@@ -7,12 +7,12 @@ const EventSchema = new Schema({
   kid_id:{
     type: Schema.Types.ObjectId,
     ref: 'Kids',
-    required: true
+    required: false
   },
   user_id:{
     type: Schema.Types.ObjectId,
     ref: 'Users',
-    required: true
+    required: false
   },
   title: {
     type: String,

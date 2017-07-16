@@ -27,6 +27,7 @@ class App extends Component {
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
+    this.addNewCalendar = this.addNewCalendar.bind(this);
     this.ImgHelper = this.ImgHelper.bind(this);
   }
 
@@ -48,7 +49,13 @@ class App extends Component {
     	kiddosList.push(result.data.body);
       this.setState({ kiddosList });
     })
-  }
+  }  
+  
+  addNewCalendar (newKidName) {
+   let addCalendar = Api.addCalendar(newKidName);
+    addCalendar.then(result => {
+    })
+  }  
 
   ImgHelper () {
     return ImgHelper;
@@ -67,6 +74,7 @@ class App extends Component {
                   user={ this.state.user }
                   saveNewKiddo={ this.saveNewKiddo }
                   ImgHelper={ this.ImgHelper }
+                  addNewCalendar={ this.addNewCalendar }
                   { ...props }/>
           )}/>
           <Route path='/calendar' component={ Calendar }/>

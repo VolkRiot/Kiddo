@@ -2,10 +2,11 @@ import axios from 'axios'
 
 const ApiHelper = () => {
   const api = axios;
-  const userRoute = '/auth/currentuser';
-  const isAuthRoute = '/auth/authenticate';
-  const addKiddoRoute = '/api/kid?method=create';
-  const addEventRoute = '/api/event?method=create';
+  const userRoute = '/auth/currentuser'
+  const isAuthRoute = '/auth/authenticate'
+  const addKiddoRoute = '/api/kid?method=create'
+  const addEventRoute = '/api/event?method=create'
+  const addCalendarRoute = '/kid/addcalendar'
 
   return {
     getCurrentUser: () => {
@@ -19,7 +20,11 @@ const ApiHelper = () => {
     },
     addEvent: (event) => {
       return api.post(addEventRoute, event)
+    },
+    addCalendar: (kidName) => {
+      return api.post(addCalendarRoute, kidName)
     }
+
   }
 
 };

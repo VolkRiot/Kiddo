@@ -8,7 +8,8 @@ const express   = require('express'),
       jstz      = require('jstz'), // Automatically detect timezone and initialize
       timezone  = jstz.determine(),
       Event     = require('../models/event'),
-      User      = require('../models/user');
+      User      = require('../models/user'),
+      Kid       = require('../models/kid');  
 
 // Initalize Google Calendar w Token from Passport. Paste Token Here once Copied
 var google_calendar = undefined;
@@ -75,38 +76,44 @@ router.post('/addevent', function(req,res){
           function(err,response){
             if(err){
               console.log(err);
-            } else{
-              console.log("Event Inserted Into Google Database");
+            } else {
               res.send("All Good from Google");
+              const newEvent = Event();
+
+              newEvent.title = req.body.title;
+              newEvent.startDateTime = req.body.startDate.concat(':00');
+              newEvent.endDateTime = req.body.endDate.concat(':00');
+              newEvent.calendarName = req.body.calendar;
+              newEvent.email = req.user.email;
+  
+              newEvent.save(function(err, data){
+                if(err){
+                  console.log(err);
+                } else{
+                  console.log("Event Inserted into Kiddo DB");
+                  // Insert Event ID into Users Table for User that Created Event
+                  
+                  User.findOneAndUpdate({email: data.email}, {$push:{events:data._id}}, function(err, response){
+                    if(err){
+                      console.log(err);
+                    } else{
+                      console.log("User Updated With New Event");
+
+                      Kid.findOneAndUpdate({calendarId: calendarId}, {$push:{events:data._id}}, function(err, response){
+                        if(err){
+                          console.log(err);
+                        }  else{
+                          console.log("Kid Updated With New Event");
+                        }
+                      });
+                    }
+                  });
+                }
+              });
             }
           });
         }
       }
-    }
-  });
-
-  // Event Inserted into Kiddo Database
-  const newEvent = Event();
-
-  newEvent.title = req.body.title;
-  newEvent.startDateTime = req.body.startDate.concat(':00');
-  newEvent.endDateTime = req.body.endDate.concat(':00');
-  newEvent.calendarName = req.body.calendar;
-  newEvent.email = req.user.email;
-  
-  newEvent.save(function(err, data){
-    if(err){
-      console.log(err);
-    } else{
-      console.log("Event Inserted into Kiddo DB");
-      // Insert Event ID into Users Table for User that Created Event
-      User.findOneAndUpdate({email: data.email}, {$push:{events:data._id}}, function(err, response){
-        if(err){
-          console.log(err);
-        } else{
-          console.log("User Updated With New Event");
-        }
-      });
     }
   });
 });

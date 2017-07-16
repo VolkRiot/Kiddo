@@ -39,6 +39,7 @@ class AddKiddo extends React.Component {
 		if (okToSubmit) {
 			newKiddoData.user_id = user_id;
 			this.props.saveNewKiddo(newKiddoData);
+			this.props.addNewCalendar(newKiddoData); 
 
 			this.setState({
 				firstName: '',
