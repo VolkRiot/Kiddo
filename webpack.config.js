@@ -10,9 +10,13 @@ let config = {
     filename: 'js/bundle.js'
   },
   module: {
+    loaders: [
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+      // ...
+    ],
     rules: [
       { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
-      {test: /\.css$/,
+      { test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: "css-loader",

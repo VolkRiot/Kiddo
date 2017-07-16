@@ -3,7 +3,7 @@
 const express = require('express'),
       router  = express.Router();
 
-const controllers = require('../controllers');
+const controllers = require('./../controllers');
 
 /* GET */
 /*
@@ -164,4 +164,11 @@ router.delete('/:collection', (req, res, next) => {
   }
 });
 
+
+
+
+
 module.exports = router;
+
+
+

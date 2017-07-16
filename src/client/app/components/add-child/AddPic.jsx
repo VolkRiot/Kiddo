@@ -1,20 +1,23 @@
 'use strict';
+import React, { Component } from 'react';
+import * as style from './addpic.css';
 
-import React from 'react';
+class AddPic extends Component {
+	render() {
 
-class AddPic extends React.Component {
-	render(){
-		return(
-			<div className="uploadPic">
-				<h4>Upload Child Photo</h4>
-				<label className="custom-file">
-		  			<input type="file" id="file" className="custom-file-input"/>
-		  				<span className="custom-file-control"></span>
-				</label>
-				<br />
-				<button type="button" className="btn btn-outline-warning btn-lg">Submit</button>
+		return (
+			<div className="add-pic form-group row">
+				<div>
+					 <button onClick={ this.props.saveImgHandler } className="btn btn-secondary"
+						 style={{borderRadius: "50%"}}
+						 >
+						  <img src={ this.props.imgSrc } style={{width:250 , height:250, borderRadius: "50%"}} />
+					 </button>
+				</div>
 			</div>
-			)
+		)
 	}
+
 }
+
 export default AddPic;

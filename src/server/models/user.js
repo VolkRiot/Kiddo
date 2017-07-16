@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const mongoose   = require('../db/mongodb'),
       Schema     = mongoose.Schema,
@@ -42,7 +42,6 @@ UserSchema.pre('remove', function(next) {
 
   KidModel.remove({_id: {$in: this.kids}}).exec( err => {
     if (err) {
-      console.log('Fail on delete User Kids');
       let err = new Error('Fail on Delete Kids');
       next(err);
     } else {
@@ -52,7 +51,6 @@ UserSchema.pre('remove', function(next) {
 
   EventModel.remove({_id: {$in: this.events}}).exec( err => {
     if (err) {
-      console.log('Fail on delete User Kids');
       let err = new Error('Fail on Delete Kids');
       next(err);
     } else {
