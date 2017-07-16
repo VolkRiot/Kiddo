@@ -1,8 +1,9 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
+import * as style from './homefooter.css';
 
-class HomeFooter extends React.Component {
+class HomeFooter extends Component {
   render() {
     return (
       <div className="footer navbar-fixed-bottom" id="footer">
@@ -17,9 +18,9 @@ class HomeFooter extends React.Component {
             Sign In With Google >>
           </button>
         </a>
-        <div className="aboutFaq"> 
-          <a href="#">About </a> 
-          <a href="#"> FAQ </a> 
+        <div className="aboutFaq">
+          <a href="#">About </a>
+          <a href="#"> FAQ </a>
           <a href="#">Terms</a>
         </div>
       </div>
@@ -27,4 +28,3 @@ class HomeFooter extends React.Component {
   }
 }
 export default HomeFooter;
-

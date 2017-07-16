@@ -1,18 +1,19 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 import AddPic from './AddPic';
+import * as style from './addkiddo.css';
 
-class AddKiddo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName: '',
-      lastName: '',
-      userName: '',
-      password: '',
-      avatar: { url: './img/girl.png' }
-    };
+class AddKiddo extends Component {
+	constructor (props) {
+		super(props);
+		this.state = {
+			firstName: '',
+			lastName: '',
+			userName: '',
+			password: '',
+			avatar:{url:'./img/addpic.png'}
+		};
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -27,29 +28,28 @@ class AddKiddo extends React.Component {
     event.preventDefault();
     let newKiddoData = this.state;
     let okToSubmit = true;
-    let user_id = this.props.user._id;
+    let user_id =  this.props.user._id;
 
-    Object.keys(newKiddoData).map(item => {
-      const input = newKiddoData[item];
-      if (input === '') {
-        okToSubmit = false;
-      }
-    });
+		Object.keys(newKiddoData).map(item => {
+			const input = newKiddoData[item];
+			if (input === '') {
+				okToSubmit = false;
+			}
+		});
 
-    if (okToSubmit) {
-      newKiddoData.user_id = user_id;
-      this.props.saveNewKiddo(newKiddoData);
-      this.props.addNewCalendar(newKiddoData);
+		if (okToSubmit) {
+			newKiddoData.user_id = user_id;
+			this.props.saveNewKiddo(newKiddoData);
 
-      this.setState({
-        firstName: '',
-        lastName: '',
-        userName: '',
-        password: '',
-        avatar: { url: './img/girl.png' }
-      });
-    }
-  }
+			this.setState({
+				firstName: '',
+				lastName: '',
+				userName: '',
+				password: '',
+				avatar:{url:'./img/addpic.png'}
+			});
+		}
+	}
 
   saveImgHandler() {
     const ImgHelper = this.props.ImgHelper();
@@ -65,76 +65,69 @@ class AddKiddo extends React.Component {
     });
   }
 
-  render() {
-    return (
-      <div className="container">
-        <div className="addChild row">
-          <h3>Register Your Kiddo Below!</h3>
+	render(){
+		return (
+			<div className="addChild row">
+				<h3>Register Your Kiddo Below!</h3>
 
-          <div className="col-md-6">
-            <form onSubmit={this.onFormSubmit}>
-              <div className="form-group">
-                <input
-                  onChange={this.onInputChange}
-                  name="firstName"
-                  value={this.state.firstName}
-                  type="text"
-                  className="form-control"
-                  placeholder="First Name"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  onChange={this.onInputChange}
-                  name="lastName"
-                  value={this.state.lastName}
-                  type="text"
-                  className="form-control"
-                  placeholder="Last Name"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  onChange={this.onInputChange}
-                  name="userName"
-                  value={this.state.userName}
-                  type="text"
-                  className="form-control"
-                  placeholder="User Name"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  onChange={this.onInputChange}
-                  name="password"
-                  value={this.state.password}
-                  type="password"
-                  className="form-control"
-                  placeholder="Password (can be the same as yours)"
-                />
-              </div>
+					<div className="col-md-6">
+						<form  onSubmit={ this.onFormSubmit }>
+							<div className='form-group'>
+								<input
+									onChange={ this.onInputChange }
+									name="firstName"
+									value={ this.state.firstName }
+									type="text"
+									className="form-control"
+									placeholder="First Name"
+								/>
+							</div>
+							<div className="form-group">
+								<input
+									onChange={ this.onInputChange }
+									name ="lastName"
+									value={ this.state.lastName }
+									type="text"
+									className="form-control"
+									placeholder="Last Name"
+								/>
+							</div>
+							<div className="form-group">
+								<input
+									onChange={ this.onInputChange }
+									name ="userName"
+									value={ this.state.userName }
+									type="text"
+									className="form-control"
+									placeholder="User Name"
+								/>
+							</div>
+							<div className="form-group">
+								<input
+									onChange={ this.onInputChange }
+									name ="password"
+									value={ this.state.password }
+									type="password"
+									className="form-control"
+									placeholder="Password (can be the same as yours)"
+								/>
+							</div>
 
-              <div>
-                <span className="input-group-btn">
-                  <button type="submit" className="btn btn-secondary">
-                    Submit
-                  </button>
-                </span>
-              </div>
-            </form>
-          </div>
-          <div className="col-md-6">
-            <h4 className="addPhotoTitle">Import your child's photo:</h4>
-            <AddPic
-              imgSrc={this.state.avatar.url}
-              user={this.props.user}
-              saveImgHandler={this.saveImgHandler}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
+							<div>
+							<span className="input-group-btn">
+								<button type="submit" className="btn btn-secondary">Submit</button>
+							 </span>
+							</div>
+
+						</form>
+					</div>
+					<div className="col-md-6">
+						<AddPic imgSrc={ this.state.avatar.url } user={ this.props.user } saveImgHandler={ this.saveImgHandler } />
+					</div>
+			</div>
+		)
+	}
+
 }
 
 export default AddKiddo;

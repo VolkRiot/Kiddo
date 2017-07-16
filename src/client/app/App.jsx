@@ -4,19 +4,20 @@ import React, { Component } from 'react';
 
 import {Route, Switch } from 'react-router-dom';
 
-
 import Home from './components/landing/Home';
 import NotFound from './components/NotFound';
 import Dashboard from './components/dashboard/Dashboard';
 import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
+import KiddoProfile from './components/kiddo-profile/KiddoProfile';
+import Mapski from './components/map/Map';
 import ApiHelper from './utils/apiHelper';
 import FileStackHelper from './utils/fileStackHelper';
 
+import '../index.css';
+
 const Api = ApiHelper();
 const ImgHelper = FileStackHelper();
-
-import '../index.css';
 
 class App extends Component {
   constructor(props) {
@@ -44,18 +45,20 @@ class App extends Component {
 
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
-    addKiddo.then(result => {
-    	let kiddosList = this.state.kiddosList;
-    	kiddosList.push(result.data.body);
-      this.setState({ kiddosList });
-    })
-  }  
-  
+  // Save new Calendar too! (TODO: Make better this sucks!);
+   addKiddo.then(() => {
+     this.addNewCalendar(newKiddo)
+      .then(result => {
+        let kiddosList = this.state.kiddosList;
+        kiddosList.push(result.data);
+        this.setState({ kiddosList });
+      });
+   });
+  }
+
   addNewCalendar (newKidName) {
-   let addCalendar = Api.addCalendar(newKidName);
-    addCalendar.then(result => {
-    })
-  }  
+   return Api.addCalendar(newKidName);
+  }
 
   ImgHelper () {
     return ImgHelper;
@@ -77,7 +80,9 @@ class App extends Component {
                   addNewCalendar={ this.addNewCalendar }
                   { ...props }/>
           )}/>
-          <Route path='/calendar' component={ Calendar }/>
+          <Route path='/dashboard/calendar' component={ Calendar }/>
+          <Route path='/dashboard/profile' component={ KiddoProfile }/>
+          <Route path='/dashboard/map' component={ Mapski }/>
           <Route component={ NotFound }/>
         </Switch>
 

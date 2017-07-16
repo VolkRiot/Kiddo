@@ -1,9 +1,10 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 import HomeFooter from './HomeFooter';
+import * as style from './home.css';
 
-class Home extends React.Component {
+class Home extends Component {
   constructor(props) {
     super(props);
   }

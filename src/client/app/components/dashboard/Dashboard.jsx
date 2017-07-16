@@ -11,9 +11,16 @@ import ProfileCalendar from './ProfileCalendar';
 import { Link } from 'react-router-dom';
 import {DropdownButton, MenuItem, ButtonToolbar} from 'react-bootstrap';
 
+import React, { Component } from 'react';
+import DashAvatar from './DashAvatar';
+import * as style from './dashboard.css';
 
-//(TODO) create Avater component to render each of the for elements
-class Profile extends React.Component {
+
+class Dashboard extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		const path = this.props.match.path;
 		const BUTTONS = ['Success'];
@@ -31,34 +38,51 @@ class Profile extends React.Component {
 		  <ButtonToolbar>{BUTTONS.map(renderDropdownButton)}</ButtonToolbar>
 		);
 		return (
-			<div className="container">
+
 				<div className="drop">{buttonsInstance}</div>
-					<h1 id="parentTitle">Hello, Organized!</h1>
+				
+
+			<div className="dashboard container">
+				<h1 id="icon">Kiddo</h1>
+				<h1 id="parentTitle">Hello, Organized!</h1>
+
+
 				<div className="row" id="row1">
-					<div className="col-lg-6" id="view1">
-						<ProfileKid />
+					<div className="col-lg-6 hvr-grow" id="view1">
+						<DashAvatar
+							title={ 'Kiddo Profiles' }
+							imgSrc={ './img/girl.png' }
+							to={ `${ path }/profile` }
+						/>
 					</div>
-					<div className="col-lg-6" id="view2">
-						<ProfileMap />
+					<div className="col-lg-6 hvr-grow" id="view2">
+						<DashAvatar
+							title={ 'Map' }
+							imgSrc={ './img/map.png' }
+							to={ `${ path }/map` }
+						/>
 					</div>
 				</div>
+
 				<div className="row" id="row2">
-					<div className="col-lg-6" id="view3">
-						<ProfileCalendar />
+					<div className="col-lg-6 hvr-grow" id="view3">
+						<DashAvatar
+							title={ 'Calendar' }
+							imgSrc={ './img/calendar-icon.png' }
+							to={ `${ path }/calendar` }   /*(TODO) change the path to /dashboard/calendar === { `${ path }/calendar` } */
+						/>
 					</div>
-				<div className="col-lg-6" id="view4">
-					<div className="thumbnail shake-slow">
-              			<Link to={ `${ path }/addkiddo` }>		
-              				<img src={'./img/pencil.png'} />
-							Add New Kiddo
-						</Link>
+					<div className="col-lg-6 hvr-grow" id="view4">
+						<DashAvatar
+								title={ 'New Kiddo' }
+								imgSrc={ './img/pencil.png' }
+								to={ `${ path }/addkiddo` }
+						/>
 					</div>
-				</div>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default Profile;
-
+export default Dashboard;
