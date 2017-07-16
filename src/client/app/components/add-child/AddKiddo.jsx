@@ -12,7 +12,7 @@ class AddKiddo extends React.Component {
 			lastName: '',
 			userName: '',
 			password: '',
-			avatar:{url:'./img/girl.png'}
+			avatar:{url:'./img/addpic.png'}
 		};
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -46,7 +46,7 @@ class AddKiddo extends React.Component {
 				lastName: '',
 				userName: '',
 				password: '',
-				avatar:{url:'./img/girl.png'}
+				avatar:{url:'./img/addpic.png'}
 			});
 		}
 	}

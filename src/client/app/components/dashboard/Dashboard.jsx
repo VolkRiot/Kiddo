@@ -19,14 +19,14 @@ class Dashboard extends React.Component {
 				<h1 id="parentTitle">Hello, Organized!</h1>
 
 				<div className="row" id="row1">
-					<div className="col-lg-6" id="view1">
+					<div className="col-lg-6 hvr-grow" id="view1">
 						<DashAvatar
 							title={ 'Kiddo Profiles' }
 					    imgSrc={ './img/girl.png' }
 					    to={ `${ path }/profile` }
 						/>
 					</div>
-					<div className="col-lg-6" id="view2">
+					<div className="col-lg-6 hvr-grow" id="view2">
 						<DashAvatar
 							title={ 'Map' }
 							imgSrc={ './img/map.png' }
@@ -36,14 +36,14 @@ class Dashboard extends React.Component {
 				</div>
 
 				<div className="row" id="row2">
-					<div className="col-lg-6" id="view3">
+					<div className="col-lg-6 hvr-grow" id="view3">
 						<DashAvatar
 							title={ 'Calendar' }
 							imgSrc={ './img/calendar-icon.png' }
 							to={ `${ path }/calendar` }   /*(TODO) change the path to /dashboard/calendar === { `${ path }/calendar` } */
 						/>
 					</div>
-					<div className="col-lg-6" id="view4">
+					<div className="col-lg-6 hvr-grow" id="view4">
 						<DashAvatar
 								title={ 'New Kiddo' }
 								imgSrc={ './img/pencil.png' }

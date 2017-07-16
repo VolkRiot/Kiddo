@@ -73,7 +73,7 @@ class App extends Component {
           )}/>
           <Route path='/dashboard/calendar' component={ Calendar }/>
 	        <Route path='/dashboard/profile' component={ KiddoProfile }/>
-	        <Route path='/dashboard/map' component={ KiddoProfile }/>
+	        <Route path='/dashboard/map' component={ Map }/>
           <Route component={ NotFound }/>
         </Switch>
 
