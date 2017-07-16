@@ -1,5 +1,5 @@
 'use strict';
-import React from 'react';
+import React, { Component } from 'react';
 import $ from 'jquery';
 import moment from 'moment';
 import fullCalendar from 'fullcalendar';
@@ -15,7 +15,7 @@ import './calendarStyles/vex-theme-os.css';
 // Vex Plugin
 vex.registerPlugin(vex_dialog);
 
-class Calendar extends React.Component{
+class Calendar extends Component {
     constructor(props) {
         super(props);
         this.state = { didSubmit: false };

@@ -30,6 +30,7 @@
     "csshake": "^1.5.2",
     "debug": "~2.6.3",
     "dotenv": "^4.0.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
     "express": "~4.15.2",
     "express-session": "^1.15.3",
     "filestack-js": "^0.7.1",

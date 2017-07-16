@@ -1,11 +1,11 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
-class NotFound extends React.Component {
+class NotFound extends Component {
   render() {
     return (
-      <div>
+      <div className="not-found container">
         <h1>404</h1>
         <pre>Page Not Found!</pre>
       </div>
@@ -13,4 +13,3 @@ class NotFound extends React.Component {
   }
 }
 export default NotFound;
-
