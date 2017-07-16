@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  AsyncStorage,
+  ActivityIndicator,
+  Dimensions
+} from 'react-native';
 import RegisterApp from '../components/registerApp';
+
+// import Proptypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// import SocketIOClient from 'socket.io-client';
 
 class Main extends Component {
   render() {
@@ -17,8 +29,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
 
-export default Main
+export default Main;
