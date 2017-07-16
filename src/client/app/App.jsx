@@ -54,12 +54,6 @@ class App extends Component {
         this.setState({ kiddosList });
       });
    });
-
-    // addKiddo.then(result => {
-    //   let kiddosList = this.state.kiddosList;
-    //   kiddosList.push(result.data.body);
-    //   this.setState({ kiddosList });
-    // });
   }
 
   addNewCalendar (newKidName) {
