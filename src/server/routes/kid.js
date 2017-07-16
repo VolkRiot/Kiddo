@@ -10,8 +10,7 @@ const express   = require('express'),
 // eslint-disable-next-line no-unused-vars
 var google_calendar = undefined;
 
-router.post('/addcalendar', function(req /*, res*/) {
-
+router.post('/addcalendar', function(req, res) {
     // Initiate google_calendar with token
     if(!google_calendar) {
         var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
@@ -25,8 +24,12 @@ router.post('/addcalendar', function(req /*, res*/) {
             if(err){
                 throw new Error('Failed attempting to add new Calendar');
             } else{
-                Kid.findOneAndUpdate({userName: req.body.userName}, {$set:{calendarId:response.id}}, function(err /*, response */) {
-                    if (err) throw new Error('Failed to update child with new Calendar schema');
+                Kid.findOneAndUpdate({userName: req.body.userName}, {$set:{calendarId:response.id}}, function(err, response) {
+                    if (err) {
+                      throw new Error('Failed to update child with new Calendar schema');
+                    } else {
+                      res.status(200).json(response);
+                    }
                 });
             }
         }

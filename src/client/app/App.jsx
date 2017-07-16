@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 
 import {Route, Switch } from 'react-router-dom';
 
-
 import Home from './components/landing/Home';
 import NotFound from './components/NotFound';
 import Dashboard from './components/dashboard/Dashboard';
@@ -15,10 +14,10 @@ import Mapski from './components/map/Map';
 import ApiHelper from './utils/apiHelper';
 import FileStackHelper from './utils/fileStackHelper';
 
+import '../index.css';
+
 const Api = ApiHelper();
 const ImgHelper = FileStackHelper();
-
-import '../index.css';
 
 class App extends Component {
   constructor(props) {
@@ -46,17 +45,25 @@ class App extends Component {
 
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
-    addKiddo.then(result => {
-    	let kiddosList = this.state.kiddosList;
-    	kiddosList.push(result.data.body);
-      this.setState({ kiddosList });
-    })
+  // Save new Calendar too! (TODO: Make better this sucks!);
+   addKiddo.then(() => {
+     this.addNewCalendar(newKiddo)
+      .then(result => {
+        let kiddosList = this.state.kiddosList;
+        kiddosList.push(result.data);
+        this.setState({ kiddosList });
+      });
+   });
+
+    // addKiddo.then(result => {
+    //   let kiddosList = this.state.kiddosList;
+    //   kiddosList.push(result.data.body);
+    //   this.setState({ kiddosList });
+    // });
   }
 
   addNewCalendar (newKidName) {
-   let addCalendar = Api.addCalendar(newKidName);
-    addCalendar.then(result => {
-    })
+   return Api.addCalendar(newKidName);
   }
 
   ImgHelper () {
