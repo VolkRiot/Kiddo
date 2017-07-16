@@ -4,7 +4,8 @@ const express   = require('express'),
       gcal      = require('google-calendar'),
       jstz      = require('jstz'), // Automatically detect timezone and initialize
       timezone  = jstz.determine(),
-      Kid       = require('../models/kid');
+      Kid       = require('../models/kid'),
+      User      = require('../models/user');
 
 // Route to Create Calendar
 // eslint-disable-next-line no-unused-vars

@@ -6,7 +6,8 @@ const express  = require('express'),
       calndr   = require('./calendar'),
       kid      = require('./kid'),
       all      = require('./api'),
-      mobile   = require('./mobileHelpers');
+      mobile   = require('./mobileHelpers'),
+      user     = require('./user');
 
 // Express router defined
 const router = express.Router();
@@ -22,5 +23,6 @@ router.use('/api', all);
 router.use('/auth', auth);
 router.use('/kid', kid);
 router.use('/mobile', mobile);
+router.use('/user', user);
 
 module.exports = router;
