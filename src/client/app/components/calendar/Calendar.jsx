@@ -16,8 +16,9 @@ import './calendarStyles/vex-theme-os.css';
 vex.registerPlugin(vex_dialog);
 
 class Calendar extends React.Component{
-    getInitialState() {
-        return {didSubmit: false}
+    constructor(props) {
+        super(props);
+        this.state = { didSubmit: false };
     }
 
     componentDidMount() {
@@ -40,7 +41,7 @@ class Calendar extends React.Component{
 
                         // JQuery DOM Edit to Allow Creation of Form
                         $('.vex-dialog-message').html("<form><div class='form-group'><label for='calendar-title'>Event Tite</label><input type='text' class='form-control' id='calendar-title'></div><div class='form-group'><label for='calendar-startDate'>Start Date</label><input type='datetime-local' class='form-control' id='calendar-startDate'></div><div class='form-group'><label for='calendar-endDate'>End Date</label><input type='datetime-local' class='form-control' id='calendar-endDate'></div><div class='form-group'><label for='calendar-dropdown'>Calendar Name</label><select class='form-control' id='calendar-dropdown'></select></div><button type='submit' id='submit-btn' class='btn btn-primary'>Submit Event</button></form>");
-                        
+
                         // Post Call to Send Event Data to Server
                         $('#submit-btn').click('.vex-dialog-message', function(event){
                             var eventInfo = {
@@ -49,7 +50,7 @@ class Calendar extends React.Component{
                                 endDate: $("#calendar-endDate").val().trim(),
                                 calendar: $('#calendar-dropdown option:selected').text().trim()
                             }
-                                
+
                             $.post('/calendar/addevent', eventInfo).done(function(response){
                                 this.setState({didSubmit: true});
                             }.bind(this));
@@ -77,8 +78,8 @@ class Calendar extends React.Component{
         var colorArray = ['red','blue','orange','green','purple'];
 
         //GetRequest for Google Calendar Events
-        $.get('/calendar/getevents', function(response){    
-            
+        $.get('/calendar/getevents', function(response){
+
             // Push Calendar Titles to Its Own Array
             $.each(response.calendarList.items, function(i,val){
                 calendarTitleArray.push(val.summary);
@@ -114,9 +115,9 @@ class Calendar extends React.Component{
                     events: eventArray,
                     color: colorArray[i]
                 }
-                
+
                 //For initial and rerendering. Add Each Evenrs Object and rerender Calendar
-                
+
                 $('#calendar').fullCalendar('addEventSource', eventsObject);
                 $('#calendar').fullCalendar( 'rerenderEvents');
 
@@ -127,7 +128,6 @@ class Calendar extends React.Component{
             //Add Calendar Names to Add Event Dropdown
              $('.fc-AddEvent-button').click(function(){
                 $.each(calendarTitleArray, function(i,val){
-                    console.log(val);
                     var newOption = $('<option>');
                     newOption.html(val);
                     newOption.attr('value',val);
