@@ -1,5 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
+import * as style from './addpic.css';
 
 class AddPic extends Component {
 	render() {

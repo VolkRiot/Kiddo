@@ -7,7 +7,7 @@ class KiddoProfile extends Component {
 		super(props);
 		this.state = {
 
-		}
+		};
 
 	}
 
@@ -16,7 +16,7 @@ class KiddoProfile extends Component {
 				<div className="kiddo-profile container">
 					<h1>Kiddo Profile</h1>
 				</div>
-		)
+		);
 	}
 }
 

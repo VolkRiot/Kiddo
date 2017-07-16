@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const Crud        = require('./CRUD'),
       UserModel   = require('./../models/user');
@@ -11,7 +11,7 @@ UserController.destroy = function (id, cb) {
 
   this.Model.findById({ _id: id }, (err, user) => {
     if (err) {
-      console.log('user not found on destroy');
+      // user not found on destroy
       this.errorHandler(err, user, cb);
     } else if (user) {
       user.remove((err, result) => {

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const Crud       = require('./CRUD'),
       KidModel   = require('./../models/kid'),
@@ -17,7 +17,7 @@ KidController.create =  function (query, cb) {
     if (err) {
       this.errorHandler(err, null, cb);
     } else {
-      UserModel.findOneAndUpdate({_id: doc.user_id}, {$push:{kids:doc._id}}, (err, result) => {
+      UserModel.findOneAndUpdate({_id: doc.user_id}, {$push:{kids:doc._id}}, (err) => {
         if(err){
           this.errorHandler(err, null, cb);
         } else{
@@ -31,10 +31,10 @@ KidController.create =  function (query, cb) {
 KidController.destroy = function (id, cb) {
   this.Model.findById({ _id: id }, (err, user) => {
     if (err) {
-      console.log('user not found on destroy');
+      // user not found on destroy
       this.errorHandler(err, user, cb);
     } else if (user) {
-      console.log('user found deleting kids');
+      // user found deleting kids
       user.remove((err, result) => {
         this.errorHandler(err, result, cb);
       });

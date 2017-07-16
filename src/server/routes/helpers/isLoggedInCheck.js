@@ -1,4 +1,4 @@
-// route middleware helpers 
+// route middleware helpers
 module.exports = {
 
   // Used when want to hit an express route but redirect if user is not logged in
@@ -8,12 +8,12 @@ module.exports = {
           next();
 
       // if they aren't redirect them to the home page
-      res.status(300).redirect('/')
+      res.status(300).redirect('/');
   },
   // Used to verify that the user exists or otherwise send error
   isUser: function (req, res, next) {
     if(!req.user) {
-      res.status(204).json({ user: false })
+      res.status(204).json({ user: false });
 
     } else {
       next();
@@ -25,8 +25,8 @@ module.exports = {
     if (user) {
       next();
     } else {
-      res.status(401).json({ authenticated: false})
+      res.status(401).json({ authenticated: false});
     }
   }
 
-}
+};

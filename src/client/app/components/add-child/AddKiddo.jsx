@@ -1,10 +1,10 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 import AddPic from './AddPic';
 import * as style from './addkiddo.css';
 
-class AddKiddo extends React.Component {
+class AddKiddo extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
@@ -18,14 +18,14 @@ class AddKiddo extends React.Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.saveImgHandler = this.saveImgHandler.bind(this);
-	}
+  }
 
   onInputChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   onFormSubmit(event) {
-		event.preventDefault();
+    event.preventDefault();
     let newKiddoData = this.state;
     let okToSubmit = true;
     let user_id =  this.props.user._id;
@@ -52,17 +52,17 @@ class AddKiddo extends React.Component {
 	}
 
   saveImgHandler() {
-		const ImgHelper = this.props.ImgHelper();
-	  const fileName = (this.props.user._id || 'user').concat(this.state.firstName || 'kiddo') ;
+    const ImgHelper = this.props.ImgHelper();
+    const fileName = (this.props.user._id || 'user')
+      .concat(this.state.firstName || 'kiddo');
 
-	  ImgHelper.saveImage(fileName).then(res => {
-		  if (res.filesUploaded[0]) {
-			  this.setState({avatar: res.filesUploaded[0]});
-		  } else {
-		  	this.setState({avatar: res.filesFailed[0]}); //(TODO) TEST FAIL CASE
-		  }
-
-	  });
+    ImgHelper.saveImage(fileName).then(res => {
+      if (res.filesUploaded[0]) {
+        this.setState({ avatar: res.filesUploaded[0] });
+      } else {
+        this.setState({ avatar: res.filesFailed[0] }); //(TODO) TEST FAIL CASE
+      }
+    });
   }
 
 	render(){

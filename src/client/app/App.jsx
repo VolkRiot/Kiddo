@@ -11,7 +11,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
 import KiddoProfile from './components/kiddo-profile/KiddoProfile';
-import Map from './components/map/Map';
+import Mapski from './components/map/Map';
 import ApiHelper from './utils/apiHelper';
 import FileStackHelper from './utils/fileStackHelper';
 
@@ -29,6 +29,7 @@ class App extends Component {
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
+    this.addNewCalendar = this.addNewCalendar.bind(this);
     this.ImgHelper = this.ImgHelper.bind(this);
   }
 
@@ -52,6 +53,12 @@ class App extends Component {
     })
   }
 
+  addNewCalendar (newKidName) {
+   let addCalendar = Api.addCalendar(newKidName);
+    addCalendar.then(result => {
+    })
+  }
+
   ImgHelper () {
     return ImgHelper;
   }
@@ -69,11 +76,12 @@ class App extends Component {
                   user={ this.state.user }
                   saveNewKiddo={ this.saveNewKiddo }
                   ImgHelper={ this.ImgHelper }
+                  addNewCalendar={ this.addNewCalendar }
                   { ...props }/>
           )}/>
           <Route path='/dashboard/calendar' component={ Calendar }/>
-	        <Route path='/dashboard/profile' component={ KiddoProfile }/>
-	        <Route path='/dashboard/map' component={ Map }/>
+          <Route path='/dashboard/profile' component={ KiddoProfile }/>
+          <Route path='/dashboard/map' component={ Mapski }/>
           <Route component={ NotFound }/>
         </Switch>
 

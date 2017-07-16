@@ -1,14 +1,13 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 import DashAvatar from './DashAvatar';
 import * as style from './dashboard.css';
 
-class Dashboard extends React.Component {
+class Dashboard extends Component {
 	constructor(props) {
 		super(props);
 	}
-
 
 	render() {
 		const path = this.props.match.path;
@@ -22,8 +21,8 @@ class Dashboard extends React.Component {
 					<div className="col-lg-6 hvr-grow" id="view1">
 						<DashAvatar
 							title={ 'Kiddo Profiles' }
-					    imgSrc={ './img/girl.png' }
-					    to={ `${ path }/profile` }
+							imgSrc={ './img/girl.png' }
+							to={ `${ path }/profile` }
 						/>
 					</div>
 					<div className="col-lg-6 hvr-grow" id="view2">
@@ -57,4 +56,3 @@ class Dashboard extends React.Component {
 }
 
 export default Dashboard;
-
