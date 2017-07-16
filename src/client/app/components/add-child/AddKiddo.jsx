@@ -124,6 +124,7 @@ class AddKiddo extends React.Component {
             </form>
           </div>
           <div className="col-md-6">
+            <h4 className="addPhotoTitle">Import your child's photo:</h4>
             <AddPic
               imgSrc={this.state.avatar.url}
               user={this.props.user}

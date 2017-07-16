@@ -231,3 +231,8 @@ a:hover {
 	font-size: 40px;
 	font-family: 'Life Savers', cursive
 }
+.addPhotoTitle {
+	padding-bottom: 30px;
+	text-align: left;
+	margin-left: 9%;
+}
