@@ -1,7 +1,7 @@
 const express              = require('express'),
       router               = express.Router(),
       passport             = require('passport'),
-    { isLoggedIn,
+    { /*isLoggedIn,*/
       isUser,
       isAuthenticated }    = require('./helpers/isLoggedInCheck');
 
@@ -22,7 +22,7 @@ router.get('/currentuser', isUser, (req, res) => {
 });
 
 router.get('/authenticate', isAuthenticated, (req, res) => {
-  res.status(200).json({ authenticated: !!req.user })
+  res.status(200).json({ authenticated: !!req.user });
 });
 
 module.exports = router;

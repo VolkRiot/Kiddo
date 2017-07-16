@@ -1,16 +1,16 @@
-'use strict'
+'use strict';
 const express   = require('express'),
       router    = express.Router(),
       gcal      = require('google-calendar'),
       jstz      = require('jstz'), // Automatically detect timezone and initialize
       timezone  = jstz.determine(),
-      Kid       = require('../models/kid');  
-
-var google_calendar = undefined;
+      Kid       = require('../models/kid');
 
 // Route to Create Calendar
+// eslint-disable-next-line no-unused-vars
+var google_calendar = undefined;
 
-router.post('/addcalendar', function(req, res) {
+router.post('/addcalendar', function(req /*, res*/) {
 
     // Initiate google_calendar with token
     if(!google_calendar) {
@@ -18,15 +18,15 @@ router.post('/addcalendar', function(req, res) {
     }
 
     google_calendar.calendars.insert(
-        { 
-            summary: req.body.firstName + " " + req.body.lastName + " (Child Calendar)",
+        {
+            summary: `${req.body.firstName} ${req.body.lastName} (Child Calendar)`,
             timeZone: timezone.name()
         }, function(err, response) {
             if(err){
-                console.log(err);
+                throw new Error('Failed attempting to add new Calendar');
             } else{
-                Kid.findOneAndUpdate({userName: req.body.userName}, {$set:{calendarId:response.id}}, function(err, response){
-                    console.log("New Kid Calendar Created");
+                Kid.findOneAndUpdate({userName: req.body.userName}, {$set:{calendarId:response.id}}, function(err /*, response */) {
+                    if (err) throw new Error('Failed to update child with new Calendar schema');
                 });
             }
         }

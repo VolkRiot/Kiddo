@@ -9,7 +9,9 @@
     "start": "nodemon -e js,jsx --ignore dist --exec babel-node ./src/server/bin/www",
     "start:wds": "webpack -w",
     "prod:start": "cross-env NODE_ENV=production && node ./dist/server/bin/www",
-    "prod:build": "rimraf dist && babel src -d dist --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress"
+    "prod:build": "rimraf dist && babel src -d dist --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
+    "lint": "./node_modules/.bin/eslint src/",
+    "test": "npm run lint"
   },
   "babel": {
     "presets": [
@@ -55,12 +57,16 @@
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
+    "eslint": "^4.2.0",
+    "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "^2.1.2",
     "html-webpack-plugin": "^2.29.0",
+    "jest": "^20.0.4",
     "nodemon": "^1.11.0",
     "style-loader": "^0.18.2",
     "webpack": "^2.2.0",
