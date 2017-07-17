@@ -7,9 +7,9 @@ import * as style from './dashavatar.css';
 class DashAvatar extends Component {
 	render(){
 		return(
-			<div className="dash-avatar thumbnail">
+			<div className="avatar-container">
 				<Link to={ this.props.to }>
-					<img src={ this.props.imgSrc } />
+					<img src={ this.props.imgSrc } className="avatar-image"/>
 						<h3>{ this.props.title }</h3>
 				</Link>
 			</div>

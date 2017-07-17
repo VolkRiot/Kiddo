@@ -11,55 +11,75 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		
+
 		const path = this.props.match.path;
 		
 		return (
-			<div className="dashboard container">
-				<h1 id="icon">Kiddo</h1>
-				<h1 id="parentTitle">Hello, {
-					this.props.user ?
-					this.props.user.firstName : 'Organized'
-			}!</h1>
-				<div className="row" id="row1">
-					<div className="col-lg-6 hvr-grow" id="view1">
-						{
-							this.props.kiddos ?
-								< KiddoCarousel
-									kiddos={ this.props.kiddos }
-								  to={ `${ path }/profile` }
-								/>
-								:
-								<DashAvatar
-									title={ 'Profile' }
-									imgSrc={ './img/girl.png' }
-									to={ `${ path }/addkiddo` }
-								/>
-						}
-					</div>
-					<div className="col-lg-6 hvr-grow" id="view2">
-						<DashAvatar
-							title={ 'Map' }
-							imgSrc={ './img/map.png' }
-							to={ `${ path }/map` }
-						/>
+			<div>
+				<div className="row">
+					<div className="col-xs-12">
+						<h1 id="icon">Kiddo</h1>
 					</div>
 				</div>
-
-				<div className="row" id="row2">
-					<div className="col-lg-6 hvr-grow" id="view3">
-						<DashAvatar
-							title={ 'Calendar' }
-							imgSrc={ './img/calendar-icon.png' }
-							to={ `${ path }/calendar` }
-						/>
+				
+				<div className="dashboard container">
+					<div className="row">
+						<div className="col-xs-12">
+							<h1 id="parentTitle">Hello, {
+								this.props.user ?
+									this.props.user.firstName : 'Organized'
+							}!</h1>
+						</div>
 					</div>
-					<div className="col-lg-6 hvr-grow" id="view4">
-						<DashAvatar
-								title={ 'New Kiddo' }
-								imgSrc={ './img/pencil.png' }
-								to={ `${ path }/addkiddo` }
-						/>
+					
+					<div className="row">
+						<div className="col-sm-6">
+							<div className="avatar-container">
+								{
+									this.props.kiddos.length ?
+										< KiddoCarousel
+											kiddos={ this.props.kiddos }
+											to={ `${ path }/profile` }
+										/>
+										:
+										<DashAvatar
+											title={ 'Profile' }
+											imgSrc={ './img/girl.png' }
+											to={ `${ path }/addkiddo` }
+										/>
+								}
+							</div>
+						</div>
+						<div className="col-sm-6 avatar-container">
+							<div className="avatar-container">
+								<DashAvatar
+									title={ 'Map' }
+									imgSrc={ './img/map.png' }
+									to={ `${ path }/map` }
+								/>
+							</div>
+						</div>
+					</div>
+					
+					<div className="row">
+						<div className="col-sm-6">
+							<div className="avatar-container">
+								<DashAvatar
+									title={ 'Calendar' }
+									imgSrc={ './img/calendar-icon.png' }
+									to={ `${ path }/calendar` }
+								/>
+							</div>
+						</div>
+						<div className="col-sm-6">
+							<div className="avatar-container">
+								<DashAvatar
+									title={ 'New Kiddo' }
+									imgSrc={ './img/pencil.png' }
+									to={ `${ path }/addkiddo` }
+								/>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

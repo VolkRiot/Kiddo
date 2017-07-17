@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 import DashAvatar from './DashAvatar';
 
+
+class LeftNavButton extends React.Component {
+	render() {
+		return <button {...this.props}>Next</button>
+	}
+}
+
+
 class KiddoCarousel extends Component {
 	constructor(props){
 		super(props);
@@ -10,7 +18,7 @@ class KiddoCarousel extends Component {
 		const kiddosArr = this.props.kiddos;
 		const kiddoElement = kiddosArr.map(kiddo => {
 			return (
-				<div key={kiddo._id}>
+				<div key={kiddo._id} className="avatar-container">
 					<DashAvatar
 						title={ kiddo.firstName }
 						imgSrc={ kiddo.avatar.url }
@@ -21,17 +29,25 @@ class KiddoCarousel extends Component {
 		});
 		const settings = {
 			dots: true,
-			infinite: true,
-			speed: 100,
+			infinite: false,
+			speed: 500,
 			slidesToShow: 1,
-			slidesToScroll: 1
+			slidesToScroll: 1,
+			className: 'carousel-window',
+			centerPadding: true
 		};
 		return (
-				<Slider {...settings}>
+			<div>
+				<Slider {...settings} >
 					{ kiddoElement }
 				</Slider>
+			</div>
+			
 		);
 	}
 }
+
+
+
 
 export default KiddoCarousel;

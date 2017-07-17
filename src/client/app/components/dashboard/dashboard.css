@@ -1,3 +1,16 @@
+.avatar-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row; /* works with row or column */
+    flex-direction: row;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    padding: 5%;
+}
+
+
 /* Grow */
 .hvr-grow {
     display: inline-block;
@@ -14,4 +27,12 @@
 .hvr-grow:focus,
 .hvr-grow:active {
     transform: scale(1.1);
+}
+* {
+    min-height: 0;
+    min-width: 0;
+}
+
+.carousel-window {
+    width: 200px;
 }
