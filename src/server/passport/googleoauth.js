@@ -24,6 +24,8 @@ module.exports = function() {
         // Send Access Token and Dashboard Information to Database
 
         process.nextTick(() => {
+          
+          
           User.findOne({ googleId: profile.id }, (err, user) => {
             if (err) {
               return done(err);
