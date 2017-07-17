@@ -23,9 +23,9 @@ router.get('/currentuser', isUser, (req, res) => {
     if (err) {
       return res.status(500).json(err);
     } else if (!user) {
-	    return  res.status(204).json({user: null});
+      return  res.status(204).json({user: null});
     } else {
-	    return res.status(200).json(user);
+      return res.status(200).json(user);
     }
   });
 });
