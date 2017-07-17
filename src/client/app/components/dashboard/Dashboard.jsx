@@ -26,8 +26,8 @@ class Dashboard extends Component {
 						{
 							this.props.kiddos ?
 								< KiddoCarousel
-									title={ 'Profile' }
 									kiddos={ this.props.kiddos }
+								  to={ `${ path }/profile` }
 								/>
 								:
 								<DashAvatar

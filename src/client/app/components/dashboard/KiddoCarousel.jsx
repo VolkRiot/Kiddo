@@ -10,8 +10,12 @@ class KiddoCarousel extends Component {
 		const kiddosArr = this.props.kiddos;
 		const kiddoElement = kiddosArr.map(kiddo => {
 			return (
-				<div>
-					<DashAvatar key={kiddo._id} kiddo={ kiddo } />
+				<div key={kiddo._id}>
+					<DashAvatar
+						title={ kiddo.firstName }
+						imgSrc={ kiddo.avatar.url }
+						to={ `${this.props.to}/${kiddo._id}` }
+					/>
 				</div>
 			)
 		});
@@ -22,10 +26,6 @@ class KiddoCarousel extends Component {
 			slidesToShow: 1,
 			slidesToScroll: 1
 		};
-		
-		
-		
-		console.log(kiddosArr);
 		return (
 				<Slider {...settings}>
 					{ kiddoElement }
