@@ -71,3 +71,4 @@ typings/
 .DS_Store
 /.env
 .idea/
+/coverage/
