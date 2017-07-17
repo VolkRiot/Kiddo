@@ -22,7 +22,7 @@
     "lint": "./node_modules/.bin/eslint src/",
     "test": "npm run lint && jest src/*",
     "test:shallow": "npm run lint",
-    "test:rich": "npm run lint && jest src/*",
+    "test:rich": "npm run lint && jest src/* --coverage",
     "prepush": "npm run test:shallow"
   },
   "babel": {
