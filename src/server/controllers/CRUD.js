@@ -10,7 +10,7 @@ class CRUD {
   findById(query, cb) {
     let totalModels = Object.keys(this.Model.base.models).join('|').toLowerCase().split('|');
 
-    this.Model.find(query).populate(totalModels).exec((err, docs) => {
+    this.Model.findById(query).populate(totalModels).exec((err, docs) => {
       this.errorHandler(err, docs, cb);
     });
 

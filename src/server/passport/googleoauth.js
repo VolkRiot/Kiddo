@@ -24,6 +24,8 @@ module.exports = function() {
         // Send Access Token and Dashboard Information to Database
 
         process.nextTick(() => {
+          
+          
           User.findOne({ googleId: profile.id }, (err, user) => {
             if (err) {
               return done(err);
@@ -40,10 +42,11 @@ module.exports = function() {
             } else {
               // New User Creation
               const newUser = new User();
-
               // Build new User
               newUser.googleId = profile.id;
               newUser.email = profile.emails[0].value;
+              newUser.firstName = profile.name.givenName;
+              newUser.lastName = profile.name.familyName;
               newUser.calAccessToken = accessToken;
 
               newUser.save(err => {
