@@ -6,7 +6,9 @@
   "author": "",
   "license": "",
   "jest": {
-    "setupFiles": ["<rootDir>/src/test-setup.js"],
+    "setupFiles": [
+      "<rootDir>/src/test-setup.js"
+    ],
     "transform": {
       ".*": "<rootDir>/node_modules/jest-css-modules"
     },
