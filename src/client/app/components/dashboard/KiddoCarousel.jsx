@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
-import DashAvatar from './DashAvatar';
-
-
-class LeftNavButton extends React.Component {
-	render() {
-		return <button {...this.props}>Next</button>
-	}
-}
-
 
 class KiddoCarousel extends Component {
 	constructor(props){
@@ -19,11 +11,14 @@ class KiddoCarousel extends Component {
 		const kiddoElement = kiddosArr.map(kiddo => {
 			return (
 				<div key={kiddo._id} className="avatar-container">
-					<DashAvatar
-						title={ kiddo.firstName }
-						imgSrc={ kiddo.avatar.url }
-						to={ `${this.props.to}/${kiddo._id}` }
-					/>
+					<Link to={ `${this.props.to}/${kiddo._id}` } >
+						<div>
+							<img src={ kiddo.avatar.url }  style={{borderRadius: '50%'}} className="dash-avatar-img"/>
+						</div>
+						<div>
+							<h3>{ kiddo.firstName  }</h3>
+						</div>
+					</Link>
 				</div>
 			)
 		});
@@ -33,8 +28,9 @@ class KiddoCarousel extends Component {
 			speed: 500,
 			slidesToShow: 1,
 			slidesToScroll: 1,
-			className: 'carousel-window',
-			centerPadding: true
+			className: 'avatar-container',
+			centerPadding: true,
+			adaptiveHeight: true
 		};
 		return (
 			<div>

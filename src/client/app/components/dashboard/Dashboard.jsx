@@ -11,7 +11,7 @@ class Dashboard extends Component {
 	}
 
 	render() {
-
+		
 		const path = this.props.match.path;
 		
 		return (
@@ -32,25 +32,27 @@ class Dashboard extends Component {
 						</div>
 					</div>
 					
-					<div className="row">
-						<div className="col-sm-6">
-							<div className="avatar-container">
-								{
-									this.props.kiddos.length ?
+					<div className="row" id="row1">
+						<div className="col-sm-6" id="view1">
+							{
+								this.props.kiddos.length ?
+									<div className="avatar-container">
 										< KiddoCarousel
 											kiddos={ this.props.kiddos }
 											to={ `${ path }/profile` }
 										/>
-										:
+									</div>
+									:
+									<div className="avatar-container">
 										<DashAvatar
 											title={ 'Profile' }
 											imgSrc={ './img/girl.png' }
 											to={ `${ path }/addkiddo` }
 										/>
-								}
-							</div>
+									</div>
+							}
 						</div>
-						<div className="col-sm-6 avatar-container">
+						<div className="col-sm-6" id="view2">
 							<div className="avatar-container">
 								<DashAvatar
 									title={ 'Map' }
@@ -61,8 +63,8 @@ class Dashboard extends Component {
 						</div>
 					</div>
 					
-					<div className="row">
-						<div className="col-sm-6">
+					<div className="row" id="row2">
+						<div className="col-sm-6" id="view3">
 							<div className="avatar-container">
 								<DashAvatar
 									title={ 'Calendar' }
@@ -71,7 +73,7 @@ class Dashboard extends Component {
 								/>
 							</div>
 						</div>
-						<div className="col-sm-6">
+						<div className="col-sm-6" id="view4">
 							<div className="avatar-container">
 								<DashAvatar
 									title={ 'New Kiddo' }

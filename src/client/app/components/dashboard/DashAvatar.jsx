@@ -9,7 +9,7 @@ class DashAvatar extends Component {
 		return(
 			<div className="avatar-container">
 				<Link to={ this.props.to }>
-					<img src={ this.props.imgSrc } className="avatar-image"/>
+					<img src={ this.props.imgSrc } className="dash-avatar-img"/>
 						<h3>{ this.props.title }</h3>
 				</Link>
 			</div>
