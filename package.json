@@ -6,6 +6,7 @@
   "author": "",
   "license": "",
   "jest": {
+    "setupFiles": ["<rootDir>/src/test-setup.js"],
     "transform": {
       ".*": "<rootDir>/node_modules/jest-css-modules"
     },
@@ -20,7 +21,7 @@
     "prod:start": "cross-env NODE_ENV=production && node ./dist/server/bin/www",
     "prod:build": "rimraf dist && babel src -d dist --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
     "lint": "./node_modules/.bin/eslint src/",
-    "test": "npm run lint && jest src/*",
+    "test": "npm run lint && jest src/* --env=jsdom",
     "test:shallow": "npm run lint",
     "test:rich": "npm run lint && jest src/* --coverage",
     "prepush": "npm run test:shallow",
