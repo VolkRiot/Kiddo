@@ -40,10 +40,11 @@ module.exports = function() {
             } else {
               // New User Creation
               const newUser = new User();
-
               // Build new User
               newUser.googleId = profile.id;
               newUser.email = profile.emails[0].value;
+              newUser.firstName = profile.name.givenName;
+              newUser.lastName = profile.name.familyName;
               newUser.calAccessToken = accessToken;
 
               newUser.save(err => {
