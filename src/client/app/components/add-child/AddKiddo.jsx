@@ -67,7 +67,7 @@ class AddKiddo extends Component {
 
 	render(){
 		return (
-			<div className="addChild row">
+			<div className="addChild container">
 				<h3>Register Your Kiddo Below!</h3>
 
 					<div className="col-md-6">
