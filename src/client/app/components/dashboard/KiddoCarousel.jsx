@@ -30,7 +30,9 @@ class KiddoCarousel extends Component {
 			slidesToScroll: 1,
 			className: 'avatar-container',
 			centerPadding: true,
-			adaptiveHeight: true
+			adaptiveHeight: true,
+			autoplay: true,
+			infinite: true
 		};
 		return (
 			<div>

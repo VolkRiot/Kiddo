@@ -16,7 +16,7 @@
 .hvr-grow:active {
     transform: scale(1.1);
 }
-* {
+carousel-container {
     min-height: 0;
     min-width: 0;
 }
