@@ -20,7 +20,7 @@
     "prod:start": "cross-env NODE_ENV=production && node ./dist/server/bin/www",
     "prod:build": "rimraf dist && babel src -d dist --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
     "lint": "./node_modules/.bin/eslint src/",
-    "test": "npm run lint && jest src/* --coverage",
+    "test": "npm run lint && jest src/*",
     "prepush": "npm test"
   },
   "babel": {
@@ -68,10 +68,13 @@
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
-    "babel-preset-env": "^1.5.2",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.4",
     "eslint": "^4.2.0",
     "eslint-plugin-react": "^7.1.0",
@@ -83,6 +86,7 @@
     "nodemon": "^1.11.0",
     "react-test-renderer": "^15.6.1",
     "style-loader": "^0.18.2",
+    "supertest": "^3.0.0",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.5.0"
   }
