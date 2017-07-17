@@ -8,6 +8,10 @@
   "jest": {
     "transform": {
       ".*": "<rootDir>/node_modules/jest-css-modules"
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     }
   },
   "scripts": {
@@ -16,8 +20,13 @@
     "prod:start": "cross-env NODE_ENV=production && node ./dist/server/bin/www",
     "prod:build": "rimraf dist && babel src -d dist --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
     "lint": "./node_modules/.bin/eslint src/",
-    "test": "npm run lint && jest src/* --coverage",
-    "prepush": "npm test"
+    "test": "npm run lint && jest src/*",
+    "test:shallow": "npm run lint",
+    "test:rich": "npm run lint && jest src/* --coverage",
+    "prepush": "npm run test:shallow",
+    "seed:all": "npm run seed:users && npm run seed:kids",
+    "seed:users": "mongoimport --db kiddo_db --collection users --drop --file seed/userSeed.json",
+    "seed:kids": "mongoimport --db kiddo_db --collection kids --drop --file seed/kidSeed.json"
   },
   "babel": {
     "presets": [
@@ -29,6 +38,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "babel-cli": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
@@ -77,10 +87,12 @@
     "html-webpack-plugin": "^2.29.0",
     "husky": "^0.14.3",
     "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
     "jest-css-modules": "^1.1.0",
     "nodemon": "^1.11.0",
     "react-test-renderer": "^15.6.1",
     "style-loader": "^0.18.2",
+    "supertest": "^3.0.0",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.5.0"
   }

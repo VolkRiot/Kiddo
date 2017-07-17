@@ -35,12 +35,10 @@ class App extends Component {
     this.getUser();
   }
 
-  getUser () {
-    const getUser = Api.getCurrentUser();
-    getUser.then(result => {
-      const User = result.data;
-      this.setState({user: User, kiddosList: User.kids});
-    });
+  async getUser () {
+    const result = await Api.getCurrentUser();
+    const User = result.data;
+    this.setState({user: User, kiddosList: User.kids});
   }
 
   saveNewKiddo (newKiddo) {
