@@ -6,7 +6,9 @@
   "author": "",
   "license": "",
   "jest": {
-    "setupFiles": ["<rootDir>/src/test-setup.js"],
+    "setupFiles": [
+      "<rootDir>/src/test-setup.js"
+    ],
     "transform": {
       ".*": "<rootDir>/node_modules/jest-css-modules"
     },
@@ -69,7 +71,9 @@
     "react-modal": "^2.2.1",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.2",
+    "react-slick": "^0.14.11",
     "serve-favicon": "~2.4.2",
+    "slick-carousel": "^1.6.0",
     "vex-dialog": "^1.0.7",
     "vex-js": "^4.0.0"
   },
