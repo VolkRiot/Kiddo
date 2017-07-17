@@ -5,13 +5,18 @@
   "repository": "https://github.com/VolkRiot/Kiddo.git",
   "author": "",
   "license": "",
+  "jest": {
+    "transform": {
+      ".*": "<rootDir>/node_modules/jest-css-modules"
+    }
+  },
   "scripts": {
     "start": "nodemon -e js,jsx --ignore dist --exec babel-node ./src/server/bin/www",
     "start:wds": "webpack -w",
     "prod:start": "cross-env NODE_ENV=production && node ./dist/server/bin/www",
     "prod:build": "rimraf dist && babel src -d dist --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
     "lint": "./node_modules/.bin/eslint src/",
-    "test": "npm run lint && jest src/ --coverage",
+    "test": "npm run lint && jest src/* --coverage",
     "prepush": "npm test"
   },
   "babel": {
@@ -52,7 +57,7 @@
     "react-dom": "^15.6.1",
     "react-modal": "^2.2.1",
     "react-router": "^4.1.1",
-    "react-router-dom": "^4.1.1",
+    "react-router-dom": "^4.1.2",
     "serve-favicon": "~2.4.2",
     "vex-dialog": "^1.0.7",
     "vex-js": "^4.0.0"
@@ -70,7 +75,9 @@
     "html-webpack-plugin": "^2.29.0",
     "husky": "^0.14.3",
     "jest": "^20.0.4",
+    "jest-css-modules": "^1.1.0",
     "nodemon": "^1.11.0",
+    "react-test-renderer": "^15.6.1",
     "style-loader": "^0.18.2",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.5.0"
