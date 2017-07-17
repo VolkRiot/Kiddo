@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const ApiHelper = () => {
   const api = axios;
-  const userRoute = '/user/everything';
+  const userRoute = '/auth/currentuser';
   const isAuthRoute = '/auth/authenticate';
   const addKiddoRoute = '/api/kid?method=create';
   const addEventRoute = '/api/event?method=create';
