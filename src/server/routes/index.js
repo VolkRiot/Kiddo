@@ -13,7 +13,7 @@ const router = express.Router();
 
 // GET home page.
 router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../../public'));
+  res.status(200).sendFile(path.join(__dirname, '../../../public'));
 });
 
 // Consildated routes from individual files.

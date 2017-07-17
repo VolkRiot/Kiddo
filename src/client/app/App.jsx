@@ -36,16 +36,15 @@ class App extends Component {
     this.getUser();
   }
 
-  getUser () {
-    const getUser = Api.getCurrentUser();
-    getUser.then(result => {
-      this.setState({user: result.data});
-    });
+  async getUser () {
+    const result = await Api.getCurrentUser();
+    const User = result.data;
+    this.setState({user: User, kiddosList: User.kids});
   }
 
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
-  // Save new Calendar too! (TODO: Make better this sucks!);
+  // Save new Calendar too! (TODO: Make better this sucks! Consolidate);
    addKiddo.then(() => {
      this.addNewCalendar(newKiddo)
       .then(result => {

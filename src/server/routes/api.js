@@ -164,11 +164,4 @@ router.delete('/:collection', (req, res, next) => {
   }
 });
 
-
-
-
-
 module.exports = router;
-
-
-

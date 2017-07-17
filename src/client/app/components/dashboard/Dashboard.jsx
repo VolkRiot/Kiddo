@@ -10,13 +10,16 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		const path = this.props.match.path;
+		// (TODO) Flavio what the heck is this? Modular does not mean depends on automatic prop passed
+		const path = this.props.match ? this.props.match.path : '/dashboard';
 
 		return (
 			<div className="dashboard container">
 				<h1 id="icon">Kiddo</h1>
-				<h1 id="parentTitle">Hello, Organized!</h1>
-
+				<h1 id="parentTitle">Hello, {
+					this.props.user ?
+					this.props.user.firstName : 'Organized'
+			}!</h1>
 				<div className="row" id="row1">
 					<div className="col-lg-6 hvr-grow" id="view1">
 						<DashAvatar

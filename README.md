@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/VolkRiot/Kiddo.svg?branch=master)](https://travis-ci.org/VolkRiot/Kiddo)
+
 # Kiddo
 
 ## Made by:

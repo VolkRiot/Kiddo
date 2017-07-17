@@ -17,6 +17,14 @@ const UserSchema = new Schema({
     unique: true,
     required: true
   },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    reuired: true
+  },
   calAccessToken: {
     type: String
   },
