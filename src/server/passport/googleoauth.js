@@ -21,6 +21,7 @@ module.exports = function() {
         callbackURL: process.env.CALLBACKURL,
       },
       (accessToken, refreshToken, profile, done) => {
+        
         // Send Access Token and Dashboard Information to Database
 
         process.nextTick(() => {
@@ -29,6 +30,7 @@ module.exports = function() {
               return done(err);
             }
             if (user) {
+
               // Update Access Token for existing User
               User.findOneAndUpdate({ googleId: profile.id }, {$set: { calAccessToken: accessToken }}, { new: true }, (err, updatedUser) => {
                 if (err) {
@@ -53,7 +55,10 @@ module.exports = function() {
                 return done(null, newUser);
               });
             }
-          });
+          // Retrieve events from user's calendar(s) and insert into events db  
+          }).then(function(){
+
+          }
         });
       }
     )
