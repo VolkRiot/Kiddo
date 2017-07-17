@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import DashAvatar from './DashAvatar';
+import KiddoCarousel from './KiddoCarousel';
 import * as style from './dashboard.css';
 
 class Dashboard extends Component {
@@ -10,9 +11,9 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		// (TODO) Flavio what the heck is this? Modular does not mean depends on automatic prop passed
-		const path = this.props.match ? this.props.match.path : '/dashboard';
-
+		
+		const path = this.props.match.path;
+		
 		return (
 			<div className="dashboard container">
 				<h1 id="icon">Kiddo</h1>
@@ -22,11 +23,19 @@ class Dashboard extends Component {
 			}!</h1>
 				<div className="row" id="row1">
 					<div className="col-lg-6 hvr-grow" id="view1">
-						<DashAvatar
-							title={ 'Kiddo Profiles' }
-							imgSrc={ './img/girl.png' }
-							to={ `${ path }/profile` }
-						/>
+						{
+							this.props.kiddos ?
+								< KiddoCarousel
+									title={ 'Profile' }
+									kiddos={ this.props.kiddos }
+								/>
+								:
+								<DashAvatar
+									title={ 'Profile' }
+									imgSrc={ './img/girl.png' }
+									to={ `${ path }/addkiddo` }
+								/>
+						}
 					</div>
 					<div className="col-lg-6 hvr-grow" id="view2">
 						<DashAvatar
@@ -42,7 +51,7 @@ class Dashboard extends Component {
 						<DashAvatar
 							title={ 'Calendar' }
 							imgSrc={ './img/calendar-icon.png' }
-							to={ `${ path }/calendar` }   /*(TODO) change the path to /dashboard/calendar === { `${ path }/calendar` } */
+							to={ `${ path }/calendar` }
 						/>
 					</div>
 					<div className="col-lg-6 hvr-grow" id="view4">

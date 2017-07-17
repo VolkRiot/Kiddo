@@ -24,7 +24,7 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      kiddosList:[]
+      kiddosList: null
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
@@ -71,7 +71,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={ Home }/>
           <Route exact path='/dashboard' render={(props) => (
-              <Dashboard user={ this.state.user } { ...props }/>
+              <Dashboard user={ this.state.user } kiddos={ this.state.kiddosList } { ...props }/>
           )}/>
           <Route path='/dashboard/addkiddo' render={(props) => (
               <AddKiddo
