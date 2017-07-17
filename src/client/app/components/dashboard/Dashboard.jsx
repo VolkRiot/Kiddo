@@ -1,15 +1,8 @@
 'use strict';
 
-import React from 'react';
 
-import ProfileKid from './ProfileKid';
-import ProfileMap from './ProfileMap';
-import ProfileCalendar from './ProfileCalendar';
 
 //import ProfileAdd from './ProfileAdd';
-
-import { Link } from 'react-router-dom';
-import {DropdownButton, MenuItem, ButtonToolbar} from 'react-bootstrap';
 
 import React, { Component } from 'react';
 import DashAvatar from './DashAvatar';
@@ -23,25 +16,7 @@ class Dashboard extends Component {
 
 	render() {
 		const path = this.props.match.path;
-		const BUTTONS = ['Success'];
-			function renderDropdownButton(title, i) {
-			  return (
-			    <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i} id={`dropdown-basic-${i}`}>
-			      <MenuItem eventKey="1">Calendar</MenuItem>
-			      <MenuItem eventKey="2">Map</MenuItem>
-			      <MenuItem divider />
-			      <MenuItem eventKey="4">Log Out</MenuItem>
-			    </DropdownButton>
-			  );
-			}
-		const buttonsInstance = (
-		  <ButtonToolbar>{BUTTONS.map(renderDropdownButton)}</ButtonToolbar>
-		);
-		return (
-
-				<div className="drop">{buttonsInstance}</div>
-				
-
+		return (				
 			<div className="dashboard container">
 				<h1 id="icon">Kiddo</h1>
 				<h1 id="parentTitle">Hello, Organized!</h1>
