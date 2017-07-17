@@ -11,7 +11,8 @@
     "prod:start": "cross-env NODE_ENV=production && node ./dist/server/bin/www",
     "prod:build": "rimraf dist && babel src -d dist --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
     "lint": "./node_modules/.bin/eslint src/",
-    "test": "npm run lint && jest src/ --coverage"
+    "test": "npm run lint && jest src/ --coverage",
+    "prepush": "npm test"
   },
   "babel": {
     "presets": [
@@ -67,6 +68,7 @@
     "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "^2.1.2",
     "html-webpack-plugin": "^2.29.0",
+    "husky": "^0.14.3",
     "jest": "^20.0.4",
     "nodemon": "^1.11.0",
     "style-loader": "^0.18.2",
