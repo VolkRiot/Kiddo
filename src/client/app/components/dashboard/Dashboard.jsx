@@ -5,6 +5,7 @@ import DashAvatar from './DashAvatar';
 import KiddoCarousel from './KiddoCarousel';
 import * as style from './dashboard.css';
 
+
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
@@ -37,7 +38,7 @@ class Dashboard extends Component {
 						{
 							this.props.kiddos.length ?
 								<div className="avatar-container carousel-container">
-									< KiddoCarousel
+									<KiddoCarousel
 										kiddos={ this.props.kiddos }
 										to={ `${ path }/profile` }
 									/>
