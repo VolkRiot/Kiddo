@@ -61,7 +61,7 @@ router.post('/addevent', function(req,res){
   // API call to retrieve calendarList again to match calendar Name with the specific CalendarId
   google_calendar.calendarList.list(function(err, calendarList){
     if(err) {
-      throw new Error('Failed call to retrieve Calendar');
+      throw new Error(err);
     } else {
       // Logic to Associate Calendar Name with ID
       for(var i = 0; i < calendarList.items.length; i++){
@@ -74,7 +74,7 @@ router.post('/addevent', function(req,res){
           },
           function(err) {
             if(err) {
-              throw new Error('Failed while building calendar events');
+              throw new Error(err);
             } else {
               res.send('All Good from Google');
               const newEvent = Event();
@@ -87,19 +87,19 @@ router.post('/addevent', function(req,res){
 
               newEvent.save(function(err, data){
                 if(err) {
-                  throw new Error('Failed while savind new event');
+                  throw new Error(err);
                 } else {
                   // Insert Event ID into Users Table for User that Created Event
 
                   User.findOneAndUpdate({email: data.email}, {$push:{events:data._id}}, function(err){
                     if(err) {
-                      throw new Error('Failed to update User with new events information');
+                      throw new Error(err);
                     } else {
                       // Successfully updated user with new info
 
                       Kid.findOneAndUpdate({calendarId: calendarId}, {$push:{events:data._id}}, function(err){
                         if(err){
-                          throw new Error('Failed to update kid data with event');
+                          throw new Error(err);
                         }  else{
                           // Successfully updated kid with event
                         }

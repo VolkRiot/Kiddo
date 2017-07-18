@@ -127,6 +127,7 @@ class AddKiddo extends Component {
 			</div>
 		)
 	}
+
 }
 
 export default AddKiddo;
