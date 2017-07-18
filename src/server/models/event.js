@@ -16,7 +16,7 @@ const EventSchema = new Schema({
   },
   title: {
     type: String,
-    required: true
+    default: '(Untitled)'
   },
   startDateTime:{
     type: Date,

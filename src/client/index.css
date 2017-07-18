@@ -4,6 +4,9 @@ body {
   background-color: white;
 
 }
+a {
+    text-decoration: none !important;
+}
 .main {
 	text-align: center;
 	height: 100%;
