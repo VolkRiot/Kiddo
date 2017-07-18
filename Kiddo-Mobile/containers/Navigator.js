@@ -10,7 +10,7 @@ export default function() {
   return (
   <NavigationProvider router={Router}>
     <StackNavigation
-      initialRoute={Router.createRouter('home')}
+      initialRoute="home"
     />
   </NavigationProvider>
   );
