@@ -46,7 +46,7 @@ class KidNote extends Component {
 	}
 	
 	render(){
-		return(
+		return (
 			<div className="kidNote">
 				<h3 id="noteTitle">Notes</h3>
 					<div className="container" id="noteBox">
