@@ -3,7 +3,7 @@
 const express = require('express'),
       router  = express.Router();
 
-const controllers = require('../controllers');
+const controllers = require('./../controllers');
 
 /* GET */
 /*

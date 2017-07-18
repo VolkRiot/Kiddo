@@ -1,10 +1,10 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
 
 
-class KidNote extends React.Component {
+class KidNote extends Component {
 	render(){
 		return(
 			<div className="kidNote">
@@ -22,4 +22,3 @@ class KidNote extends React.Component {
 }
 
 export default KidNote;
-

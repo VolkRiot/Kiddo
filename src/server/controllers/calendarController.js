@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const Crud            = require('./CRUD'),
       CalendarModel   = require('./../models/calendar');

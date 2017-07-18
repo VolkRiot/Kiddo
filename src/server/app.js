@@ -2,7 +2,6 @@
 
 const express       = require('express'),
       path          = require('path'),
-      favicon       = require('serve-favicon'),
       logger        = require('morgan'),
       cookieParser  = require('cookie-parser'),
       bodyParser    = require('body-parser'),
@@ -16,12 +15,11 @@ require('./db/mongodb');
 
 app.use(cookieParser());
 
-// app.use(favicon(path.join(__dirname, '../../public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(express.static(path.join(__dirname, '../../public')));
 
 app.use(session({
@@ -53,6 +51,7 @@ if (app.get('env') === 'development') {
       message: 'Server Error',
       error: err
     });
+    next();
   });
 }
 
@@ -63,6 +62,7 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+  next();
 });
 
 module.exports = app;

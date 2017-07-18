@@ -1,9 +1,10 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 import HomeFooter from './HomeFooter';
+import * as style from './home.css';
 
-class Home extends React.Component {
+class Home extends Component {
   constructor(props) {
     super(props);
   }
@@ -13,7 +14,7 @@ class Home extends React.Component {
       <div className="main">
         <h1 className="title">Kiddo</h1>
           <h4 className="titleSmall">A Parent's Best Friend.</h4>
-        <div className="row">
+        <div className="row row d-flex p-2 flex-row">
           <div className="col-sm-6 col-md-4">
             <div className="thumbnail">
               <img src={'./img/track2.png'} />
@@ -52,5 +53,3 @@ class Home extends React.Component {
 }
 
 export default Home;
-
-

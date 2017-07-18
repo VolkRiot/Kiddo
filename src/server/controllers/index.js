@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const UserController     = require('./userController'),
       CalendarController = require('./calendarController'),
@@ -11,4 +11,3 @@ module.exports = {
   event    : EventController,
   kid      : KidController
 };
-
