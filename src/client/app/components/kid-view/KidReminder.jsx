@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 
 class KidReminder extends Component {
-  	constructor(props) {
+  constructor(props) {
         super(props);
 		this.state = { reminder: '', reminders:[] };
 
