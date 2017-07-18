@@ -1,9 +1,5 @@
 'use strict';
 
-
-
-//import ProfileAdd from './ProfileAdd';
-
 import React, { Component } from 'react';
 import DashAvatar from './DashAvatar';
 import KiddoCarousel from './KiddoCarousel';
