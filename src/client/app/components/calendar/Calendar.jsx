@@ -97,10 +97,10 @@ class Calendar extends Component {
                     // All Day Events vs Specific DateTime events filtering
                     var startDate;
                     var endDate;
-                    if(event.start.date == null || event.end.date == null){
+                    if (event.start.date == null || event.end.date == null){
                         startDate = event.start.dateTime;
                         endDate = event.end.dateTime;
-                    } else{
+                    } else {
                         startDate = event.start.date;
                         endDate = event.end.date;
                     }

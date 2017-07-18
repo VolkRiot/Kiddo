@@ -8,7 +8,7 @@ import KidReminder from './KidReminder';
 
 class Kid extends Component {
 	render(){
-		return(
+		return (
 			<div className="kid">
 				<div className="row">
 					<div className="col-lg-4"> <img src={'./img/girlsmall.png'} />

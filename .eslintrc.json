@@ -22,6 +22,7 @@
       "react/jsx-uses-vars": 2,
       "react/jsx-uses-react": 2,
       "react/react-in-jsx-scope": 2,
+      "keyword-spacing": ["warn", { "before": true, "after": true }],
         "linebreak-style": [
             "error",
             "unix"
