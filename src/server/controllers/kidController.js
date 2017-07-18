@@ -18,9 +18,9 @@ KidController.create =  function (query, cb) {
       this.errorHandler(err, null, cb);
     } else {
       UserModel.findOneAndUpdate({_id: doc.user_id}, {$push:{kids:doc._id}}, (err) => {
-        if(err){
+        if (err){
           this.errorHandler(err, null, cb);
-        } else{
+        } else {
           this.errorHandler(err, doc, cb);
         }
       });

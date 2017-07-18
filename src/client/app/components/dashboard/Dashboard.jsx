@@ -13,7 +13,7 @@ class Dashboard extends Component {
 
 	render() {
 		
-		const path = this.props.match.path;
+		const path = this.props.match && this.props.match.path ? this.props.match.path: '/dashboard';
 		
 		return (
 			<div className="dashboard container">
@@ -38,7 +38,8 @@ class Dashboard extends Component {
 						{
 							this.props.kiddos.length ?
 								<div className="avatar-container carousel-container">
-									<KiddoCarousel
+									< KiddoCarousel
+										getKiddoIndex={ this.props.getKiddoIndex }
 										kiddos={ this.props.kiddos }
 										to={ `${ path }/profile` }
 									/>

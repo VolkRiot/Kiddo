@@ -12,7 +12,7 @@ module.exports = {
   },
   // Used to verify that the user exists or otherwise send error
   isUser: function (req, res, next) {
-    if(!req.user) {
+    if (!req.user) {
       res.status(204).json({ user: false });
 
     } else {
