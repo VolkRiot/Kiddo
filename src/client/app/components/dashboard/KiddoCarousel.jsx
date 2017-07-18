@@ -8,15 +8,15 @@ class KiddoCarousel extends Component {
 	}
 	render() {
 		const kiddosArr = this.props.kiddos;
-		const kiddoElement = kiddosArr.map(kiddo => {
+		const kiddoElement = kiddosArr.map((kiddo, index) => {
 			return (
 				<div key={kiddo._id} className="avatar-container">
-					<Link to={ `${this.props.to}/${kiddo._id}` } >
+					<Link to={ this.props.to }  onClick={ () => {this.props.getKiddoIndex(index)} } >
 						<div>
 							<img src={ kiddo.avatar.url }  style={{borderRadius: '50%'}} className="dash-avatar-img"/>
 						</div>
 						<div>
-							<h3>{ kiddo.firstName  }</h3>
+							<h3>{ kiddo.firstName }</h3>
 						</div>
 					</Link>
 				</div>

@@ -38,6 +38,7 @@ class Dashboard extends Component {
 							this.props.kiddos.length ?
 								<div className="avatar-container carousel-container">
 									< KiddoCarousel
+										getKiddoIndex={ this.props.getKiddoIndex }
 										kiddos={ this.props.kiddos }
 										to={ `${ path }/profile` }
 									/>

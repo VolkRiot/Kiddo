@@ -23,12 +23,14 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      kiddosList: []
+      kiddosList: [],
+	    currentKiddo: 0
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
     this.addNewCalendar = this.addNewCalendar.bind(this);
     this.ImgHelper = this.ImgHelper.bind(this);
+    this.getKiddoIndex = this.getKiddoIndex.bind(this);
   }
 
   componentDidMount () {
@@ -61,6 +63,11 @@ class App extends Component {
   ImgHelper () {
     return ImgHelper;
   }
+  
+  getKiddoIndex (index) {
+  	console.log(index)
+	  this.setState({currentKiddo: index});
+  }
 
   render() {
     return (
@@ -68,7 +75,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={ Home }/>
           <Route exact path='/dashboard' render={(props) => (
-              <Dashboard user={ this.state.user } kiddos={ this.state.kiddosList } { ...props }/>
+              <Dashboard user={ this.state.user } kiddos={ this.state.kiddosList } getKiddoIndex={ this.getKiddoIndex } { ...props }/>
           )}/>
           <Route path='/dashboard/addkiddo' render={(props) => (
               <AddKiddo
@@ -79,7 +86,11 @@ class App extends Component {
                   { ...props }/>
           )}/>
           <Route path='/dashboard/calendar' component={ Calendar }/>
-          <Route path='/dashboard/profile' component={ KiddoProfile }/>
+	        <Route path='/dashboard/profile' render={(props) => (
+		        <KiddoProfile
+			        kiddo={ this.state.kiddosList[this.state.currentKiddo] }
+			        { ...props }/>
+	        )}/>
           <Route path='/dashboard/map' component={ Mapski }/>
           <Route component={ NotFound }/>
         </Switch>
