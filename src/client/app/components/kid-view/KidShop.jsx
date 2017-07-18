@@ -17,13 +17,13 @@ class KidShop extends Component {
   }
 
   onSubmit() {
-    if(this.state.item !== ''){
+    if (this.state.item !== ''){
       event.preventDefault();
       var existingItems = this.state.items;
       existingItems.push(this.state.item);
       this.setState({items: existingItems, item: '', placeholder: 'Type new shopping item'});
-    } else{
-      this.setState({placeholder: 'Item is required to submit'})
+    } else {
+      this.setState({placeholder: 'Item is required to submit'});
     }  
     
   }
