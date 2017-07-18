@@ -8,7 +8,8 @@ class KidShop extends Component {
 		this.state = { item: '', items:[] };
 		
 		this.handleChange = this.handleChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.resetItems = this.resetItems.bind(this);
   }
   
   handleChange(event) {
@@ -18,7 +19,12 @@ class KidShop extends Component {
   onSubmit() {
     event.preventDefault();
     console.log(this.state.item);
-    var existingItems = this.state.items;
+    var existingItems;
+		if(this.state.items == ""){
+			existingItems = []; 
+		} else{
+			existingItems = this.state.items;
+		}
     existingItems.push(this.state.item);
     this.setState({items: existingItems});
     console.log(this.state.items);
@@ -31,6 +37,11 @@ class KidShop extends Component {
       )
     }
   }
+
+  resetItems() {
+    event.preventDefault();
+		this.setState({items: ''});
+  }
   
   render() {
     return (
@@ -39,7 +50,7 @@ class KidShop extends Component {
         <div className="container" id="shopBox" >
           {this.illustrateItems()}
         </div>
-        <form>
+      
         <div className="col-12" id="shopForm">
           <input
             type="text"
@@ -51,10 +62,10 @@ class KidShop extends Component {
         <button type="button" onClick={this.onSubmit} className="btn btn-info">
           Add Item
         </button>
-        <button type="button" className="btn btn-warning">
+    
+        <button type="button" onClick={this.resetItems} className="btn btn-warning">
           Reset Section
         </button>
-        </form>
       </div>
     );
   }

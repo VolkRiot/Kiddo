@@ -8,7 +8,8 @@ class KidReminder extends Component {
 		this.state = { reminder: '', reminders:[] };
 		
 		this.handleChange = this.handleChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.resetReminders = this.resetReminders.bind(this);
 	}
 
 	handleChange(event) {
@@ -18,7 +19,12 @@ class KidReminder extends Component {
 	onSubmit() {
 		event.preventDefault();
 		console.log(this.state.reminder);
-		var existingReminders = this.state.reminders;
+		var existingReminders;
+		if(this.state.reminders == ""){
+			existingReminders = []; 
+		} else{
+			existingReminders = this.state.reminders;
+		} 
 		existingReminders.push(this.state.reminder);
 		this.setState({reminders: existingReminders});
 		console.log(this.state.reminders);
@@ -30,7 +36,13 @@ class KidReminder extends Component {
 				<li>{reminder}</li>
 			)
 		}
-	}
+  }
+  
+  resetReminders(){
+    event.preventDefault();
+		this.setState({reminders: ''});
+  }
+
   render() {
     return (
       <div className="kidReminder">
@@ -38,7 +50,6 @@ class KidReminder extends Component {
         <div className="container" id="reminderBox">
             {this.illustrateReminders()}
         </div>
-        <form>
           <div className="col-12" id="reminderForm">
             <input
               type="text"
@@ -50,10 +61,9 @@ class KidReminder extends Component {
         <button type="button" onClick={this.onSubmit} className="btn btn-info">
         Add Reminder
         </button>
-        <button type="button" className="btn btn-warning">
+        <button type="button" onClick={this.resetReminders} className="btn btn-warning">
           Reset Section
         </button>
-        </form>
         </div>
     )
   }

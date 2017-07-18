@@ -11,6 +11,7 @@ class KidNote extends Component {
 		
 		this.handleChange = this.handleChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.resetNotes = this.resetNotes.bind(this);
 	}
 
 	handleChange(event) {
@@ -20,7 +21,12 @@ class KidNote extends Component {
 	onSubmit() {
 		event.preventDefault();
 		console.log(this.state.note);
-		var existingNotes = this.state.notes;
+		var existingNotes;
+		if(this.state.notes == ""){
+			existingNotes = []; 
+		} else{
+			existingNotes = this.state.notes;
+		} 
 		existingNotes.push(this.state.note);
 		this.setState({notes: existingNotes});
 		console.log(this.state.notes);
@@ -36,7 +42,7 @@ class KidNote extends Component {
 
 	resetNotes(){
 		event.preventDefault();
-		this.setState({notes: ""});
+		this.setState({notes: ''});
 	}
 	
 	render(){
@@ -46,13 +52,11 @@ class KidNote extends Component {
 					<div className="container" id="noteBox">
 						{this.illustrateNotes()}	
 					</div>
-					<form onSubmit={this.onSubmit}>
-						<div className="col-12" id="noteForm">
-	    					<input type="text" name='note' onChange={this.handleChange} className="form-control" placeholder="Type new note" />
-	  					</div>
-  						<button type="button" onClick={this.onSubmit} className="btn btn-info">Add Note</button>
-  						<button type="button" onClick={this.resetNotes} className="btn btn-warning">Reset Section</button>
-					</form>
+					<div className="col-12" id="noteForm">
+	    				<input type="text" name='note' onChange={this.handleChange} className="form-control" placeholder="Type new note" />
+	  				</div>
+  					<button type="button" onClick={this.onSubmit} className="btn btn-info">Add Note</button>
+  					<button type="button" onClick={this.resetNotes} className="btn btn-warning">Reset Section</button>
 				</div>
 		)
 	}
