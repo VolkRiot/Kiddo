@@ -3,41 +3,40 @@
 import React, { Component } from 'react';
 
 class KidReminder extends Component {
-  	constructor(props) {
-      super(props);
-	    this.state = { reminder: '', reminders:[], placeholder:'Type new reminder' };
+  constructor(props) {
+    super(props);
+    this.state = { reminder: '', reminders:[], placeholder:'Type new reminder' };
 		
-		  this.handleChange = this.handleChange.bind(this);
-      this.onSubmit = this.onSubmit.bind(this);
-      this.resetReminders = this.resetReminders.bind(this);
-	  }
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.resetReminders = this.resetReminders.bind(this);
+	}
 
-	  handleChange(event) {
-		  this.setState( {reminder: event.target.value } );
-	  }
+  handleChange(event) {
+    this.setState( {reminder: event.target.value } );
+  }
 
-	  onSubmit() {
-      if(this.state.reminder !== ''){
-        event.preventDefault();
-        var existingReminders =  this.state.reminders;
-		    existingReminders.push(this.state.reminder);
-		    this.setState({reminders: existingReminders, reminder: '', placeholder: 'Type new reminder'});
-      } else{
-        this.setState({placeholder:'Reminder is required to submit'})
-      }
-		  
-	  }
-
-	  illustrateReminders(){
-		  return this.state.reminders.map((reminder,index) =>
-			  <li key={index}>{reminder}</li>
-      );
-    }
-  
-    resetReminders(){
+  onSubmit() {
+    if (this.state.reminder !== ''){
       event.preventDefault();
-		  this.setState({reminders: []});
-    }
+      var existingReminders =  this.state.reminders;
+      existingReminders.push(this.state.reminder);
+      this.setState({reminders: existingReminders, reminder: '', placeholder: 'Type new reminder'});
+    } else {
+      this.setState({placeholder:'Reminder is required to submit'});
+    }  
+  }
+
+  illustrateReminders(){
+    return this.state.reminders.map((reminder,index) =>
+      <li key={index}>{reminder}</li>
+    );
+  }
+  
+  resetReminders(){
+    event.preventDefault();
+    this.setState({reminders: []});
+  }
 
   render() {
     return (
