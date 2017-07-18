@@ -4,44 +4,40 @@ import React, { Component } from 'react';
 
 class KidReminder extends Component {
   	constructor(props) {
-        super(props);
-		this.state = { reminder: '', reminders:[] };
+      super(props);
+	    this.state = { reminder: '', reminders:[], placeholder:'Type new reminder' };
 		
-		this.handleChange = this.handleChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.resetReminders = this.resetReminders.bind(this);
-	}
+		  this.handleChange = this.handleChange.bind(this);
+      this.onSubmit = this.onSubmit.bind(this);
+      this.resetReminders = this.resetReminders.bind(this);
+	  }
 
-	handleChange(event) {
-		this.setState( {reminder: event.target.value } )
-	}
+	  handleChange(event) {
+		  this.setState( {reminder: event.target.value } );
+	  }
 
-	onSubmit() {
-		event.preventDefault();
-		console.log(this.state.reminder);
-		var existingReminders;
-		if(this.state.reminders == ""){
-			existingReminders = []; 
-		} else{
-			existingReminders = this.state.reminders;
-		} 
-		existingReminders.push(this.state.reminder);
-		this.setState({reminders: existingReminders});
-		console.log(this.state.reminders);
-	}
+	  onSubmit() {
+      if(this.state.reminder !== ''){
+        event.preventDefault();
+        var existingReminders =  this.state.reminders;
+		    existingReminders.push(this.state.reminder);
+		    this.setState({reminders: existingReminders, reminder: '', placeholder: 'Type new reminder'});
+      } else{
+        this.setState({placeholder:'Reminder is required to submit'})
+      }
+		  
+	  }
 
-	illustrateReminders(){
-		if(this.state.reminders != ""){
-			return this.state.reminders.map(reminder =>
-				<li>{reminder}</li>
-			)
-		}
-  }
+	  illustrateReminders(){
+		  return this.state.reminders.map((reminder,index) =>
+			  <li key={index}>{reminder}</li>
+      );
+    }
   
-  resetReminders(){
-    event.preventDefault();
-		this.setState({reminders: ''});
-  }
+    resetReminders(){
+      event.preventDefault();
+		  this.setState({reminders: []});
+    }
 
   render() {
     return (
@@ -50,23 +46,25 @@ class KidReminder extends Component {
         <div className="container" id="reminderBox">
             {this.illustrateReminders()}
         </div>
-          <div className="col-12" id="reminderForm">
-            <input
-              type="text"
-              onChange={this.handleChange}
-              className="form-control"
-              placeholder="Type new reminder"
-            />
-          </div>
+        <div className="col-12" id="reminderForm">
+          <input
+            type="text"
+            value={this.state.reminder}
+            onChange={this.handleChange}
+            className="form-control"
+            placeholder={this.state.placeholder}
+          />
+        </div>
         <button type="button" onClick={this.onSubmit} className="btn btn-info">
-        Add Reminder
+          Add Reminder
         </button>
         <button type="button" onClick={this.resetReminders} className="btn btn-warning">
           Reset Section
         </button>
-        </div>
-    )
+      </div>
+    );
   }
+
 }
 
 export default KidReminder;

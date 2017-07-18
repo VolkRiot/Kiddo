@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 class KidShop extends Component {
   constructor(props) {
     super(props);
-		this.state = { item: '', items:[] };
+		this.state = { item: '', items:[], placeholder: 'Type new shopping item' };
 		
 		this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -17,30 +17,26 @@ class KidShop extends Component {
   }
 
   onSubmit() {
-    event.preventDefault();
-    console.log(this.state.item);
-    var existingItems;
-		if(this.state.items == ""){
-			existingItems = []; 
-		} else{
-			existingItems = this.state.items;
-		}
-    existingItems.push(this.state.item);
-    this.setState({items: existingItems});
-    console.log(this.state.items);
+    if(this.state.item !== ''){
+      event.preventDefault();
+      var existingItems = this.state.items;
+      existingItems.push(this.state.item);
+      this.setState({items: existingItems, item: '', placeholder: 'Type new shopping item'});
+    } else{
+      this.setState({placeholder: 'Item is required to submit'})
+    }  
+    
   }
 
   illustrateItems() {
-    if(this.state.items != ""){
-      return this.state.items.map(item =>
-        <li>{item}</li>
-      )
-    }
+    return this.state.items.map((item,index) =>
+      <li key={index}>{item}</li>
+    );
   }
 
-  resetItems() {
+  resetItems(event) {
     event.preventDefault();
-		this.setState({items: ''});
+    this.setState({items: []});
   }
   
   render() {
@@ -50,25 +46,25 @@ class KidShop extends Component {
         <div className="container" id="shopBox" >
           {this.illustrateItems()}
         </div>
-      
         <div className="col-12" id="shopForm">
           <input
             type="text"
+            value={this.state.item}
             onChange={this.handleChange}
             className="form-control"
-            placeholder="Type new shopping item"
+            placeholder={this.state.placeholder}
           />
         </div>
         <button type="button" onClick={this.onSubmit} className="btn btn-info">
           Add Item
         </button>
-    
         <button type="button" onClick={this.resetItems} className="btn btn-warning">
           Reset Section
         </button>
       </div>
     );
   }
+
 }
 
 export default KidShop;

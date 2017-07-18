@@ -2,12 +2,10 @@
 
 import React, { Component } from 'react';
 
-
-
 class KidNote extends Component {
 	constructor(props) {
-        super(props);
-		this.state = { note: '', notes:[] };
+    	super(props);
+		this.state = { note: '', notes:[], placeholder:'Type new note' };
 		
 		this.handleChange = this.handleChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
@@ -19,47 +17,53 @@ class KidNote extends Component {
 	}
 
 	onSubmit() {
-		event.preventDefault();
-		console.log(this.state.note);
-		var existingNotes;
-		if(this.state.notes == ""){
-			existingNotes = []; 
+		if(this.state.note !== ''){
+			event.preventDefault();
+			var existingNotes = this.state.notes;
+			existingNotes.push(this.state.note);
+			this.setState({notes: existingNotes, note: '', placeholder: 'Type new note'});
 		} else{
-			existingNotes = this.state.notes;
-		} 
-		existingNotes.push(this.state.note);
-		this.setState({notes: existingNotes});
-		console.log(this.state.notes);
+			this.setState({placeholder:'Note is required to submit'});
+		}
 	}
 
 	illustrateNotes() {
-		if(this.state.notes != ""){
-			return this.state.notes.map(note =>
-				<li>{note}</li>
-			)
-		}
+		return this.state.notes.map((note,index) =>
+			<li key={index}>{note}</li>
+		)
 	}
 
 	resetNotes(){
 		event.preventDefault();
-		this.setState({notes: ''});
+		this.setState({notes: []});
 	}
 	
 	render(){
 		return(
 			<div className="kidNote">
 				<h3 id="noteTitle">Notes</h3>
-					<div className="container" id="noteBox">
-						{this.illustrateNotes()}	
-					</div>
-					<div className="col-12" id="noteForm">
-	    				<input type="text" name='note' onChange={this.handleChange} className="form-control" placeholder="Type new note" />
-	  				</div>
-  					<button type="button" onClick={this.onSubmit} className="btn btn-info">Add Note</button>
-  					<button type="button" onClick={this.resetNotes} className="btn btn-warning">Reset Section</button>
+				<div className="container" id="noteBox">
+					{this.illustrateNotes()}	
 				</div>
+				<div className="col-12" id="noteForm">
+					<input 
+						type="text"
+						value={this.state.note}
+						onChange={this.handleChange} 
+						className="form-control" 
+						placeholder={this.state.placeholder} 
+					/>
+	  			</div>
+				<button type="button" onClick={this.onSubmit} className="btn btn-info">
+					Add Note
+				</button>
+				<button type="button" onClick={this.resetNotes} className="btn btn-warning">
+					Reset Section
+				</button>
+			</div>
 		)
 	}
+
 }
 
 export default KidNote;
