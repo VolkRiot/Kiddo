@@ -76,7 +76,7 @@ class Calendar extends Component {
         var calendarTitleArray = [];
 
         // Define Random Color for Each Calendar
-        var colorArray = ['red','blue','orange','green','purple'];
+        var colorArray = ['#ffaa28','#f7786b','#c178ba','#ffdd32','#56d8b1'];
 
         //GetRequest for Google Calendar Events
         $.get('/calendar/getevents', function(response){
@@ -120,7 +120,7 @@ class Calendar extends Component {
                 //For initial and rerendering. Add Each Evenrs Object and rerender Calendar
 
                 $('#calendar').fullCalendar('addEventSource', eventsObject);
-                $('#calendar').fullCalendar( 'rerenderEvents');
+                $('#calendar').fullCalendar('rerenderEvents');
 
             }.bind(this));
 

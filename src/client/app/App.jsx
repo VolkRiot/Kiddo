@@ -8,7 +8,7 @@ import NotFound from './components/NotFound';
 import Dashboard from './components/dashboard/Dashboard';
 import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
-import KiddoProfile from './components/kiddo-profile/KiddoProfile';
+import Kid from './components/kid-view/Kid';
 import Mapski from './components/map/Map';
 import ApiHelper from './utils/apiHelper';
 import FileStackHelper from './utils/fileStackHelper';
@@ -79,7 +79,7 @@ class App extends Component {
                   { ...props }/>
           )}/>
           <Route path='/dashboard/calendar' component={ Calendar }/>
-          <Route path='/dashboard/profile' component={ KiddoProfile }/>
+          <Route path='/dashboard/profile' component={ Kid }/>
           <Route path='/dashboard/map' component={ Mapski }/>
           <Route component={ NotFound }/>
         </Switch>
