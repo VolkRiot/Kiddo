@@ -52,6 +52,7 @@ class KidNote extends Component {
 					<div className="container" id="noteBox">
 						{this.illustrateNotes()}	
 					</div>
+<<<<<<< HEAD
 					<div className="col-12" id="noteForm">
 	    				<input type="text" name='note' onChange={this.handleChange} className="form-control" placeholder="Type new note" />
 	  				</div>
@@ -59,6 +60,15 @@ class KidNote extends Component {
   					<button type="button" onClick={this.resetNotes} className="btn btn-warning">Reset Section</button>
 				</div>
 		)
+=======
+						<div className="col-12" id="noteForm">
+							<input type="text" className="form-control" placeholder="Type new note" />
+						</div>
+						<button type="button" className="btn btn-info">Add Note</button>
+						<button type="button" className="btn btn-warning">Reset Section</button>
+			</div>
+		);
+>>>>>>> Linter ready
 	}
 }
 

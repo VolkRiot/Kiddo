@@ -28,7 +28,7 @@ class Kid extends Component {
 					<KidReminder />
 				</div>
 			</div>
-		)
+		);
 	}
 }
 

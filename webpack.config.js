@@ -11,16 +11,16 @@ let config = {
   },
   module: {
     loaders: [
-      { test: /\.css$/, loader: "style-loader!css-loader" },
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
       // ...
     ],
     rules: [
       { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
       { test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader",
-          publicPath: "/public"
+          fallback: 'style-loader',
+          use: 'css-loader',
+          publicPath: '/public'
         })
       }
     ]
