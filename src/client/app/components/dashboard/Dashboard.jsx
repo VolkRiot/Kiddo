@@ -13,7 +13,7 @@ class Dashboard extends Component {
 
 	render() {
 		
-		const path = this.props.match.path ? this.props.match.path: '/dashboard';
+		const path = this.props.match && this.props.match.path ? this.props.match.path: '/dashboard';
 		
 		return (
 			<div className="dashboard container">
