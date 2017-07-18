@@ -6,38 +6,36 @@ class KidReminder extends Component {
   	constructor(props) {
         super(props);
 		this.state = { reminder: '', reminders:[] };
-		
+
 		this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.resetReminders = this.resetReminders.bind(this);
 	}
 
 	handleChange(event) {
-		this.setState( {reminder: event.target.value } )
+		this.setState( {reminder: event.target.value } );
 	}
 
 	onSubmit() {
 		event.preventDefault();
-		console.log(this.state.reminder);
 		var existingReminders;
-		if(this.state.reminders == ""){
-			existingReminders = []; 
-		} else{
+		if (this.state.reminders == ''){
+			existingReminders = [];
+		} else {
 			existingReminders = this.state.reminders;
-		} 
+		}
 		existingReminders.push(this.state.reminder);
 		this.setState({reminders: existingReminders});
-		console.log(this.state.reminders);
 	}
 
 	illustrateReminders(){
-		if(this.state.reminders != ""){
+		if (this.state.reminders != ''){
 			return this.state.reminders.map(reminder =>
 				<li>{reminder}</li>
-			)
+			);
 		}
   }
-  
+
   resetReminders(){
     event.preventDefault();
 		this.setState({reminders: ''});
@@ -65,7 +63,7 @@ class KidReminder extends Component {
           Reset Section
         </button>
         </div>
-    )
+    );
   }
 }
 
