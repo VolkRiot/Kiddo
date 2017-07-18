@@ -13,7 +13,7 @@ class KidNote extends Component {
 	}
 
 	handleChange(event) {
-		this.setState( {note: event.target.value } )
+		this.setState( {note: event.target.value } );
 	}
 
 	onSubmit() {
@@ -37,9 +37,9 @@ class KidNote extends Component {
 		event.preventDefault();
 		this.setState({notes: []});
 	}
-	
+
 	render(){
-		return(
+		return (
 			<div className="kidNote">
 				<h3 id="noteTitle">Notes</h3>
 				<div className="container" id="noteBox">

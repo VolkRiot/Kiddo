@@ -30,7 +30,7 @@ EventController.create =  function (query, cb) {
 
       UserModel.findOneAndUpdate({_id: doc.user_id}, {$push:{events:doc._id}}, (err, result) => {
 
-        if(err || !result){
+        if (err || !result){
           let err = 'Fail on save event';
           return this.errorHandler(err, null, cb);
         }
