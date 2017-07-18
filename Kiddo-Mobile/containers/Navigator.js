@@ -4,11 +4,13 @@ import {
   StackNavigation,
 } from '@expo/ex-navigation';
 
+import Router from '../router/Router';
+
 export default function() {
   return (
-    <NavigationProvider router={}>
+  <NavigationProvider router={Router}>
     <StackNavigation
-      initialRoute={}
+      initialRoute={Router.createRouter('home')}
     />
   </NavigationProvider>
   );

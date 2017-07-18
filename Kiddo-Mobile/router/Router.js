@@ -1,7 +1,10 @@
 import { createRouter } from '@expo/ex-navigation';
+import RegisterApp from '../components/registerApp';
 
 // TODO:(Insert Basic Component here);
 
-export default createRouter(() => ({
-  // home: () => HomeScreen,
+const Router = createRouter(() => ({
+  home: () => RegisterApp
 }));
+
+export default Router;
