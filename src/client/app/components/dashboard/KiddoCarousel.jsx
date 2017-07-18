@@ -11,7 +11,7 @@ class KiddoCarousel extends Component {
 		const kiddoElement = kiddosArr.map((kiddo, index) => {
 			return (
 				<div key={kiddo._id} className="avatar-container">
-					<Link to={ this.props.to }  onClick={ () => {this.props.getKiddoIndex(index)} } >
+					<Link to={ this.props.to }  onClick={ () => this.props.getKiddoIndex(index) } >
 						<div>
 							<img src={ kiddo.avatar.url }  style={{borderRadius: '50%'}} className="dash-avatar-img"/>
 						</div>
@@ -20,7 +20,7 @@ class KiddoCarousel extends Component {
 						</div>
 					</Link>
 				</div>
-			)
+			);
 		});
 		const settings = {
 			dots: true,
@@ -39,7 +39,7 @@ class KiddoCarousel extends Component {
 					{ kiddoElement }
 				</Slider>
 			</div>
-			
+
 		);
 	}
 }

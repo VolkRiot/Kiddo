@@ -5,6 +5,7 @@ import DashAvatar from './DashAvatar';
 import KiddoCarousel from './KiddoCarousel';
 import * as style from './dashboard.css';
 
+
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);

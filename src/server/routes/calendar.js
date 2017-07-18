@@ -17,7 +17,7 @@ var google_calendar = undefined;
 
 router.get('/getevents', function(req, res) {
   // Initiate google_calendar with token
-  if(!google_calendar) {
+  if (!google_calendar) {
     var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
 }
 
@@ -53,19 +53,19 @@ router.get('/getevents', function(req, res) {
 router.post('/addevent', function(req,res){
 
   // Initiate google_calendar with token
-  if(!google_calendar) {
+  if (!google_calendar) {
     var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
   }
 
   // Insert Event into Google Database
   // API call to retrieve calendarList again to match calendar Name with the specific CalendarId
   google_calendar.calendarList.list(function(err, calendarList){
-    if(err) {
-      throw new Error('Failed call to retrieve Calendar');
+    if (err) {
+      throw new Error(err);
     } else {
       // Logic to Associate Calendar Name with ID
-      for(var i = 0; i < calendarList.items.length; i++){
-        if(req.body.calendar === calendarList.items[i].summary){
+      for (var i = 0; i < calendarList.items.length; i++){
+        if (req.body.calendar === calendarList.items[i].summary){
           var calendarId = calendarList.items[i].id;
           google_calendar.events.insert(calendarId, {
             summary: req.body.title,
@@ -73,8 +73,8 @@ router.post('/addevent', function(req,res){
             end:{dateTime: req.body.endDate.concat(':00'), timeZone: timezone.name() }
           },
           function(err) {
-            if(err) {
-              throw new Error('Failed while building calendar events');
+            if (err) {
+              throw new Error(err);
             } else {
               res.send('All Good from Google');
               const newEvent = Event();
@@ -86,21 +86,21 @@ router.post('/addevent', function(req,res){
               newEvent.email = req.user.email;
 
               newEvent.save(function(err, data){
-                if(err) {
-                  throw new Error('Failed while savind new event');
+                if (err) {
+                  throw new Error(err);
                 } else {
                   // Insert Event ID into Users Table for User that Created Event
 
                   User.findOneAndUpdate({email: data.email}, {$push:{events:data._id}}, function(err){
-                    if(err) {
-                      throw new Error('Failed to update User with new events information');
+                    if (err) {
+                      throw new Error(err);
                     } else {
                       // Successfully updated user with new info
 
                       Kid.findOneAndUpdate({calendarId: calendarId}, {$push:{events:data._id}}, function(err){
-                        if(err){
-                          throw new Error('Failed to update kid data with event');
-                        }  else{
+                        if (err){
+                          throw new Error(err);
+                        }  else {
                           // Successfully updated kid with event
                         }
                       });

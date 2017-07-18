@@ -8,7 +8,7 @@ import NotFound from './components/NotFound';
 import Dashboard from './components/dashboard/Dashboard';
 import Calendar from './components/calendar/Calendar';
 import AddKiddo from './components/add-child/AddKiddo';
-import KiddoProfile from './components/kiddo-profile/KiddoProfile';
+import Kid from './components/kid-view/Kid';
 import Mapski from './components/map/Map';
 import ApiHelper from './utils/apiHelper';
 import FileStackHelper from './utils/fileStackHelper';
@@ -24,7 +24,7 @@ class App extends Component {
     this.state = {
       user: null,
       kiddosList: [],
-	    currentKiddo: 0
+      currentKiddo: 0
     };
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
@@ -63,10 +63,9 @@ class App extends Component {
   ImgHelper () {
     return ImgHelper;
   }
-  
+
   getKiddoIndex (index) {
-  	console.log(index)
-	  this.setState({currentKiddo: index});
+    this.setState({currentKiddo: index});
   }
 
   render() {
@@ -86,11 +85,9 @@ class App extends Component {
                   { ...props }/>
           )}/>
           <Route path='/dashboard/calendar' component={ Calendar }/>
-	        <Route path='/dashboard/profile' render={(props) => (
-		        <KiddoProfile
-			        kiddo={ this.state.kiddosList[this.state.currentKiddo] }
-			        { ...props }/>
-	        )}/>
+          <Route path='/dashboard/profile' render={(props) => (
+            <Kid kiddo={ this.state.kiddosList[this.state.currentKiddo] } { ...props }/>
+            )}/>
           <Route path='/dashboard/map' component={ Mapski }/>
           <Route component={ NotFound }/>
         </Switch>

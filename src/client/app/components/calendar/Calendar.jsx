@@ -33,25 +33,26 @@ class Calendar extends Component {
                         // Modal for Add Event
                         vex.defaultOptions.className = 'vex-theme-os';
                         vex.dialog.open({
-                            message: "Comments",
+                            message: 'Comments',
                             buttons:[
-                                $.extend({},vex.dialog.buttons.NO,{text: "Close Window"})
+                                $.extend({},vex.dialog.buttons.NO,{text: 'Close Window'})
                             ]
                         });
 
                         // JQuery DOM Edit to Allow Creation of Form
+                        // eslint-disable-next-line quotes
                         $('.vex-dialog-message').html("<form><div class='form-group'><label for='calendar-title'>Event Tite</label><input type='text' class='form-control' id='calendar-title'></div><div class='form-group'><label for='calendar-startDate'>Start Date</label><input type='datetime-local' class='form-control' id='calendar-startDate'></div><div class='form-group'><label for='calendar-endDate'>End Date</label><input type='datetime-local' class='form-control' id='calendar-endDate'></div><div class='form-group'><label for='calendar-dropdown'>Calendar Name</label><select class='form-control' id='calendar-dropdown'></select></div><button type='submit' id='submit-btn' class='btn btn-primary'>Submit Event</button></form>");
 
                         // Post Call to Send Event Data to Server
-                        $('#submit-btn').click('.vex-dialog-message', function(event){
+                        $('#submit-btn').click('.vex-dialog-message', function(){
                             var eventInfo = {
-                                title: $("#calendar-title").val().trim(),
-                                startDate: $("#calendar-startDate").val().trim(),
-                                endDate: $("#calendar-endDate").val().trim(),
+                                title: $('#calendar-title').val().trim(),
+                                startDate: $('#calendar-startDate').val().trim(),
+                                endDate: $('#calendar-endDate').val().trim(),
                                 calendar: $('#calendar-dropdown option:selected').text().trim()
-                            }
+                            };
 
-                            $.post('/calendar/addevent', eventInfo).done(function(response){
+                            $.post('/calendar/addevent', eventInfo).done(function(){
                                 this.setState({didSubmit: true});
                             }.bind(this));
                         }.bind(this));
@@ -75,7 +76,7 @@ class Calendar extends Component {
         var calendarTitleArray = [];
 
         // Define Random Color for Each Calendar
-        var colorArray = ['red','blue','orange','green','purple'];
+        var colorArray = ['#ffaa28','#f7786b','#c178ba','#ffdd32','#56d8b1'];
 
         //GetRequest for Google Calendar Events
         $.get('/calendar/getevents', function(response){
@@ -96,30 +97,30 @@ class Calendar extends Component {
                     // All Day Events vs Specific DateTime events filtering
                     var startDate;
                     var endDate;
-                    if(event.start.date == null || event.end.date == null){
+                    if (event.start.date == null || event.end.date == null){
                         startDate = event.start.dateTime;
                         endDate = event.end.dateTime;
-                    } else{
-                        startDate = event.start.date
-                        endDate = event.end.date
+                    } else {
+                        startDate = event.start.date;
+                        endDate = event.end.date;
                     }
                     var eventObject = {
                         title: event.summary,
                         start: startDate,
                         end: endDate
-                    }
+                    };
                     eventArray.push(eventObject);
-                    return eventArray
+                    return eventArray;
                 });
                 var eventsObject = {
                     events: eventArray,
                     color: colorArray[i]
-                }
+                };
 
                 //For initial and rerendering. Add Each Evenrs Object and rerender Calendar
 
                 $('#calendar').fullCalendar('addEventSource', eventsObject);
-                $('#calendar').fullCalendar( 'rerenderEvents');
+                $('#calendar').fullCalendar('rerenderEvents');
 
             }.bind(this));
 

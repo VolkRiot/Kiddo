@@ -8,12 +8,13 @@ import KidReminder from './KidReminder';
 
 class Kid extends Component {
 	render(){
-		return(
+		return (
 			<div className="kid">
 				<div className="row">
-					<div className="col-lg-4"> <img src={'./img/girlsmall.png'} />
+					<div className="col-lg-4">
+						<img src={ this.props.kiddo.avatar.url } style={{width:'74px', height: '74px', borderRadius:'50%'}} />
 					</div>
-					<div className="col-lg-4" id="kidTitle"> Kid Name
+					<div className="col-lg-4" id="kidTitle"> { this.props.kiddo.firstName }
 					</div>
 					<div className="col-lg-4"> Dropdown
 					</div>
@@ -28,7 +29,7 @@ class Kid extends Component {
 					<KidReminder />
 				</div>
 			</div>
-		)
+		);
 	}
 }
 

@@ -116,7 +116,7 @@ class AddKiddo extends Component {
 							<div>
 							<span className="input-group-btn">
 								<button type="submit" className="btn btn-secondary">Submit</button>
-							 </span>
+							</span>
 							</div>
 
 						</form>
@@ -125,8 +125,9 @@ class AddKiddo extends Component {
 						<AddPic imgSrc={ this.state.avatar.url } user={ this.props.user } saveImgHandler={ this.saveImgHandler } />
 					</div>
 			</div>
-		)
+		);
 	}
+
 }
 
 export default AddKiddo;

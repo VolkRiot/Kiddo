@@ -12,7 +12,7 @@ class KiddoProfile extends Component {
 	}
 
 	render() {
-		return(
+		return (
 				<div className="kiddo-profile container">
 					<h1>{ this.props.kiddo.firstName } Profile</h1>
 				</div>
