@@ -4,6 +4,9 @@ body {
   background-color: white;
 
 }
+a {
+    text-decoration: none !important;
+}
 .main {
 	text-align: center;
 	padding-top: 20px;
