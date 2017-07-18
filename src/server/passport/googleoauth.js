@@ -59,9 +59,7 @@ module.exports = function() {
               });
             }
           // Retrieve events from user's calendar(s) and insert into events db  
-          }).then(function(){
-
-          }
+          });
         });
       }
     )
