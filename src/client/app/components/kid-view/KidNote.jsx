@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 class KidNote extends Component {
 	constructor(props) {
-    	super(props);
+		super(props);
 		this.state = { note: '', notes:[], placeholder:'Type new note' };
 		
 		this.handleChange = this.handleChange.bind(this);
@@ -17,12 +17,12 @@ class KidNote extends Component {
 	}
 
 	onSubmit() {
-		if(this.state.note !== ''){
+		if (this.state.note !== ''){
 			event.preventDefault();
 			var existingNotes = this.state.notes;
 			existingNotes.push(this.state.note);
 			this.setState({notes: existingNotes, note: '', placeholder: 'Type new note'});
-		} else{
+		} else {
 			this.setState({placeholder:'Note is required to submit'});
 		}
 	}
@@ -30,7 +30,7 @@ class KidNote extends Component {
 	illustrateNotes() {
 		return this.state.notes.map((note,index) =>
 			<li key={index}>{note}</li>
-		)
+		);
 	}
 
 	resetNotes(){
@@ -53,7 +53,7 @@ class KidNote extends Component {
 						className="form-control" 
 						placeholder={this.state.placeholder} 
 					/>
-	  			</div>
+				</div>
 				<button type="button" onClick={this.onSubmit} className="btn btn-info">
 					Add Note
 				</button>
@@ -61,7 +61,7 @@ class KidNote extends Component {
 					Reset Section
 				</button>
 			</div>
-		)
+		);
 	}
 
 }
