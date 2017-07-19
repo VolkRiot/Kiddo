@@ -1,17 +1,34 @@
 'use strict';
 
 import React, { Component } from 'react';
-import * as style from './map.css';
+import GoogleMap from './GoogleMaps';
 
 class Mapski extends Component {
-	render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: {lat: -34.397, lng: 150.644},
+      kiddosLocations: []
+    };
+  }
 
-		return (
-				<div className="map container">
-					<h1>Map</h1>
-				</div>
-		);
-	}
+    render()
+    {
+      return (
+        <div
+          className="mapski-wrapper"
+          style={{
+            height: '100%',
+            width: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }}
+        >
+          <GoogleMap location={ this.state.location } />
+        </div>
+      );
+    }
 
 }
 

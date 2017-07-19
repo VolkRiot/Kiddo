@@ -1,10 +1,10 @@
 import filestack from 'filestack-js';
+import KEYS from '../../.keys.config';
 
 const fileStackHelper = () => {
   // Obscure API KEY
-  const apikey = 'AHagxYg4Rlyjx7vN81omgz';
-  const signature =
-    '0692ca39d7e0cac079832e78b9da12d26d1dbe90d1d674425eb3aba94a8abbb6';
+  const apikey = KEYS.FILESTACK_SIGN;
+  const signature = KEYS.FILESTACK_SIGN;
   const client = filestack.init(apikey);
   const Policy = {
     expiry: 1359391107,
