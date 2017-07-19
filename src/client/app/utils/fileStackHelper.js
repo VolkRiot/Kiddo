@@ -1,5 +1,4 @@
 import filestack from 'filestack-js';
-import KEYS from '../../keys.config';
 
 const fileStackHelper = () => {
   const apikey = KEYS.FILESTACK_KEY;
