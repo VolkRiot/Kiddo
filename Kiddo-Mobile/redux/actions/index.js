@@ -1,4 +1,5 @@
 export const FOUND_PARENT = 'FOUND_PARENT';
+export const PARENT_NOT_FOUND = 'PARENT_NOT_FOUND';
 
 export function findParentbyEmail(email = null) {
   // [root]/mobile/find/user/email?term=metrikin@gmail.com
@@ -8,7 +9,6 @@ export function findParentbyEmail(email = null) {
         if (!response.ok) {
           throw Error(response.statusText);
         }
-        // console.log('fetch - did receive response: ', JSON.stringify(response));
         return response;
       })
       .then(response => response.json())
@@ -18,8 +18,11 @@ export function findParentbyEmail(email = null) {
           payload: data
         });
       })
-      .catch((error) => {
-        throw new Error(error);
+      .catch((/* error */) => {
+        dispatch({
+          type: PARENT_NOT_FOUND,
+          payload: null
+        });
       });
   };
 }

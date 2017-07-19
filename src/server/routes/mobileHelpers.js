@@ -32,8 +32,10 @@ router.get('/find/user/:by', (req, res) => {
       .populate('kids')
       .populate('events')
       .exec((err, response) => {
-        if (!err) {
-          res.status(200).json(response);
+        if (!err && response.length) {
+          res.status(200).json(response[0]);
+        } else {
+          res.status(500).json(`No user found: ${err}`);
         }
       });
     } else {
