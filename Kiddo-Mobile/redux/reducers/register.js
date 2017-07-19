@@ -1,9 +1,9 @@
-import { FOUND_PARENT } from '../actions/index';
-import { PARENT_NOT_FOUND } from '../actions/index';
+import { FOUND_PARENT, PARENT_NOT_FOUND, RESET_SEARCH_BOX } from '../actions/index';
 
 const initialState = {
   user: null,
-  found: false
+  found: false,
+  searchSubmitted: false
 };
 
 export default function registerUser(state = initialState, action) {
@@ -13,13 +13,21 @@ export default function registerUser(state = initialState, action) {
         ...state,
         ...action.payload,
         user: action.payload,
-        found: true
+        found: true,
+        searchSubmitted: true
       };
     case PARENT_NOT_FOUND:
       return {
         ...state,
         user: null,
-        found: false
+        found: false,
+        searchSubmitted: true
+      };
+    case RESET_SEARCH_BOX:
+      return {
+        ...state,
+        user: null,
+        searchSubmitted: false
       };
     default:
       return { ...state };

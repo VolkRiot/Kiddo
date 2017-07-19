@@ -1,5 +1,6 @@
 export const FOUND_PARENT = 'FOUND_PARENT';
 export const PARENT_NOT_FOUND = 'PARENT_NOT_FOUND';
+export const RESET_SEARCH_BOX = 'RESET_SEARCH_BOX';
 
 export function findParentbyEmail(email = null) {
   // [root]/mobile/find/user/email?term=metrikin@gmail.com
@@ -15,14 +16,21 @@ export function findParentbyEmail(email = null) {
       .then((data) => {
         dispatch({
           type: FOUND_PARENT,
-          payload: data
+          payload: data,
         });
       })
       .catch((/* error */) => {
         dispatch({
           type: PARENT_NOT_FOUND,
-          payload: null
+          payload: null,
         });
       });
+  };
+}
+
+export function resetSearchTerm() {
+  return {
+    type: RESET_SEARCH_BOX,
+    payload: null,
   };
 }

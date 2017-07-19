@@ -9,23 +9,24 @@ class RegisterApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: null,
-      testText: 'nothing'
+      input: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.kidChoices = this.kidChoices.bind(this);
+    this.unregisteredView = this.unregisteredView.bind(this);
   }
 
   handleSubmit(text) {
     this.props.actions.findParentbyEmail(text);
-    this.setState({testText: text});
+    // Turns red then resets the red color
+    setTimeout(() => { this.props.actions.resetSearchTerm(); }, 1500);
   }
 
   unregisteredView() {
     return (
       <View style={styles.container}>
         <TextInput
-          style={styles.input}
+          style={this.props.user.searchSubmitted && !this.props.user.found ? styles.inputNotFound : styles.input}
           placeholder={'Enter an email'}
           autoFocus={true}
           keyboardType={'email-address'}
@@ -72,6 +73,13 @@ const styles = StyleSheet.create({
     width: 250,
     height: 50,
     backgroundColor: 'skyblue',
+    textAlign: 'center',
+    borderRadius: 30
+  },
+  inputNotFound: {
+    width: 250,
+    height: 50,
+    backgroundColor: 'red',
     textAlign: 'center',
     borderRadius: 30
   },
