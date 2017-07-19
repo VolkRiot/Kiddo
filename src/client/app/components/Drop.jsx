@@ -1,17 +1,34 @@
+
+'use strict';
+
 import React from 'react';
-import { Dropdown, Menu } from 'semantic-ui-react';
+import ReactDOM from 'react-dom';
+import {DropdownButton, MenuItem, ButtonToolbar} from 'react-bootstrap';
 
-const options = [
-  { key: 1, text: 'Calendar', value: 1 },
-  { key: 2, text: 'Map', value: 2 },
-  { key: 3, text: 'Log Out', value: 3 },
-];
 
-const DropdownSimple = () => (
-  <Menu compact>
-    <Dropdown text='Next Up' options={options} simple item />
-  </Menu>
+class Drop extends React.Component {
+
+render(){
+
+const BUTTONS = ['Default'];
+
+function renderDropdownButton(title, i) {
+  return (
+    <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i} id={`dropdown-basic-${i}`}>
+      <MenuItem eventKey="1">Calendar</MenuItem>
+      <MenuItem eventKey="2">Map</MenuItem>
+      <MenuItem divider />
+      <MenuItem eventKey="4">Log Out</MenuItem>
+    </DropdownButton>
+  );
+}
+
+const buttonsInstance = (
+  <ButtonToolbar>{BUTTONS.map(renderDropdownButton)}</ButtonToolbar>
 );
+}
+}
 
-export default DropdownSimple;
+export default Drop;
+
 

@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import DashAvatar from './DashAvatar';
 import KiddoCarousel from './KiddoCarousel';
 import * as style from './dashboard.css';
+
 // import Drop from '../Drop';
+
 
 
 class Dashboard extends Component {
@@ -13,9 +15,15 @@ class Dashboard extends Component {
 	}
 
 	render() {
+<<<<<<< HEAD
 
 		const path = this.props.match && this.props.match.path ? this.props.match.path: '/dashboard';
 
+=======
+		
+		const path = this.props.match && this.props.match.path ? this.props.match.path: '/dashboard';
+		
+>>>>>>> 442adcd253bfd6b4832203680b4d7e785fc02f06
 		return (
 			<div className="dashboard container">
 
@@ -39,7 +47,7 @@ class Dashboard extends Component {
 						{
 							this.props.kiddos.length ?
 								<div className="avatar-container carousel-container">
-									< KiddoCarousel
+									<KiddoCarousel
 										getKiddoIndex={ this.props.getKiddoIndex }
 										kiddos={ this.props.kiddos }
 										to={ `${ path }/profile` }
