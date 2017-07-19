@@ -14,7 +14,7 @@ class KiddoProfile extends Component {
 	render() {
 		return (
 				<div className="kiddo-profile container">
-					<h1>Kiddo Profile</h1>
+					<h1>{ this.props.kiddo.firstName } Profile</h1>
 				</div>
 		);
 	}
