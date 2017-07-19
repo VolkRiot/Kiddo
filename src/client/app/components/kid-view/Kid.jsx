@@ -14,6 +14,7 @@ class Kid extends Component {
 			} };
 	}
 	render(){
+		// (TODO: Hacky but we have to move forward on this with the quickness)
 		return (
 			<div className="kid">
 				<div className="row">
@@ -32,13 +33,19 @@ class Kid extends Component {
 					</div>
 				</div>
 				<div className="startNote">
-					<KidNote />
+					<KidNote
+						kid={ this.props.kiddo ? this.props.kiddo : '' }
+					/>
 				</div>
 				<div className='startShop'>
-					<KidShop />
+					<KidShop
+						kid={ this.props.kiddo ? this.props.kiddo : '' }
+					/>
 				</div>
 				<div className="startReminder">
-					<KidReminder />
+					<KidReminder
+						kid={ this.props.kiddo ? this.props.kiddo : '' }
+					/>
 				</div>
 			</div>
 		);
