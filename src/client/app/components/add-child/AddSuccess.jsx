@@ -15,41 +15,33 @@ const customStyles = {
 };
  
 class Success extends React.Component {
-  constructor() {
-    super();
- 
+  constructor(props) {
+    super(props);
     this.state = {
       modalIsOpen: false
     };
- 
-    this.openModal = this.openModal.bind(this);
+
     this.afterOpenModal = this.afterOpenModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
   }
- 
-  openModal() {
-    this.setState({modalIsOpen: true});
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ modalIsOpen: nextProps.modalState });
   }
  
   afterOpenModal() {
     this.subtitle.style.color = '#f7786b';
   }
  
-  closeModal() {
-    this.setState({modalIsOpen: false});
-  }
- 
   render() {
     return (
       <div>
-        <button onClick={this.openModal}>Submit</button>
         <Modal 
-          isOpen={this.state.modalIsOpen} 
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
+          isOpen={ this.state.modalIsOpen }
+          onAfterOpen={ this.afterOpenModal }
+          onRequestClose={ this.props.closeModal }
           style={customStyles}
           contentLabel="Example Modal">
-            <h2 className="modalTitle" ref={subtitle => this.subtitle = subtitle}>Awesome!</h2>
+            <h2 className="modalTitle" ref={subtitle => this.subtitle = subtitle }>Awesome!</h2>
               <div className="modalSubtitle">Your Kiddo's profile has been added to your dashboard.</div>
         </Modal>
       </div>
