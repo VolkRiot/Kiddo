@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TextInput } from 'react-native';
+import { View, StyleSheet, Text, TextInput, Image } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -13,6 +13,7 @@ class RegisterApp extends Component {
       testText: 'nothing'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.kidChoices = this.kidChoices.bind(this);
   }
 
   handleSubmit(text) {
@@ -20,21 +21,36 @@ class RegisterApp extends Component {
     this.setState({testText: text});
   }
 
+  unregisteredView() {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder={'Enter an email'}
+          autoFocus={true}
+          keyboardType={'email-address'}
+          onChangeText={input => this.setState({ input })}
+          multiline={false}
+          onSubmitEditing={(event) => this.handleSubmit(event.nativeEvent.text)}
+        />
+      </View>
+    );
+  }
+
+  kidChoices() {
+    return this.props.kids.map((each, i) => {
+      return (<Image
+          style={{width: 50, height: 50}}
+          key={i}
+          source={{uri: each.avatar.url}}
+        />);
+    });
+  }
+
   render() {
     return (
       <View style={styles.outerContainer}>
-        <View style={styles.container}>
-          <TextInput
-            style={styles.input}
-            placeholder={'Enter an email'}
-            autoFocus={true}
-            keyboardType={'email-address'}
-            onChangeText={input => this.setState({ input })}
-            multiline={false}
-            onSubmitEditing={(event) => this.handleSubmit(event.nativeEvent.text)}
-          />
-        </View>
-        <Text>{JSON.stringify(this.props.user)}</Text>
+        {this.props.user.found ? this.kidChoices() :  this.unregisteredView() }
       </View>
     );
   }
@@ -68,7 +84,9 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    kids: state.user.kids,
+    events: state.user.events
   };
 }
 

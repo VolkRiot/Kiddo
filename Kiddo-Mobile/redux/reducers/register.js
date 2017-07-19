@@ -11,13 +11,14 @@ export default function registerUser(state = initialState, action) {
     case FOUND_PARENT:
       return {
         ...state,
+        ...action.payload,
         user: action.payload,
         found: true
       };
     case PARENT_NOT_FOUND:
       return {
         ...state,
-        user: action.payload,
+        user: null,
         found: false
       };
     default:
