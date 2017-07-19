@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import DashAvatar from './DashAvatar';
 import KiddoCarousel from './KiddoCarousel';
 import * as style from './dashboard.css';
+import Drop from '../Drop';
 
 
 class Dashboard extends Component {
@@ -19,14 +20,14 @@ class Dashboard extends Component {
 			<div className="dashboard container">
 				
 				<div className="row">
-					<div className="col-xs-12">
-						<h1 id="icon">Kiddo</h1>
+					<div className="col-lg-6">
+						<h1 id="icon">K</h1>
 					</div>
 				</div>
 				
 				<div className="row">
 					<div className="col-xs-12">
-						<h1 id="parentTitle">Hello, {
+						<h1 id="parentTitle">Welcome, {
 							this.props.user ?
 								this.props.user.firstName : 'Organized'
 						}!</h1>
