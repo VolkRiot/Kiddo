@@ -12,8 +12,7 @@ class Mapski extends Component {
     };
   }
 
-    render()
-    {
+    render() {
       return (
         <div
           className="mapski-wrapper"

@@ -34,7 +34,7 @@ class GoogleMap extends Component {
 
     return (
       <div ref="map" style={mapStyle}>I should be a map!</div>
-    )
+    );
   }
 }
 

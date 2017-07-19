@@ -2,7 +2,6 @@ import filestack from 'filestack-js';
 import KEYS from '../../keys.config';
 
 const fileStackHelper = () => {
-  // Obscure API KEY
   const apikey = KEYS.FILESTACK_KEY;
   const signature = KEYS.FILESTACK_SIGN;
   const client = filestack.init(apikey);
