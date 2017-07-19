@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react';
 import AddPic from './AddPic';
+import Success from './AddSuccess';
 import * as style from './addkiddo.css';
+
 
 class AddKiddo extends Component {
 	constructor (props) {
@@ -40,6 +42,7 @@ class AddKiddo extends Component {
 		if (okToSubmit) {
 			newKiddoData.user_id = user_id;
 			this.props.saveNewKiddo(newKiddoData);
+			openModal();
 
 			this.setState({
 				firstName: '',
@@ -69,7 +72,6 @@ class AddKiddo extends Component {
 		return (
 			<div className="addChild container">
 				<h3>Register Your Kiddo Below!</h3>
-
 					<div className="col-md-6">
 						<form  onSubmit={ this.onFormSubmit }>
 							<div className='form-group'>

@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import DashAvatar from './DashAvatar';
 import KiddoCarousel from './KiddoCarousel';
 import * as style from './dashboard.css';
+
 // import Drop from '../Drop';
+
 
 
 class Dashboard extends Component {
@@ -39,7 +41,7 @@ class Dashboard extends Component {
 						{
 							this.props.kiddos.length ?
 								<div className="avatar-container carousel-container">
-									< KiddoCarousel
+									<KiddoCarousel
 										getKiddoIndex={ this.props.getKiddoIndex }
 										kiddos={ this.props.kiddos }
 										to={ `${ path }/profile` }
