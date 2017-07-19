@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
+import * as style from './map.css';
 import GoogleMap from './GoogleMaps';
 
 class Mapski extends Component {
