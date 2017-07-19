@@ -7,7 +7,7 @@ class Mapski extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: {lat: -34.397, lng: 150.644},
+      location: { lat: 37.773972, lng: -122.431297 },
       kiddosLocations: []
     };
   }
@@ -25,7 +25,7 @@ class Mapski extends Component {
             left: 0
           }}
         >
-          <GoogleMap location={ this.state.location } />
+          <GoogleMap startLocation={ this.state.location } />
         </div>
       );
     }

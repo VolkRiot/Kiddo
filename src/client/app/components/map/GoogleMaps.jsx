@@ -13,13 +13,13 @@ class GoogleMap extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.map.panTo( nextProps.location );
+    this.map.panTo( nextProps.startLocation );
   }
 
   componentDidMount() {
     this.map = new google.maps.Map(this.refs.map, {
-      center: this.props.location,
-      zoom: 8
+      center: this.props.startLocation,
+      zoom: 13
     });
   }
 
