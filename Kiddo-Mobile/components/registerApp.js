@@ -39,13 +39,25 @@ class RegisterApp extends Component {
   }
 
   kidChoices() {
-    return this.props.kids.map((each, i) => {
-      return (<Image
-          style={{width: 50, height: 50}}
-          key={i}
-          source={{uri: each.avatar.url}}
-        />);
-    });
+    return (
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        {this.props.kids.map((each, i) => {
+          return (
+            <Image
+              style={{width: 50, height: 50, borderRadius: 10, marginBottom: 10}}
+              key={i}
+              source={{uri: each.avatar.url}}
+            />
+          );
+        })}
+        <TextInput
+          style={styles.input}
+          placeholder={'Enter account password'}
+          autoFocus={true}
+          multiline={false}
+        />
+      </View>
+    );
   }
 
   render() {
@@ -65,7 +77,7 @@ const styles = StyleSheet.create({
   },
   outerContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'green',
     alignItems: 'center',
     justifyContent: 'center'
   },
