@@ -73,4 +73,4 @@ typings/
 .idea/
 /coverage/
 .editorconfig
-src/client/.keys.config.js
+src/client/keys.config.js

@@ -3,7 +3,7 @@ import KEYS from '../../.keys.config';
 
 const fileStackHelper = () => {
   // Obscure API KEY
-  const apikey = KEYS.FILESTACK_SIGN;
+  const apikey = KEYS.FILESTACK_KEY;
   const signature = KEYS.FILESTACK_SIGN;
   const client = filestack.init(apikey);
   const Policy = {
