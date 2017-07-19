@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TextInput, Image } from 'react-native';
+import { View, StyleSheet, Text, TextInput, Image, TouchableHighlight } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -14,6 +14,7 @@ class RegisterApp extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.kidChoices = this.kidChoices.bind(this);
     this.unregisteredView = this.unregisteredView.bind(this);
+    this.focusAvatar = this.focusAvatar.bind(this);
   }
 
   handleSubmit(text) {
@@ -38,18 +39,30 @@ class RegisterApp extends Component {
     );
   }
 
+  focusAvatar() {
+    console.log('Events registed at focus Avatar as ')
+  }
+
   kidChoices() {
     return (
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <View>
+      <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
         {this.props.kids.map((each, i) => {
           return (
+            <TouchableHighlight
+              onPress={this.focusAvatar}
+              key={i}
+              >
             <Image
-              style={{width: 50, height: 50, borderRadius: 10, marginBottom: 10}}
+              style={{width: 50, height: 50, borderRadius: 10, marginBottom: 10, marginRight: 5}}
               key={i}
               source={{uri: each.avatar.url}}
             />
+            </TouchableHighlight>
           );
         })}
+        </View>
+        <View>
         <TextInput
           style={styles.input}
           placeholder={'Enter account password'}
@@ -57,6 +70,7 @@ class RegisterApp extends Component {
           multiline={false}
         />
       </View>
+    </View>
     );
   }
 
