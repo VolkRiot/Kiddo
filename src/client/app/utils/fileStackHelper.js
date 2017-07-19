@@ -1,5 +1,5 @@
 import filestack from 'filestack-js';
-import KEYS from '../../.keys.config';
+import KEYS from '../../keys.config';
 
 const fileStackHelper = () => {
   // Obscure API KEY
