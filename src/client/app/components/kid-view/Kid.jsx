@@ -12,9 +12,9 @@ class Kid extends Component {
 			<div className="kid">
 				<div className="row">
 					<div className="col-lg-4">
-						<img src={ this.props.kiddo.avatar.url } style={{width:'74px', height: '74px', borderRadius:'50%'}} />
+						<img src={ this.props.kiddo ? this.props.kiddo.avatar.url : './img/girl.png'} style={{width:'74px', height: '74px', borderRadius:'50%'}} />
 					</div>
-					<div className="col-lg-4" id="kidTitle"> { this.props.kiddo.firstName }
+					<div className="col-lg-4" id="kidTitle"> { this.props.kiddo ? this.props.kiddo.firstName : '' }
 					</div>
 					<div className="col-lg-4"> Dropdown
 					</div>
