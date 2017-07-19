@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import DashAvatar from './DashAvatar';
 import KiddoCarousel from './KiddoCarousel';
 import * as style from './dashboard.css';
-import Drop from '../Drop';
+// import Drop from '../Drop';
 
 
 class Dashboard extends Component {
@@ -13,18 +13,18 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		
+
 		const path = this.props.match.path;
-		
+
 		return (
 			<div className="dashboard container">
-				
+
 				<div className="row">
 					<div className="col-lg-6">
 						<h1 id="icon">K</h1>
 					</div>
 				</div>
-				
+
 				<div className="row">
 					<div className="col-xs-12">
 						<h1 id="parentTitle">Welcome, {
@@ -33,7 +33,7 @@ class Dashboard extends Component {
 						}!</h1>
 					</div>
 				</div>
-				
+
 				<div className="row" id="row1">
 					<div className="col-sm-6" id="view1">
 						{
@@ -64,7 +64,7 @@ class Dashboard extends Component {
 						</div>
 					</div>
 				</div>
-				
+
 				<div className="row" id="row2">
 					<div className="col-sm-6" id="view3">
 						<div className="avatar-container">
@@ -86,7 +86,7 @@ class Dashboard extends Component {
 					</div>
 				</div>
 			</div>
-			
+
 		);
 	}
 }
