@@ -3,6 +3,8 @@ import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import * as Actions from '../redux/actions';
+
 class RegisterApp extends Component {
   constructor(props) {
     super(props);
@@ -17,10 +19,11 @@ class RegisterApp extends Component {
         <View style={styles.container}>
           <TextInput
             style={styles.input}
-            placeholder={'Enter an email'}
+            placeholder={this.props.registered.parent}
             autoFocus={true}
             keyboardType={'email-address'}
             onChangeText={input => this.setState({ input })}
+            onSubmitEditing={this.props.actions.findParentbyEmail}
           />
         </View>
       </View>
@@ -54,4 +57,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, null)(RegisterApp);
+function mapStateToProps(state) {
+  return {
+    registered: state.register
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterApp);

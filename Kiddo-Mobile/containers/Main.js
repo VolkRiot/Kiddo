@@ -16,8 +16,8 @@ import RegisterApp from '../components/registerApp';
 import NavigationProvider from './Navigator';
 
 class Main extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
   render() {
     return (

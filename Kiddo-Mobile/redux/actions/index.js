@@ -1,11 +1,18 @@
 export const FIND_USER = 'FIND_USER';
-export const RETRIEVE_PARENT = 'RETRIEVE_PARENT';
+export const FIND_PARENT = 'FIND_PARENT';
 
 
 
-export function getParent(starter = null) {
-  return {
-    type: RETRIEVE_PARENT,
-    parent: true, // Placeholder
+export function findParentbyEmail(email = null) {
+  // [root]/mobile/find/user/email?term=metrikin@gmail.com
+  return (dispatch) => {
+    fetch(`/mobile/find/user/email?term=${email}`)
+      .then((response) => {
+        // (TODO) Add error checking
+        dispatch({
+          type: FIND_PARENT,
+          payload: response
+        });
+      });
   };
-};
+}
