@@ -16,6 +16,7 @@ router.get('/find/:by', (req, res) => {
       [req.params.by]: req.query.term
     }).then((response, err) => {
       if (!err) {
+        res.status(200).json(response[0]);
         // (TODO): Develop Mobile routes further here.
         // console.log('Response is', response);
       }

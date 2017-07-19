@@ -8,15 +8,17 @@ import {
   Dimensions
 } from 'react-native';
 
-// import Proptypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
 // import SocketIOClient from 'socket.io-client';
 
 import RegisterApp from '../components/registerApp';
 import NavigationProvider from './Navigator';
 
 class Main extends Component {
+  constructor() {
+    super();
+  }
   render() {
     return (
         <NavigationProvider />

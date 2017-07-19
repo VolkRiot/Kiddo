@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class RegisterApp extends Component {
+class RegisterApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +18,8 @@ export default class RegisterApp extends Component {
           <TextInput
             style={styles.input}
             placeholder={'Enter an email'}
+            autoFocus={true}
+            keyboardType={'email-address'}
             onChangeText={input => this.setState({ input })}
           />
         </View>
@@ -49,3 +53,5 @@ const styles = StyleSheet.create({
     marginBottom: 10
   }
 });
+
+export default connect(null, null)(RegisterApp);
