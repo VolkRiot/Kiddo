@@ -74,7 +74,7 @@ class Calendar extends Component {
 
         // Array for Calendar Titles
         var calendarTitleArray = [];
-
+        
         // Define Random Color for Each Calendar
         var colorArray = ['#ffaa28','#f7786b','#c178ba','#ffdd32','#56d8b1'];
 
@@ -128,6 +128,7 @@ class Calendar extends Component {
 
             //Add Calendar Names to Add Event Dropdown
              $('.fc-AddEvent-button').click(function(){
+                $('#calendar-dropdown').html('');
                 $.each(calendarTitleArray, function(i,val){
                     var newOption = $('<option>');
                     newOption.html(val);
