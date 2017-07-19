@@ -33,7 +33,7 @@ class KidShop extends Component {
     );
   }
 
-  resetItems(event) {
+  resetItems() {
     this.setState({items: []});
   }
 

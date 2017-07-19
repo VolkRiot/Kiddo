@@ -128,7 +128,7 @@ class Calendar extends Component {
 
             //Add Calendar Names to Add Event Dropdown
              $('.fc-AddEvent-button').click(function(){
-                $('#calendar-dropdown').html("");
+                $('#calendar-dropdown').html('');
                 $.each(calendarTitleArray, function(i,val){
                     var newOption = $('<option>');
                     newOption.html(val);
