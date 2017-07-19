@@ -9,8 +9,15 @@ class RegisterApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: null
+      input: null,
+      testText: 'nothing'
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(text) {
+    this.props.actions.findParentbyEmail(text);
+    this.setState({testText: text});
   }
 
   render() {
@@ -19,13 +26,15 @@ class RegisterApp extends Component {
         <View style={styles.container}>
           <TextInput
             style={styles.input}
-            placeholder={this.props.registered.parent}
+            placeholder={'Enter an email'}
             autoFocus={true}
             keyboardType={'email-address'}
             onChangeText={input => this.setState({ input })}
-            onSubmitEditing={this.props.actions.findParentbyEmail}
+            multiline={false}
+            onSubmitEditing={(event) => this.handleSubmit(event.nativeEvent.text)}
           />
         </View>
+        <Text>{JSON.stringify(this.props.registered)}</Text>
       </View>
     );
   }

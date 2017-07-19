@@ -1,18 +1,25 @@
-export const FIND_USER = 'FIND_USER';
-export const FIND_PARENT = 'FIND_PARENT';
-
-
+export const FOUND_PARENT = 'FOUND_PARENT';
 
 export function findParentbyEmail(email = null) {
   // [root]/mobile/find/user/email?term=metrikin@gmail.com
   return (dispatch) => {
-    fetch(`/mobile/find/user/email?term=${email}`)
+    fetch(`http://localhost:3000/mobile/find/user/email?term=${email.toLowerCase()}`)
       .then((response) => {
-        // (TODO) Add error checking
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        // console.log('fetch - did receive response: ', JSON.stringify(response));
+        return response;
+      })
+      .then(response => response.json())
+      .then((data) => {
         dispatch({
-          type: FIND_PARENT,
-          payload: response
+          type: FOUND_PARENT,
+          payload: data
         });
+      })
+      .catch((error) => {
+        throw new Error(error);
       });
   };
 }

@@ -1,16 +1,17 @@
-import { FIND_PARENT } from '../actions/index';
+import { FOUND_PARENT } from '../actions/index';
 
 const initialState = {
-  parent: 'Misha',
-  registered: false
+  user: null,
+  found: false
 };
 
 export default function registerUser(state = initialState, action) {
   switch (action.type) {
-    case FIND_PARENT:
+    case FOUND_PARENT:
       return {
         ...state,
-        parent: action.payload
+        user: action.payload,
+        found: true
       };
     default:
       return { ...state };
