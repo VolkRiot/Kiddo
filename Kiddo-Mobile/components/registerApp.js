@@ -34,7 +34,7 @@ class RegisterApp extends Component {
             onSubmitEditing={(event) => this.handleSubmit(event.nativeEvent.text)}
           />
         </View>
-        <Text>{JSON.stringify(this.props.registered)}</Text>
+        <Text>{JSON.stringify(this.props.user)}</Text>
       </View>
     );
   }
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    registered: state.register
+    user: state.user
   };
 }
 
