@@ -18,7 +18,6 @@ class KidShop extends Component {
 
   onSubmit() {
     if (this.state.item !== ''){
-      event.preventDefault();
       var existingItems = this.state.items;
       existingItems.push(this.state.item);
       this.setState({items: existingItems, item: '', placeholder: 'Type new shopping item'});
@@ -35,7 +34,6 @@ class KidShop extends Component {
   }
 
   resetItems(event) {
-    event.preventDefault();
     this.setState({items: []});
   }
 

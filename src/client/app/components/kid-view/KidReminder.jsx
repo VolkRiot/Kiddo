@@ -18,7 +18,6 @@ class KidReminder extends Component {
 
   onSubmit() {
     if (this.state.reminder !== ''){
-      event.preventDefault();
       var existingReminders =  this.state.reminders;
       existingReminders.push(this.state.reminder);
       this.setState({reminders: existingReminders, reminder: '', placeholder: 'Type new reminder'});
@@ -34,7 +33,6 @@ class KidReminder extends Component {
   }
   
   resetReminders(){
-    event.preventDefault();
     this.setState({reminders: []});
   }
 

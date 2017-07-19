@@ -18,7 +18,6 @@ class KidNote extends Component {
 
 	onSubmit() {
 		if (this.state.note !== ''){
-			event.preventDefault();
 			var existingNotes = this.state.notes;
 			existingNotes.push(this.state.note);
 			this.setState({notes: existingNotes, note: '', placeholder: 'Type new note'});
@@ -34,7 +33,6 @@ class KidNote extends Component {
 	}
 
 	resetNotes(){
-		event.preventDefault();
 		this.setState({notes: []});
 	}
 
