@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import * as style from './addkiddo.css';
- 
+
 const customStyles = {
   content : {
     top                   : '50%',
@@ -13,7 +13,7 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
- 
+
 class Success extends React.Component {
   constructor(props) {
     super(props);
@@ -27,15 +27,16 @@ class Success extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({ modalIsOpen: nextProps.modalState });
   }
- 
+
   afterOpenModal() {
+    setTimeout(() => {this.props.closeModal();}, 2000);
     this.subtitle.style.color = '#f7786b';
   }
- 
+
   render() {
     return (
       <div>
-        <Modal 
+        <Modal
           isOpen={ this.state.modalIsOpen }
           onAfterOpen={ this.afterOpenModal }
           onRequestClose={ this.props.closeModal }
@@ -50,4 +51,3 @@ class Success extends React.Component {
 }
 
 export default Success;
-
