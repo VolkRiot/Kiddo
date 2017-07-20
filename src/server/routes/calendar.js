@@ -20,11 +20,11 @@ var google_calendar = undefined;
 
 // Base Calendar HTML
 
-router.get('/getevents', function(req, res) {
+router.get('/getevents', function(req) {
   calendarSnapshot(req);
 });
 
-router.get('/geteventsnapshot', function(req){
+router.get('/geteventsnapshot', function(req,res){
   Calendar.findOne({googleId: req.user.googleId}, function(err,calendar){
     if (err){
       throw new Error(err);
