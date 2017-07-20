@@ -7,7 +7,8 @@ const ApiHelper = () => {
   const addKiddoRoute = '/api/kid?method=create';
   const addEventRoute = '/api/event?method=create';
   const addCalendarRoute = '/kid/addcalendar';
-  const findKidByIdRoute = '/api/kid?_id=';
+
+  const putKidRoute = id => `/api/kid?method=update&_id=${id}`;
 
   return {
     getCurrentUser: () => {
@@ -25,9 +26,9 @@ const ApiHelper = () => {
     addCalendar: kidName => {
       return api.post(addCalendarRoute, kidName);
     },
-    // getKiddo: kiddo_id => {
-    //   return api.get(findKidByIdRoute + kiddo_id);
-    // }
+    updateKiddo: kiddo => {
+      return api.put(putKidRoute(kiddo._id), kiddo);
+    }
   };
 };
 

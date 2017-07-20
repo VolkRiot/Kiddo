@@ -34,4 +34,26 @@ router.get('/authenticate', isAuthenticated, (req, res) => {
   res.status(200).json({ authenticated: !!req.user });
 });
 
+router.get('/filestack/credential', (req, res, next) =>{
+  const apikey = process.env.FILESTACK_KEY;
+  const signature = process.env.FILESTACK_SIG;
+  if (apikey && signature) {
+    let Policy = {
+      expiry: 1359391107,
+      call: 'write',
+      handle: apikey
+    };
+
+    let response = {
+      apikey: apikey,
+      signature: signature,
+      policy: Policy
+    };
+
+    return res.status(200).json(response);
+  } else {
+    return next({message: 'Fail ', err: 'access denided'});
+  }
+
+});
 module.exports = router;
