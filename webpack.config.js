@@ -1,6 +1,5 @@
 const path              = require('path'),
       webpack           = require('webpack'),
-      HtmlWebpackPlugin = require('html-webpack-plugin'),
       ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 let config = {
@@ -36,13 +35,6 @@ let config = {
     stats: 'minimal'
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      /*minify: {
-        collapseWhitespace: true
-      },*/
-      hash: true,
-      template: 'src/client/index.html',
-    }),
     new ExtractTextPlugin({
       filename: 'css/bundle.css',
       disable: false,
@@ -55,7 +47,5 @@ let config = {
     }),
   ]
 };
-
-//(TODO) IMPLEMENT HOT RELOAD
 
 module.exports = config;
