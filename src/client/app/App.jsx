@@ -30,7 +30,6 @@ class App extends Component {
     this.getUser = this.getUser.bind(this);
     this.addNewCalendar = this.addNewCalendar.bind(this);
     this.getEvents = this.getEvents.bind(this);
-    this.ImgHelper = this.ImgHelper.bind(this);
     this.getKiddoIndex = this.getKiddoIndex.bind(this);
   }
 
