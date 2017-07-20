@@ -35,7 +35,7 @@ router.get('/geteventsnapshot', function(req,res){
 });
 
 // Route to Retrieve Event Data to AddKiddo to Google
-router.post('/addevent', function(req){
+router.post('/addevent', function(req,res){
   
   // Initiate google_calendar with token
   if (!google_calendar) {
@@ -92,7 +92,7 @@ router.post('/addevent', function(req){
                         
                         }  else {
                           // Successfully updated kid with event
-                         
+                         res.send('all good');
                         }
                       });
                     }
