@@ -29,6 +29,7 @@ class App extends Component {
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
     this.addNewCalendar = this.addNewCalendar.bind(this);
+    this.getEvents = this.getEvents.bind(this);
     this.ImgHelper = this.ImgHelper.bind(this);
     this.getKiddoIndex = this.getKiddoIndex.bind(this);
   }
@@ -58,7 +59,10 @@ class App extends Component {
   }
 
   addNewCalendar (newKidName) {
-   return Api.addCalendar(newKidName);
+   return Api.addCalendar(newKidName)
+    .then(function(){
+      Api.eventsSnapshot();
+    });
   }
 
   getEvents (){

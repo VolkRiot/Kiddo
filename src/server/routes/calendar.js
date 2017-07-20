@@ -20,8 +20,9 @@ var google_calendar = undefined;
 
 // Base Calendar HTML
 
-router.get('/getevents', function(req) {
+router.get('/getevents', function(req,res) {
   calendarSnapshot(req);
+  res.status(200).send('');
 });
 
 router.get('/geteventsnapshot', function(req,res){
