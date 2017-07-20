@@ -52,7 +52,7 @@ router.get('/filestack/credential', (req, res, next) =>{
 
     return res.status(200).json(response);
   } else {
-    return next({message: 'Fail ', err: `access denided`});
+    return next({message: 'Fail ', err: 'access denided'});
   }
 
 });

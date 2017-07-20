@@ -65,7 +65,7 @@ class AddKiddo extends Component {
           this.setState({ avatar: image.filesFailed[0] }); //(TODO) TEST FAIL CASE
         }
       });
-    })
+    });
   }
 
 	render(){

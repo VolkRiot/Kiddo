@@ -20,6 +20,6 @@ const indexRender = () =>
     </script>
         </body>
       </html>
-      `
+      `;
 
 module.exports = indexRender;
