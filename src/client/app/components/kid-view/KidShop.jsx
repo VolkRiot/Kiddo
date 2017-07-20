@@ -1,6 +1,9 @@
 'use strict';
 
 import React, { Component } from 'react';
+import ApiHelper from '../../utils/apiHelper';
+
+const Api = ApiHelper();
 
 class KidShop extends Component {
   constructor(props) {
@@ -20,7 +23,18 @@ class KidShop extends Component {
     if (this.state.item !== ''){
       var existingItems = this.state.shopping;
       existingItems.push(this.state.item);
-      this.setState({shopping: existingItems, item: '', placeholder: 'Type new shopping item'});
+
+      if (this.props.kid) {
+				this.props.kid.shopping = existingItems;
+				Api.updateKiddo(this.props.kid)
+				.then((response) => {
+          this.setState({shopping: response.data.body.shopping, item: '', placeholder: 'Type new shopping item'});
+				})
+				.catch((err) => {
+					throw new Error(err);
+				});
+			}
+
     } else {
       this.setState({placeholder: 'Item is required to submit'});
     }
