@@ -17,6 +17,7 @@ class GoogleMap extends Component {
   }
 
   componentDidMount() {
+    // eslint-disable-next-line no-undef
     this.map = new google.maps.Map(this.refs.map, {
       center: this.props.startLocation,
       zoom: 13
