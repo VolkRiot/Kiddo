@@ -1,18 +1,18 @@
 'use strict';
 
 import React, { Component } from 'react';
-import * as style from './map.css';
 import GoogleMap from './GoogleMaps';
+import * as style from './map.css';
+
 
 class Mapski extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: { lat: 37.773972, lng: -122.431297 },
-      kiddosLocations: []
+      startLocation: { lat: 37.773972, lng: -122.431297 },
+      KiddosList: { lat: 37.773972, lng: -122.431297 },
     };
   }
-
     render() {
       return (
         <div
@@ -25,7 +25,10 @@ class Mapski extends Component {
             left: 0
           }}
         >
-          <GoogleMap startLocation={ this.state.location } />
+          <GoogleMap
+            startLocation={ this.state.startLocation }
+            kiddosList={ this.state.KiddosList }
+          />
         </div>
       );
     }
