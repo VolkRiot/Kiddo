@@ -47,7 +47,7 @@ class App extends Component {
 
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
-  // Save new Calendar too! (TODO: Make better this sucks! Consolidate);
+   // Save new Calendar too! (TODO: Make better this sucks! Consolidate);
    addKiddo.then(() => {
      this.addNewCalendar(newKiddo)
       .then(result => {
@@ -69,10 +69,6 @@ class App extends Component {
     return Api.eventsSnapshot();
   }
 
-  ImgHelper () {
-    return ImgHelper;
-  }
-
   getKiddoIndex (index) {
     this.setState({currentKiddo: index});
   }
@@ -89,7 +85,7 @@ class App extends Component {
               <AddKiddo
                   user={ this.state.user }
                   saveNewKiddo={ this.saveNewKiddo }
-                  ImgHelper={ this.ImgHelper }
+                  ImgHelper={ ImgHelper }
                   addNewCalendar={ this.addNewCalendar }
                   { ...props }/>
           )}/>
