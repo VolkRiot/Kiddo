@@ -29,7 +29,6 @@ class App extends Component {
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
     this.addNewCalendar = this.addNewCalendar.bind(this);
-    this.ImgHelper = this.ImgHelper.bind(this);
     this.getKiddoIndex = this.getKiddoIndex.bind(this);
   }
 
@@ -45,7 +44,7 @@ class App extends Component {
 
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
-  // Save new Calendar too! (TODO: Make better this sucks! Consolidate);
+   // Save new Calendar too! (TODO: Make better this sucks! Consolidate);
    addKiddo.then(() => {
      this.addNewCalendar(newKiddo)
       .then(result => {
@@ -58,10 +57,6 @@ class App extends Component {
 
   addNewCalendar (newKidName) {
    return Api.addCalendar(newKidName);
-  }
-
-  ImgHelper () {
-    return ImgHelper;
   }
 
   getKiddoIndex (index) {
@@ -80,7 +75,7 @@ class App extends Component {
               <AddKiddo
                   user={ this.state.user }
                   saveNewKiddo={ this.saveNewKiddo }
-                  ImgHelper={ this.ImgHelper }
+                  ImgHelper={ ImgHelper }
                   addNewCalendar={ this.addNewCalendar }
                   { ...props }/>
           )}/>
