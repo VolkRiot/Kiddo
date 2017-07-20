@@ -7,8 +7,6 @@ import * as style from './dashboard.css';
 
 // import Drop from '../Drop';
 
-
-
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
