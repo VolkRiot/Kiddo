@@ -38,10 +38,8 @@ class AddKiddo extends Component {
       lastName: this.state.lastName,
       userName: this.state.userName,
       password: this.state.password,
-      avatar: this.state.avatar.url === './img/addpic.png' ?
-      { url:'./img/girl.png' } : this.state.avatar
+      avatar: this.state.avatar
     };
-
 
 		Object.keys(newKiddoData).map(item => {
 			const input = newKiddoData[item];
@@ -58,8 +56,9 @@ class AddKiddo extends Component {
 				lastName: '',
 				userName: '',
 				password: '',
-				avatar:{url:'./img/girl.png'},
-        modalState: true
+        modalState: true,
+				avatar: this.state.avatar.url === './img/addpic.png' ?
+          { url:'./img/girl.png' } : this.state.avatar
       });
 		}
 	}
