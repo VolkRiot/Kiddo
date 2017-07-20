@@ -1,4 +1,5 @@
 'use strict';
+// TODO: Refactor to make more DRY and consolidate with other components
 
 import React, { Component } from 'react';
 import ApiHelper from '../../utils/apiHelper';
@@ -52,8 +53,16 @@ class KidNote extends Component {
 		);
 	}
 
-	resetNotes(){
-		this.setState({notes: []});
+	resetNotes() {
+		this.props.kid.notes = [];
+
+		Api.updateKiddo(this.props.kid)
+		.then((response) => {
+			this.setState({notes: response.data.body.notes, note: '', placeholder: 'Type new note'});
+		})
+		.catch((err) => {
+			throw new Error(err);
+		});
 	}
 
 	render(){

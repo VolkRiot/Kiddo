@@ -1,4 +1,5 @@
 'use strict';
+// TODO: Refactor to make more DRY and consolidate with other components
 
 import React, { Component } from 'react';
 import ApiHelper from '../../utils/apiHelper';
@@ -52,7 +53,15 @@ class KidShop extends Component {
   }
 
   resetItems() {
-    this.setState({shopping: []});
+    this.props.kid.shopping = [];
+
+    Api.updateKiddo(this.props.kid)
+    .then((response) => {
+      this.setState({shopping: response.data.body.shopping, item: '', placeholder: 'Type new shopping item'});
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
   }
 
   render() {
