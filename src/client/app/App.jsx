@@ -35,6 +35,7 @@ class App extends Component {
 
   componentDidMount () {
     this.getUser();
+    this.getEvents();
   }
 
   async getUser () {
@@ -58,6 +59,10 @@ class App extends Component {
 
   addNewCalendar (newKidName) {
    return Api.addCalendar(newKidName);
+  }
+
+  getEvents (){
+    return Api.eventsSnapshot();
   }
 
   ImgHelper () {
