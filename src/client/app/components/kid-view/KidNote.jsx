@@ -65,7 +65,7 @@ class KidNote extends Component {
 						placeholder={this.state.placeholder}
 					/>
 				</div>
-				<button type="button" onClick={this.onSubmit} className="btn btn-info">
+				<button type="button" onClick={this.onSubmit} className="btn btn-info add-Btn">
 					Add Note
 				</button>
 				<button type="button" onClick={this.resetNotes} className="btn btn-warning">

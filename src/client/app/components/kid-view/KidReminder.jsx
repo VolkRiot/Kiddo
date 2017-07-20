@@ -56,7 +56,7 @@ class KidReminder extends Component {
             placeholder={this.state.placeholder}
           />
         </div>
-        <button type="button" onClick={this.onSubmit} className="btn btn-info">
+        <button type="button" onClick={this.onSubmit} className="btn btn-info add-Btn">
           Add Reminder
         </button>
         <button type="button" onClick={this.resetReminders} className="btn btn-warning">
