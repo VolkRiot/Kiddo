@@ -29,7 +29,7 @@ class Kid extends Component {
 						this.props.kiddo.firstName :
 						this.state.defaultKid.firstName }
 					</div>
-					<div className="col-lg-4"> Dropdown
+					<div className="col-lg-3"> Dropdown
 					</div>
 				</div>
 				<div className="startNote">
