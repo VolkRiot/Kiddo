@@ -5,8 +5,8 @@ import React, { Component } from 'react';
 class KidReminder extends Component {
   constructor(props) {
     super(props);
-    this.state = { reminder: '', reminders:[], placeholder:'Type new reminder' };
-		
+    this.state = { reminder: '', reminders: this.props.kid.reminders, placeholder:'Type new reminder' };
+
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.resetReminders = this.resetReminders.bind(this);
@@ -23,15 +23,19 @@ class KidReminder extends Component {
       this.setState({reminders: existingReminders, reminder: '', placeholder: 'Type new reminder'});
     } else {
       this.setState({placeholder:'Reminder is required to submit'});
-    }  
+    }
   }
 
-  illustrateReminders(){
+  illustrateReminders() {
+    if (!this.state.reminders) {
+			return '';
+		}
+
     return this.state.reminders.map((reminder,index) =>
       <li key={index}>{reminder}</li>
     );
   }
-  
+
   resetReminders(){
     this.setState({reminders: []});
   }

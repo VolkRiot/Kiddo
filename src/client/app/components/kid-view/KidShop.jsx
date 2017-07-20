@@ -5,8 +5,8 @@ import React, { Component } from 'react';
 class KidShop extends Component {
   constructor(props) {
     super(props);
-		this.state = { item: '', items:[], placeholder: 'Type new shopping item' };
-		
+		this.state = { item: '', shopping: this.props.kid.shopping, placeholder: 'Type new shopping item' };
+
 		this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.resetItems = this.resetItems.bind(this);
@@ -18,23 +18,27 @@ class KidShop extends Component {
 
   onSubmit() {
     if (this.state.item !== ''){
-      var existingItems = this.state.items;
+      var existingItems = this.state.shopping;
       existingItems.push(this.state.item);
-      this.setState({items: existingItems, item: '', placeholder: 'Type new shopping item'});
+      this.setState({shopping: existingItems, item: '', placeholder: 'Type new shopping item'});
     } else {
       this.setState({placeholder: 'Item is required to submit'});
-    }  
-    
+    }
+
   }
 
   illustrateItems() {
-    return this.state.items.map((item,index) =>
+    if (!this.state.shopping) {
+			return '';
+		}
+
+    return this.state.shopping.map((item,index) =>
       <li key={index}>{item}</li>
     );
   }
 
   resetItems() {
-    this.setState({items: []});
+    this.setState({shopping: []});
   }
 
   render() {
