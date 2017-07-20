@@ -16,7 +16,7 @@ import './calendarStyles/vex-theme-os.css';
 vex.registerPlugin(vex_dialog);
 
 // Initialize Submit Variable
-        
+
 class Calendar extends Component {
     constructor(props) {
         super(props);
@@ -49,7 +49,6 @@ class Calendar extends Component {
                         
                         // Post Call to Send Event Data to Server
                         $('#submit-btn').click('.vex-dialog-message', function(){
-                            submit = true;
                             var eventInfo = {
                                 title: $('#calendar-title').val().trim(),
                                 startDate: $('#calendar-startDate').val().trim(),
@@ -58,7 +57,7 @@ class Calendar extends Component {
                             };
                         
                             $.post('/calendar/addevent', eventInfo).done(function(response){
-                                if (response === "error"){
+                                if (response === 'error'){
                                     vex.dialog.open({
                                         message: 'There was an error inserting your event. Please try again',
                                         buttons:[
