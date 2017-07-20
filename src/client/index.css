@@ -186,8 +186,8 @@ a:hover {
 	font-family: 'Pacifico', cursive;
 	margin-top: 10px;
 	color: #696969;
-	
-	
+
+
 }
 #noteTitle {
 	font-size: 40px;
@@ -213,7 +213,7 @@ a:hover {
 	margin-right: 30%;
 }
 .drop {
-	border: 2px #ffaa28 solid; 
+	border: 2px #ffaa28 solid;
 	border-radius: 0px;
 	font-size: 19px;
 	font-family: 'Raleway', sans-serif;
@@ -221,6 +221,6 @@ a:hover {
 	color: #56d8b1;
 
 }
-
-
-
+.kid-view-button {
+  margin: 1vw;
+}

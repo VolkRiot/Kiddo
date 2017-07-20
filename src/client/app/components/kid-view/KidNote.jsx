@@ -19,12 +19,6 @@ class KidNote extends Component {
 		this.setState( {note: event.target.value } );
 	}
 
-	// componentDidMount() {
-	// 	if (this.props.kid && this.props.kid.notes) {
-	// 		this.setState({ notes: nextProps.kid.notes });
-	// 	}
-	// }
-
 	onSubmit() {
 		if (this.state.note !== ''){
 			var existingNotes = this.state.notes;
@@ -65,10 +59,10 @@ class KidNote extends Component {
 						placeholder={this.state.placeholder}
 					/>
 				</div>
-				<button type="button" onClick={this.onSubmit} className="btn btn-info">
+				<button type="button" onClick={this.onSubmit} className="btn btn-info kid-view-button">
 					Add Note
 				</button>
-				<button type="button" onClick={this.resetNotes} className="btn btn-warning">
+				<button type="button" onClick={this.resetNotes} className="btn btn-warning kid-view-button">
 					Reset Section
 				</button>
 			</div>
@@ -78,4 +72,3 @@ class KidNote extends Component {
 }
 
 export default KidNote;
-
