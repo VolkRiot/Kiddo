@@ -19,9 +19,9 @@ class HomeFooter extends Component {
           </button>
         </a>
         <div className="aboutFaq">
-          <a href="#">About </a>
-          <a href="#"> FAQ </a>
-          <a href="#">Terms</a>
+          <a href="https://github.com/VolkRiot/Kiddo">About </a>
+          <a href="https://github.com/VolkRiot/Kiddo"> FAQ </a>
+          <a href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">Terms</a>
         </div>
       </div>
     );

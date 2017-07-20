@@ -91,7 +91,7 @@ class App extends Component {
           )}/>
           <Route path='/dashboard/calendar' component={ Calendar }/>
           <Route path='/dashboard/profile' render={(props) => (
-            <Kid kiddo={ this.state.kiddosList[this.state.currentKiddo] } { ...props }/>
+            <Kid kiddo={ this.state.kiddosList ? this.state.kiddosList[this.state.currentKiddo] : '' } { ...props }/>
             )}/>
           <Route path='/dashboard/map' component={ Mapski }/>
           <Route component={ NotFound }/>
