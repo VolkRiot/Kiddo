@@ -24,7 +24,7 @@ router.get('/getevents', function(req, res) {
   calendarSnapshot(req);
 });
 
-router.get('/geteventsnapshot', function(req,res){
+router.get('/geteventsnapshot', function(req){
   Calendar.findOne({googleId: req.user.googleId}, function(err,calendar){
     if (err){
       throw new Error(err);
@@ -35,7 +35,7 @@ router.get('/geteventsnapshot', function(req,res){
 });
 
 // Route to Retrieve Event Data to AddKiddo to Google
-router.post('/addevent', function(req,res){
+router.post('/addevent', function(req){
   
   // Initiate google_calendar with token
   if (!google_calendar) {
@@ -168,13 +168,13 @@ function calendarSnapshot(req){
                 color: colorArray[i]
               };
               finalCalendarArray.push(eventsObject);
-              if(finalCalendarArray.length === objectCalendars.eventsForCalendars.length){
+              if (finalCalendarArray.length === objectCalendars.eventsForCalendars.length){
                 var finalCalendarListObject = {
                   objectCalendars: calendarTitleArray
-                }
+                };
                 var finalCalendarEventsObject = {
                   objectEvents: finalCalendarArray
-                }
+                };
                 Calendar.findOne({googleId: req.user.googleId}, function(err,calendar){
                   if (err){
                     throw new Error(err);
@@ -194,11 +194,8 @@ function calendarSnapshot(req){
                     newCalendar.calendarEventObject = JSON.stringify(finalCalendarEventsObject);
 
                     newCalendar.save(function(err){
-                      if(err){
+                      if (err){
                         throw new Error(err);
-                      }
-                      else{
-
                       }
                     });
                   }
