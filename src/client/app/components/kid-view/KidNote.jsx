@@ -65,3 +65,4 @@ class KidNote extends Component {
 }
 
 export default KidNote;
+
