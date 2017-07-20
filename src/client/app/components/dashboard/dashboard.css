@@ -27,7 +27,73 @@ carousel-container {
     margin: auto;
     padding: 10px;
 }
-.row {
-    margin-bottom: 20px;
+
+#parentTitle {
+    margin-left: 0%;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 55px;
+    color: #696969;
+
+}
+#row1 {
+        padding-top: 2%;
+        margin-left: 15%;
+        margin-right: 15%;
+        height: 200px;
+        font-size: 28px;
+        font-family: 'Raleway', sans-serif;
+        text-align: center;
+
+}
+#row2 {
+        padding-top: 8%;
+        margin-left: 15%;
+        margin-right: 15%;
+        height: 200px;
+        font-size: 28px;
+        text-decoration-style: none;
+        font-family: 'Raleway', sans-serif;
+        text-align: center;
+        margin-bottom: 60px;
+
+}
+#view1 {
+        width: 50%;
+        text-anchor: middle;
+}
+#view2 {
+        width: 50%;
+
+
+}
+#view3 {
+        width: 50%;
+
+
+}
+#view4 {
+        width: 50%;
+
+
+}
+#icon {
+    margin-bottom: 0%;
+    margin-top: 20px;
+    margin-left: 8%;
+    font-size: 42px;
+    border-radius: 30px;
+    width: 50px;
+    height: 50px;
+    padding-left: 8px;
+    border: 2px black solid;
+    color: grey;
+    font-family: 'Raleway', sans-serif;
+    text-decoration: bold;
+}
+.dropdownHub {
+    margin-left: 80%;
+    margin-top: 30px;
+
 }
 

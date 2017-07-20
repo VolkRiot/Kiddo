@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react';
 import AddPic from './AddPic';
+import Success from './AddSuccess';
 import * as style from './addkiddo.css';
+
 
 class AddKiddo extends Component {
 	constructor (props) {
@@ -12,12 +14,14 @@ class AddKiddo extends Component {
 			lastName: '',
 			userName: '',
 			password: '',
-			avatar:{url:'./img/addpic.png'}
+			avatar:{url:'./img/addpic.png'},
+      modalState: false,
 		};
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.saveImgHandler = this.saveImgHandler.bind(this);
+    this.onRequestCloseModal = this.onRequestCloseModal.bind(this);
   }
 
   onInputChange(event) {
@@ -26,9 +30,18 @@ class AddKiddo extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    let newKiddoData = this.state;
+
     let okToSubmit = true;
     let user_id =  this.props.user._id;
+    let newKiddoData = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      userName: this.state.userName,
+      password: this.state.password,
+      avatar: this.state.avatar.url === './img/addpic.png' ?
+      { url:'./img/girl.png' } : this.state.avatar
+    };
+
 
 		Object.keys(newKiddoData).map(item => {
 			const input = newKiddoData[item];
@@ -40,14 +53,14 @@ class AddKiddo extends Component {
 		if (okToSubmit) {
 			newKiddoData.user_id = user_id;
 			this.props.saveNewKiddo(newKiddoData);
-
 			this.setState({
 				firstName: '',
 				lastName: '',
 				userName: '',
 				password: '',
-				avatar:{url:'./img/addpic.png'}
-			});
+				avatar:{url:'./img/girl.png'},
+        modalState: true
+      });
 		}
 	}
 
@@ -68,12 +81,18 @@ class AddKiddo extends Component {
     });
   }
 
+  onRequestCloseModal() {
+    this.setState({modalState: false});
+  }
+
 	render(){
 		return (
 			<div className="addChild container">
 				<h3>Register Your Kiddo Below!</h3>
-
 					<div className="col-md-6">
+
+            <Success closeModal={ this.onRequestCloseModal } modalState={ this.state.modalState } />
+
 						<form  onSubmit={ this.onFormSubmit }>
 							<div className='form-group'>
 								<input

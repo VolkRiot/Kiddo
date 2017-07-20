@@ -32,6 +32,9 @@ const KidSchema = new Schema({
   calendarId:{
     type: String
   },
+  notes: [String],
+  shopping: [String],
+  reminders: [String],
   events:[
     {
       type: Schema.Types.ObjectId,

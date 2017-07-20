@@ -60,28 +60,6 @@ a {
 
 
 }
-
-#row1 {
-		padding-top: 5%;
-		margin-left: 15%;
-		margin-right: 15%;
-		height: 200px;
-		font-size: 21px;
-		font-family: 'Raleway', sans-serif;
-		text-align: center;
-
-}
-#row2 {
-		padding-top: 10%;
-		margin-left: 15%;
-		margin-right: 15%;
-		height: 200px;
-		font-size: 22px;
-		text-decoration-style: none;
-		font-family: 'Raleway', sans-serif;
-		text-align: center;
-
-}
 a {
 	text-decoration: none;
 	color: inherit;
@@ -90,42 +68,7 @@ a:hover {
 	color: black;
 	text-decoration: none;
 }
-#view1 {
-		width: 40%;
-		text-anchor: middle;
-}
-#view2 {
-		width: 40%;
-
-
-}
-#view3 {
-		width: 40%;
-
-
-}
-#view4 {
-		width: 40%;
-
-
-}
-#parentTitle {
-	margin-left: 0%;
-	text-align: center;
-	font-family: 'Pacifico', cursive;
-	font-size: 50px;
-	padding-top: 25px;
-	padding-bottom: 20px;
-
-
-}
 .drop {
-	float: right;
-	margin-bottom: 30px;
-	margin-top: 30px;
-	margin-right: 20px;
-	padding-left: 0%;
-
 
 }
 
@@ -156,86 +99,128 @@ a:hover {
 .uploadPic {
 	margin-bottom: 30px;
 }
+
+
 .kid {
 	text-align: center;
 	font-size: 15px;
-	margin-top: 20px;
+	margin-top: 15px;
 }
 .kidNote {
 
 	float: left;
-	margin-left: 8%;
-	margin-top: 3%;
+	margin-left: 8.5%;
+	margin-top: 1%;
 	width: 25%;
-}
-#noteBox {
-	border: 3px solid lightgrey;
-	border-radius: 20px;
-	height: 400px;
-	margin-bottom: 15px;
-	font-size: 20px;
-
-}
-#noteForm {
-	margin-bottom: 10px;
+	margin-bottom: 60px;
 }
 .kidShop {
 
 	float: left;
 	margin-left: 3%;
-	margin-top: 5%;
+	margin-top: 3%;
 	width: 25%;
 	font-family: 'Poppins', sans-serif;
+	margin-bottom: 60px;
 
-}
-#shopBox {
-	border: 3px solid lightgrey;
-	border-radius: 20px;
-	height: 400px;
-	margin-bottom: 10px;
-	font-size: 20px;
-}
-#shopForm {
-	margin-bottom: 10px;
 }
 .kidReminder {
 
 	float: left;
 	margin-left: 3%;
-	margin-top: 3%;
+	margin-top: 1%;
 	width: 25%;
 	font-family: 'Poppins', sans-serif;
+
+}
+#noteBox {
+	border: 3px solid lightgrey;
+	border-radius: 20px;
+	height: 400px;
+	margin-bottom: 20px;
+	font-size: 20px;
+	padding-top: 15px;
+	font-family: 'Raleway', sans-serif;
+	text-align: left;
+	overflow:scroll
+
+}
+
+#shopBox {
+	border: 3px solid lightgrey;
+	border-radius: 20px;
+	height: 400px;
+	margin-bottom: 20px;
+	font-size: 20px;
+	padding-top: 15px;
+	font-family: 'Raleway', sans-serif;
+	text-align: left;
+	overflow:scroll
 }
 #reminderBox {
 	border: 3px solid lightgrey;
 	border-radius: 20px;
 	height: 400px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	font-size: 20px;
+	padding-top: 15px;
+	font-family: 'Raleway', sans-serif;
+	text-align: left;
+	overflow:scroll
+}
+#shopForm {
+	margin-bottom: 10px;
+	font-family: 'Raleway', sans-serif;
+}
+#noteForm {
+	margin-bottom: 10px;
+	font-family: 'Raleway', sans-serif;
 }
 #reminderForm {
 	margin-bottom: 10px;
+	font-family: 'Raleway', sans-serif;
 }
 
 #kidTitle {
 	font-size: 55px;
 	font-family: 'Pacifico', cursive;
-	margin-top: 15px;
+	margin-top: 10px;
+	color: #696969;
+
+
 }
 #noteTitle {
 	font-size: 40px;
 	font-family: 'Bad Script', cursive;
+	color: #f7786b;
 }
 #shopTitle {
 	font-size: 40px;
 	font-family: 'Sacramento', cursive;
+	color: #c178ba;
 }
 #reminderTitle{
 	font-size: 40px;
-	font-family: 'Life Savers', cursive
+	font-family: 'Life Savers', cursive;
+	color: #56d8b1;
 }
 .addPhotoTitle {
 	padding-bottom: 30px;
 	text-align: left;
 	margin-left: 9%;
+}
+.dropdown {
+	margin-right: 30%;
+}
+.drop {
+	border: 2px #ffaa28 solid;
+	border-radius: 0px;
+	font-size: 19px;
+	font-family: 'Raleway', sans-serif;
+	word-spacing: 3px;
+	color: #56d8b1;
+
+}
+.kid-view-button {
+  margin: 1vh;
 }

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import DashAvatar from './DashAvatar';
 import KiddoCarousel from './KiddoCarousel';
 import * as style from './dashboard.css';
-
+import Drop from '../Drop';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -12,33 +12,33 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		
+
 		const path = this.props.match && this.props.match.path ? this.props.match.path: '/dashboard';
-		
+
 		return (
 			<div className="dashboard container">
-				
+
 				<div className="row">
-					<div className="col-xs-12">
-						<h1 id="icon">Kiddo</h1>
+					<div className="col-lg-12 dropdownHub">
+						<Drop />
 					</div>
 				</div>
-				
+
 				<div className="row">
 					<div className="col-xs-12">
-						<h1 id="parentTitle">Hello, {
+						<h1 id="parentTitle">Welcome, {
 							this.props.user ?
 								this.props.user.firstName : 'Organized'
 						}!</h1>
 					</div>
 				</div>
-				
+
 				<div className="row" id="row1">
 					<div className="col-sm-6" id="view1">
 						{
 							this.props.kiddos.length ?
 								<div className="avatar-container carousel-container">
-									< KiddoCarousel
+									<KiddoCarousel
 										getKiddoIndex={ this.props.getKiddoIndex }
 										kiddos={ this.props.kiddos }
 										to={ `${ path }/profile` }
@@ -64,7 +64,7 @@ class Dashboard extends Component {
 						</div>
 					</div>
 				</div>
-				
+
 				<div className="row" id="row2">
 					<div className="col-sm-6" id="view3">
 						<div className="avatar-container">
@@ -86,9 +86,11 @@ class Dashboard extends Component {
 					</div>
 				</div>
 			</div>
-			
+
 		);
 	}
 }
 
 export default Dashboard;
+
+
