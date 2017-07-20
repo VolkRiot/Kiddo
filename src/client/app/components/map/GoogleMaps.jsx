@@ -17,6 +17,7 @@ class GoogleMap extends Component {
 
   componentDidMount() {
 
+
     const mapConfig =  {
       center: this.props.startLocation,
       zoom: 13,
