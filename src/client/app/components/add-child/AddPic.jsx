@@ -20,3 +20,4 @@ class AddPic extends Component {
 }
 
 export default AddPic;
+
