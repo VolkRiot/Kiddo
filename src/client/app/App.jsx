@@ -53,15 +53,13 @@ class App extends Component {
         let kiddosList = this.state.kiddosList;
         kiddosList.push(result.data);
         this.setState({ kiddosList });
+        Api.eventsSnapshot();
       });
    });
   }
 
   addNewCalendar (newKidName) {
-   return Api.addCalendar(newKidName)
-    .then(function(){
-      Api.eventsSnapshot();
-    });
+   return Api.addCalendar(newKidName);
   }
 
   getEvents (){
