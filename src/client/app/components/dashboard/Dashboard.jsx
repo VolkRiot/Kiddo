@@ -15,15 +15,9 @@ class Dashboard extends Component {
 	}
 
 	render() {
-<<<<<<< HEAD
 
 		const path = this.props.match && this.props.match.path ? this.props.match.path: '/dashboard';
 
-=======
-		
-		const path = this.props.match && this.props.match.path ? this.props.match.path: '/dashboard';
-		
->>>>>>> 442adcd253bfd6b4832203680b4d7e785fc02f06
 		return (
 			<div className="dashboard container">
 
