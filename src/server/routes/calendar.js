@@ -36,7 +36,7 @@ router.get('/geteventsnapshot', function(req,res){
 
 // Route to Retrieve Event Data to AddKiddo to Google
 router.post('/addevent', function(req,res){
-  
+
   // Submit Variable to Stop Reiteration of For Loop On Google Insert Event
   var submit = 0;
   // Initiate google_calendar with token
@@ -63,7 +63,7 @@ router.post('/addevent', function(req,res){
             if (err) {
               res.send('error');
             } else {
-              submit++
+              submit++;
               calendarSnapshot(req,res);
               const newEvent = Event();
 
@@ -126,8 +126,7 @@ function calendarSnapshot(req,res){
   google_calendar.calendarList.list(function(err, calendarList) {
     if (err){
       throw new Error(err);
-    }
-    else{
+    } else {
     res.status(200).send();
     for (var d = 0; d < calendarList.items.length; d++) {
       var calendarId = calendarList.items[d].id;
