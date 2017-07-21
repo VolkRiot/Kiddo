@@ -16,16 +16,16 @@ router.post('/addcalendar', function(req, res) {
     if (!google_calendar) {
         var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
     }
+
     google_calendar.calendars.insert(
         {
-            summary: `${req.body.kiddoData.firstName} ${req.body.kiddoData.lastName} (Child Calendar)`,
-            timeZone: timezone.name(),
-            description: req.body.kiddoId
+            summary: `${req.body.firstName} ${req.body.lastName} (Child Calendar)`,
+            timeZone: timezone.name()
         }, function(err, response) {
             if (err){
                 throw new Error('Failed attempting to add new Calendar');
             } else {
-                Kid.findOneAndUpdate({_id: req.body.kiddoId}, {$set:{calendarId:response.id}}, function(err, response) {
+                Kid.findOneAndUpdate({userName: req.body.userName}, {$set:{calendarId:response.id}}, function(err, response) {
                     if (err) {
                       throw new Error('Failed to update child with new Calendar schema');
                     } else {
