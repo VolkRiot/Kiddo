@@ -1,5 +1,5 @@
 import { createRouter } from '@expo/ex-navigation';
-import RegisterApp from '../components/registerApp';
+import RegisterApp from '../containers/registerApp';
 
 // TODO:(Insert Basic Component here);
 

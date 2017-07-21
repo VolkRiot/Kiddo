@@ -45,14 +45,21 @@ export function resetSearchTerm() {
 
 export function saveKidAsUser(kid) {
   return async dispatch => {
-    const newKidOwner = await AsyncStorage.setItem(
-      'KID_USER',
-      JSON.stringify(kid)
-    );
-    dispatch({
-      type: SAVE_KID_USER,
-      payload: kid
-    });
+    try {
+      const newKidOwner = await AsyncStorage.setItem(
+        'KID_USER',
+        JSON.stringify(kid)
+      );
+
+      dispatch({
+        type: SAVE_KID_USER,
+        payload: kid
+      });
+
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log('Error saving to AsyncStorage');
+    }
   };
 }
 
