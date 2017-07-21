@@ -17,8 +17,15 @@ class GMap extends Component {
 
   componentDidMount() {
     setTimeout(() =>{
-      let markersList = this.props.kiddosList.map(kiddo => {
-        let image = {
+      let filterKiddo, markersList;
+
+      filterKiddo = this.props.kiddosList.filter(kiddo => {
+        return kiddo.coords;
+      });
+
+      markersList = filterKiddo.map(kiddo => {
+        let image;
+        image = {
           url: kiddo.avatar.url,
           scaledSize: new google.maps.Size(25, 25)
         };
@@ -56,6 +63,9 @@ class GMap extends Component {
   }
 
   render() {
+
+    console.log();
+
     const markersList = this.state.markersList;
     const kiddoDetail = this.state.kiddoDetail;
     const initCoords = this.props.initialCenter;
@@ -76,7 +86,7 @@ class GMap extends Component {
 
         { markersList? markersList : null }
 
-        { kiddoDetail.firstName ?
+        { kiddoDetail.coords ?
           <InfoWindow
           lat={ kiddoDetail.coords.lat }
           lng={ kiddoDetail.coords.lng }
