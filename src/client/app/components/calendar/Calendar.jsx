@@ -16,7 +16,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Drop from '../Drop';
 
 // CSS Files for Calendar
-import './calendarStyles/jquery-ui.css'
+import './calendarStyles/jquery-ui.css';
 import './calendarStyles/calendar.css';
 import './calendarStyles/fullcalendar.min.css';
 import './calendarStyles/vex.css';
@@ -62,7 +62,7 @@ class Calendar extends Component {
                         $('#submit-btn').click('.vex-dialog-message', function(){
 
                             // Initial Error Handling of Form Field to Have All Fields Populated
-                               if($('#calendar-title').val() === "" || $('#calendar-startDate').val() === "" || $('#calendar-endDate').val() === "" || $('#calendar-dropdown option:selected').text() === ""){
+                               if ($('#calendar-title').val() === '' || $('#calendar-startDate').val() === '' || $('#calendar-endDate').val() === '' || $('#calendar-dropdown option:selected').text() === ''){
                                   vex.dialog.open({
                                         message: 'Please Enter All Fields and Try Again',
                                         buttons:[

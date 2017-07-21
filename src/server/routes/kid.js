@@ -16,7 +16,6 @@ router.post('/addcalendar', function(req, res) {
     if (!google_calendar) {
         var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
     }
-    console.log(req.body);
     google_calendar.calendars.insert(
         {
             summary: `${req.body.kiddoData.firstName} ${req.body.kiddoData.lastName} (Child Calendar)`,

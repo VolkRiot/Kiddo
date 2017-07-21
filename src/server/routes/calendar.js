@@ -129,10 +129,10 @@ function calendarSnapshot(req,res){
         //{ timeMin: new Date().toISOString() },
         function(err, eventList) {
           if (err && error === 0){
-            error++
+            error++;
             res.send('error');
           }
-          else{
+          else {
           calendarListEventArray.push(eventList);
           // Send when the length of the array for events of each calendar equals the original amount of calendar Ids gathered from the API response
           if (calendarListEventArray.length == calendarList.items.length) {
@@ -182,14 +182,14 @@ function calendarSnapshot(req,res){
                 };
                 Calendar.findOne({googleId: req.user.googleId}, function(err,calendar){
                   if (err && error === 0){
-                    error++
+                    error++;
                     res.send('error');
                     throw new Error(err);
                   }
                   if (calendar){
                     Calendar.findOneAndUpdate({googleId: req.user.googleId}, {$set:{calendarListObject: JSON.stringify(finalCalendarListObject), calendarEventObject: JSON.stringify(finalCalendarEventsObject)  }}, function(err){
                       if (err && error === 0){
-                        error++
+                        error++;
                         res.send('error');
                         throw new Error(err);
                       }
@@ -204,7 +204,7 @@ function calendarSnapshot(req,res){
 
                     newCalendar.save(function(err){
                       if (err && error === 0){
-                        error++
+                        error++;
                         res.send('error');
                         throw new Error(err);
                       }
