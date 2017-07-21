@@ -35,7 +35,6 @@ class App extends Component {
 
   componentDidMount () {
     this.getUser();
-    this.getEvents();
   }
 
   async getUser () {
@@ -84,7 +83,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={ Home }/>
           <Route exact path='/dashboard' render={(props) => (
-              <Dashboard user={ this.state.user } kiddos={ this.state.kiddosList } getKiddoIndex={ this.getKiddoIndex } { ...props }/>
+              <Dashboard user={ this.state.user } kiddos={ this.state.kiddosList } getKiddoIndex={ this.getKiddoIndex } getEvents={ this.getEvents } { ...props }/>
           )}/>
           <Route path='/dashboard/addkiddo' render={(props) => (
               <AddKiddo

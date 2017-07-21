@@ -11,6 +11,10 @@ class Dashboard extends Component {
 		super(props);
 	}
 
+	componentDidMount (){
+		this.props.getEvents();
+	}
+
 	render() {
 
 		const path = this.props.match && this.props.match.path ? this.props.match.path: '/dashboard';
