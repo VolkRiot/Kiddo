@@ -5,7 +5,7 @@ export const RESET_SEARCH_BOX = 'RESET_SEARCH_BOX';
 export function findParentbyEmail(email = null) {
   // [root]/mobile/find/user/email?term=metrikin@gmail.com
   return (dispatch) => {
-    fetch(`http://localhost:3000/mobile/find/user/email?term=${email.toLowerCase()}`)
+    fetch(`https://appkiddo.herokuapp.com/mobile/find/user/email?term=${email.toLowerCase()}`)
       .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText);

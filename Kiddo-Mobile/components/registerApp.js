@@ -10,6 +10,7 @@ class RegisterApp extends Component {
     super(props);
     this.state = {
       input: null,
+      passwordInput: null,
       selectedKid: null,
       selectedKidIndex: null
     };
@@ -45,6 +46,10 @@ class RegisterApp extends Component {
     this.setState({ selectedKid: each, selectedKidIndex: i });
   }
 
+  handleSubmitPassword() {
+
+  }
+
   kidChoices() {
     return (
       <View>
@@ -71,6 +76,8 @@ class RegisterApp extends Component {
           placeholder={'Enter account password'}
           autoFocus={true}
           multiline={false}
+          onChangeText={input => this.setState({ passwordInput: input })}
+          onSubmitEditing={(event) => this.handleSubmitPassword(event.nativeEvent.text)}
         />
       </View>
     </View>
