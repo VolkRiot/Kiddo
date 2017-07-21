@@ -127,9 +127,9 @@ function calendarSnapshot(req,res){
     if (err){
       throw new Error(err);
     } else {
-    res.status(200).send();
-    for (var d = 0; d < calendarList.items.length; d++) {
-      var calendarId = calendarList.items[d].id;
+      res.status(200).send();
+      for (var d = 0; d < calendarList.items.length; d++) {
+        var calendarId = calendarList.items[d].id;
       // Retrieve Events from Specific Calendar List
       google_calendar.events.list(
         calendarId,
