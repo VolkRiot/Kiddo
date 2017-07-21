@@ -147,8 +147,7 @@ class Calendar extends Component {
                 <ReactSpinner className='spinner'/>
                 <div id="calendar"></div>
             </div>
-        )
-
+        );
     }
 }
 
