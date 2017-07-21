@@ -34,11 +34,13 @@ class App extends Component {
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
     this.addNewCalendar = this.addNewCalendar.bind(this);
+    this.getEvents = this.getEvents.bind(this);
     this.getKiddoIndex = this.getKiddoIndex.bind(this);
   }
 
   componentDidMount() {
     this.getUser();
+    this.getEvents();
   }
 
   async getUser() {
@@ -50,14 +52,32 @@ class App extends Component {
     );
   }
 
+<<<<<<< HEAD
   saveNewKiddo(newKiddo) {
     let addKiddo = Api.addKiddo(newKiddo);
     // Save new Calendar too! (TODO: Make better this sucks! Consolidate);
     addKiddo.then(() => {
       this.addNewCalendar(newKiddo).then(result => {
+=======
+  saveNewKiddo (newKiddo) {
+   let addKiddo = Api.addKiddo(newKiddo);
+   // Save new Calendar too! (TODO: Make better this sucks! Consolidate);
+   addKiddo.then((response) => {
+
+     //Add Kid Id to AddCalendar Post Object
+     const parsedJSON = JSON.parse(response.request.response);
+     const newKidId = parsedJSON.body._id;
+     const newKidCalendar = {
+       kiddoData: newKiddo,
+       kiddoId: newKidId
+     };
+     this.addNewCalendar(newKidCalendar)
+      .then(result => {
+>>>>>>> Current Updated to master
         let kiddosList = this.state.kiddosList;
         kiddosList.push(result.data);
         this.setState({ kiddosList });
+        Api.eventsSnapshot();
       });
     });
   }
@@ -66,8 +86,17 @@ class App extends Component {
     return Api.addCalendar(newKidName);
   }
 
+<<<<<<< HEAD
   getKiddoIndex(index) {
     this.setState({ currentKiddo: index });
+=======
+  getEvents (){
+    return Api.eventsSnapshot();
+  }
+
+  getKiddoIndex (index) {
+    this.setState({currentKiddo: index});
+>>>>>>> Current Updated to master
   }
 
   render() {
@@ -107,6 +136,7 @@ class App extends Component {
           render={() => (userFound ? <Calendar /> : <Redirect to="/" />)}
         />
 
+<<<<<<< HEAD
         <Route
           path="/dashboard/profile"
           render={props =>
@@ -130,6 +160,29 @@ class App extends Component {
         />
         <Route component={NotFound} />
       </Switch>
+=======
+        <Switch>
+          <Route exact path='/' component={ Home }/>
+          <Route exact path='/dashboard' render={(props) => (
+              <Dashboard user={ this.state.user } kiddos={ this.state.kiddosList } getKiddoIndex={ this.getKiddoIndex } { ...props }/>
+          )}/>
+          <Route path='/dashboard/addkiddo' render={(props) => (
+              <AddKiddo
+                  user={ this.state.user }
+                  saveNewKiddo={ this.saveNewKiddo }
+                  ImgHelper={ ImgHelper }
+                  addNewCalendar={ this.addNewCalendar }
+                  { ...props }/>
+          )}/>
+          <Route path='/dashboard/calendar' component={ Calendar }/>
+          <Route path='/dashboard/profile' render={(props) => (
+            <Kid kiddo={ this.state.kiddosList ? this.state.kiddosList[this.state.currentKiddo] : '' } { ...props }/>
+            )}/>
+          <Route path='/dashboard/map' component={ Mapski }/>
+          <Route component={ NotFound }/>
+        </Switch>
+
+>>>>>>> Current Updated to master
     );
   }
 }
