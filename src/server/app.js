@@ -6,9 +6,11 @@ const express       = require('express'),
       cookieParser  = require('cookie-parser'),
       bodyParser    = require('body-parser'),
       session       = require('express-session'),
-      passport      = require('passport');
+      passport      = require('passport'),
+      cors          = require('cors');
 
 const app = express();
+app.use(cors());
 
 // initialize DB
 require('./db/mongodb');

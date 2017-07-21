@@ -48,6 +48,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
     "cross-env": "^5.0.1",
     "csshake": "^1.5.2",
     "debug": "~2.6.3",
