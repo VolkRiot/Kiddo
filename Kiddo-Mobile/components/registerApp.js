@@ -9,7 +9,9 @@ class RegisterApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: null
+      input: null,
+      selectedKid: null,
+      selectedKidIndex: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.kidChoices = this.kidChoices.bind(this);
@@ -39,8 +41,8 @@ class RegisterApp extends Component {
     );
   }
 
-  focusAvatar() {
-    console.log('Events registed at focus Avatar as ')
+  focusAvatar(each, i) {
+    this.setState({ selectedKid: each, selectedKidIndex: i });
   }
 
   kidChoices() {
@@ -50,11 +52,12 @@ class RegisterApp extends Component {
         {this.props.kids.map((each, i) => {
           return (
             <TouchableHighlight
-              onPress={this.focusAvatar}
+              onPress={this.focusAvatar.bind(this, each, i)}
+              style={styles.child_img}
               key={i}
               >
             <Image
-              style={{width: 50, height: 50, borderRadius: 10, marginBottom: 10, marginRight: 5}}
+              style={this.state.selectedKidIndex === i ? styles.child_selected : styles.child_img}
               key={i}
               source={{uri: each.avatar.url}}
             />
@@ -91,21 +94,21 @@ const styles = StyleSheet.create({
   },
   outerContainer: {
     flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: '#baffc9',
     alignItems: 'center',
     justifyContent: 'center'
   },
   input: {
     width: 250,
     height: 50,
-    backgroundColor: 'skyblue',
+    backgroundColor: '#bae1ff',
     textAlign: 'center',
     borderRadius: 30
   },
   inputNotFound: {
     width: 250,
     height: 50,
-    backgroundColor: 'red',
+    backgroundColor: '#ffb3ba',
     textAlign: 'center',
     borderRadius: 30
   },
@@ -113,6 +116,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     marginBottom: 10
+  },
+  child_selected: {
+    width: 50,
+    height: 50,
+    borderRadius: 20,
+    marginBottom: 10,
+    marginRight: 5,
+    borderColor: '#ffb3ba',
+    borderWidth: 3
+  },
+  child_img: {
+    width: 50,
+    height: 50,
+    borderRadius: 20,
+    marginBottom: 10,
+    marginRight: 5
   }
 });
 
