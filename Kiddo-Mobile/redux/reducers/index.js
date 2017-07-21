@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import RegisterReducer from './register';
 
 const rootReducer = combineReducers({
-  register: RegisterReducer
+  user: RegisterReducer
 });
 
 export default rootReducer;
