@@ -10,7 +10,7 @@ class KiddoCarousel extends Component {
 		const kiddosArr = this.props.kiddos;
 		const kiddoElement = kiddosArr.map((kiddo, index) => {
 			return (
-				<div key={kiddo._id} className="avatar-container">
+				<div key={ index } className="avatar-container">
 					<Link to={ this.props.to }  onClick={ () => this.props.getKiddoIndex(index) } >
 						<div>
 							<img src={ kiddo.avatar.url }  style={{borderRadius: '50%'}} className="dash-avatar-img"/>

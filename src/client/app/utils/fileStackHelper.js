@@ -1,43 +1,49 @@
 import filestack from 'filestack-js';
+import axios from 'axios';
+
+
 
 const fileStackHelper = () => {
-  // Obscure API KEY
-  const apikey = 'AHagxYg4Rlyjx7vN81omgz';
-  const signature =
-    '0692ca39d7e0cac079832e78b9da12d26d1dbe90d1d674425eb3aba94a8abbb6';
-  const client = filestack.init(apikey);
-  const Policy = {
-    expiry: 1359391107,
-    call: '',
-    handle: apikey
-  };
+  const api = axios,
+        url = '/auth/filestack/credential';
 
-  return {
-    saveImage: fileName => {
-      let savePolicy = (Policy.call = 'write');
+  return new Promise((resolve, reject) =>{
+    let apikey, savedPolicy, signature, clientInit;
 
-      client.setSecurity({ policy: savePolicy, signature: signature });
+    api.get(url).then(response => {
+      let clientInstance;
+      apikey      = response.data.apikey;
+      savedPolicy = response.data.policy;
+      signature   = response.data.signature;
 
-      return client.pick({
-        maxFiles: 1,
-        fromSources: ['local_file_system' /*, 'facebook' */],
-        onFileSelected(file) {
-          file.name = fileName;
-          return file;
-        }
-      });
-    },
+      clientInit = filestack.init(apikey);
+      clientInit.setSecurity({policy: savedPolicy, signature: signature});
+      clientInstance = fileName =>{
+        return clientInit.pick({
+          maxFiles: 1,
+          fromSources: ['local_file_system'/*, 'facebook'*/],
+          onFileSelected(file) {
+            file.name = fileName;
+            return file;
+          }
+        });
+      };
 
-    getImage: handler => {
-      let getPolicy = (Policy.call = 'read');
-
-      client.getSecurity(getPolicy);
-
-      return client.retrieve(handler);
-    },
-
-    removeImage: () => {}
-  };
+      clientInstance ? resolve(clientInstance) : reject('fail on connect filestack');
+    });
+  });
 };
 
+
 export default fileStackHelper;
+
+/*
+client.pick({
+  maxFiles: 1,
+  fromSources: ['local_file_system' /!*, 'facebook' *!/],
+  onFileSelected(file) {
+    file.name = fileName;
+    return file;
+  }
+});
+*/
