@@ -10,9 +10,21 @@ class Mapski extends Component {
     super(props);
     this.state = {
       initialCenter: { lat: 37.773972, lng: -122.431297 },
-      KiddosList:[],
+      kiddosList:[],
     };
+    this.addKiddos = this.addKiddos.bind(this);
   }
+
+  // for testing
+  addKiddos() {
+    let newKiddosList = [
+      {name:'Theo', latlng:[37.773972, -122.431297], img: "https://cdn.filestackcontent.com/XUVISgkrTLuRroXa6oIe" },
+      {name:'iza', latlng:[37.7058333, -122.4608333], img: "https://cdn.filestackcontent.com/XUVISgkrTLuRroXa6oIe" }
+    ];
+    this.setState({ kiddosList: newKiddosList });
+  }
+  ///////////
+
     render() {
       return (
         <div
@@ -25,10 +37,13 @@ class Mapski extends Component {
             left: 0
           }}
         >
+          <button onClick={ this.addKiddos }>add kiddos</button>
+
           <GMap
             initialCenter={ this.state.initialCenter }
-            kiddosList={ this.state.KiddosList }
+            kiddosList={ this.state.kiddosList }
           />
+
         </div>
       );
     }
