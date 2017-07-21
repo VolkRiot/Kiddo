@@ -46,8 +46,10 @@ class RegisterApp extends Component {
     this.setState({ selectedKid: each, selectedKidIndex: i });
   }
 
-  handleSubmitPassword() {
-
+  handleSubmitPassword(password) {
+    if (this.state.selectedKid.password === password) {
+      // Create Action to Register kid to App then redirect to main view
+    }
   }
 
   kidChoices() {
