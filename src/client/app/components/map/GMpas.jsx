@@ -19,9 +19,7 @@ class GMap extends Component {
     setTimeout(() =>{
       let filterKiddo, markersList;
 
-      filterKiddo = this.props.kiddosList.filter(kiddo => {
-        return kiddo.coords;
-      });
+      filterKiddo = this.props.kiddosList.filter(kiddo => kiddo.coords);
 
       markersList = filterKiddo.map(kiddo => {
         let image;
