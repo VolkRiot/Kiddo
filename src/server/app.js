@@ -32,6 +32,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
+// Enable CORS
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 // importing routes
 require('./passport/googleoauth.js')(passport); // pass passport for configuration
 app.use('/', require('./routes/index'));
@@ -62,13 +69,6 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
-  next();
-});
-
-// Enable CORS
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
