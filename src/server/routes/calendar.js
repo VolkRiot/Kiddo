@@ -22,7 +22,6 @@ var google_calendar = undefined;
 
 router.get('/getevents', function(req,res) {
   calendarSnapshot(req,res);
-  res.status(200).send('');
 });
 
 router.get('/geteventsnapshot', function(req,res){
@@ -38,6 +37,8 @@ router.get('/geteventsnapshot', function(req,res){
 // Route to Retrieve Event Data to AddKiddo to Google
 router.post('/addevent', function(req,res){
   
+  // Submit Variable to Stop Reiteration of For Loop On Google Insert Event
+  var submit = 0;
   // Initiate google_calendar with token
   if (!google_calendar) {
     var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
@@ -50,7 +51,7 @@ router.post('/addevent', function(req,res){
     } else {
       // Logic to Associate Calendar Name with ID
       for (var i = 0; i < calendarList.items.length; i++){
-        if (req.body.calendar === calendarList.items[i].summary){
+        if (req.body.calendar === calendarList.items[i].summary && submit === 0 ){
           var calendarId = calendarList.items[i].id;
           google_calendar.events.insert(calendarId, {
             summary: req.body.title,
@@ -62,6 +63,7 @@ router.post('/addevent', function(req,res){
             if (err) {
               res.send('error');
             } else {
+              submit++
               calendarSnapshot(req,res);
               const newEvent = Event();
 
@@ -108,7 +110,6 @@ router.post('/addevent', function(req,res){
 function calendarSnapshot(req,res){
   // To overcome for running res.send('error') too many times
   var error = 0;
-
   var finalCalendarArray = [];
   // Initiate google_calendar with token
   if (!google_calendar) {
@@ -117,10 +118,17 @@ function calendarSnapshot(req,res){
 
   // Array to Hold Events of Multiple Calendars (ie: Children's calendars)
   var calendarListEventArray = [];
+
+  //Color Array
   var colorArray = ['#f7786b','#c178ba','#ffdd32','#56d8b1', '#FF68DD','#ffaa28', '#44B4D5', '#01F33E', '#E37795', '#FFF06A'];
+  
   // Retrieve Users's List
   google_calendar.calendarList.list(function(err, calendarList) {
-
+    if (err){
+      throw new Error(err);
+    }
+    else{
+    res.status(200).send();
     for (var d = 0; d < calendarList.items.length; d++) {
       var calendarId = calendarList.items[d].id;
       // Retrieve Events from Specific Calendar List
@@ -128,9 +136,8 @@ function calendarSnapshot(req,res){
         calendarId,
         //{ timeMin: new Date().toISOString() },
         function(err, eventList) {
-          if (err && error === 0){
-            error++;
-            res.send('error');
+          if (err){
+            throw new Error(err);
           }
           else {
           calendarListEventArray.push(eventList);
@@ -170,7 +177,7 @@ function calendarSnapshot(req,res){
               });
               var eventsObject = {
                 events: eventArray,
-                color: colorArray[i]
+                backgroundColor: colorArray[i]
               };
               finalCalendarArray.push(eventsObject);
               if (finalCalendarArray.length === objectCalendars.eventsForCalendars.length){
@@ -181,16 +188,12 @@ function calendarSnapshot(req,res){
                   objectEvents: finalCalendarArray
                 };
                 Calendar.findOne({googleId: req.user.googleId}, function(err,calendar){
-                  if (err && error === 0){
-                    error++;
-                    res.send('error');
+                  if (err){
                     throw new Error(err);
                   }
                   if (calendar){
                     Calendar.findOneAndUpdate({googleId: req.user.googleId}, {$set:{calendarListObject: JSON.stringify(finalCalendarListObject), calendarEventObject: JSON.stringify(finalCalendarEventsObject)  }}, function(err){
-                      if (err && error === 0){
-                        error++;
-                        res.send('error');
+                      if (err){
                         throw new Error(err);
                       }
                     });
@@ -203,9 +206,7 @@ function calendarSnapshot(req,res){
                     newCalendar.calendarEventObject = JSON.stringify(finalCalendarEventsObject);
 
                     newCalendar.save(function(err){
-                      if (err && error === 0){
-                        error++;
-                        res.send('error');
+                      if (err){
                         throw new Error(err);
                       }
                     });
@@ -218,6 +219,7 @@ function calendarSnapshot(req,res){
         }
       );
     }
+  }
   });
 }
 

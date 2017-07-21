@@ -47,6 +47,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "body-parser": "~1.17.1",
+    "bootstrap": "^3.3.7",
     "cookie-parser": "~1.4.3",
     "cross-env": "^5.0.1",
     "csshake": "^1.5.2",

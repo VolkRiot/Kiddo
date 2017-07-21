@@ -6,18 +6,9 @@ import fullCalendar from 'fullcalendar';
 import vex from 'vex-js';
 import vex_dialog from 'vex-dialog';
 import ReactSpinner from 'react-spinjs';
-import ReactDOM from 'react-dom';
-import {
-  DropdownButton,
-  MenuItem,
-  ButtonToolbar,
-} from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import Drop from '../Drop';
 
 // CSS Files for Calendar
 import './calendarStyles/jquery-ui.css';
-import './calendarStyles/calendar.css';
 import './calendarStyles/fullcalendar.min.css';
 import './calendarStyles/vex.css';
 import './calendarStyles/vex-theme-os.css';
@@ -25,7 +16,8 @@ import './calendarStyles/vex-theme-os.css';
 // Vex Plugin
 vex.registerPlugin(vex_dialog);
 
-// Initialize Submit Variable
+// Define Color Array
+const colorArray = ['#f7786b','#c178ba','#ffdd32','#56d8b1', '#FF68DD','#ffaa28', '#44B4D5', '#01F33E', '#E37795', '#FFF06A'];
 
 class Calendar extends Component {
     constructor(props) {
@@ -40,13 +32,24 @@ class Calendar extends Component {
             aspectRatio: 2.5,
             // Add Event Button
             customButtons: {
+                CalendarLegend: {
+                    text: 'calendar legend'
+                },
+                NewKiddo: {
+                    text: 'new kiddo'
+                },
+                Map: {
+                    text: 'map'
+                },
+                Dashboard: {
+                    text: 'dashboard'
+                },
                 AddEvent: {
                     text: 'add event',
                     click: function() {
                         // Modal for Add Event
                         vex.defaultOptions.className = 'vex-theme-os';
                         vex.dialog.open({
-                            message: 'Comments',
                             buttons:[
                                 $.extend({},vex.dialog.buttons.NO,{text: 'Close Window'})
                             ]
@@ -106,17 +109,20 @@ class Calendar extends Component {
                 }
             },
             header: {
-				left: 'prev,next today AddEvent',
-				center: 'title',
-				right: 'month,basicWeek,basicDay list'
+				left: 'prev,next today month,basicWeek,basicDay list',
+                center: 'title',
+                right: 'AddEvent NewKiddo Map Dashboard'
             }
         });
 
         //DOM Edits
         $('.ui-icon-circle-triangle-w').attr('class','fc-icon fc-icon-left-single-arrow');
         $('.ui-icon-circle-triangle-e').attr('class','fc-icon fc-icon-right-single-arrow');
+        $('.fc-NewKiddo-button').html("<a href='#/dashboard/addkiddo' role='menuitem'>new kiddo</a>");
+        $('.fc-Map-button').html("<a href='#/dashboard/map' role='menuitem'>map</a>");
+        $('.fc-Dashboard-button').html("<a href='#/dashboard' role='menuitem'>dashboard</a>");
         $('.fc button, .fc-button-group, .fc-time-grid .fc-event .fc-time span').css('display','inherit');
-        $('.dropdown').css('margin-right','8%');
+        
     }
 
     renderCalendar() {
@@ -135,9 +141,10 @@ class Calendar extends Component {
 
             // Breakdown of each calendar
             $.each(calendarEventResponse.objectEvents, function(i,calendar){
+                
                 //For initial and rerendering. Add Each Evenrs Object and rerender Calendar
                 $('#calendar').fullCalendar('addEventSource', calendar);
-                
+
                 if (i === calendarEventResponse.objectEvents.length - 1){
                     //Hide Spinner
                     $('.spinner').hide();
@@ -164,7 +171,6 @@ class Calendar extends Component {
         this.renderCalendar();
         return (
             <div>
-                <Drop />
                 <ReactSpinner className='spinner'/>
                 <div id="calendar"></div>
             </div>
