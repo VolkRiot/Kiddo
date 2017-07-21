@@ -9,21 +9,6 @@ const express = require('express'),
 -- localhost:3000/mobile/find/email?term=metrikin@gmail.com
 */
 
-// router.get('/find/:by', (req, res) => {
-//   // Check against list of permissable search quiries
-//   if (['email', 'name', 'kids', 'events'].indexOf(req.params.by) !== -1) {
-//     UserModel.find({
-//       [req.params.by]: req.query.term
-//     }).then((response, err) => {
-//       if (!err) {
-//         res.status(200).json(response[0]);
-//       }
-//     });
-//   } else {
-//     res.status(500).send(`Search for term ${req.params.by} are not permitted`);
-//   }
-// });
-
 router.get('/find/user/:by', (req, res) => {
     if (['email', 'name', 'kids', 'events'].indexOf(req.params.by) !== -1) {
       UserModel.find({
