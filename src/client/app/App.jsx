@@ -47,8 +47,16 @@ class App extends Component {
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
    // Save new Calendar too! (TODO: Make better this sucks! Consolidate);
-   addKiddo.then(() => {
-     this.addNewCalendar(newKiddo)
+   addKiddo.then((response) => {
+
+     //Add Kid Id to AddCalendar Post Object
+     const parsedJSON = JSON.parse(response.request.response);
+     const newKidId = parsedJSON.body._id;
+     const newKidCalendar = {
+       kiddoData: newKiddo,
+       kiddoId: newKidId
+     };
+     this.addNewCalendar(newKidCalendar)
       .then(result => {
         let kiddosList = this.state.kiddosList;
         kiddosList.push(result.data);

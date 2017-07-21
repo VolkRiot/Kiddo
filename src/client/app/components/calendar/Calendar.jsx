@@ -6,9 +6,18 @@ import fullCalendar from 'fullcalendar';
 import vex from 'vex-js';
 import vex_dialog from 'vex-dialog';
 import ReactSpinner from 'react-spinjs';
+import ReactDOM from 'react-dom';
+import {
+  DropdownButton,
+  MenuItem,
+  ButtonToolbar,
+} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import Drop from '../Drop';
 
 // CSS Files for Calendar
-
+import './calendarStyles/jquery-ui.css'
+import './calendarStyles/calendar.css';
 import './calendarStyles/fullcalendar.min.css';
 import './calendarStyles/vex.css';
 import './calendarStyles/vex-theme-os.css';
@@ -27,7 +36,8 @@ class Calendar extends Component {
     componentDidMount() {
         // Initialize fullCalendar
         $('#calendar').fullCalendar({
-            aspectRatio: 2.25,
+            theme: true,
+            aspectRatio: 2.5,
             // Add Event Button
             customButtons: {
                 AddEvent: {
@@ -46,27 +56,38 @@ class Calendar extends Component {
                         // eslint-disable-next-line quotes
                         
                         $('.vex-dialog-message').html("<form><div class='form-group'><label for='calendar-title'>Event Tite</label><input type='text' class='form-control' id='calendar-title'></div><div class='form-group'><label for='calendar-startDate'>Start Date</label><input type='datetime-local' class='form-control' id='calendar-startDate'></div><div class='form-group'><label for='calendar-endDate'>End Date</label><input type='datetime-local' class='form-control' id='calendar-endDate'></div><div class='form-group'><label for='calendar-dropdown'>Calendar Name</label><select class='form-control' id='calendar-dropdown'></select></div><button type='submit' id='submit-btn' class='btn btn-primary'>Submit Event</button></form>");
-                       $('.vex-theme-os').attr('id','result-window');
+                        $('.vex-theme-os').attr('id','result-window');
                         
                         // Post Call to Send Event Data to Server
                         $('#submit-btn').click('.vex-dialog-message', function(){
-                            var eventInfo = {
-                                title: $('#calendar-title').val().trim(),
-                                startDate: $('#calendar-startDate').val().trim(),
-                                endDate: $('#calendar-endDate').val().trim(),
-                                calendar: $('#calendar-dropdown option:selected').text().trim()
-                            };
-                        
-                            $.post('/calendar/addevent', eventInfo).done(function(response){
-                                if (response === 'error'){
-                                    vex.dialog.open({
-                                        message: 'There was an error inserting your event. Please try again',
+
+                            // Initial Error Handling of Form Field to Have All Fields Populated
+                               if($('#calendar-title').val() === "" || $('#calendar-startDate').val() === "" || $('#calendar-endDate').val() === "" || $('#calendar-dropdown option:selected').text() === ""){
+                                  vex.dialog.open({
+                                        message: 'Please Enter All Fields and Try Again',
                                         buttons:[
                                             $.extend({},vex.dialog.buttons.NO,{text: 'Close Window'})
                                         ]
                                     });
-                                    $('.vex-theme-os').attr('id','result-window');
                                 } else {
+                                    var eventInfo = {
+                                        title: $('#calendar-title').val().trim(),
+                                        startDate: $('#calendar-startDate').val().trim(),
+                                        endDate: $('#calendar-endDate').val().trim(),
+                                        calendar: $('#calendar-dropdown option:selected').text().trim()
+                                    };
+                               
+                                $.post('/calendar/addevent', eventInfo).done(function(response){
+                                    // API Error Handling
+                                    if (response === 'error'){
+                                        vex.dialog.open({
+                                            message: 'There was an error inserting your event. Please try again',
+                                            buttons:[
+                                                $.extend({},vex.dialog.buttons.NO,{text: 'Close Window'})
+                                            ]
+                                        });
+                                        $('.vex-theme-os').attr('id','result-window');
+                                    } else {
                                     vex.dialog.open({
                                         message: 'Your event was successfully inserted',
                                         buttons:[
@@ -74,11 +95,12 @@ class Calendar extends Component {
                                         ]
                                     });
                                     $('.vex-theme-os').attr('id','result-window');
-                                }
-                                $('#result-window').on('click', function(){
-                                    this.setState({didSubmit: true});
+                                    }
+                                    $('#result-window').on('click', function(){
+                                        this.setState({didSubmit: true});
+                                    }.bind(this));
                                 }.bind(this));
-                            }.bind(this));
+                            }
                         }.bind(this));
                     }.bind(this)
                 }
@@ -90,15 +112,15 @@ class Calendar extends Component {
             }
         });
 
-        //DOM Edit to Illustrate Calendar Buttons
+        //DOM Edits
+        $('.ui-icon-circle-triangle-w').attr('class','fc-icon fc-icon-left-single-arrow');
+        $('.ui-icon-circle-triangle-e').attr('class','fc-icon fc-icon-right-single-arrow');
         $('.fc button, .fc-button-group, .fc-time-grid .fc-event .fc-time span').css('display','inherit');
-       
+        $('.dropdown').css('margin-right','8%');
     }
 
     renderCalendar() {
         
-        var colorArray = ['#ffaa28','#f7786b','#c178ba','#ffdd32','#56d8b1'];
-
         //GetRequest for Google Calendar Events
         $.get('/calendar/geteventsnapshot', function(response){
           
@@ -117,12 +139,10 @@ class Calendar extends Component {
                 $('#calendar').fullCalendar('addEventSource', calendar);
                 
                 if (i === calendarEventResponse.objectEvents.length - 1){
-                    
                     //Hide Spinner
                     $('.spinner').hide();
                 }
                 
-
             }.bind(this));
 
         }.bind(this)).done(function(response){
@@ -144,6 +164,7 @@ class Calendar extends Component {
         this.renderCalendar();
         return (
             <div>
+                <Drop />
                 <ReactSpinner className='spinner'/>
                 <div id="calendar"></div>
             </div>

@@ -21,7 +21,7 @@ var google_calendar = undefined;
 // Base Calendar HTML
 
 router.get('/getevents', function(req,res) {
-  calendarSnapshot(req);
+  calendarSnapshot(req,res);
   res.status(200).send('');
 });
 
@@ -45,7 +45,6 @@ router.post('/addevent', function(req,res){
   // Insert Event into Google Database
   // API call to retrieve calendarList again to match calendar Name with the specific CalendarId
   google_calendar.calendarList.list(function(err, calendarList){
-    calendarSnapshot(req);
     if (err) {
       throw new Error(err);
     } else {
@@ -59,12 +58,11 @@ router.post('/addevent', function(req,res){
             end:{dateTime: req.body.endDate.concat(':00'), timeZone: timezone.name() }
           },
           function(err) {
-            if (err) {
-              throw new Error(err);
             
+            if (err) {
+              res.send('error');
             } else {
-              
-              
+              calendarSnapshot(req,res);
               const newEvent = Event();
 
               newEvent.title = req.body.title;
@@ -75,25 +73,24 @@ router.post('/addevent', function(req,res){
 
               newEvent.save(function(err, data){
                 if (err) {
+                  res.send('error');
                   throw new Error(err);
-                  
                 } else {
                   // Insert Event ID into Users Table for User that Created Event
 
                   User.findOneAndUpdate({email: data.email}, {$push:{events:data._id}}, function(err){
                     if (err) {
+                      res.send('error');
                       throw new Error(err);
-                      
                     } else {
                       // Successfully updated user with new info
 
                       Kid.findOneAndUpdate({calendarId: calendarId}, {$push:{events:data._id}}, function(err){
                         if (err){
-                          throw new Error(err);
-                        
+                          res.send('error');
                         }  else {
-                          // Successfully updated kid with event
-                         res.send('all good');
+                          // Successfully updated kid with event and initiate calendar rerender by state change
+                         res.send('');
                         }
                       });
                     }
@@ -108,16 +105,19 @@ router.post('/addevent', function(req,res){
   });
 });
 
-function calendarSnapshot(req){
+function calendarSnapshot(req,res){
+  // To overcome for running res.send('error') too many times
+  var error = 0;
+
   var finalCalendarArray = [];
   // Initiate google_calendar with token
   if (!google_calendar) {
     var google_calendar = new gcal.GoogleCalendar(req.user.calAccessToken);
-}
+  }
 
   // Array to Hold Events of Multiple Calendars (ie: Children's calendars)
   var calendarListEventArray = [];
-   var colorArray = ['#ffaa28','#f7786b','#c178ba','#ffdd32','#56d8b1'];
+  var colorArray = ['#f7786b','#c178ba','#ffdd32','#56d8b1', '#FF68DD','#ffaa28', '#44B4D5', '#01F33E', '#E37795', '#FFF06A'];
   // Retrieve Users's List
   google_calendar.calendarList.list(function(err, calendarList) {
 
@@ -126,8 +126,13 @@ function calendarSnapshot(req){
       // Retrieve Events from Specific Calendar List
       google_calendar.events.list(
         calendarId,
-        { timeMin: new Date().toISOString() },
+        //{ timeMin: new Date().toISOString() },
         function(err, eventList) {
+          if (err && error === 0){
+            error++
+            res.send('error');
+          }
+          else{
           calendarListEventArray.push(eventList);
           // Send when the length of the array for events of each calendar equals the original amount of calendar Ids gathered from the API response
           if (calendarListEventArray.length == calendarList.items.length) {
@@ -136,7 +141,6 @@ function calendarSnapshot(req){
               eventsForCalendars: calendarListEventArray,
               calendarList: calendarList
             };
-            //res.json(objectCalendars);
             var calendarTitleArray = [];
             $.each(objectCalendars.calendarList.items, function(i,val){
                 calendarTitleArray.push(val.summary);
@@ -177,12 +181,16 @@ function calendarSnapshot(req){
                   objectEvents: finalCalendarArray
                 };
                 Calendar.findOne({googleId: req.user.googleId}, function(err,calendar){
-                  if (err){
+                  if (err && error === 0){
+                    error++
+                    res.send('error');
                     throw new Error(err);
                   }
                   if (calendar){
                     Calendar.findOneAndUpdate({googleId: req.user.googleId}, {$set:{calendarListObject: JSON.stringify(finalCalendarListObject), calendarEventObject: JSON.stringify(finalCalendarEventsObject)  }}, function(err){
-                      if (err){
+                      if (err && error === 0){
+                        error++
+                        res.send('error');
                         throw new Error(err);
                       }
                     });
@@ -195,7 +203,9 @@ function calendarSnapshot(req){
                     newCalendar.calendarEventObject = JSON.stringify(finalCalendarEventsObject);
 
                     newCalendar.save(function(err){
-                      if (err){
+                      if (err && error === 0){
+                        error++
+                        res.send('error');
                         throw new Error(err);
                       }
                     });
@@ -204,6 +214,7 @@ function calendarSnapshot(req){
               }
             });
           }
+        }
         }
       );
     }
