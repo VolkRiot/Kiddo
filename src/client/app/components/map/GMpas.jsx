@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 'use strict';
 
 import React, { Component } from 'react';
@@ -96,4 +97,3 @@ class GMap extends Component {
 }
 
 export default GMap;
-
