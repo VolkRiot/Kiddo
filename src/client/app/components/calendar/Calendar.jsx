@@ -5,6 +5,7 @@ import moment from 'moment';
 import fullCalendar from 'fullcalendar';
 import vex from 'vex-js';
 import vex_dialog from 'vex-dialog';
+import ReactSpinner from 'react-spinjs';
 
 // CSS Files for Calendar
 
@@ -86,7 +87,7 @@ class Calendar extends Component {
 				left: 'prev,next today AddEvent',
 				center: 'title',
 				right: 'month,basicWeek,basicDay list'
-			}
+            }
         });
 
         //DOM Edit to Illustrate Calendar Buttons
@@ -107,13 +108,20 @@ class Calendar extends Component {
             // Remove Existing Events for Rerender
             $('#calendar').fullCalendar('removeEvents');
 
+            // Show Spinner
+            $('.spinner').show();
+
             // Breakdown of each calendar
             $.each(calendarEventResponse.objectEvents, function(i,calendar){
-            
                 //For initial and rerendering. Add Each Evenrs Object and rerender Calendar
-
                 $('#calendar').fullCalendar('addEventSource', calendar);
-                $('#calendar').fullCalendar('rerenderEvents');
+                
+                if (i === calendarEventResponse.objectEvents.length - 1){
+                    
+                    //Hide Spinner
+                    $('.spinner').hide();
+                }
+                
 
             }.bind(this));
 
@@ -134,7 +142,13 @@ class Calendar extends Component {
 
     render() {
         this.renderCalendar();
-        return <div id="calendar"></div>;
+        return (
+            <div>
+                <ReactSpinner className='spinner'/>
+                <div id="calendar"></div>
+            </div>
+        )
+
     }
 }
 
