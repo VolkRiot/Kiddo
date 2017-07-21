@@ -1,9 +1,10 @@
 'use strict';
+// TODO: Refactor to make more DRY and consolidate with other components
 
 import React, { Component } from 'react';
 import ApiHelper from '../../utils/apiHelper';
 
-// const Api = ApiHelper();
+const Api = ApiHelper();
 
 class KidNote extends Component {
 	constructor(props) {
@@ -16,14 +17,27 @@ class KidNote extends Component {
 	}
 
 	handleChange(event) {
-		this.setState( {note: event.target.value } );
+		this.setState( { note: event.target.value } );
 	}
 
 	onSubmit() {
 		if (this.state.note !== ''){
 			var existingNotes = this.state.notes;
 			existingNotes.push(this.state.note);
-			this.setState({notes: existingNotes, note: '', placeholder: 'Type new note'});
+
+			if (this.props.kid) {
+				this.props.kid.notes = existingNotes;
+				Api.updateKiddo(this.props.kid)
+				.then((response) => {
+					this.setState({notes: response.data.body.notes, note: '', placeholder: 'Type new note'});
+				})
+				.catch((err) => {
+					throw new Error(err);
+				});
+			}
+
+
+
 		} else {
 			this.setState({placeholder:'Note is required to submit'});
 		}
@@ -39,8 +53,16 @@ class KidNote extends Component {
 		);
 	}
 
-	resetNotes(){
-		this.setState({notes: []});
+	resetNotes() {
+		this.props.kid.notes = [];
+
+		Api.updateKiddo(this.props.kid)
+		.then((response) => {
+			this.setState({notes: response.data.body.notes, note: '', placeholder: 'Type new note'});
+		})
+		.catch((err) => {
+			throw new Error(err);
+		});
 	}
 
 	render(){

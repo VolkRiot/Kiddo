@@ -1,6 +1,10 @@
 'use strict';
+// TODO: Refactor to make more DRY and consolidate with other components
 
 import React, { Component } from 'react';
+import ApiHelper from '../../utils/apiHelper';
+
+const Api = ApiHelper();
 
 class KidReminder extends Component {
   constructor(props) {
@@ -20,7 +24,18 @@ class KidReminder extends Component {
     if (this.state.reminder !== ''){
       var existingReminders =  this.state.reminders;
       existingReminders.push(this.state.reminder);
-      this.setState({reminders: existingReminders, reminder: '', placeholder: 'Type new reminder'});
+
+      if (this.props.kid) {
+				this.props.kid.reminders = existingReminders;
+				Api.updateKiddo(this.props.kid)
+				.then((response) => {
+          this.setState({reminders: response.data.body.reminders, reminder: '', placeholder: 'Type new reminder'});
+				})
+				.catch((err) => {
+					throw new Error(err);
+				});
+			}
+
     } else {
       this.setState({placeholder:'Reminder is required to submit'});
     }
@@ -36,9 +51,17 @@ class KidReminder extends Component {
     );
   }
 
-  resetReminders(){
-    this.setState({reminders: []});
-  }
+  resetReminders() {
+		this.props.kid.reminders = [];
+
+    Api.updateKiddo(this.props.kid)
+    .then((response) => {
+      this.setState({reminders: response.data.body.reminders, reminder: '', placeholder: 'Type new reminder'});
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
+	}
 
   render() {
     return (
