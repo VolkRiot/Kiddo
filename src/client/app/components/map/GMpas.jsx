@@ -63,9 +63,6 @@ class GMap extends Component {
   }
 
   render() {
-
-    console.log();
-
     const markersList = this.state.markersList;
     const kiddoDetail = this.state.kiddoDetail;
     const initCoords = this.props.initialCenter;
