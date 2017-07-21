@@ -12,7 +12,7 @@ import {
 // import { connect } from 'react-redux';
 // import SocketIOClient from 'socket.io-client';
 
-import RegisterApp from '../components/registerApp';
+import RegisterApp from '../containers/registerApp';
 import NavigationProvider from './Navigator';
 
 class Main extends Component {
