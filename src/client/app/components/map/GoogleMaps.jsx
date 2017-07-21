@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 class GoogleMap extends Component {
   constructor(props) {
     super(props);
-
   }
 
   shouldComponentUpdate() {
@@ -17,11 +16,20 @@ class GoogleMap extends Component {
   }
 
   componentDidMount() {
-    // eslint-disable-next-line no-undef
-    this.map = new google.maps.Map(this.refs.map, {
+
+
+    const mapConfig =  {
       center: this.props.startLocation,
-      zoom: 13
-    });
+      zoom: 13,
+      draggableCursor:'crosshair',
+      clickableIcons: false,
+      streetViewControl: false,
+      mapTypeControl: false
+    };
+
+    // eslint-disable-next-line no-undef
+    this.map = new google.maps.Map(this.refs.map, mapConfig);
+
   }
 
   render() {

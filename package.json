@@ -20,8 +20,9 @@
   "scripts": {
     "start": "nodemon -e js,jsx --ignore dist --exec babel-node ./src/server/bin/www",
     "start:wds": "webpack -w",
-    "prod:start": "cross-env NODE_ENV=production && node ./dist/server/bin/www",
+    "prod:start": "cross-env NODE_ENV=production && heroku local",
     "prod:build": "rimraf dist && babel src -d dist --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
+    "heroku-postbuild": "npm run prod:build",
     "lint": "eslint src webpack.config.js --ext .js,.jsx",
     "lint:fix": "eslint src webpack.config.js --ext .js,.jsx --fix",
     "test": "npm run lint && jest src/* --env=jsdom",
