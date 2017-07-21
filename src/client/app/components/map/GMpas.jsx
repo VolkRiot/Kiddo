@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Gmaps, Marker, InfoWindow } from 'react-gmaps';
-import GMAP_KEY from './config'
+import GMAP_KEY from './config';
 
 class GMap extends Component {
   constructor(props){
@@ -34,7 +34,7 @@ class GMap extends Component {
           icon={ image }
           onClick={ ()=> this.onKiddoSelect(kiddo) }
         />
-      )
+      );
     });
 
     this.setState({ markersList: markersList });

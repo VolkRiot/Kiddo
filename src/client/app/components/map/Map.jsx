@@ -18,8 +18,8 @@ class Mapski extends Component {
   // for testing
   addKiddos() {
     let newKiddosList = [
-      {name:'Theo', latlng:[37.773972, -122.431297], img: "https://cdn.filestackcontent.com/XUVISgkrTLuRroXa6oIe" },
-      {name:'iza', latlng:[37.7058333, -122.4608333], img: "https://cdn.filestackcontent.com/XUVISgkrTLuRroXa6oIe" }
+      {name:'Theo', latlng:[37.773972, -122.431297], img: 'https://cdn.filestackcontent.com/XUVISgkrTLuRroXa6oIe' },
+      {name:'iza', latlng:[37.7058333, -122.4608333], img: 'https://cdn.filestackcontent.com/XUVISgkrTLuRroXa6oIe' }
     ];
     this.setState({ kiddosList: newKiddosList });
   }
