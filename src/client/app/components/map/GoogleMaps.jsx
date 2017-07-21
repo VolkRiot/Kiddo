@@ -27,6 +27,7 @@ class GoogleMap extends Component {
       mapTypeControl: false
     };
 
+    // eslint-disable-next-line no-undef
     this.map = new google.maps.Map(this.refs.map, mapConfig);
 
   }
