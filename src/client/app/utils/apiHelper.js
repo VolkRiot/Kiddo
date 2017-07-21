@@ -27,20 +27,16 @@ const ApiHelper = () => {
     },
     addCalendar: kidName => {
       return api.post(addCalendarRoute, kidName);
-<<<<<<< HEAD
     }, 
     eventsSnapshot: () => {
       return api.get(retrieveCalEvents);
-    }
+    },
     // getKiddo: kiddo_id => {
     //   return api.get(findKidByIdRoute + kiddo_id);
     // }
-=======
-    },
     updateKiddo: kiddo => {
       return api.put(putKidRoute(kiddo._id), kiddo);
     }
->>>>>>> master
   };
 };
 
