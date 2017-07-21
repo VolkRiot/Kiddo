@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import GoogleMap from './GoogleMaps';
+import GMap from './GMpas';
 import * as style from './map.css';
 
 
@@ -9,14 +9,14 @@ class Mapski extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startLocation: { lat: 37.773972, lng: -122.431297 },
-      KiddosList: { lat: 37.773972, lng: -122.431297 },
+      initialCenter: { lat: 37.773972, lng: -122.431297 },
+      KiddosList:[],
     };
   }
     render() {
       return (
         <div
-          className="mapski-wrapper"
+          id="container"
           style={{
             height: '100%',
             width: '100%',
@@ -25,8 +25,8 @@ class Mapski extends Component {
             left: 0
           }}
         >
-          <GoogleMap
-            startLocation={ this.state.startLocation }
+          <GMap
+            initialCenter={ this.state.initialCenter }
             kiddosList={ this.state.KiddosList }
           />
         </div>

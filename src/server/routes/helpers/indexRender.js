@@ -15,9 +15,6 @@ const indexRender = () =>
         <body>
           <div id="app"></div>
          <script src="/js/bundle.js"></script>
-        <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=${process.env.GMAPS_KEY}">
-    </script>
         </body>
       </html>
       `;
