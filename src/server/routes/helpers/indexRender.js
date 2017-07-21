@@ -2,6 +2,7 @@ const indexRender = () =>
   `<!DOCTYPE html>
       <html lang="en">
         <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
           <meta charset="UTF-8">
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
@@ -15,9 +16,6 @@ const indexRender = () =>
         <body>
           <div id="app"></div>
          <script src="/js/bundle.js"></script>
-        <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=${process.env.GMAPS_KEY}">
-    </script>
         </body>
       </html>
       `;

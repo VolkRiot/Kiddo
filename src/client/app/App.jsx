@@ -98,7 +98,9 @@ class App extends Component {
           <Route path='/dashboard/profile' render={(props) => (
             <Kid kiddo={ this.state.kiddosList ? this.state.kiddosList[this.state.currentKiddo] : '' } { ...props }/>
             )}/>
-          <Route path='/dashboard/map' component={ Mapski }/>
+          <Route path='/dashboard/map' render={(props) => (
+            <Mapski kiddos={ this.state.kiddosList } { ...props }/>
+          )}/>
           <Route component={ NotFound }/>
         </Switch>
 
