@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TextInput, Image, TouchableHighlight } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Image,
+  TouchableHighlight
+} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -23,20 +30,26 @@ class RegisterApp extends Component {
   handleSubmit(text) {
     this.props.actions.findParentbyEmail(text);
     // Turns red then resets the red color
-    setTimeout(() => { this.props.actions.resetSearchTerm(); }, 1500);
+    setTimeout(() => {
+      this.props.actions.resetSearchTerm();
+    }, 1500);
   }
 
   unregisteredView() {
     return (
       <View style={styles.container}>
         <TextInput
-          style={this.props.user.searchSubmitted && !this.props.user.found ? styles.inputNotFound : styles.input}
+          style={
+            this.props.user.searchSubmitted && !this.props.user.found
+              ? styles.inputNotFound
+              : styles.input
+          }
           placeholder={'Enter an email'}
           autoFocus={true}
           keyboardType={'email-address'}
           onChangeText={input => this.setState({ input })}
           multiline={false}
-          onSubmitEditing={(event) => this.handleSubmit(event.nativeEvent.text)}
+          onSubmitEditing={event => this.handleSubmit(event.nativeEvent.text)}
         />
       </View>
     );
@@ -56,41 +69,52 @@ class RegisterApp extends Component {
   kidChoices() {
     return (
       <View>
-      <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
-        {this.props.kids.map((each, i) => {
-          return (
-            <TouchableHighlight
-              onPress={this.focusAvatar.bind(this, each, i)}
-              style={styles.child_img}
-              key={i}
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'row'
+          }}
+        >
+          {this.props.kids.map((each, i) => {
+            return (
+              <TouchableHighlight
+                onPress={this.focusAvatar.bind(this, each, i)}
+                style={styles.child_img}
+                key={i}
               >
-            <Image
-              style={this.state.selectedKidIndex === i ? styles.child_selected : styles.child_img}
-              key={i}
-              source={{uri: each.avatar.url}}
-            />
-            </TouchableHighlight>
-          );
-        })}
+                <Image
+                  style={
+                    this.state.selectedKidIndex === i
+                      ? styles.child_selected
+                      : styles.child_img
+                  }
+                  key={i}
+                  source={{ uri: each.avatar.url }}
+                />
+              </TouchableHighlight>
+            );
+          })}
         </View>
         <View>
-        <TextInput
-          style={styles.input}
-          placeholder={'Enter account password'}
-          autoFocus={true}
-          multiline={false}
-          onChangeText={input => this.setState({ passwordInput: input })}
-          onSubmitEditing={(event) => this.handleSubmitPassword(event.nativeEvent.text)}
-        />
+          <TextInput
+            style={styles.input}
+            placeholder={'Enter account password'}
+            autoFocus={true}
+            multiline={false}
+            onChangeText={input => this.setState({ passwordInput: input })}
+            onSubmitEditing={event =>
+              this.handleSubmitPassword(event.nativeEvent.text)}
+          />
+        </View>
       </View>
-    </View>
     );
   }
 
   render() {
     return (
       <View style={styles.outerContainer}>
-        {this.props.user.found ? this.kidChoices() :  this.unregisteredView() }
+        {this.props.user.found ? this.kidChoices() : this.unregisteredView()}
       </View>
     );
   }

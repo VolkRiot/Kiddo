@@ -10,7 +10,7 @@ export function findParentbyEmail(email = null) {
   // [root]/mobile/find/user/email?term=metrikin@gmail.com
   return dispatch => {
     fetch(
-      `https://appkiddo.herokuapp.com/mobile/find/user/email?term=${email.toLowerCase()}`
+      `https://appkiddo-staging.herokuapp.com/mobile/find/user/email?term=${email.toLowerCase()}`
     )
       .then(response => {
         if (!response.ok) {
@@ -55,7 +55,6 @@ export function saveKidAsUser(kid) {
         type: SAVE_KID_USER,
         payload: kid
       });
-
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('Error saving to AsyncStorage');

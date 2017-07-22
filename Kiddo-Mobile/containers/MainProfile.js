@@ -1,4 +1,4 @@
-import React, { Component } from 'react-native';
+import React, { Component } from 'react';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -13,11 +13,12 @@ class MainProfile extends Component {
   render() {
     return (
       <div>
-        <h1>{this.props.kid}</h1>
+        <p>
+          {JSON.stringify(this.props.kid)}
+        </p>
       </div>
     );
   }
-
 }
 
 function mapStateToProps(state) {
