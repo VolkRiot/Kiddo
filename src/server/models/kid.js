@@ -41,6 +41,11 @@ const KidSchema = new Schema({
       ref: 'Events'
     }
   ],
+  coords:{
+    type: Object,
+    lat: Number,
+    lng: Number
+  },
   timestamp: {
     type: Date,
     default: Date.now
