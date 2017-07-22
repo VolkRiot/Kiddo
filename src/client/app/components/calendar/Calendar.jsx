@@ -91,6 +91,7 @@ class Calendar extends Component {
                                         });
                                         $('.vex-theme-os').attr('id','result-window');
                                     } else {
+                                        this.setState({didSubmit: true});
                                     vex.dialog.open({
                                         message: 'Your event was successfully inserted',
                                         buttons:[
@@ -99,9 +100,6 @@ class Calendar extends Component {
                                     });
                                     $('.vex-theme-os').attr('id','result-window');
                                     }
-                                    $('#result-window').on('click', function(){
-                                        this.setState({didSubmit: true});
-                                    }.bind(this));
                                 }.bind(this));
                             }
                         }.bind(this));
@@ -127,25 +125,27 @@ class Calendar extends Component {
 
     renderCalendar() {
         
+        // Show Spinner
+        
+        $('.spinner').show();
+        
         //GetRequest for Google Calendar Events
-        $.get('/calendar/geteventsnapshot', function(response){
+        $.get('/calendar/getevents', function(response){
           
             
-            var calendarEventResponse = JSON.parse(response.calendarEventObject);
+            var calendarEventResponse = response.objectEvents;
       
             // Remove Existing Events for Rerender
             $('#calendar').fullCalendar('removeEvents');
 
-            // Show Spinner
-            $('.spinner').show();
-
+            
             // Breakdown of each calendar
-            $.each(calendarEventResponse.objectEvents, function(i,calendar){
-                
+            $.each(calendarEventResponse, function(i,calendar){
+                console.log(calendarEventResponse);
                 //For initial and rerendering. Add Each Evenrs Object and rerender Calendar
                 $('#calendar').fullCalendar('addEventSource', calendar);
 
-                if (i === calendarEventResponse.objectEvents.length - 1){
+                if (i === calendarEventResponse.length - 1){
                     //Hide Spinner
                     $('.spinner').hide();
                 }
@@ -153,11 +153,11 @@ class Calendar extends Component {
             }.bind(this));
 
         }.bind(this)).done(function(response){
-            var calendarListResponse = JSON.parse(response.calendarListObject);
+            var calendarListResponse = response.objectCalendars;
             //Add Calendar Names to Add Event Dropdown
              $('.fc-AddEvent-button').click(function(){
                 $('#calendar-dropdown').html('');
-                $.each(calendarListResponse.objectCalendars, function(i,val){
+                $.each(calendarListResponse, function(i,val){
                     var newOption = $('<option>');
                     newOption.html(val);
                     newOption.attr('value',val);

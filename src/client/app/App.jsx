@@ -60,7 +60,6 @@ class App extends Component {
         let kiddosList = this.state.kiddosList;
         kiddosList.push(result.data);
         this.setState({ kiddosList });
-        Api.eventsSnapshot();
       });
    });
   }
@@ -83,7 +82,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={ Home }/>
           <Route exact path='/dashboard' render={(props) => (
-              <Dashboard user={ this.state.user } kiddos={ this.state.kiddosList } getKiddoIndex={ this.getKiddoIndex } getEvents={ this.getEvents } { ...props }/>
+              <Dashboard user={ this.state.user } kiddos={ this.state.kiddosList } getKiddoIndex={ this.getKiddoIndex } { ...props }/>
           )}/>
           <Route path='/dashboard/addkiddo' render={(props) => (
               <AddKiddo

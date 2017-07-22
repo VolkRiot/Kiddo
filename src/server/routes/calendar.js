@@ -64,7 +64,6 @@ router.post('/addevent', function(req,res){
               res.send('error');
             } else {
               submit++;
-              calendarSnapshot(req,res);
               const newEvent = Event();
 
               newEvent.title = req.body.title;
@@ -127,98 +126,73 @@ function calendarSnapshot(req,res){
     if (err){
       throw new Error(err);
     } else {
-      res.status(200).send();
-      for (var d = 0; d < calendarList.items.length; d++) {
-        var calendarId = calendarList.items[d].id;
-      // Retrieve Events from Specific Calendar List
-      google_calendar.events.list(
-        calendarId,
-        //{ timeMin: new Date().toISOString() },
-        function(err, eventList) {
-          if (err){
-            throw new Error(err);
-          }
-          else {
-          calendarListEventArray.push(eventList);
-          // Send when the length of the array for events of each calendar equals the original amount of calendar Ids gathered from the API response
-          if (calendarListEventArray.length == calendarList.items.length) {
-            // Send Calendar List Array
-            var objectCalendars = {
-              eventsForCalendars: calendarListEventArray,
-              calendarList: calendarList
-            };
-            var calendarTitleArray = [];
-            $.each(objectCalendars.calendarList.items, function(i,val){
-                calendarTitleArray.push(val.summary);
-            });
-
-            $.each(objectCalendars.eventsForCalendars, function(i,calendar){
-              var eventArray = [];
-              // Breakdown each event
-              $.each(calendar.items, function(i,event){
-                // All Day Events vs Specific DateTime events filtering
-                var startDate;
-                var endDate;
-                if (event.start.date == null || event.end.date == null){
-                  startDate = event.start.dateTime;
-                  endDate = event.end.dateTime;
-                } else {
-                  startDate = event.start.date;
-                  endDate = event.end.date;
-                }
-                var eventObject = {
-                  title: event.summary,
-                  start: startDate,
-                  end: endDate
-                };
-                eventArray.push(eventObject);
-                return eventArray;
-              });
-              var eventsObject = {
-                events: eventArray,
-                backgroundColor: colorArray[i]
-              };
-              finalCalendarArray.push(eventsObject);
-              if (finalCalendarArray.length === objectCalendars.eventsForCalendars.length){
-                var finalCalendarListObject = {
-                  objectCalendars: calendarTitleArray
-                };
-                var finalCalendarEventsObject = {
-                  objectEvents: finalCalendarArray
-                };
-                Calendar.findOne({googleId: req.user.googleId}, function(err,calendar){
-                  if (err){
-                    throw new Error(err);
-                  }
-                  if (calendar){
-                    Calendar.findOneAndUpdate({googleId: req.user.googleId}, {$set:{calendarListObject: JSON.stringify(finalCalendarListObject), calendarEventObject: JSON.stringify(finalCalendarEventsObject)  }}, function(err){
-                      if (err){
-                        throw new Error(err);
-                      }
-                    });
-                  } else {
-                    const newCalendar = new Calendar();
-
-                    newCalendar.email = req.user.email;
-                    newCalendar.googleId = req.user.googleId;
-                    newCalendar.calendarListObject = JSON.stringify(finalCalendarListObject);
-                    newCalendar.calendarEventObject = JSON.stringify(finalCalendarEventsObject);
-
-                    newCalendar.save(function(err){
-                      if (err){
-                        throw new Error(err);
-                      }
-                    });
-                  }
-                });  
+        for (var d = 0; d < calendarList.items.length; d++) {
+          var calendarId = calendarList.items[d].id;
+          // Retrieve Events from Specific Calendar List
+          google_calendar.events.list(
+            calendarId,
+            //{ timeMin: new Date().toISOString() },
+            function(err, eventList) {
+              if (err){
+                throw new Error(err);
               }
-            });
+              else {
+                calendarListEventArray.push(eventList);
+
+              // Send when the length of the array for events of each calendar equals the original amount of calendar Ids gathered from the API response
+              if (calendarListEventArray.length == calendarList.items.length) {
+                // Send Calendar List Array
+                var objectCalendars = {
+                  eventsForCalendars: calendarListEventArray,
+                  calendarList: calendarList
+                };
+                var calendarTitleArray = [];
+                $.each(objectCalendars.calendarList.items, function(i,val){
+                  calendarTitleArray.push(val.summary);
+                });
+
+                $.each(objectCalendars.eventsForCalendars, function(i,calendar){
+                  var eventArray = [];
+                  // Breakdown each event
+                  $.each(calendar.items, function(i,event){
+                    // All Day Events vs Specific DateTime events filtering
+                    var startDate;
+                    var endDate;
+                    if (event.start.date == null || event.end.date == null){
+                      startDate = event.start.dateTime;
+                      endDate = event.end.dateTime;
+                    } else {
+                      startDate = event.start.date;
+                      endDate = event.end.date;
+                    }
+                    var eventObject = {
+                      title: event.summary,
+                      start: startDate,
+                      end: endDate
+                    };
+                    eventArray.push(eventObject);
+                    return eventArray;
+                  });
+                  var eventsObject = {
+                    events: eventArray,
+                    backgroundColor: colorArray[i]
+                  };
+                  finalCalendarArray.push(eventsObject);
+                  if (finalCalendarArray.length === objectCalendars.eventsForCalendars.length){
+                    var finalCalendar = {
+                      objectCalendars: calendarTitleArray,
+                      objectEvents: finalCalendarArray
+                    } 
+
+                    res.json(finalCalendar);
+                  }
+                });
+              }
+            }
           }
-        }
-        }
-      );
+        );
+      }
     }
-  }
   });
 }
 
