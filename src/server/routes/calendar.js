@@ -123,7 +123,7 @@ function calendarSnapshot(req,res){
   // Retrieve Users's List
   google_calendar.calendarList.list(function(err, calendarList) {
     if (err){
-      res.status(500).send('error');
+      res.send('error');
     } else {
         for (var d = 0; d < calendarList.items.length; d++) {
           var calendarId = calendarList.items[d].id;
@@ -132,8 +132,9 @@ function calendarSnapshot(req,res){
             calendarId,
             //{ timeMin: new Date().toISOString() },
             function(err, eventList) {
-              if (err){
-                res.status(500).send('error');
+              if (err && error === 0){
+                error++
+                res.send('error');
               }
               else {
                 calendarListEventArray.push(eventList);
