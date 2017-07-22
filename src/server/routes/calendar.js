@@ -182,7 +182,7 @@ function calendarSnapshot(req,res){
                     var finalCalendar = {
                       objectCalendars: calendarTitleArray,
                       objectEvents: finalCalendarArray
-                    } 
+                    }; 
 
                     res.json(finalCalendar);
                   }

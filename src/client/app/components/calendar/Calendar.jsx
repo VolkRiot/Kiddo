@@ -141,7 +141,6 @@ class Calendar extends Component {
             
             // Breakdown of each calendar
             $.each(calendarEventResponse, function(i,calendar){
-                console.log(calendarEventResponse);
                 //For initial and rerendering. Add Each Evenrs Object and rerender Calendar
                 $('#calendar').fullCalendar('addEventSource', calendar);
 
