@@ -24,10 +24,11 @@ router.get('/getevents', function(req,res) {
   calendarSnapshot(req,res);
 });
 
+// Currently route is not in use
 router.get('/geteventsnapshot', function(req,res){
   Calendar.findOne({googleId: req.user.googleId}, function(err,calendar){
     if (err){
-      throw new Error(err);
+      res.status(500).send('error');
     } else {
       res.json(calendar);
     }
@@ -47,7 +48,7 @@ router.post('/addevent', function(req,res){
   // API call to retrieve calendarList again to match calendar Name with the specific CalendarId
   google_calendar.calendarList.list(function(err, calendarList){
     if (err) {
-      throw new Error(err);
+      res.send('error');
     } else {
       // Logic to Associate Calendar Name with ID
       for (var i = 0; i < calendarList.items.length; i++){
@@ -75,14 +76,12 @@ router.post('/addevent', function(req,res){
               newEvent.save(function(err, data){
                 if (err) {
                   res.send('error');
-                  throw new Error(err);
                 } else {
                   // Insert Event ID into Users Table for User that Created Event
 
                   User.findOneAndUpdate({email: data.email}, {$push:{events:data._id}}, function(err){
                     if (err) {
                       res.send('error');
-                      throw new Error(err);
                     } else {
                       // Successfully updated user with new info
 
@@ -124,7 +123,7 @@ function calendarSnapshot(req,res){
   // Retrieve Users's List
   google_calendar.calendarList.list(function(err, calendarList) {
     if (err){
-      throw new Error(err);
+      res.status(500).send('error');
     } else {
         for (var d = 0; d < calendarList.items.length; d++) {
           var calendarId = calendarList.items[d].id;
@@ -134,7 +133,7 @@ function calendarSnapshot(req,res){
             //{ timeMin: new Date().toISOString() },
             function(err, eventList) {
               if (err){
-                throw new Error(err);
+                res.status(500).send('error');
               }
               else {
                 calendarListEventArray.push(eventList);
