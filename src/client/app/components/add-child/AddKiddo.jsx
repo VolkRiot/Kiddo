@@ -1,6 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
+
 import AddPic from './AddPic';
 import Success from './AddSuccess';
 import * as style from './addkiddo.css';
@@ -9,6 +11,7 @@ import * as style from './addkiddo.css';
 class AddKiddo extends Component {
 	constructor (props) {
 		super(props);
+
 		this.state = {
 			firstName: '',
 			lastName: '',
@@ -16,12 +19,14 @@ class AddKiddo extends Component {
 			password: '',
 			avatar:{url:'./img/addpic.png'},
       modalState: false,
+      redirect: false
 		};
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.saveImgHandler = this.saveImgHandler.bind(this);
     this.onRequestCloseModal = this.onRequestCloseModal.bind(this);
+    this.redirectToDash = this.redirectToDash.bind(this);
   }
 
   onInputChange(event) {
@@ -58,9 +63,14 @@ class AddKiddo extends Component {
 				userName: '',
 				password: '',
         modalState: true,
-				avatar: { url:'./img/addpic.png' }
+				avatar: this.state.avatar.url === './img/addpic.png' ?
+          { url:'./img/girl.png' } : this.state.avatar
       });
 		}
+	}
+
+	redirectToDash() {
+		this.setState({ redirect: true});
 	}
 
   saveImgHandler() {
@@ -85,12 +95,16 @@ class AddKiddo extends Component {
   }
 
 	render(){
+    if (this.state.redirect) {
+      return <Redirect to='/dashboard'/>;
+    }
+
 		return (
 			<div className="addChild container">
 				<h3>Register Your Kiddo Below!</h3>
 					<div className="col-md-6">
 
-            <Success closeModal={ this.onRequestCloseModal } modalState={ this.state.modalState } />
+            <Success redirectToDash={ this.redirectToDash } closeModal={ this.onRequestCloseModal } modalState={ this.state.modalState } />
 
 						<form  onSubmit={ this.onFormSubmit }>
 							<div className='form-group'>

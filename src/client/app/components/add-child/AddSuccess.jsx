@@ -29,7 +29,11 @@ class Success extends React.Component {
   }
 
   afterOpenModal() {
-    setTimeout(() => {this.props.closeModal();}, 2000);
+    
+    setTimeout(() => {
+      this.props.closeModal();
+      this.props.redirectToDash(); }, 2000);
+
     this.subtitle.style.color = '#f7786b';
   }
 
