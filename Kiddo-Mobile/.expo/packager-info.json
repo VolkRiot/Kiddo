@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19006,
-  "packagerPid": 94798,
-  "expoServerNgrokUrl": "https://qt-kd5.mmetrikin.kiddo-mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.qt-kd5.mmetrikin.kiddo-mobile.exp.direct",
-  "ngrokPid": 94820
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
