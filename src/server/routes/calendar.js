@@ -133,7 +133,7 @@ function calendarSnapshot(req,res){
             //{ timeMin: new Date().toISOString() },
             function(err, eventList) {
               if (err && error === 0){
-                error++
+                error++;
                 res.send('error');
               }
               else {
