@@ -19,7 +19,7 @@ class Dashboard extends Component {
 			<div className="dashboard container">
 
 				<div className="row">
-					<div className="col-lg-12 dropdownHub">
+					<div className="offset-lg-10 col-lg-2 dropdownHub">
 						<Drop />
 					</div>
 				</div>
@@ -36,7 +36,7 @@ class Dashboard extends Component {
 				<div className="row" id="row1">
 					<div className="col-sm-6" id="view1">
 						{
-							this.props.kiddos.length ?
+							this.props.kiddos && this.props.kiddos.length ?
 								<div className="avatar-container carousel-container">
 									<KiddoCarousel
 										getKiddoIndex={ this.props.getKiddoIndex }
@@ -92,5 +92,3 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
-
-
