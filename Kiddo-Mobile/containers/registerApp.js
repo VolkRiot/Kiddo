@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 
 import * as Actions from '../redux/actions';
 
+import Router from '../router/Router';
+
 class RegisterApp extends Component {
   constructor(props) {
     super(props);
@@ -46,6 +48,7 @@ class RegisterApp extends Component {
           }
           placeholder={'Enter an email'}
           autoFocus={true}
+          autoCorrect={false}
           keyboardType={'email-address'}
           onChangeText={input => this.setState({ input })}
           multiline={false}
@@ -60,9 +63,14 @@ class RegisterApp extends Component {
   }
 
   handleSubmitPassword(password) {
-    if (this.state.selectedKid.password === password) {
+    if (
+      this.state.selectedKid &&
+      this.state.selectedKid.password === password
+    ) {
       // Create Action to Register kid to App then redirect to main view
-      this.actions.saveKidAsUser(this.state.selectedKid);
+      this.props.actions.saveKidAsUser(this.state.selectedKid);
+      console.log('Bavigator is ', this.props.navigator);
+      // this.props.navigator.push(Router.getRoute('main'));
     }
   }
 
@@ -102,6 +110,7 @@ class RegisterApp extends Component {
             placeholder={'Enter account password'}
             autoFocus={true}
             multiline={false}
+            autoCorrect={false}
             onChangeText={input => this.setState({ passwordInput: input })}
             onSubmitEditing={event =>
               this.handleSubmitPassword(event.nativeEvent.text)}
