@@ -74,7 +74,7 @@ class Calendar extends Component {
 
         // Array for Calendar Titles
         var calendarTitleArray = [];
-
+        
         // Define Random Color for Each Calendar
         var colorArray = ['#ffaa28','#f7786b','#c178ba','#ffdd32','#56d8b1'];
 
