@@ -36,7 +36,7 @@ class Dashboard extends Component {
 				<div className="row" id="row1">
 					<div className="col-sm-6" id="view1">
 						{
-							this.props.kiddos.length ?
+							this.props.kiddos && this.props.kiddos.length ?
 								<div className="avatar-container carousel-container">
 									<KiddoCarousel
 										getKiddoIndex={ this.props.getKiddoIndex }
