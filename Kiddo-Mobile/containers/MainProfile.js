@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View, Text } from 'react-native';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -12,18 +13,16 @@ class MainProfile extends Component {
 
   render() {
     return (
-      <div>
-        <p>
-          {JSON.stringify(this.props.kid)}
-        </p>
-      </div>
+      <View>
+          <Text>{JSON.stringify(this.props.kid)}</Text>
+      </View>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    kid: state.user.kidOwner
+    kid: state.kidOwner
   };
 }
 

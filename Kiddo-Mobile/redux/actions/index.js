@@ -44,9 +44,10 @@ export function resetSearchTerm() {
 }
 
 export function saveKidAsUser(kid) {
-  return async dispatch => {
-    try {
-      const newKidOwner = await AsyncStorage.setItem(
+  // TODO( Need error handler later)
+  return (dispatch) => {
+    
+      AsyncStorage.setItem(
         'KID_USER',
         JSON.stringify(kid)
       );
@@ -55,10 +56,6 @@ export function saveKidAsUser(kid) {
         type: SAVE_KID_USER,
         payload: kid
       });
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log('Error saving to AsyncStorage');
-    }
   };
 }
 
