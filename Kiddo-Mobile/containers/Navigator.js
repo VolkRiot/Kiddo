@@ -6,7 +6,7 @@ import Router from '../router/Router';
 export default function() {
   return (
     <NavigationProvider router={Router}>
-      <StackNavigation initialRoute={Router.getRoute('home')} />
+      <StackNavigation initialRoute={'home'} />
     </NavigationProvider>
   );
 }

@@ -69,8 +69,7 @@ class RegisterApp extends Component {
     ) {
       // Create Action to Register kid to App then redirect to main view
       this.props.actions.saveKidAsUser(this.state.selectedKid);
-      console.log('Bavigator is ', this.props.navigator);
-      // this.props.navigator.push(Router.getRoute('main'));
+      this.props.navigator.push('main');
     }
   }
 
