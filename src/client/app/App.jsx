@@ -29,7 +29,6 @@ class App extends Component {
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
     this.addNewCalendar = this.addNewCalendar.bind(this);
-    this.getEvents = this.getEvents.bind(this);
     this.getKiddoIndex = this.getKiddoIndex.bind(this);
   }
 
@@ -46,16 +45,8 @@ class App extends Component {
   saveNewKiddo (newKiddo) {
    let addKiddo = Api.addKiddo(newKiddo);
    // Save new Calendar too! (TODO: Make better this sucks! Consolidate);
-   addKiddo.then((response) => {
-
-     //Add Kid Id to AddCalendar Post Object
-     const parsedJSON = JSON.parse(response.request.response);
-     const newKidId = parsedJSON.body._id;
-     const newKidCalendar = {
-       kiddoData: newKiddo,
-       kiddoId: newKidId
-     };
-     this.addNewCalendar(newKidCalendar)
+   addKiddo.then(() => {
+     this.addNewCalendar(newKiddo)
       .then(result => {
         let kiddosList = this.state.kiddosList;
         kiddosList.push(result.data);
@@ -66,10 +57,6 @@ class App extends Component {
 
   addNewCalendar (newKidName) {
    return Api.addCalendar(newKidName);
-  }
-
-  getEvents (){
-    return Api.eventsSnapshot();
   }
 
   getKiddoIndex (index) {
@@ -96,7 +83,9 @@ class App extends Component {
           <Route path='/dashboard/profile' render={(props) => (
             <Kid kiddo={ this.state.kiddosList ? this.state.kiddosList[this.state.currentKiddo] : '' } { ...props }/>
             )}/>
-          <Route path='/dashboard/map' component={ Mapski }/>
+          <Route path='/dashboard/map' render={(props) => (
+            <Mapski kiddos={ this.state.kiddosList } { ...props }/>
+          )}/>
           <Route component={ NotFound }/>
         </Switch>
 

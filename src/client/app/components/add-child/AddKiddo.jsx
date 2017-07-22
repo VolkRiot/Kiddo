@@ -58,8 +58,7 @@ class AddKiddo extends Component {
 				userName: '',
 				password: '',
         modalState: true,
-				avatar: this.state.avatar.url === './img/addpic.png' ?
-          { url:'./img/girl.png' } : this.state.avatar
+				avatar: { url:'./img/addpic.png' }
       });
 		}
 	}
