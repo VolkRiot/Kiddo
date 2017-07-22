@@ -19,7 +19,7 @@ class Dashboard extends Component {
 			<div className="dashboard container">
 
 				<div className="row">
-					<div className="col-lg-12 dropdownHub">
+					<div className="offset-lg-10 col-lg-2 dropdownHub">
 						<Drop />
 					</div>
 				</div>
@@ -92,5 +92,3 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
-
-
