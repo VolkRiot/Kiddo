@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import DashAvatar from './DashAvatar';
 import KiddoCarousel from './KiddoCarousel';
 import * as style from './dashboard.css';
-import Drop from '../Drop';
+import Drop from '../DropDown/Drop';
 
 class Dashboard extends Component {
 	constructor(props) {

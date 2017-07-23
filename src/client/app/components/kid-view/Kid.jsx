@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import KidNote from './KidNote';
 import KidShop from './KidShop';
 import KidReminder from './KidReminder';
-import Drop from '../Drop';
+import Drop from '../DropDown/Drop';
 
 class Kid extends Component {
 	constructor(props) {
@@ -30,7 +30,7 @@ class Kid extends Component {
 						this.props.kiddo.firstName :
 						this.state.defaultKid.firstName }
 					</div>
-					<div className="col-lg-3"> 
+					<div className="col-lg-3">
 					<Drop />
 					</div>
 				</div>
@@ -55,4 +55,3 @@ class Kid extends Component {
 }
 
 export default Kid;
-
