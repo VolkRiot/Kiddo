@@ -68,12 +68,23 @@ class KidShop extends Component {
   }
 
   illustrateItems() {
+    var removeMap = {};
+
     if (!this.state.shopping) {
       return '';
     }
 
+    if (this.state.shoppingsToRemove.length > 0) {
+      removeMap = this.state.shoppingsToRemove.reduce((acc, item) => {
+        if (!acc[item]) {
+          acc[item] = true;
+        }
+        return acc;
+      }, {});
+    }
+
     return this.state.shopping.map((item, index) => {
-      if (this.state.shoppingsToRemove.indexOf(item) === -1) {
+      if (!removeMap.hasOwnProperty(item)) {
         return (
           <li key={index} onClick={this.markForDeletion.bind(this, item)}>
             {item}
@@ -81,7 +92,10 @@ class KidShop extends Component {
         );
       } else {
         return (
-          <li key={index} onClick={this.markForDeletion.bind(this, item)}>
+          <li
+            key={index}
+            onClick={this.markForDeletion.bind(this, item, index)}
+          >
             <s style={{ color: 'gray' }}>
               {item}
             </s>
