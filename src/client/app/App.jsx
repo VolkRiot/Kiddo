@@ -34,13 +34,11 @@ class App extends Component {
     this.saveNewKiddo = this.saveNewKiddo.bind(this);
     this.getUser = this.getUser.bind(this);
     this.addNewCalendar = this.addNewCalendar.bind(this);
-    this.getEvents = this.getEvents.bind(this);
     this.getKiddoIndex = this.getKiddoIndex.bind(this);
   }
 
   componentDidMount() {
     this.getUser();
-    this.getEvents();
   }
 
   async getUser() {
@@ -60,7 +58,6 @@ class App extends Component {
         let kiddosList = this.state.kiddosList;
         kiddosList.push(result.data);
         this.setState({ kiddosList });
-        Api.eventsSnapshot();
       });
     });
   }
