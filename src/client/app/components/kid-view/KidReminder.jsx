@@ -68,12 +68,23 @@ class KidReminder extends Component {
   }
 
   illustrateReminders() {
+    var removeMap = {};
+
     if (!this.state.reminders) {
       return '';
     }
 
+    if (this.state.remindersToRemove.length > 0) {
+      removeMap = this.state.remindersToRemove.reduce((acc, item) => {
+        if (!acc[item]) {
+          acc[item] = true;
+        }
+        return acc;
+      }, {});
+    }
+
     return this.state.reminders.map((reminder, index) => {
-      if (this.state.remindersToRemove.indexOf(reminder) === -1) {
+      if (!removeMap.hasOwnProperty(reminder)) {
         return (
           <li key={index} onClick={this.markForDeletion.bind(this, reminder)}>
             {reminder}

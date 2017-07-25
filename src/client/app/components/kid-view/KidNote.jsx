@@ -68,12 +68,23 @@ class KidNote extends Component {
   }
 
   illustrateNotes() {
+    var removeMap = {};
+
     if (!this.state.notes) {
       return '';
     }
 
+    if (this.state.notesToRemove.length > 0) {
+      removeMap = this.state.notesToRemove.reduce((acc, item) => {
+        if (!acc[item]) {
+          acc[item] = true;
+        }
+        return acc;
+      }, {});
+    }
+
     return this.state.notes.map((note, index) => {
-      if (this.state.notesToRemove.indexOf(note) === -1) {
+      if (!removeMap.hasOwnProperty(note)) {
         return (
           <li key={index} onClick={this.markForDeletion.bind(this, note)}>
             {note}
