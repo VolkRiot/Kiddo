@@ -82,7 +82,7 @@ class KidShop extends Component {
       } else {
         return (
           <li key={index} onClick={this.markForDeletion.bind(this, item)}>
-            <s>
+            <s style={{ color: 'gray' }}>
               {item}
             </s>
           </li>

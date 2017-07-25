@@ -82,7 +82,7 @@ class KidReminder extends Component {
       } else {
         return (
           <li key={index} onClick={this.markForDeletion.bind(this, reminder)}>
-            <s>
+            <s style={{ color: 'gray' }}>
               {reminder}
             </s>
           </li>
