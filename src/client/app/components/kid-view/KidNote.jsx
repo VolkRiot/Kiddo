@@ -9,11 +9,17 @@ const Api = ApiHelper();
 class KidNote extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { note: '', notes: this.props.kid.notes, placeholder:'Type new note' };
+		this.state = {
+			note: '',
+			notes: this.props.kid.notes,
+			placeholder:'Type new note',
+			notesToRemove: []
+		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.resetNotes = this.resetNotes.bind(this);
+		this.markForDeletion = this.markForDeletion.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -39,12 +45,22 @@ class KidNote extends Component {
 					throw new Error(err);
 				});
 			}
-
-
-
 		} else {
 			this.setState({placeholder:'Note is required to submit'});
 		}
+	}
+
+	markForDeletion(note) {
+		const markedForDeletion = this.state.notesToRemove;
+		const indexOf = markedForDeletion.indexOf(note);
+
+		if (indexOf !== -1) {
+			markedForDeletion.splice(indexOf, 1);
+		} else {
+			markedForDeletion.push(note);
+		}
+
+		this.setState({ notesToRemove: markedForDeletion });
 	}
 
 	illustrateNotes() {
@@ -52,9 +68,20 @@ class KidNote extends Component {
 			return '';
 		}
 
-		return this.state.notes.map((note,index) =>
-			<li key={index}>{note}</li>
-		);
+		return this.state.notes.map((note, index) => {
+
+			if (this.state.notesToRemove.indexOf(note) === -1) {
+				return (<li
+					key={index}
+					onClick={this.markForDeletion.bind(this, note)}
+				>{note}</li>);
+			} else {
+				return (<li
+					key={index}
+					onClick={this.markForDeletion.bind(this, note)}
+				><s>{note}</s></li>);
+			}
+		});
 	}
 
 	resetNotes() {
