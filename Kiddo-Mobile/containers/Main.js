@@ -12,20 +12,14 @@ import {
 // import { connect } from 'react-redux';
 // import SocketIOClient from 'socket.io-client';
 
-import RegisterApp from '../components/registerApp';
+import RegisterApp from '../containers/registerApp';
 import NavigationProvider from './Navigator';
 
-class Main extends Component {
+export default class Main extends Component {
   constructor(props) {
     super(props);
   }
   render() {
-    return (
-        <NavigationProvider />
-    );
+    return <NavigationProvider />;
   }
 }
-
-
-
-export default Main;
