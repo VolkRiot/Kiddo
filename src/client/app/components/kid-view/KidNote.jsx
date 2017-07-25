@@ -16,6 +16,10 @@ class KidNote extends Component {
 		this.resetNotes = this.resetNotes.bind(this);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		this.setState({ notes: nextProps.kid.notes });
+	}
+
 	handleChange(event) {
 		this.setState( { note: event.target.value } );
 	}

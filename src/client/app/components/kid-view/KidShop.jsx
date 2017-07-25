@@ -16,6 +16,10 @@ class KidShop extends Component {
     this.resetItems = this.resetItems.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+		this.setState({ shopping: nextProps.kid.shopping });
+	}
+
   handleChange(event) {
     this.setState({item: event.target.value});
   }

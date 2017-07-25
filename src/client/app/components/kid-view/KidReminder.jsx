@@ -16,6 +16,10 @@ class KidReminder extends Component {
     this.resetReminders = this.resetReminders.bind(this);
 	}
 
+  componentWillReceiveProps(nextProps) {
+		this.setState({ reminders: nextProps.kid.reminders });
+	}
+
   handleChange(event) {
     this.setState( {reminder: event.target.value } );
   }
