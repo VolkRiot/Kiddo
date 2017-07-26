@@ -49,32 +49,22 @@ class RegisterApp extends Component {
 
   unregisteredView() {
     return (
-      <Container style={{ backgroundColor: '#baffc9' }}>
-        <Header>
-          <Body>
-            <Title>Register Your Kiddo</Title>
-          </Body>
-        </Header>
-        <Body>
-          <View style={styles.container}>
-            <TextInput
-              style={
-                this.props.user.searchSubmitted && !this.props.user.found
-                  ? styles.inputNotFound
-                  : styles.input
-              }
-              placeholder={'Enter an email'}
-              autoFocus={true}
-              autoCorrect={false}
-              keyboardType={'email-address'}
-              onChangeText={input => this.setState({ input })}
-              multiline={false}
-              onSubmitEditing={event =>
-                this.handleSubmit(event.nativeEvent.text)}
-            />
-          </View>
-        </Body>
-      </Container>
+      <View style={styles.container}>
+        <TextInput
+          style={
+            this.props.user.searchSubmitted && !this.props.user.found
+              ? styles.inputNotFound
+              : styles.input
+          }
+          placeholder={'Enter an email'}
+          autoFocus={true}
+          autoCorrect={false}
+          keyboardType={'email-address'}
+          onChangeText={input => this.setState({ input })}
+          multiline={false}
+          onSubmitEditing={event => this.handleSubmit(event.nativeEvent.text)}
+        />
+      </View>
     );
   }
 
@@ -95,7 +85,7 @@ class RegisterApp extends Component {
 
   kidChoices() {
     return (
-      <View>
+      <View style={styles.container}>
         <View
           style={{
             justifyContent: 'center',
@@ -140,7 +130,18 @@ class RegisterApp extends Component {
   }
 
   render() {
-    return this.props.user.found ? this.kidChoices() : this.unregisteredView();
+    return (
+      <Container style={{ backgroundColor: '#baffc9' }}>
+        <Header>
+          <Body>
+            <Title>Register Your Kiddo</Title>
+          </Body>
+        </Header>
+        <Body>
+          {this.props.user.found ? this.kidChoices() : this.unregisteredView()}
+        </Body>
+      </Container>
+    );
   }
 }
 
