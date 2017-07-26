@@ -22,27 +22,26 @@ class MainProfile extends Component {
   }
 
   render() {
-    console.log('Json kid is ', this.props.kid);
     return (
       <Container>
         <Header />
         <Footer>
           <FooterTab>
             <Button vertical>
-              <Icon name="apps" />
-              <Text>Apps</Text>
+              <Icon ios="cafe" android="cafe" name="event" />
+              <Text>Events</Text>
             </Button>
             <Button vertical>
-              <Icon name="camera" />
-              <Text>Camera</Text>
-            </Button>
-            <Button vertical active>
-              <Icon active name="navigate" />
-              <Text>Map</Text>
+              <Icon ios="ios-menu" android="md-menu" name="menu" />
+              <Text>Shopping</Text>
             </Button>
             <Button vertical>
-              <Icon name="person" />
-              <Text>Contact</Text>
+              <Icon name="navigate" />
+              <Text>Test</Text>
+            </Button>
+            <Button vertical>
+              <Icon name="navigate" />
+              <Text>Test</Text>
             </Button>
           </FooterTab>
         </Footer>
