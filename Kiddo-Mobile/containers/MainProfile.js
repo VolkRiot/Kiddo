@@ -27,7 +27,11 @@ class MainProfile extends Component {
     return (
       <Container>
         <Header />
-        <Body />
+        <Body>
+          <Text>
+            {JSON.stringify(this.props.kid)}
+          </Text>
+        </Body>
         <Footer>
           <FooterTab>
             <Button vertical>
@@ -58,7 +62,7 @@ class MainProfile extends Component {
 
 function mapStateToProps(state) {
   return {
-    kid: state.kidOwner
+    kid: state.kidOwner.kidOwner
   };
 }
 

@@ -3,10 +3,10 @@ import { NavigationProvider, StackNavigation } from '@expo/ex-navigation';
 
 import Router from '../router/Router';
 
-export default function() {
+export default function(props) {
   return (
     <NavigationProvider router={Router}>
-      <StackNavigation initialRoute={'main'} />
+      <StackNavigation initialRoute={props.startRoute} />
     </NavigationProvider>
   );
 }
