@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   Container,
   Header,
@@ -7,8 +8,9 @@ import {
   Footer,
   FooterTab,
   Button,
+  Text,
   Icon,
-  Text
+  Body
 } from 'native-base';
 
 import { bindActionCreators } from 'redux';
@@ -25,23 +27,27 @@ class MainProfile extends Component {
     return (
       <Container>
         <Header />
+        <Body />
         <Footer>
           <FooterTab>
             <Button vertical>
-              <Icon ios="cafe" android="cafe" name="event" />
+              <Icon ios="ios-calendar" android="md-calendar" />
               <Text>Events</Text>
             </Button>
             <Button vertical>
-              <Icon ios="ios-menu" android="md-menu" name="menu" />
+              <Icon ios="ios-basket-outline" android="md-basket-outline" />
               <Text>Shopping</Text>
             </Button>
             <Button vertical>
-              <Icon name="navigate" />
-              <Text>Test</Text>
+              <Icon ios="ios-map" android="md-map" />
+              <Text>Map</Text>
             </Button>
             <Button vertical>
-              <Icon name="navigate" />
-              <Text>Test</Text>
+              <Icon
+                ios="ios-chatbubbles-outline"
+                android="md-chatbubbles-outline"
+              />
+              <Text>Chat</Text>
             </Button>
           </FooterTab>
         </Footer>
