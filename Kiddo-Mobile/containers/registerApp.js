@@ -138,7 +138,7 @@ class RegisterApp extends Component {
       <StyleProvider style={getTheme(material)}>
         <Container style={{ backgroundColor: '#baffc9' }}>
           <Header>
-            <Body>
+            <Body style={{ alignItems: 'center' }}>
               <Title>Register Your Kiddo</Title>
             </Body>
           </Header>
@@ -169,7 +169,9 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#bae1ff',
     textAlign: 'center',
-    borderRadius: 30
+    borderRadius: 30,
+    borderColor: '#ffb3ba',
+    borderWidth: 2
   },
   inputNotFound: {
     width: 250,
