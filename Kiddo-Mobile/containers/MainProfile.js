@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import {
+  Container,
+  Header,
+  Content,
+  Footer,
+  FooterTab,
+  Button,
+  Icon,
+  Text
+} from 'native-base';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -12,10 +22,31 @@ class MainProfile extends Component {
   }
 
   render() {
+    console.log('Json kid is ', this.props.kid);
     return (
-      <View>
-          <Text>{JSON.stringify(this.props.kid)}</Text>
-      </View>
+      <Container>
+        <Header />
+        <Footer>
+          <FooterTab>
+            <Button vertical>
+              <Icon name="apps" />
+              <Text>Apps</Text>
+            </Button>
+            <Button vertical>
+              <Icon name="camera" />
+              <Text>Camera</Text>
+            </Button>
+            <Button vertical active>
+              <Icon active name="navigate" />
+              <Text>Map</Text>
+            </Button>
+            <Button vertical>
+              <Icon name="person" />
+              <Text>Contact</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
     );
   }
 }

@@ -7,6 +7,15 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
+import {
+  Container,
+  Header,
+  Left,
+  Body,
+  Right,
+  Button,
+  Title
+} from 'native-base';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -75,7 +84,7 @@ class RegisterApp extends Component {
 
   kidChoices() {
     return (
-      <View>
+      <View style={styles.container}>
         <View
           style={{
             justifyContent: 'center',
@@ -121,9 +130,16 @@ class RegisterApp extends Component {
 
   render() {
     return (
-      <View style={styles.outerContainer}>
-        {this.props.user.found ? this.kidChoices() : this.unregisteredView()}
-      </View>
+      <Container style={{ backgroundColor: '#baffc9' }}>
+        <Header>
+          <Body>
+            <Title>Register Your Kiddo</Title>
+          </Body>
+        </Header>
+        <Body>
+          {this.props.user.found ? this.kidChoices() : this.unregisteredView()}
+        </Body>
+      </Container>
     );
   }
 }
@@ -136,7 +152,6 @@ const styles = StyleSheet.create({
   },
   outerContainer: {
     flex: 1,
-    backgroundColor: '#baffc9',
     alignItems: 'center',
     justifyContent: 'center'
   },
