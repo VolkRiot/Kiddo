@@ -14,10 +14,15 @@ import {
   Body,
   Right,
   Button,
-  Title
+  Title,
+  StyleProvider
 } from 'native-base';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+// Theme
+import getTheme from '../native-base-theme/components';
+import material from '../native-base-theme/variables/material';
 
 import * as Actions from '../redux/actions';
 
@@ -130,16 +135,20 @@ class RegisterApp extends Component {
 
   render() {
     return (
-      <Container style={{ backgroundColor: '#baffc9' }}>
-        <Header>
+      <StyleProvider style={getTheme(material)}>
+        <Container style={{ backgroundColor: '#baffc9' }}>
+          <Header>
+            <Body>
+              <Title>Register Your Kiddo</Title>
+            </Body>
+          </Header>
           <Body>
-            <Title>Register Your Kiddo</Title>
+            {this.props.user.found
+              ? this.kidChoices()
+              : this.unregisteredView()}
           </Body>
-        </Header>
-        <Body>
-          {this.props.user.found ? this.kidChoices() : this.unregisteredView()}
-        </Body>
-      </Container>
+        </Container>
+      </StyleProvider>
     );
   }
 }
