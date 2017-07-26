@@ -43,22 +43,29 @@ export function resetSearchTerm() {
   };
 }
 
-export function saveKidAsUser(kid) {
+export function saveKidAsUser({ _id }) {
   // TODO( Need error handler later)
-  return (dispatch) => {
-    
-      AsyncStorage.setItem(
-        'KID_USER',
-        JSON.stringify(kid)
-      );
 
-      dispatch({
-        type: SAVE_KID_USER,
-        payload: kid
+  return dispatch => {
+    fetch(`https://appkiddo-staging.herokuapp.com/api/kid?_id=${_id}`)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(data => {
+        AsyncStorage.setItem('KID_USER', JSON.stringify(data));
+
+        dispatch({
+          type: SAVE_KID_USER,
+          payload: data
+        });
+      })
+      .catch(() => {
+        // TODO: Expand to handle this case. Make strategy
+        console.log('Failed to find kid');
       });
   };
 }
-
-// AsyncStorage.getItem(SETTINGS_KEY).then((settingsStr)=>{
-//   const settings = JSON.parse(settingsStr)
-// })

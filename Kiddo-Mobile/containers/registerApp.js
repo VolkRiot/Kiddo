@@ -14,7 +14,6 @@ import {
   Body,
   Right,
   Button,
-  Icon,
   Title
 } from 'native-base';
 import { bindActionCreators } from 'redux';
