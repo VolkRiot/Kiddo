@@ -65,6 +65,7 @@ export function saveKidAsUser({ _id }) {
       })
       .catch(() => {
         // TODO: Expand to handle this case. Make strategy
+        // eslint-disable-next-line no-console
         console.log('Failed to find kid');
       });
   };
