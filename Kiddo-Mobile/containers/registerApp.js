@@ -7,6 +7,16 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
+import {
+  Container,
+  Header,
+  Left,
+  Body,
+  Right,
+  Button,
+  Icon,
+  Title
+} from 'native-base';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -39,22 +49,32 @@ class RegisterApp extends Component {
 
   unregisteredView() {
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={
-            this.props.user.searchSubmitted && !this.props.user.found
-              ? styles.inputNotFound
-              : styles.input
-          }
-          placeholder={'Enter an email'}
-          autoFocus={true}
-          autoCorrect={false}
-          keyboardType={'email-address'}
-          onChangeText={input => this.setState({ input })}
-          multiline={false}
-          onSubmitEditing={event => this.handleSubmit(event.nativeEvent.text)}
-        />
-      </View>
+      <Container style={{ backgroundColor: '#baffc9' }}>
+        <Header>
+          <Body>
+            <Title>Register Your Kiddo</Title>
+          </Body>
+        </Header>
+        <Body>
+          <View style={styles.container}>
+            <TextInput
+              style={
+                this.props.user.searchSubmitted && !this.props.user.found
+                  ? styles.inputNotFound
+                  : styles.input
+              }
+              placeholder={'Enter an email'}
+              autoFocus={true}
+              autoCorrect={false}
+              keyboardType={'email-address'}
+              onChangeText={input => this.setState({ input })}
+              multiline={false}
+              onSubmitEditing={event =>
+                this.handleSubmit(event.nativeEvent.text)}
+            />
+          </View>
+        </Body>
+      </Container>
     );
   }
 
@@ -120,11 +140,7 @@ class RegisterApp extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.outerContainer}>
-        {this.props.user.found ? this.kidChoices() : this.unregisteredView()}
-      </View>
-    );
+    return this.props.user.found ? this.kidChoices() : this.unregisteredView();
   }
 }
 
@@ -136,7 +152,6 @@ const styles = StyleSheet.create({
   },
   outerContainer: {
     flex: 1,
-    backgroundColor: '#baffc9',
     alignItems: 'center',
     justifyContent: 'center'
   },
