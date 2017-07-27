@@ -12,8 +12,7 @@
   - Misha 👮🏻
 
 ### See for yourself:
-[Kiddo App]
-(https://appkiddo.herokuapp.com/#/)
+[Kiddo App](https://appkiddo.herokuapp.com/#/)
 
 ### The Inspiration:
   Kiddo was inspired by the realization that like many things nowadays, there needs to be an easier and more accessible way to manage everything you need to remember as a parent. Because we care, our childrens' schedules, shopping-needs, locations and important to-do's, need to be at our fingertips in a way they haven't been before. Kiddo is here to solve that problem. 
