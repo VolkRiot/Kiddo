@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import * as Actions from '../redux/actions';
 import NavFooter from '../components/NavFooter';
 import Events from '../components/Events';
+import Shopping from '../components/Shopping';
 
 class MainProfile extends Component {
   constructor(props) {
@@ -35,6 +36,8 @@ class MainProfile extends Component {
     switch (this.state.currentView) {
       case 'events':
         return <Events events={this.props.kid.events} />;
+      case 'shopping':
+        return <Shopping events={this.props.kid.shopping} />;
       default:
         return <Events events={this.props.kid.events} />;
     }
