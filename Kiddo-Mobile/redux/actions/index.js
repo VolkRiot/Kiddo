@@ -7,6 +7,10 @@ export const RESET_SEARCH_BOX = 'RESET_SEARCH_BOX';
 export const SAVE_KID_USER = 'SAVE_KID_USER';
 export const IS_USER_REGISTERED = 'IS_USER_REGISTERED';
 
+// Debugging purposes
+const baseURL =
+  'http://localhost:3000' || 'https://appkiddo-staging.herokuapp.com';
+
 export function getStoredUser() {
   return async dispatch => {
     try {
@@ -35,9 +39,7 @@ export function getStoredUser() {
 export function findParentbyEmail(email = null) {
   // [root]/mobile/find/user/email?term=metrikin@gmail.com
   return dispatch => {
-    fetch(
-      `https://appkiddo-staging.herokuapp.com/mobile/find/user/email?term=${email.toLowerCase()}`
-    )
+    fetch(`${baseURL}/mobile/find/user/email?term=${email.toLowerCase()}`)
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText);
@@ -79,7 +81,7 @@ export function saveKidAsUser({ _id }) {
   // TODO( Need error handler later)
 
   return dispatch => {
-    fetch(`https://appkiddo-staging.herokuapp.com/api/kid?_id=${_id}`)
+    fetch(`${baseURL}/api/kid?_id=${_id}`)
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText);

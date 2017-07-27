@@ -35,11 +35,19 @@ class MainProfile extends Component {
   determineView() {
     switch (this.state.currentView) {
       case 'events':
-        return <Events events={this.props.kid.events} />;
+        return (
+          <Events events={this.props.kid.events ? this.props.kid.events : []} />
+        );
       case 'shopping':
-        return <Shopping events={this.props.kid.shopping} />;
+        return (
+          <Shopping
+            events={this.props.kid.shopping ? this.props.kid.shopping : []}
+          />
+        );
       default:
-        return <Events events={this.props.kid.events} />;
+        return (
+          <Events events={this.props.kid.events ? this.props.kid.events : []} />
+        );
     }
   }
 
