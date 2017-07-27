@@ -30,8 +30,7 @@
 [Kiddo App](https://appkiddo.herokuapp.com/#/)
 
 ### Acknowledgements:
-A very special thanks to
- - UC Berkeley Coding Bootcamp Staff and Faculty, The Dream Team (mish, flavs, reems & steve), & of course, npm i
+A very special thanks to the UC Berkeley Coding Bootcamp staff and faculty, the "Dream Team" (mish, flavs, reems & steve), & of course, npm i
  
  
  ##
