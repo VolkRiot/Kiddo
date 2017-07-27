@@ -1,28 +1,56 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+// import Icon from 'react-native-vector-icons/FontAwesome';
+import {
+  Container,
+  Header,
+  Content,
+  Footer,
+  FooterTab,
+  Button,
+  Text,
+  Body
+} from 'native-base';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as Actions from '../redux/actions';
+import NavFooter from '../components/NavFooter';
 
 class MainProfile extends Component {
   constructor(props) {
     super(props);
+    this.state = { currentView: 'events' };
+
+    this.changeView = this.changeView.bind(this);
+  }
+
+  changeView(view) {
+    this.setState({ currentView: view });
   }
 
   render() {
     return (
-      <View>
-          <Text>{JSON.stringify(this.props.kid)}</Text>
-      </View>
+      <Container>
+        <Header />
+        <Body>
+          <Text>
+            {JSON.stringify(this.props.kid.events)}
+          </Text>
+        </Body>
+        <NavFooter
+          changeView={this.changeView}
+          active={this.state.currentView}
+        />
+      </Container>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    kid: state.kidOwner
+    kid: state.kidOwner.kidOwner
   };
 }
 

@@ -7,94 +7,150 @@ import ApiHelper from '../../utils/apiHelper';
 const Api = ApiHelper();
 
 class KidNote extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { note: '', notes: this.props.kid.notes, placeholder:'Type new note' };
+  constructor(props) {
+    super(props);
+    this.state = {
+      note: '',
+      notes: this.props.kid.notes,
+      placeholder: 'Type new note',
+      notesToRemove: []
+    };
 
-		this.handleChange = this.handleChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
-		this.resetNotes = this.resetNotes.bind(this);
-	}
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.resetNotes = this.resetNotes.bind(this);
+    this.markForDeletion = this.markForDeletion.bind(this);
+  }
 
-	componentWillReceiveProps(nextProps) {
-		this.setState({ notes: nextProps.kid.notes });
-	}
+  componentWillReceiveProps(nextProps) {
+    this.setState({ notes: nextProps.kid.notes });
+  }
 
-	handleChange(event) {
-		this.setState( { note: event.target.value } );
-	}
+  handleChange(event) {
+    this.setState({ note: event.target.value });
+  }
 
-	onSubmit() {
-		if (this.state.note !== ''){
-			var existingNotes = this.state.notes;
-			existingNotes.push(this.state.note);
+  onSubmit() {
+    if (this.state.note !== '') {
+      var existingNotes = this.state.notes;
+      existingNotes.push(this.state.note);
 
-			if (this.props.kid) {
-				this.props.kid.notes = existingNotes;
-				Api.updateKiddo(this.props.kid)
-				.then((response) => {
-					this.setState({notes: response.data.body.notes, note: '', placeholder: 'Type new note'});
-				})
-				.catch((err) => {
-					throw new Error(err);
-				});
-			}
+      if (this.props.kid) {
+        this.props.kid.notes = existingNotes;
+        Api.updateKiddo(this.props.kid)
+          .then(response => {
+            this.setState({
+              notes: response.data.body.notes,
+              note: '',
+              placeholder: 'Type new note'
+            });
+          })
+          .catch(err => {
+            throw new Error(err);
+          });
+      }
+    } else {
+      this.setState({ placeholder: 'Note is required to submit' });
+    }
+  }
 
+  markForDeletion(note) {
+    const markedForDeletion = this.state.notesToRemove;
+    const indexOf = markedForDeletion.indexOf(note);
 
+    if (indexOf !== -1) {
+      markedForDeletion.splice(indexOf, 1);
+    } else {
+      markedForDeletion.push(note);
+    }
 
-		} else {
-			this.setState({placeholder:'Note is required to submit'});
-		}
-	}
+    this.setState({ notesToRemove: markedForDeletion });
+  }
 
-	illustrateNotes() {
-		if (!this.state.notes) {
-			return '';
-		}
+  illustrateNotes() {
+    var removeMap = {};
 
-		return this.state.notes.map((note,index) =>
-			<li key={index}>{note}</li>
-		);
-	}
+    if (!this.state.notes) {
+      return '';
+    }
 
-	resetNotes() {
-		this.props.kid.notes = [];
+    if (this.state.notesToRemove.length > 0) {
+      removeMap = this.state.notesToRemove.reduce((acc, item) => {
+        if (!acc[item]) {
+          acc[item] = true;
+        }
+        return acc;
+      }, {});
+    }
 
-		Api.updateKiddo(this.props.kid)
-		.then((response) => {
-			this.setState({notes: response.data.body.notes, note: '', placeholder: 'Type new note'});
-		})
-		.catch((err) => {
-			throw new Error(err);
-		});
-	}
+    return this.state.notes.map((note, index) => {
+      if (!removeMap.hasOwnProperty(note)) {
+        return (
+          <li key={index} onClick={this.markForDeletion.bind(this, note)}>
+            {note}
+          </li>
+        );
+      } else {
+        return (
+          <li key={index} onClick={this.markForDeletion.bind(this, note)}>
+            <s style={{ color: 'gray' }}>
+              {note}
+            </s>
+          </li>
+        );
+      }
+    });
+  }
 
-	render(){
-		return (
-			<div className="kidNote">
-				<h3 id="noteTitle">Notes</h3>
-				<div className="container" id="noteBox">
-					{this.illustrateNotes()}
-				</div>
-				<div className="col-12" id="noteForm">
-					<input
-						type="text"
-						value={this.state.note}
-						onChange={this.handleChange}
-						className="form-control"
-						placeholder={this.state.placeholder}
-					/>
-				</div>
-				<button type="button" onClick={this.onSubmit} className="btn btn-info kid-view-button">
-					Add Note
-				</button>
-				<button type="button" onClick={this.resetNotes} className="btn btn-warning kid-view-button">
-					Reset Section
-				</button>
-			</div>
-		);
-	}
+  resetNotes() {
+    this.props.kid.notes = [];
 
+    Api.updateKiddo(this.props.kid)
+      .then(response => {
+        this.setState({
+          notes: response.data.body.notes,
+          note: '',
+          placeholder: 'Type new note'
+        });
+      })
+      .catch(err => {
+        throw new Error(err);
+      });
+  }
+
+  render() {
+    return (
+      <div className="kidNote">
+        <h3 id="noteTitle">Notes</h3>
+        <div className="container" id="noteBox">
+          {this.illustrateNotes()}
+        </div>
+        <div className="col-12" id="noteForm">
+          <input
+            type="text"
+            value={this.state.note}
+            onChange={this.handleChange}
+            className="form-control"
+            placeholder={this.state.placeholder}
+          />
+        </div>
+        <button
+          type="button"
+          onClick={this.onSubmit}
+          className="btn btn-info kid-view-button"
+        >
+          Add Note
+        </button>
+        <button
+          type="button"
+          onClick={this.resetNotes}
+          className="btn btn-warning kid-view-button"
+        >
+          Reset Section
+        </button>
+      </div>
+    );
+  }
 }
 
 export default KidNote;

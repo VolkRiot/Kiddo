@@ -7,8 +7,22 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
+import {
+  Container,
+  Header,
+  Left,
+  Body,
+  Right,
+  Button,
+  Title,
+  StyleProvider
+} from 'native-base';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+// Theme
+import getTheme from '../native-base-theme/components';
+import material from '../native-base-theme/variables/material';
 
 import * as Actions from '../redux/actions';
 
@@ -75,7 +89,7 @@ class RegisterApp extends Component {
 
   kidChoices() {
     return (
-      <View>
+      <View style={styles.container}>
         <View
           style={{
             justifyContent: 'center',
@@ -121,9 +135,20 @@ class RegisterApp extends Component {
 
   render() {
     return (
-      <View style={styles.outerContainer}>
-        {this.props.user.found ? this.kidChoices() : this.unregisteredView()}
-      </View>
+      <StyleProvider style={getTheme(material)}>
+        <Container style={{ backgroundColor: '#baffc9' }}>
+          <Header>
+            <Body style={{ alignItems: 'center' }}>
+              <Title>Register Your Kiddo</Title>
+            </Body>
+          </Header>
+          <Body>
+            {this.props.user.found
+              ? this.kidChoices()
+              : this.unregisteredView()}
+          </Body>
+        </Container>
+      </StyleProvider>
     );
   }
 }
@@ -136,7 +161,6 @@ const styles = StyleSheet.create({
   },
   outerContainer: {
     flex: 1,
-    backgroundColor: '#baffc9',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -145,7 +169,9 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#bae1ff',
     textAlign: 'center',
-    borderRadius: 30
+    borderRadius: 30,
+    borderColor: '#ffb3ba',
+    borderWidth: 2
   },
   inputNotFound: {
     width: 250,
