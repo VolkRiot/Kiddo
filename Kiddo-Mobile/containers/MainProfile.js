@@ -22,6 +22,12 @@ class MainProfile extends Component {
   constructor(props) {
     super(props);
     this.state = { currentView: 'events' };
+
+    this.changeView = this.changeView.bind(this);
+  }
+
+  changeView(view) {
+    this.setState({ currentView: view });
   }
 
   render() {
@@ -33,7 +39,10 @@ class MainProfile extends Component {
             {JSON.stringify(this.props.kid.events)}
           </Text>
         </Body>
-        <NavFooter active={this.state.currentView} />
+        <NavFooter
+          changeView={this.changeView}
+          active={this.state.currentView}
+        />
       </Container>
     );
   }
