@@ -8,14 +8,10 @@ class GMap extends Component {
   constructor(props){
     super(props);
     this.state = {
-      mapCenter: { lat: 37.773972, lng: -122.431297 },
-      mapZoom: 12,
-      kiddoDetail: {},
       markersList: []
     };
 
     this.params = { v: '3.exp', key: 'AIzaSyCsOR8WnfgE6jasLOqHXvs0wt2G7TlixY0' };
-    this.onKiddoSelect = this.onKiddoSelect.bind(this);
     this.buildMarkers = this.buildMarkers.bind(this);
     this.boundMarkers = this.boundMarkers.bind(this);
   }
@@ -36,7 +32,7 @@ class GMap extends Component {
 
       image = {
         url: kiddo.avatar.url,
-        scaledSize: new google.maps.Size(35, 35)
+        scaledSize: new google.maps.Size(40, 40)
       };
       return (
         <Marker
@@ -47,7 +43,7 @@ class GMap extends Component {
           draggable={ false }
           animation={ google.maps.Animation.DROP }
           icon={ image }
-          onClick={ ()=> this.onKiddoSelect(kiddo) }
+          onClick={ ()=> this.props.onKiddoSelected(kiddo) }
         />
       );
     });
@@ -75,27 +71,23 @@ class GMap extends Component {
       scaleControl: true,
       streetViewControl: true,
       rotateControl: true,
-      fullscreenControl: true
+      fullscreenControl: false
     });
     this.boundMarkers(map);
   }
 
-  onKiddoSelect(kiddo) {
-    this.setState({ kiddoDetail: kiddo, mapCenter: kiddo.coords, mapZoom: 17 });
-  }
-
   render() {
     const markersList = this.state.markersList;
-    const kiddoDetail = this.state.kiddoDetail;
-    const mapCenter = this.state.mapCenter;
-    const mapZoom = this.state.mapZoom;
+    const kiddoSelected = this.props.kiddoSelected;
+    const centerMap = this.props.centerMap;
+    const mapZoom = this.props.mapZoom;
 
     return (
       <Gmaps
         width={ '100%' }
         height={ '100%' }
-        lat={ mapCenter.lat }
-        lng={ mapCenter.lng }
+        lat={ centerMap.lat }
+        lng={ centerMap.lng }
         zoom={ mapZoom }
         loadingMessage={ 'Loading Map!' }
         params={ this.params }
@@ -105,12 +97,12 @@ class GMap extends Component {
 
         { markersList? markersList : null }
 
-        { kiddoDetail.coords ?
+        { kiddoSelected.coords ?
           <InfoWindow
-          lat={ kiddoDetail.coords.lat }
-          lng={ kiddoDetail.coords.lng }
-          content={ kiddoDetail.firstName }
-          pixelOffset={ new google.maps.Size(0,-25) }
+          lat={ kiddoSelected.coords.lat }
+          lng={ kiddoSelected.coords.lng }
+          content={ kiddoSelected.firstName }
+          pixelOffset={ new google.maps.Size(0,-30) }
           /> :
           null }
       </Gmaps>

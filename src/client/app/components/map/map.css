@@ -1,1 +1,23 @@
 
+#floating-panel {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 5;
+  background-color: #fff;
+  border-radius: 30px;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+.kiddo-panel {
+  display: inline;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.kiddo-panel > li {
+  margin: 10px;
+}
