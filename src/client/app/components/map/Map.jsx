@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import GMap from './GMpas';
+import GMapsModal from './GMpasModal';
 import * as style from './map.css';
 
 
@@ -9,8 +10,14 @@ class Mapski extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      initialCenter: { lat: 37.773972, lng: -122.431297 }
+      modalOpen: false,
+      kiddos: []
     };
+  }
+
+  componentDidMount() {
+    let filteredKiddo = this.props.kiddos.filter(kiddo => kiddo.coords);
+    this.setState({ kiddos: filteredKiddo, modalOpen: true });
   }
 
   render() {
@@ -25,9 +32,9 @@ class Mapski extends Component {
           left: 0
         }}
       >
+     <GMapsModal modalOpen={ this.state.modalOpen } kiddos={ this.state.kiddos } />
       <GMap
-        initialCenter={ this.state.initialCenter }
-        kiddosList={ this.props.kiddos }
+        kiddos={ this.state.kiddos }
       />
 
       </div>
