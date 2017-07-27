@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-// import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   Container,
   Header,
@@ -17,6 +16,7 @@ import { connect } from 'react-redux';
 
 import * as Actions from '../redux/actions';
 import NavFooter from '../components/NavFooter';
+import Events from '../components/Events';
 
 class MainProfile extends Component {
   constructor(props) {
@@ -24,10 +24,20 @@ class MainProfile extends Component {
     this.state = { currentView: 'events' };
 
     this.changeView = this.changeView.bind(this);
+    this.determineView = this.determineView.bind(this);
   }
 
   changeView(view) {
     this.setState({ currentView: view });
+  }
+
+  determineView() {
+    switch (this.state.currentView) {
+      case 'events':
+        return <Events events={this.props.kid.events} />;
+      default:
+        return <Events events={this.props.kid.events} />;
+    }
   }
 
   render() {
@@ -35,9 +45,7 @@ class MainProfile extends Component {
       <Container>
         <Header />
         <Body>
-          <Text>
-            {JSON.stringify(this.props.kid.events)}
-          </Text>
+          {this.determineView()}
         </Body>
         <NavFooter
           changeView={this.changeView}
