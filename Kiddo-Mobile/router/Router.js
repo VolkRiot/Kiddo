@@ -3,6 +3,6 @@ import RegisterApp from '../containers/registerApp';
 import MainProfile from '../containers/MainProfile';
 
 export default createRouter(() => ({
-  home: () => RegisterApp,
+  register: () => RegisterApp,
   main: () => MainProfile
 }));

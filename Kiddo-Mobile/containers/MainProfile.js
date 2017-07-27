@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   Container,
   Header,
@@ -7,45 +8,41 @@ import {
   Footer,
   FooterTab,
   Button,
-  Icon,
-  Text
+  Text,
+  Body
 } from 'native-base';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as Actions from '../redux/actions';
+import NavFooter from '../components/NavFooter';
 
 class MainProfile extends Component {
   constructor(props) {
     super(props);
+    this.state = { currentView: 'events' };
+
+    this.changeView = this.changeView.bind(this);
+  }
+
+  changeView(view) {
+    this.setState({ currentView: view });
   }
 
   render() {
-    console.log('Json kid is ', this.props.kid);
     return (
       <Container>
         <Header />
-        <Footer>
-          <FooterTab>
-            <Button vertical>
-              <Icon name="apps" />
-              <Text>Apps</Text>
-            </Button>
-            <Button vertical>
-              <Icon name="camera" />
-              <Text>Camera</Text>
-            </Button>
-            <Button vertical active>
-              <Icon active name="navigate" />
-              <Text>Map</Text>
-            </Button>
-            <Button vertical>
-              <Icon name="person" />
-              <Text>Contact</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
+        <Body>
+          <Text>
+            {JSON.stringify(this.props.kid.events)}
+          </Text>
+        </Body>
+        <NavFooter
+          changeView={this.changeView}
+          active={this.state.currentView}
+        />
       </Container>
     );
   }
@@ -53,7 +50,7 @@ class MainProfile extends Component {
 
 function mapStateToProps(state) {
   return {
-    kid: state.kidOwner
+    kid: state.kidOwner.kidOwner
   };
 }
 
