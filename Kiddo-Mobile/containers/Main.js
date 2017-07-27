@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   Dimensions
 } from 'react-native';
+import { Container, Content, Spinner } from 'native-base';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -24,6 +25,8 @@ class Main extends Component {
   }
 
   async componentDidMount() {
+    // TODO: REmove DEBUG Must remove this - Used to clean the Storage
+    // await AsyncStorage.clear();
     const found = await this.props.actions.getStoredUser();
     this.setState({ loading: false, found });
   }
@@ -31,9 +34,11 @@ class Main extends Component {
   render() {
     if (this.state.loading) {
       return (
-        <View>
-          <Text>...Loading</Text>
-        </View>
+        <Container>
+          <Content>
+            <Spinner color="blue" />
+          </Content>
+        </Container>
       );
     } else {
       return (

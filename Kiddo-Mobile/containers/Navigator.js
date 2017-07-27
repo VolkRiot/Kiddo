@@ -6,7 +6,7 @@ import Router from '../router/Router';
 export default function(props) {
   return (
     <NavigationProvider router={Router}>
-      <StackNavigation initialRoute={props.startRoute} />
+      <StackNavigation mode={'modal'} initialRoute={props.startRoute} />
     </NavigationProvider>
   );
 }
