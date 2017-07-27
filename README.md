@@ -3,7 +3,7 @@
 # Kiddo
 
 ## The App: 
-  Kiddo is a user-friendly and dynamic application that assists 21st Century parents with raising and nurturing their children. From shopping lists and to-do's, to tracking upcoming events and locations, Kiddo is the future of parenting. It's two-part infrastructure allows parents to use their dashboard from any device to keep track of everything they need, while communicating with the child's mobile device to push and pull important information. 
+  Kiddo is a user-friendly and dynamic application that assists 21st Century parents with raising and nurturing their children. From shopping lists and to-do's, to tracking upcoming events and locations, Kiddo is the future of parenting. Its two-part infrastructure allows parents to use their dashboard from any device to keep track of everything they need, while communicating with the child's mobile device to push and pull important information. 
 
 ## The Team:
   - Rima 🙋🏻
@@ -18,7 +18,7 @@
   * Node.js 
   * Express
   * MongoDB
-  * Javascript
+  * JavaScript
   * React + React Native
   * Bootstrap + CSS = 🔥
   * Google Auth
