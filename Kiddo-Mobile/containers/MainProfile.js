@@ -18,6 +18,7 @@ import * as Actions from '../redux/actions';
 import NavFooter from '../components/NavFooter';
 import Events from '../components/Events';
 import Shopping from '../components/Shopping';
+import Map from '../components/MapView';
 
 class MainProfile extends Component {
   constructor(props) {
@@ -36,17 +37,29 @@ class MainProfile extends Component {
     switch (this.state.currentView) {
       case 'events':
         return (
-          <Events events={this.props.kid.events ? this.props.kid.events : []} />
+          <Body>
+            <Events
+              events={this.props.kid.events ? this.props.kid.events : []}
+            />
+          </Body>
         );
       case 'shopping':
         return (
-          <Shopping
-            events={this.props.kid.shopping ? this.props.kid.shopping : []}
-          />
+          <Body>
+            <Shopping
+              events={this.props.kid.shopping ? this.props.kid.shopping : []}
+            />
+          </Body>
         );
+      case 'map':
+        return <Map />;
       default:
         return (
-          <Events events={this.props.kid.events ? this.props.kid.events : []} />
+          <Body>
+            <Events
+              events={this.props.kid.events ? this.props.kid.events : []}
+            />
+          </Body>
         );
     }
   }
@@ -55,9 +68,8 @@ class MainProfile extends Component {
     return (
       <Container>
         <Header />
-        <Body>
-          {this.determineView()}
-        </Body>
+        {this.determineView()}
+        <Content />
         <NavFooter
           changeView={this.changeView}
           active={this.state.currentView}
