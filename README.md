@@ -30,8 +30,8 @@
 [Kiddo App](https://appkiddo.herokuapp.com/#/)
 
 ### Acknowledgements:
-A very special thanks to:
- *UC Berkeley Coding Bootcamp
- *The Dream Team
- *Coffee
-  
+A very special thanks to
+ - UC Berkeley Coding Bootcamp
+ - The Dream Team
+ - Coffee
+ - npm i
