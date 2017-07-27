@@ -31,4 +31,6 @@
 
 ### Acknowledgements:
 A very special thanks to
- - UC Berkeley Coding Bootcamp Staff and Faculty, The Dream Team (mish, flavs, reems & steve), coffee, & of course, npm i
+ - UC Berkeley Coding Bootcamp Staff and Faculty, The Dream Team (mish, flavs, reems & steve), & of course, npm i
+ 
+  made with ☕️ & ❤️️
