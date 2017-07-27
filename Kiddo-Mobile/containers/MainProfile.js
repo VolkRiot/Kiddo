@@ -9,7 +9,6 @@ import {
   FooterTab,
   Button,
   Text,
-  Icon,
   Body
 } from 'native-base';
 
@@ -17,10 +16,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as Actions from '../redux/actions';
+import NavFooter from '../components/NavFooter';
 
 class MainProfile extends Component {
   constructor(props) {
     super(props);
+    this.state = { currentView: 'events' };
   }
 
   render() {
@@ -29,32 +30,10 @@ class MainProfile extends Component {
         <Header />
         <Body>
           <Text>
-            {JSON.stringify(this.props.kid)}
+            {JSON.stringify(this.props.kid.events)}
           </Text>
         </Body>
-        <Footer>
-          <FooterTab>
-            <Button vertical>
-              <Icon ios="ios-calendar" android="md-calendar" />
-              <Text>Events</Text>
-            </Button>
-            <Button vertical>
-              <Icon ios="ios-basket-outline" android="md-basket-outline" />
-              <Text>Shopping</Text>
-            </Button>
-            <Button vertical>
-              <Icon ios="ios-map" android="md-map" />
-              <Text>Map</Text>
-            </Button>
-            <Button vertical>
-              <Icon
-                ios="ios-chatbubbles-outline"
-                android="md-chatbubbles-outline"
-              />
-              <Text>Chat</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
+        <NavFooter active={this.state.currentView} />
       </Container>
     );
   }

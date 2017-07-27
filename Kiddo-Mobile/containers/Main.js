@@ -52,7 +52,8 @@ class Main extends Component {
 
 function mapStateToProps(state) {
   return {
-    mainKid: state.kidOwner.kidOwner
+    mainKid: state.kidOwner.kidOwner,
+    searched: state.kidOwner.searched
   };
 }
 

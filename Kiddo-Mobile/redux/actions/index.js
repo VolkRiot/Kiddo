@@ -14,7 +14,7 @@ export function getStoredUser() {
 
       if (value !== null) {
         // We have data!!
-        console.log('Value gotten from storage', value);
+        // console.log('Value gotten from storage', value);
         dispatch({
           type: SAVE_KID_USER,
           payload: JSON.parse(value)
@@ -69,6 +69,12 @@ export function resetSearchTerm() {
   };
 }
 
+export function updateKid(kid) {
+  return dispatch => {
+    dispatch(saveKidAsUser(kid));
+  };
+}
+
 export function saveKidAsUser({ _id }) {
   // TODO( Need error handler later)
 
@@ -89,11 +95,14 @@ export function saveKidAsUser({ _id }) {
           type: SAVE_KID_USER,
           payload: kid
         });
+
+        return true;
       })
       .catch(() => {
         // TODO: Expand to handle this case. Make strategy
         // eslint-disable-next-line no-console
         console.log('Failed to find kid');
+        return false;
       });
   };
 }
