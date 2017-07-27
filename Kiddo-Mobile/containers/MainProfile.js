@@ -52,7 +52,7 @@ class MainProfile extends Component {
           </Body>
         );
       case 'map':
-        return <Map />;
+        return <Map location={this.props.location} />;
       default:
         return (
           <Body>
@@ -81,7 +81,8 @@ class MainProfile extends Component {
 
 function mapStateToProps(state) {
   return {
-    kid: state.kidOwner.kidOwner
+    kid: state.kidOwner.kidOwner,
+    location: state.location.location
   };
 }
 

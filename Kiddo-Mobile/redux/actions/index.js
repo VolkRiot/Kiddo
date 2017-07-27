@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+import { Location, Permissions } from 'expo';
 
 export const FOUND_PARENT = 'FOUND_PARENT';
 export const PARENT_NOT_FOUND = 'PARENT_NOT_FOUND';
@@ -6,6 +7,7 @@ export const RESET_SEARCH_BOX = 'RESET_SEARCH_BOX';
 
 export const SAVE_KID_USER = 'SAVE_KID_USER';
 export const IS_USER_REGISTERED = 'IS_USER_REGISTERED';
+export const SET_LOCATION = 'SET_LOCATION';
 
 // Debugging purposes
 const baseURL =
@@ -106,5 +108,25 @@ export function saveKidAsUser({ _id }) {
         console.log('Failed to find kid');
         return false;
       });
+  };
+}
+
+export function getLocation() {
+  return async dispatch => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+
+    if (status !== 'granted') {
+      // TODO: Something handle not getting permission
+    } else {
+      let location = await Location.getCurrentPositionAsync({});
+      dispatch(setLocation(location.coords));
+    }
+  };
+}
+
+export function setLocation(location) {
+  return {
+    type: SET_LOCATION,
+    location
   };
 }
