@@ -121,6 +121,7 @@ class RegisterApp extends Component {
           <TextInput
             style={styles.input}
             placeholder={'Enter account password'}
+            secureTextEntry={true}
             autoFocus={true}
             multiline={false}
             autoCorrect={false}

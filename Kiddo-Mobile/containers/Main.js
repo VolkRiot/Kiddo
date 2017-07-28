@@ -21,7 +21,16 @@ import NavigationProvider from './Navigator';
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = { loading: true, found: false };
+    this.state = {
+      loading: true,
+      found: false,
+      location: undefined,
+      geoStatus: undefined
+    };
+  }
+
+  componentWillMount() {
+    this.props.actions.getLocation();
   }
 
   async componentDidMount() {

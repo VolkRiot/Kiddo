@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { configureStore } from './redux/store/configureStore';
 import { Font } from 'expo';
 
+import { Container, Content, Spinner } from 'native-base';
+
 import Main from './containers/Main';
 
 const store = configureStore();
@@ -32,7 +34,13 @@ export default class App extends Component {
         </Provider>
       );
     } else {
-      return <Text>...Loading</Text>;
+      return (
+        <Container>
+          <Content>
+            <Spinner color="blue" />
+          </Content>
+        </Container>
+      );
     }
   }
 }
