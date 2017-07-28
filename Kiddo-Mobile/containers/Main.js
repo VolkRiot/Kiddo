@@ -35,7 +35,7 @@ class Main extends Component {
 
   async componentDidMount() {
     // TODO: REmove DEBUG Must remove this - Used to clean the Storage
-    // await AsyncStorage.clear();
+    await AsyncStorage.clear();
     const found = await this.props.actions.getStoredUser();
     this.setState({ loading: false, found });
   }

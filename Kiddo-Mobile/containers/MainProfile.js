@@ -39,7 +39,11 @@ class MainProfile extends Component {
         return (
           <Body>
             <Events
-              events={this.props.kid.events ? this.props.kid.events : []}
+              events={
+                this.props.kid && this.props.kid.events
+                  ? this.props.kid.events
+                  : []
+              }
             />
           </Body>
         );
@@ -47,7 +51,11 @@ class MainProfile extends Component {
         return (
           <Body>
             <Shopping
-              events={this.props.kid.shopping ? this.props.kid.shopping : []}
+              events={
+                this.props.kid && this.props.kid.shopping
+                  ? this.props.kid.shopping
+                  : []
+              }
             />
           </Body>
         );
@@ -57,7 +65,11 @@ class MainProfile extends Component {
         return (
           <Body>
             <Events
-              events={this.props.kid.events ? this.props.kid.events : []}
+              events={
+                this.props.kid && this.props.kid.events
+                  ? this.props.kid.events
+                  : []
+              }
             />
           </Body>
         );
