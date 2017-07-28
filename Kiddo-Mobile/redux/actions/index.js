@@ -11,7 +11,7 @@ export const SET_LOCATION = 'SET_LOCATION';
 
 // Debugging purposes
 const baseURL =
-  'http://localhost:3000' || 'https://appkiddo-staging.herokuapp.com';
+  'https://appkiddo-staging.herokuapp.com' || 'http://localhost:3000';
 
 export function getStoredUser() {
   return async dispatch => {

@@ -8,6 +8,7 @@ import {
   Content,
   Card
 } from 'native-base';
+import Dimensions from 'Dimensions';
 
 export default function(props) {
   let cards = (
@@ -31,7 +32,12 @@ export default function(props) {
   }
 
   return (
-    <View>
+    <View
+      style={{
+        width: Dimensions.get('window').width * 0.8,
+        height: Dimensions.get('window').height / 4
+      }}
+    >
       {cards}
     </View>
   );

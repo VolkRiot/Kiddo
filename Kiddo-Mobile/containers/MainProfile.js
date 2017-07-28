@@ -9,11 +9,17 @@ import {
   Button,
   Text,
   Body,
-  Title
+  Title,
+  StyleProvider
 } from 'native-base';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import Dimensions from 'Dimensions';
+
+import getTheme from '../native-base-theme/components';
+import material from '../native-base-theme/variables/material';
 
 import * as Actions from '../redux/actions';
 import NavFooter from '../components/NavFooter';
@@ -38,7 +44,11 @@ class MainProfile extends Component {
     switch (this.state.currentView) {
       case 'events':
         return (
-          <Body>
+          <Body
+            style={{
+              width: Dimensions.get('window').width
+            }}
+          >
             <Events
               events={
                 this.props.kid && this.props.kid.events
@@ -61,10 +71,19 @@ class MainProfile extends Component {
           </Body>
         );
       case 'map':
-        return <Map location={this.props.location} />;
+        return (
+          <Container>
+            <Map location={this.props.location} />
+            <Content />
+          </Container>
+        );
       default:
         return (
-          <Body>
+          <Body
+            style={{
+              width: Dimensions.get('window').width
+            }}
+          >
             <Events
               events={
                 this.props.kid && this.props.kid.events
@@ -79,24 +98,25 @@ class MainProfile extends Component {
 
   render() {
     return (
-      <Container>
-        <Header>
-          <Body style={{ alignItems: 'center' }}>
-            <Title>
-              {this.state.currentView
-                ? this.state.currentView.charAt(0).toUpperCase() +
-                  this.state.currentView.slice(1)
-                : ''}
-            </Title>
-          </Body>
-        </Header>
-        {this.determineView()}
-        <Content />
-        <NavFooter
-          changeView={this.changeView}
-          active={this.state.currentView}
-        />
-      </Container>
+      <StyleProvider style={getTheme(material)}>
+        <Container>
+          <Header>
+            <Body style={{ alignItems: 'center' }}>
+              <Title>
+                {this.state.currentView
+                  ? this.state.currentView.charAt(0).toUpperCase() +
+                    this.state.currentView.slice(1)
+                  : ''}
+              </Title>
+            </Body>
+          </Header>
+          {this.determineView()}
+          <NavFooter
+            changeView={this.changeView}
+            active={this.state.currentView}
+          />
+        </Container>
+      </StyleProvider>
     );
   }
 }
