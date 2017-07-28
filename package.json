@@ -81,6 +81,7 @@
     "semantic-ui-react": "^0.71.1",
     "serve-favicon": "~2.4.2",
     "slick-carousel": "^1.6.0",
+    "socket.io": "^2.0.3",
     "vex-dialog": "^1.0.7",
     "vex-js": "^4.0.0"
   },

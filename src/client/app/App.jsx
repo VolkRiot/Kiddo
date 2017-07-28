@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router';
+import SocketIOClient from 'socket.io-client';
 
 import Home from './components/landing/Home';
 import NotFound from './components/NotFound';
@@ -13,6 +14,7 @@ import Kid from './components/kid-view/Kid';
 import Mapski from './components/map/Map';
 import ApiHelper from './utils/apiHelper';
 import FileStackHelper from './utils/fileStackHelper';
+import EnvVars from '../../server/shared/EnvConfigVars';
 
 import '../index.css';
 
@@ -28,6 +30,12 @@ class App extends Component {
       currentKiddo: 0,
       userNotFound: false
     };
+
+    this.socket = SocketIOClient(
+      EnvVars.environment === 'production'
+        ? 'https://appkiddo-staging.herokuapp.com/'
+        : 'http://localhost:3000'
+    );
 
     this.getUser();
 
@@ -125,7 +133,12 @@ class App extends Component {
           path="/dashboard/map"
           render={props =>
             userFound
-              ? <Mapski kiddos={this.state.kiddosList.filter(kiddo => { return kiddo.coords; })} {...props} />
+              ? <Mapski
+                  kiddos={this.state.kiddosList.filter(kiddo => {
+                    return kiddo.coords;
+                  })}
+                  {...props}
+                />
               : <Redirect to="/" />}
         />
         <Route component={NotFound} />

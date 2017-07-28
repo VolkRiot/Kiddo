@@ -11,7 +11,8 @@ require('dotenv').config();
 
 const app = require('../app'),
   debug = require('debug')('react-node-mongo:server'),
-  http = require('http');
+  http = require('http'),
+  socketio = require('socket.io');
 
 /**
  * Get port from environment and store in Express.
@@ -25,6 +26,7 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+require('../websocket/SocketConfig')(socketio(server));
 
 /**
  * Listen on provided port, on all network interfaces.
