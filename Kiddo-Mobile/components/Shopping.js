@@ -17,11 +17,22 @@ export default class Shopping extends Component {
   constructor(props) {
     super(props);
     this.buildList = this.buildList.bind(this);
-    this.state = { shopping: props.shopping || [] };
+    this.state = { shopping: props.shopping || [], input: '' };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.buildList({ shopping: nextProps.shopping });
+  }
+
+  async handleSubmit(text) {
+    // Add to list and post to the child record
+    let shopping = this.state.shopping;
+    shopping.push(text);
+
+    const success = await this.props.updateKid({ shopping });
+    this.setState({ shopping });
   }
 
   buildList() {
@@ -66,6 +77,11 @@ export default class Shopping extends Component {
             <Input
               placeholder="What do you need?"
               onChangeText={input => this.setState({ input })}
+              autoFocus={true}
+              autoCorrect={false}
+              multiline={false}
+              onSubmitEditing={event =>
+                this.handleSubmit(event.nativeEvent.text)}
             />
           </Item>
         </View>

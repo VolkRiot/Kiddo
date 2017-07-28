@@ -19,12 +19,13 @@ export function getStoredUser() {
       const value = await AsyncStorage.getItem('KID_USER');
 
       if (value !== null) {
-        // We have data!!
+        const kid = JSON.parse(value);
         // console.log('Value gotten from storage', value);
         dispatch({
           type: SAVE_KID_USER,
-          payload: JSON.parse(value)
+          payload: kid
         });
+        dispatch(getKidData(kid._id));
         return true;
       }
     } catch (error) {
@@ -35,6 +36,33 @@ export function getStoredUser() {
       });
       return false;
     }
+  };
+}
+
+export function getKidData({ _id }) {
+  return dispatch => {
+    fetch(`${baseURL}/api/kid?_id=${_id.toLowerCase()}`)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(data => {
+        dispatch({
+          type: SAVE_KID_USER,
+          payload: data
+        });
+      })
+      .catch(
+        (/* error */) => {
+          // dispatch({
+          //   type: PARENT_NOT_FOUND,
+          //   payload: null
+          // });
+        }
+      );
   };
 }
 
@@ -128,5 +156,30 @@ export function setLocation(location) {
   return {
     type: SET_LOCATION,
     location
+  };
+}
+
+export function updateRecord(kid) {
+  return dispatch => {
+    fetch(`${baseURL}/api/kid?method=update&_id=${kid._id.toLowerCase()}`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(kid)
+    })
+      .then(({ message, body }) => {
+        if (message === 'Success') {
+          dispatch({
+            type: SAVE_KID_USER,
+            payload: body
+          });
+          return true;
+        }
+      })
+      .catch(() => {
+        return false;
+      });
   };
 }

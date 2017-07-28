@@ -30,14 +30,29 @@ import Map from '../components/MapView';
 class MainProfile extends Component {
   constructor(props) {
     super(props);
-    this.state = { currentView: 'events' };
+    this.state = { currentView: 'events', kid: props.kid };
 
     this.changeView = this.changeView.bind(this);
     this.determineView = this.determineView.bind(this);
+    this.updateKid = this.updateKid.bind(this);
   }
 
   changeView(view) {
     this.setState({ currentView: view });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('Shopping is ', nextProps.kid.shopping);
+    this.setState({ kid: nextProps.kid });
+  }
+
+  async updateKid(obj) {
+    const kid = this.props.kid;
+    const key = Object.keys(obj)[0];
+
+    kid[key] = obj[key];
+    const response = await this.props.actions.updateRecord(kid);
+    return response;
   }
 
   determineView() {
@@ -62,6 +77,7 @@ class MainProfile extends Component {
         return (
           <Body>
             <Shopping
+              updateKid={this.updateKid}
               shopping={
                 this.props.kid && this.props.kid.shopping
                   ? this.props.kid.shopping
