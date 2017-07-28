@@ -23,11 +23,11 @@ router.post('/addcalendar', function(req, res) {
             timeZone: timezone.name()
         }, function(err, response) {
             if (err){
-                throw new Error('Failed attempting to add new Calendar');
+                res.status(500).send('Failed attempting to add new Calendar');
             } else {
                 Kid.findOneAndUpdate({userName: req.body.userName}, {$set:{calendarId:response.id}}, function(err, response) {
                     if (err) {
-                      throw new Error('Failed to update child with new Calendar schema');
+                      res.status(500).send('Failed to update child with new Calendar schema');
                     } else {
                       res.status(200).json(response);
                     }
