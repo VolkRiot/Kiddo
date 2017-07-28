@@ -8,7 +8,8 @@ import {
   FooterTab,
   Button,
   Text,
-  Body
+  Body,
+  Title
 } from 'native-base';
 
 import { bindActionCreators } from 'redux';
@@ -79,7 +80,16 @@ class MainProfile extends Component {
   render() {
     return (
       <Container>
-        <Header />
+        <Header>
+          <Body style={{ alignItems: 'center' }}>
+            <Title>
+              {this.state.currentView
+                ? this.state.currentView.charAt(0).toUpperCase() +
+                  this.state.currentView.slice(1)
+                : ''}
+            </Title>
+          </Body>
+        </Header>
         {this.determineView()}
         <Content />
         <NavFooter
