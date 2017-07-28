@@ -62,7 +62,7 @@ class MainProfile extends Component {
         return (
           <Body>
             <Shopping
-              events={
+              shopping={
                 this.props.kid && this.props.kid.shopping
                   ? this.props.kid.shopping
                   : []

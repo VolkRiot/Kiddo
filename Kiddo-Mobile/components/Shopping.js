@@ -1,43 +1,57 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import {
   Footer,
   FooterTab,
   Button,
   Container,
   Content,
-  Card,
   Item,
-  Input
+  Input,
+  List,
+  ListItem
 } from 'native-base';
+import Dimensions from 'Dimensions';
 
 export default function(props) {
-  let cards = (
-    <Card key={1}>
+  let shopping = (
+    <ListItem key={1}>
       <Text>
         {'No items currently listed'}
       </Text>
-    </Card>
+    </ListItem>
   );
 
-  if (props.shopping && props.events.shopping > 0) {
-    cards = props.events.map((each, i) => {
+  if (props.shopping && props.shopping.length > 0) {
+    shopping = props.shopping.map((each, i) => {
       return (
-        <Card key={i}>
+        <ListItem key={i}>
           <Text>
-            {each.title}
+            {each}
           </Text>
-        </Card>
+        </ListItem>
       );
     });
   }
 
   return (
-    <View>
-      {cards}
-      <Item rounded>
-        <Input placeholder="Rounded Textbox" />
-      </Item>
+    <View
+      style={{
+        flex: 1,
+        width: Dimensions.get('window').width * 0.8,
+        height: Dimensions.get('window').height
+      }}
+    >
+      <ScrollView>
+        <List>
+          {shopping}
+        </List>
+      </ScrollView>
+      <View style={{ marginBottom: 8 }}>
+        <Item rounded>
+          <Input placeholder="What do you need?" />
+        </Item>
+      </View>
     </View>
   );
 }
