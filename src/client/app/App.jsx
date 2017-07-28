@@ -125,7 +125,7 @@ class App extends Component {
           path="/dashboard/map"
           render={props =>
             userFound
-              ? <Mapski kiddos={this.state.kiddosList} {...props} />
+              ? <Mapski kiddos={this.state.kiddosList.filter(kiddo => { return kiddo.coords; })} {...props} />
               : <Redirect to="/" />}
         />
         <Route component={NotFound} />

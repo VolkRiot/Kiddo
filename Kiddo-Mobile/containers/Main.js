@@ -7,19 +7,60 @@ import {
   ActivityIndicator,
   Dimensions
 } from 'react-native';
+import { Container, Content, Spinner } from 'native-base';
 
-// import { bindActionCreators } from 'redux';
-// import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 // import SocketIOClient from 'socket.io-client';
 
-import RegisterApp from '../containers/registerApp';
+import * as Actions from '../redux/actions';
+import Router from '../router/Router';
+
 import NavigationProvider from './Navigator';
 
-export default class Main extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
+    this.state = { loading: true, found: false };
   }
+
+  async componentDidMount() {
+    // TODO: REmove DEBUG Must remove this - Used to clean the Storage
+    // await AsyncStorage.clear();
+    const found = await this.props.actions.getStoredUser();
+    this.setState({ loading: false, found });
+  }
+
   render() {
-    return <NavigationProvider />;
+    if (this.state.loading) {
+      return (
+        <Container>
+          <Content>
+            <Spinner color="blue" />
+          </Content>
+        </Container>
+      );
+    } else {
+      return (
+        <NavigationProvider
+          startRoute={this.props.mainKid ? 'main' : 'register'}
+        />
+      );
+    }
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    mainKid: state.kidOwner.kidOwner,
+    searched: state.kidOwner.searched
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

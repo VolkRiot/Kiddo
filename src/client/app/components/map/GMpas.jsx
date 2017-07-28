@@ -8,41 +8,59 @@ class GMap extends Component {
   constructor(props){
     super(props);
     this.state = {
-      kiddoDetail: {},
       markersList: []
     };
 
     this.params = { v: '3.exp', key: 'AIzaSyCsOR8WnfgE6jasLOqHXvs0wt2G7TlixY0' };
-    this.onKiddoSelect = this.onKiddoSelect.bind(this);
+    this.buildMarkers = this.buildMarkers.bind(this);
+    this.boundMarkers = this.boundMarkers.bind(this);
   }
 
   componentDidMount() {
     setTimeout(() =>{
-      let filterKiddo, markersList;
-
-      filterKiddo = this.props.kiddosList.filter(kiddo => kiddo.coords);
-
-      markersList = filterKiddo.map(kiddo => {
-        let image;
-        image = {
-          url: kiddo.avatar.url,
-          scaledSize: new google.maps.Size(25, 25)
-        };
-        return (
-          <Marker
-            infoWindow={ kiddo }
-            key={ kiddo._id }
-            lat={ kiddo.coords.lat }
-            lng={ kiddo.coords.lng }
-            draggable={ false }
-            animation={ google.maps.Animation.DROP }
-            icon={ image }
-            onClick={ ()=> this.onKiddoSelect(kiddo) }
-          />
-        );
-      });
-      this.setState({ markersList: markersList });
+    this.buildMarkers();
     },1500);
+  }
+
+  buildMarkers() {
+    let kiddos, markersList;
+
+    kiddos = this.props.kiddos;
+
+    markersList = kiddos.map(kiddo => {
+      let image;
+
+      image = {
+        url: kiddo.avatar.url,
+        scaledSize: new google.maps.Size(40, 40)
+      };
+      return (
+        <Marker
+          data={ kiddo }
+          key={ kiddo._id }
+          lat={ kiddo.coords.lat }
+          lng={ kiddo.coords.lng }
+          draggable={ false }
+          animation={ google.maps.Animation.DROP }
+          icon={ image }
+          onClick={ ()=> this.props.onKiddoSelected(kiddo) }
+        />
+      );
+    });
+    this.setState({ markersList: markersList });
+  }
+
+  boundMarkers(map) {
+    let kiddosList, bounds;
+
+    kiddosList = this.props.kiddos;
+    bounds = new google.maps.LatLngBounds();
+
+    kiddosList.map(kiddo => {
+      let latLng = kiddo.coords;
+      bounds.extend(latLng);
+      map.fitBounds(bounds);
+    });
   }
 
   onMapCreated(map) {
@@ -53,41 +71,38 @@ class GMap extends Component {
       scaleControl: true,
       streetViewControl: true,
       rotateControl: true,
-      fullscreenControl: true
+      fullscreenControl: false
     });
-  }
-
-  onKiddoSelect(infoWindow) {
-    this.setState({ kiddoDetail: infoWindow });
+    this.boundMarkers(map);
   }
 
   render() {
     const markersList = this.state.markersList;
-    const kiddoDetail = this.state.kiddoDetail;
-    const initCoords = this.props.initialCenter;
-    const mapConfig = {
-      zoom: 12
-    };
+    const kiddoSelected = this.props.kiddoSelected;
+    const centerMap = this.props.centerMap;
+    const mapZoom = this.props.mapZoom;
 
     return (
       <Gmaps
         width={ '100%' }
         height={ '100%' }
-        lat={ initCoords.lat }
-        lng={ initCoords.lng }
-        zoom={ mapConfig.zoom }
+        lat={ centerMap.lat }
+        lng={ centerMap.lng }
+        zoom={ mapZoom }
         loadingMessage={ 'Loading Map!' }
         params={ this.params }
-        onMapCreated={ this.onMapCreated } >
+        onMapCreated={ this.onMapCreated }
+        boundMarkers={ this.boundMarkers }
+      >
 
         { markersList? markersList : null }
 
-        { kiddoDetail.coords ?
+        { kiddoSelected.coords ?
           <InfoWindow
-          lat={ kiddoDetail.coords.lat }
-          lng={ kiddoDetail.coords.lng }
-          content={ kiddoDetail.firstName }
-          pixelOffset={ new google.maps.Size(0,-25) }
+          lat={ kiddoSelected.coords.lat }
+          lng={ kiddoSelected.coords.lng }
+          content={ kiddoSelected.firstName }
+          pixelOffset={ new google.maps.Size(0,-30) }
           /> :
           null }
       </Gmaps>
