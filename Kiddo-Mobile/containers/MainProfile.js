@@ -41,9 +41,8 @@ class MainProfile extends Component {
     this.setState({ currentView: view });
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('Shopping is ', nextProps.kid.shopping);
-    this.setState({ kid: nextProps.kid });
+  componentDidMount() {
+    this.props.actions.getKidData(this.props.kid);
   }
 
   async updateKid(obj) {

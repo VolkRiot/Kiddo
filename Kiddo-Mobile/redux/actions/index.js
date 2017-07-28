@@ -20,12 +20,12 @@ export function getStoredUser() {
 
       if (value !== null) {
         const kid = JSON.parse(value);
-        // console.log('Value gotten from storage', value);
+
+        // dispatch(getKidData(kid._id));
         dispatch({
           type: SAVE_KID_USER,
           payload: kid
         });
-        dispatch(getKidData(kid._id));
         return true;
       }
     } catch (error) {
@@ -52,7 +52,7 @@ export function getKidData({ _id }) {
       .then(data => {
         dispatch({
           type: SAVE_KID_USER,
-          payload: data
+          payload: data.body
         });
       })
       .catch(
