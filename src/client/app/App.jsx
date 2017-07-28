@@ -14,7 +14,7 @@ import Kid from './components/kid-view/Kid';
 import Mapski from './components/map/Map';
 import ApiHelper from './utils/apiHelper';
 import FileStackHelper from './utils/fileStackHelper';
-import EnvVars from '../../server/shared/EnvConfigVars';
+import EnvVars from '../../shared/EnvConfigVars';
 
 import '../index.css';
 
