@@ -38,7 +38,7 @@ export default function(props) {
           <Icon ios="ios-map" android="md-map" />
           <Text>Map</Text>
         </Button>
-        <Button
+        {/* <Button
           vertical
           active={props.active === 'chat'}
           onPress={props.changeView.bind(null, 'chat')}
@@ -48,7 +48,7 @@ export default function(props) {
             android="md-chatbubbles-outline"
           />
           <Text>Chat</Text>
-        </Button>
+        </Button> */}
       </FooterTab>
     </Footer>
   );
