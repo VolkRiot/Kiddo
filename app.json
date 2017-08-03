@@ -1,0 +1,42 @@
+{
+  "name": "Kiddo",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "CALLBACKURL": {
+      "required": true
+    },
+    "CLIENT_ID": {
+      "required": true
+    },
+    "CLIENT_SECRET": {
+      "required": true
+    },
+    "FILESTACK_KEY": {
+      "required": true
+    },
+    "FILESTACK_SIG": {
+      "required": true
+    },
+    "GMAPS_KEY": {
+      "required": true
+    },
+    "MONGODB_URI": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
