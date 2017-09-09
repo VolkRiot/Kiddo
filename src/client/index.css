@@ -1,225 +1,211 @@
-/*(TODO) Better modularization of css styles, must be one for each component*/
-
 body {
   background-color: white;
-
 }
 a {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 .main {
-	text-align: center;
-	height: 100%;
-	padding-top: 20px;
-	padding-bottom: 150px;
-	width: 100%;
-	z-index: 5;
+  text-align: center;
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 150px;
+  width: 100%;
+  z-index: 5;
 }
 .title {
-	font-size: 80px;
-	font-family: 'Pacifico', cursive;
-
+  font-size: 80px;
+  font-family: 'Pacifico', cursive;
 }
 .titleSmall {
-	font-size: 20px;
-	margin-bottom: 40px;
-	font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  margin-bottom: 40px;
+  font-family: 'Poppins', sans-serif;
 }
 #footer {
-	background-color: #222222;
-	margin-top: 0;
-	height: 150px;
+  background-color: #222222;
+  margin-top: 0;
+  height: 150px;
 }
 .thumbnail {
-	border: none;
-	font-family: 'Raleway', sans-serif;
-	height: 200px;
-	width: 200px;
-	margin-left: 18%;
-	margin-right: 20%;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  height: 200px;
+  width: 200px;
+  margin-left: 18%;
+  margin-right: 20%;
 }
 .caption h3 {
-	font-size: 20px;
+  font-size: 20px;
 }
 #signIn {
-	font-family: 'Raleway', sans-serif;
-	margin-top: 40px;
-	margin-left:65%;
-	font-size: 24px;
-	color: white;
-	border: 2px solid #FAEBD7;
+  font-family: 'Raleway', sans-serif;
+  margin-top: 40px;
+  margin-left: 65%;
+  font-size: 24px;
+  color: white;
+  border: 2px solid #faebd7;
 }
 .aboutFaq {
-	text-decoration: none;
-	font-size: 18px;
-	color: black;
-	padding-right: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  padding-right: 10px;
 }
 .aboutFaq :hover {
-	color: white;
-
-
+  color: white;
 }
 a {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 a:hover {
-	color: black;
-	text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 .drop {
-
 }
 
-.addChild{
-
-	font-family: 'Raleway', sans-serif;
-	text-align: center;
-	margin-left: 10%;
-	margin-right: 10%;
+.addChild {
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .addChild > h3 {
-	color: black;
-	margin-top: 8%;
-	margin-bottom: 8%;
-	font-size: 50px;
-
+  color: black;
+  margin-top: 8%;
+  margin-bottom: 8%;
+  font-size: 50px;
 }
 #childInputText {
-	float: left;
-	width: 50%;
-
+  float: left;
+  width: 50%;
 }
 .form-group {
-	margin-bottom: 30px;
-
+  margin-bottom: 30px;
 }
 .uploadPic {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
-
 
 .kid {
-	text-align: center;
-	font-size: 15px;
-	margin-top: 15px;
+  text-align: center;
+  font-size: 15px;
+  margin-top: 15px;
 }
 .kidNote {
-
-	float: left;
-	margin-left: 8.5%;
-	margin-top: 1%;
-	width: 25%;
-	margin-bottom: 60px;
+  float: left;
+  margin-left: 8.5%;
+  margin-top: 1%;
+  width: 25%;
+  margin-bottom: 60px;
 }
+
+::-webkit-scrollbar {
+  /*display: none;*/
+  background: transparent;
+  display: none;
+}
+
 .kidShop {
-
-	float: left;
-	margin-left: 3%;
-	margin-top: 3%;
-	width: 25%;
-	font-family: 'Poppins', sans-serif;
-	margin-bottom: 60px;
-
+  float: left;
+  margin-left: 3%;
+  margin-top: 3%;
+  width: 25%;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 60px;
 }
 .kidReminder {
-
-	float: left;
-	margin-left: 3%;
-	margin-top: 1%;
-	width: 25%;
-	font-family: 'Poppins', sans-serif;
-
+  float: left;
+  margin-left: 3%;
+  margin-top: 1%;
+  width: 25%;
+  font-family: 'Poppins', sans-serif;
 }
 #noteBox {
-	border: 3px solid lightgrey;
-	border-radius: 20px;
-	height: 400px;
-	margin-bottom: 20px;
-	font-size: 20px;
-	padding-top: 15px;
-	font-family: 'Raleway', sans-serif;
-	text-align: left;
-	overflow:scroll
-
+  border: 3px solid lightgrey;
+  border-radius: 20px;
+  height: 400px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  padding-top: 15px;
+  font-family: 'Raleway', sans-serif;
+  text-align: left;
+  overflow: scroll;
 }
 
 #shopBox {
-	border: 3px solid lightgrey;
-	border-radius: 20px;
-	height: 400px;
-	margin-bottom: 20px;
-	font-size: 20px;
-	padding-top: 15px;
-	font-family: 'Raleway', sans-serif;
-	text-align: left;
-	overflow:scroll
+  border: 3px solid lightgrey;
+  border-radius: 20px;
+  height: 400px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  padding-top: 15px;
+  font-family: 'Raleway', sans-serif;
+  text-align: left;
+  overflow: scroll;
 }
 #reminderBox {
-	border: 3px solid lightgrey;
-	border-radius: 20px;
-	height: 400px;
-	margin-bottom: 20px;
-	font-size: 20px;
-	padding-top: 15px;
-	font-family: 'Raleway', sans-serif;
-	text-align: left;
-	overflow:scroll
+  border: 3px solid lightgrey;
+  border-radius: 20px;
+  height: 400px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  padding-top: 15px;
+  font-family: 'Raleway', sans-serif;
+  text-align: left;
+  overflow: scroll;
 }
 #shopForm {
-	margin-bottom: 10px;
-	font-family: 'Raleway', sans-serif;
+  margin-bottom: 10px;
+  font-family: 'Raleway', sans-serif;
 }
 #noteForm {
-	margin-bottom: 10px;
-	font-family: 'Raleway', sans-serif;
+  margin-bottom: 10px;
+  font-family: 'Raleway', sans-serif;
 }
 #reminderForm {
-	margin-bottom: 10px;
-	font-family: 'Raleway', sans-serif;
+  margin-bottom: 10px;
+  font-family: 'Raleway', sans-serif;
 }
 
 #kidTitle {
-	font-size: 55px;
-	font-family: 'Pacifico', cursive;
-	margin-top: 10px;
-	color: #696969;
-
-
+  font-size: 55px;
+  font-family: 'Pacifico', cursive;
+  margin-top: 10px;
+  color: #696969;
 }
 #noteTitle {
-	font-size: 40px;
-	font-family: 'Bad Script', cursive;
-	color: #f7786b;
+  font-size: 40px;
+  font-family: 'Bad Script', cursive;
+  color: #f7786b;
 }
 #shopTitle {
-	font-size: 40px;
-	font-family: 'Sacramento', cursive;
-	color: #c178ba;
+  font-size: 40px;
+  font-family: 'Sacramento', cursive;
+  color: #c178ba;
 }
-#reminderTitle{
-	font-size: 40px;
-	font-family: 'Life Savers', cursive;
-	color: #56d8b1;
+#reminderTitle {
+  font-size: 40px;
+  font-family: 'Life Savers', cursive;
+  color: #56d8b1;
 }
 .addPhotoTitle {
-	padding-bottom: 30px;
-	text-align: left;
-	margin-left: 9%;
+  padding-bottom: 30px;
+  text-align: left;
+  margin-left: 9%;
 }
 .dropdown {
-	margin-right: 30%;
+  margin-right: 30%;
 }
 .drop {
-	border: 2px #ffaa28 solid;
-	border-radius: 0px;
-	font-size: 19px;
-	font-family: 'Raleway', sans-serif;
-	word-spacing: 3px;
-	color: #56d8b1;
-
+  border: 2px #ffaa28 solid;
+  border-radius: 0px;
+  font-size: 19px;
+  font-family: 'Raleway', sans-serif;
+  word-spacing: 3px;
+  color: #56d8b1;
 }
 .kid-view-button {
   margin: 1vh;
