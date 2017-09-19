@@ -7,6 +7,8 @@ const UserController = new Crud(UserModel);
 
 // Appending extra property into UserController Obj
 UserController.name = 'UserController';
+
+// Overwriting CRUD methods to better serve UserModel
 UserController.destroy = function (id, cb) {
 
   this.Model.findById({ _id: id }, (err, user) => {
@@ -24,7 +26,23 @@ UserController.destroy = function (id, cb) {
 
 };
 
+UserController.findById = function (query, cb) {
+  let totalModels = Object.keys(this.Model.base.models).join('|').toLowerCase().split('|');
+  this.Model.findById(query).populate(totalModels).exec((err, docs) => {
 
-//(TODO) remove .find() method from UserController (no need to display all users)
+    docs = {
+      _id: docs._id,
+      lastName: docs.lastName,
+      firstName: docs.firstName,
+      email: docs.email,
+      googleId: docs.googleId,
+      events: docs.events,
+      kids: docs.kids
+    };
+
+    this.errorHandler(err, docs, cb);
+  });
+
+};
 
 module.exports = UserController;
